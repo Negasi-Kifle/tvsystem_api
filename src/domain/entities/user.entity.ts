@@ -9,4 +9,5 @@ export interface User {
   permissions: string[];
   isActive: boolean;
   createdAt?: Date;
+  isFirstTimeAccount: boolean;
 }

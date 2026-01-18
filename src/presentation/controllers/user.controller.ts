@@ -22,7 +22,8 @@ export async function createUser(req: Request, res: Response) {
     passwordHash,
     roles: payload.roles,
     permissions: payload.permissions,
-    isActive: payload.isActive
+    isActive: payload.isActive,
+    isFirstTimeAccount: payload.isFirstTimeAccount
   });
 
   res.status(201).json({ id: user.id, email: user.email });

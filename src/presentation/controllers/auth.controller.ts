@@ -7,6 +7,7 @@ import { RefreshTokenDto } from '../dtos/requests/refresh-token.dto';
 import { RegisterDto } from '../dtos/requests/register.dto';
 import { UserRole } from '../../domain/enums/user-role.enum';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
+import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 
 const userRepo = new UserRepository();
 const authService = new AuthService();
@@ -33,28 +34,39 @@ export async function login(req: Request, res: Response) {
   const accessToken = authService.generateAccessToken(payload);
   const refreshToken = authService.generateRefreshToken(payload);
 
-  res.json({ accessToken, refreshToken });
+  res.json({
+    "status": "SUCCESS",
+    "message": "Successfully logged in",
+    "data": {
+      "user": user,
+      "accessToken": accessToken,
+      "refreshToken": refreshToken,
+    }
+  });
 }
 
 export async function register(req: Request, res: Response) {
   const { email, password, fullName } = req.body as RegisterDto;
   
-  // Check if user already exists
-  const existing = await userRepo.findByEmail(email);
+  // Check if first time account already exists
+  const existing = await userRepo.findByMultipleFields({ isFirstTimeAccount: true });
   if (existing) {
-    const error = new Error('User already exists');
-    return sendErrorResponse(res, 409, 'User already exists', error);
+    const error = new Error('First time account already exists');
+    return sendErrorResponse(res, 409, 'First time account already exists', error);
   }
 
   // Hash password and create user with default role
   const passwordHash = await hashPassword(password);
+
+  
   const user = await userRepo.create({
     email,
     fullName,
     passwordHash,
-    roles: [UserRole.SalesRep],
-    permissions: [],
-    isActive: true
+    roles: [UserRole.CEO],
+    permissions: Object.values(PERMISSIONS), // Give all permissions to the CEO
+    isActive: true,
+    isFirstTimeAccount: true
   });
 
   // Generate tokens for the new user
@@ -67,7 +79,15 @@ export async function register(req: Request, res: Response) {
   const accessToken = authService.generateAccessToken(payload);
   const refreshToken = authService.generateRefreshToken(payload);
 
-  res.status(201).json({ accessToken, refreshToken });
+  res.status(201).json({
+    "status": "SUCCESS",
+    "message": "Successfully registered",
+    "data": {
+      "user": user,
+      "accessToken": accessToken,
+      "refreshToken": refreshToken
+    }
+  });
 }
 
 export async function refreshToken(req: Request, res: Response) {

@@ -15,6 +15,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       fullName: user.fullName,
       roles: user.roles as DomainUser['roles'],
       permissions: user.permissions,
+      isFirstTimeAccount: user.isFirstTimeAccount,
       isActive: user.isActive,
       createdAt: user.createdAt
     };
@@ -31,6 +32,22 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
   }
 
   /**
+   * Find user by multiple fields
+   */
+  async findByMultipleFields(fields: Partial<DomainUser>): Promise<DomainUser | null> {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        ...(fields.email !== undefined && { email: fields.email }),
+        ...(fields.roles !== undefined && { roles: { equals: fields.roles as any } }),
+        ...(fields.permissions !== undefined && { permissions: { equals: fields.permissions as any } }),
+        ...(fields.isActive !== undefined && { isActive: fields.isActive }),
+        ...(fields.isFirstTimeAccount !== undefined && { isFirstTimeAccount: fields.isFirstTimeAccount }),
+      }
+    });
+    return user ? this.toDomain(user) : null;
+  }
+
+  /**
    * Create a new user
    */
   async create(data: Omit<DomainUser, 'id'>): Promise<DomainUser> {
@@ -41,7 +58,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
         fullName: data.fullName,
         roles: data.roles,
         permissions: data.permissions,
-        isActive: data.isActive
+        isActive: data.isActive,
+        isFirstTimeAccount: data.isFirstTimeAccount,
       }
     });
     return this.toDomain(user);

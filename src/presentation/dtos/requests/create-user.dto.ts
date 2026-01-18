@@ -7,7 +7,8 @@ export const createUserDto = z.object({
   password: z.string().min(6),
   roles: z.nativeEnum(UserRole).array().nonempty(),
   permissions: z.string().array().default([]),
-  isActive: z.boolean().default(true)
+  isActive: z.boolean().default(true),
+  isFirstTimeAccount: z.boolean().default(false)
 });
 
 export type CreateUserDto = z.infer<typeof createUserDto>;

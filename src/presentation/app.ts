@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import routes from './routes';
-import { errorHandler } from '../shared/utils/error-handler';
+import { errorHandler, sendErrorResponse } from '../shared/utils/error-handler';
 
 const app = express();
 
@@ -16,10 +16,7 @@ app.use('/api', routes);
 
 // Unknown endpoint handler
 app.use(/.*/, (req, res) => {
-    res.status(404).json({
-        status: "FAIL",
-        message: "API endpoint not found"
-    });
+    sendErrorResponse(res, 404, 'API endpoint not found');
 });
 
 app.use(errorHandler);

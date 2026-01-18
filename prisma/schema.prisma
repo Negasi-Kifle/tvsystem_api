@@ -14,15 +14,16 @@ datasource db {
 // USER - System users with roles and permissions
 // ============================================
 model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
-  passwordHash String   @map("password_hash")
-  fullName     String   @map("full_name")
-  roles        String[] // Array of UserRole enum values
-  permissions  String[] // Array of permission strings
-  isActive     Boolean  @default(true) @map("is_active")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  id                    String   @id @default(uuid())
+  email                 String   @unique
+  passwordHash          String   @map("password_hash")
+  fullName              String   @map("full_name")
+  roles                 String[] // Array of UserRole enum values
+  permissions           String[] // Array of permission strings
+  isActive              Boolean  @default(true) @map("is_active")
+  isFirstTimeAccount    Boolean  @default(false) @map("is_first_time_account")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
 
   @@index([email])
   @@map("users")
