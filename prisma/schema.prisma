@@ -1,0 +1,177 @@
+// Prisma schema for Abbay TV Sales Automation System
+// PostgreSQL database - Single tenant system
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USER - System users with roles and permissions
+// ============================================
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  fullName     String   @map("full_name")
+  roles        String[] // Array of UserRole enum values
+  permissions  String[] // Array of permission strings
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@index([email])
+  @@map("users")
+}
+
+// ============================================
+// SHOW - TV shows (InHouse or Outsourced)
+// ============================================
+model Show {
+  id                 String   @id @default(uuid())
+  title              String
+  type               String // ShowType enum: 'InHouse' | 'Outsourced'
+  durationMinutes    Int      @map("duration_minutes")
+  maxAdLengthSeconds Int      @map("max_ad_length_seconds")
+  schedule           Json     @default("[]") // Array of { day, startTime, endTime }
+  assignedStaff      String?  @map("assigned_staff")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  adverts       Advert[]
+  satelliteLogs SatelliteLog[]
+
+  @@map("shows")
+}
+
+// ============================================
+// CUSTOMER - Advertiser companies
+// ============================================
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  industry  String?
+  contacts  Json     @default("[]") // Array of { name, email?, phone? }
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  adverts Advert[]
+
+  @@map("customers")
+}
+
+// ============================================
+// ADVERT - Advertisement campaigns
+// ============================================
+model Advert {
+  id              String   @id @default(uuid())
+  showId          String   @map("show_id")
+  customerId      String   @map("customer_id")
+  status          String // AdvertStatus enum: Draft, Scheduled, Active, Completed, Failed
+  slot            Json?    // { start: DateTime, end: DateTime }
+  contractDetails String?  @map("contract_details")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  show          Show           @relation(fields: [showId], references: [id], onDelete: Cascade)
+  customer      Customer       @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  payments      Payment[]
+  compensations Compensation[]
+
+  @@index([showId])
+  @@index([customerId])
+  @@index([status])
+  @@map("adverts")
+}
+
+// ============================================
+// PARTNER - External partners for outsourced shows
+// ============================================
+model Partner {
+  id           String   @id @default(uuid())
+  name         String
+  revenueShare Json     // { value: number } - Percentage value object
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("partners")
+}
+
+// ============================================
+// PAYMENT - Financial transactions
+// ============================================
+model Payment {
+  id               String   @id @default(uuid())
+  advertId         String   @map("advert_id")
+  installmentLabel String?  @map("installment_label")
+  amount           Json     // { amount: number, currency: string } - Money value object
+  dueDate          DateTime @map("due_date")
+  status           String // PaymentStatus enum: Pending, Sent, Overdue, Paid, Failed
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  advert Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+
+  @@index([advertId])
+  @@index([status])
+  @@map("payments")
+}
+
+// ============================================
+// COMPENSATION - Missed ad compensation records
+// ============================================
+model Compensation {
+  id               String   @id @default(uuid())
+  advertId         String   @map("advert_id")
+  proposal         String
+  status           String // 'Proposed' | 'Accepted' | 'Rejected'
+  customerResponse String?  @map("customer_response")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  advert Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+
+  @@index([advertId])
+  @@map("compensations")
+}
+
+// ============================================
+// SATELLITE LOG - Broadcast verification logs
+// ============================================
+model SatelliteLog {
+  id           String   @id @default(uuid())
+  showId       String   @map("show_id")
+  broadcastAt  DateTime @map("broadcast_at")
+  deliveredAds Json     @default("[]") // Array of { advertId, played: boolean }
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  show Show @relation(fields: [showId], references: [id], onDelete: Cascade)
+
+  @@index([showId])
+  @@map("satellite_logs")
+}
+
+// ============================================
+// MEDIA PACK - Advertising packages with versioning
+// ============================================
+model MediaPack {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  versions    Json     @default("[]") // Array of { version: number, notes?, createdAt }
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("media_packs")
+}

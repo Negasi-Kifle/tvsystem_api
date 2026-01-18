@@ -1,0 +1,697 @@
+System Design For Abbay TV
+
+**1. Introduction**
+This document presents the system design for a custom web-based software solution that will be developed for Abbay TV. The primary objective of the system is to automate and streamline Abbay’s existing sales operations.
+
+Once fully implemented, the system will:
+- Automate the management of shows
+- Automate the management and monitoring of satellite schedules
+- Automate sales follow-ups, including the generation of ad schedules and performance reports for customers
+- Automate the process of ad placement
+- Automate the financial management of advertisements
+- Automate employees and partners data management
+- Automate compensation recording and notifying customer
+- Show a summary of company performance
+
+By integrating these capabilities, the software will significantly improve the efficiency, accuracy, and traceability of Abbay TV’s sales processes.
+
+**2. System Scope**
+
+The system will provide end-to-end automation for managing TV shows, satellite scheduling, sales processes, ad placement, financial operations, compensation process, and company performance summarizing.
+
+The key functionalities include:
+- Shows Management: Manage both in-house and outsourced TV shows.
+- Satellite Scheduling: Prepare and manage satellite schedules for regular days and holidays.
+- Sales Follow-Up: everything from saving potential customer to following them up, media monitoring and segment industry
+- Advert Placement: Place advertisements based on the allotted time within each show.
+- Advert Sale: Record and manage every successful advertising deal.
+- Advert Schedule vs Satellite Log: Verify whether ads ran as planned by comparing the ad schedule with the satellite log.
+- Compensation Process: Record a compensation plan for missed ads and notify customer via an email about the compensation plan
+- Ad Schedule and Report: Allow sales assistants to generate and email ad schedules and reports directly from the system.
+- Advert Finance: Send payment requests to customers based on contract-defined installments and track their status.
+- Payment Distribution for Outsourced Shows: Automatically calculate and distribute ad revenue shares between Abbay TV and its external partners.
+- Commission for Sales Agents: Automatically calculate and distribute  sales agent’s commission earned from each ad campaign.
+- Employee Management: Manage detailed employee records.
+- System User Management: Implement fine-grained user permission control.
+- Partner Management: Add and manage external partners, particularly those involved in outsourced shows.
+- Media Pack Management: Prepare and manage ad packages with version control support.
+- Revenue Share Report: external partners get an email of their revenue share from a campaign
+- Analytics:  a summary data will be computed on selected areas
+
+**3. System Contex**
+The Abbay TV Sales Automation System centralizes and streamlines the company’s sales operations by connecting key stakeholders—including the CEO, sales team, finance, satellite managers, and external partners—to manage shows, customers, finances, and advertising schedules. The system integrates with external services like email and/or SMS for communications, ensuring seamless coordination of sales, reporting, and revenue sharing.
+
+**Note:** The “Satellite Log System” does not have a direct (i.e., system-to-system) communication with the Sales Automation System. The satellite manager manually sends the log to the sales assistant.
+
+
+```mermaid
+graph TD
+   %% Top Level - Leadership
+   CEO[CEO]
+  
+   %% Management Layer
+   SalesManager[Sales Manager]
+   FinanceManager[Finance Manager]
+   SatelliteManager[Satellite Manager]
+  
+   %% Central System
+   AbbaySystem[Abbay TV Sales<br/>Automation System]
+  
+   %% Sales Team
+   SalesReps[Sales Representatives]
+   SalesAssistants[Sales Assistants]
+  
+   %% Internal Users
+   Employees[Employees]
+  
+   %% External Business Partners
+   Customers[Customers/<br/>Advertisers]
+   ExternalPartners[External Partners<br/>Outsourced Shows]
+   SalesAgents[Sales Agents<br/>e.g., Cactus]
+  
+   %% External Systems
+   EmailSystem[Email System]
+   SMSSystem[SMS System]
+   SatelliteSystem[Satellite Broadcasting<br/>System]
+  
+   %% Leadership Connections
+   CEO <-->|Manages shows, employees, partners<br/>Analytics, performance reports| AbbaySystem
+  
+   %% Management Connections
+   SalesManager <-->|Sales oversight<br/>Performance data| AbbaySystem
+   FinanceManager <-->|Payment management<br/>Financial reports| AbbaySystem
+   SatelliteManager <-->|Broadcast logs & schedules<br/>Schedule requirements| AbbaySystem
+  
+   %% Sales Team Connections
+   SalesReps <-->|Customer records & deals<br/>Reports & alerts| AbbaySystem
+   SalesAssistants <-->|Ad placement & schedules<br/>Compensation plans| AbbaySystem
+  
+   %% Internal Users
+   AbbaySystem -->|Employee data & roles| Employees
+  
+   %% External Business Partners
+   Customers <-->|Contract agreements<br/>Schedules & reports| AbbaySystem
+   ExternalPartners <-->|Show content & agreements<br/>Revenue share reports| AbbaySystem
+   SalesAgents <-->|Payment confirmations<br/>Commission payments| AbbaySystem
+  
+   %% External Systems Integration
+   AbbaySystem --> EmailSystem
+   AbbaySystem --> SMSSystem
+   SatelliteSystem --> AbbaySystem
+  
+   %% Communication Flow
+   EmailSystem --> Customers
+   EmailSystem --> ExternalPartners
+   EmailSystem --> SalesAgents
+   SMSSystem --> Customers
+   SMSSystem --> SalesReps
+  
+   %% Styling
+   classDef systemBox fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+   classDef userBox fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+   classDef externalBox fill:#fff3e0,stroke:#e65100,stroke-width:2px
+  
+   class AbbaySystem systemBox
+   class CEO,SalesReps,SalesAssistants,SalesManager,FinanceManager,SatelliteManager,Employees userBox
+   class Customers,ExternalPartners,SalesAgents,EmailSystem,SMSSystem,SatelliteSystem externalBox
+```
+Figure 1: System context diagram
+
+
+**4. Functional Requirements**
+
+**4.1. Shows Management**
+The CEO records and manages essential details for both in-house and outsourced TV shows, including show type, duration, assigned staff or host, maximum ad length, airing schedule, and more.
+
+**4.2. Satellite Scheduling**
+CEO creates and manages satellite broadcast schedules for both regular days and holidays.
+
+**4.3. Sales Follow-Up**
+- Sales reps record potential customers/companies for easy retrieval and future engagement.
+- Sales reps encode the full history of communications between them and customers.
+- Sales manager and CEO monitor communication log
+- Sales assistants monitor and record potential advertisers placing ads on competitor media but not on Abbay TV.
+- Sales assistants identify and log suitable companies for each show.
+- Sales reps record all new sales deals with full details.
+
+**4.4. Advert Sale**
+- Sales reps record every successful advertisement sale.
+- Sales assistants prepare agreement and contract docs for each new deal.
+
+**4.5. Advert Placement**
+- Sales assistants schedule advertisements based on the contract agreement and allocated time slots for an ad within each show.
+- Satellite manager ensures ad placements fit within the structural and time constraints of shows.
+- Sales assistants ensure alignment between scheduled content and actual satellite broadcasts using the satellite log.
+- Show sales assistants and the CEO about show and ad statuses.
+- Alert the team when an ad is about to go off-air within one day.
+
+**4.6. Ad Schedule & Reporting**
+Sales assistants generate ad schedules and detailed campaign reports directly from the system and send to customers via an email.
+
+**4.7. Advert Schedule vs Satellite Log**
+- Sales assistants receive the actual satellite broadcast logs from the satellite manager and upload it to the system for comparison against the ad schedule to verify successful delivery.
+- Sales assistants record every compensation action taken for missed ads.
+- Customers receive an email about a compensation plan proposed by the sales assistant. And if they agree with the plan, they approve/accept it. Else they can reject and provide reason for why they rejected the plan or provide a better idea on how they would like to be compensated.
+
+**4.8. Advert Finance**
+- The Finance Manager generates and sends payment requests to customers and sales agents (e.g., Cactus) based on installment plans specified in advertisement contracts.
+- The Finance Manager tracks the status of all payments and reviews historical payment records.
+- The Finance Manager disburses commission/revenue share payments to sales representatives and external partners.
+
+**4.9. Payment, Calculation, and Distribution**
+The system automatically calculates and distributes revenue shares from each ad campaign between Abbay TV and the relevant external partners.
+Additionally, the system automatically calculates and distributes commissions for sales representatives.
+
+**4.10. Employee Management**
+The CEO manages all employee data including roles, contact information, and job assignments.
+
+**4.11. Partner Management**
+Allow the CEO to add and manage partners involved in outsourced shows.
+Note: This feature may be excluded if partner data closely resembles that of internal users or employees.
+
+**4.12. User Management & Permissions**
+- Implement fine-grained access control based on roles and permissions for the CEO.
+- Allow the CEO to activate/deactivate user accounts
+- Enable users to reset forgotten passwords via their registered email.
+
+**4.13. Media Pack Management**
+- The CEO prepares and manages advertising packages.
+- Support version control to track changes and updates in ad offerings over time.
+
+**4.14. Analytics**
+Show the CEO an overview of selected data, like sales performance, number of customers, sales per show, sales by months, etc.
+
+**4.15. Revenue Share Report**
+Partners of outsourced shows receive revenue reports via email on a weekly or monthly basis.
+
+**5 Non-Functional Requirements (Quality Goals)**
+To ensure system reliability, security, and maintainability, the following non-functional requirements will be implemented:
+
+- Secure Credential Storage: user credentials will be stored using strong, industry-standard hashing algorithms such as bcrypt. This ensures that even in the event of a data breach, stored passwords remain secure, unreadable, and computationally infeasible to reverse.
+
+- Permission-Based Access Control (PBAC): the system will implement permission-based authorization, allowing fine-grained access control over features and data. The superuser will have the ability to:
+
+- Define and manage roles and permissions for all users.
+
+- Restrict access to sensitive operations based on user roles.
+
+- Enable or disable accounts as needed.
+
+- Data Privacy and Protection: sensitive user data will be encrypted in transit using HTTPS and securely stored, adhering to best practices for data protection.
+
+- System Availability & Performance: the system will be designed for high availability and optimized for performance to ensure smooth user experience during peak usage hours.
+
+- Audit Logging: critical actions such as logins, data updates, and permission changes will be logged to enable accountability and traceability.
+
+- Scalability & Maintainability: the software architecture will support future enhancements and a growing number of users, ensuring long-term maintainability and scalability.
+
+- Calendar: the system should support both the Ethiopian and Gregorian calendars.
+
+
+**6 Use Cases**
+
+```mermaid
+---
+title: Abbay TV Sales Automation System - Use Case Diagram
+---
+flowchart TD
+    subgraph "General System Functions"
+        UC_ViewProfile["View profile"]
+        UC_LoginLogout["Login/Logout"]
+        UC_ResetPassword["Reset Forgotten Password via Email"]
+    end
+
+    subgraph "Administration & High-Level Management"
+        UC_ManageShows["Manage TV Shows<br>(In-house & Outsourced)"]
+        UC_ManageSchedules["Manage Satellite<br>Broadcast Schedules"]
+        UC_ManageMediaPacks["Manage Media Packs<br>(with Version Control)"]
+        UC_ManageEmployees["Manage Employees & Roles"]
+        UC_ManagePartners["Manage Partners"]
+        UC_ManageUsers["Manage User Accounts<br>& Permissions"]
+        UC_ViewAnalytics["View Analytics<br>(Sales per Show, Month, Performance KPIs)"]
+    end
+
+    subgraph "Sales & Customer Follow-Up"
+        UC_ManageLeads["Record & Manage<br>Potential Customers"]
+        UC_LogComm["Log Full<br>Communication History"]
+        UC_MonitorComm["Monitor Communication Logs"]
+        UC_RecordSale["Record All Sales Deals"]
+        UC_MonitorCompetitors["Identify Competitor Advertisers"]
+        UC_MatchShows["Match Companies to Shows"]
+        UC_ReassignRep["Reassign Sales Rep<br>to Company"]
+    end
+
+    subgraph "Ad Operations & Scheduling"
+        UC_ScheduleAds["Schedule Advertisements<br>by Show & Contract"]
+        UC_VerifyPlacement["Ensure Ad Placement Integrity<br>(Time & Structure)"]
+        UC_VerifyDelivery["Cross-check Ad Schedule<br>vs Satellite Logs"]
+        UC_Compensate["Take Compensatory Actions<br>for Missed Ads"]
+        UC_AdExpiryAlert["Send Alerts: Ad Expiry<br>(24hrs notice)"]
+        UC_GenerateReports["Generate & Email Schedules<br>& Campaign Reports"]
+    end
+
+    subgraph "Finance & Revenue"
+        UC_ManageInvoices["Generate & Send Payment Requests<br>(Installments)"]
+        UC_TrackPayments["Track Payment Status & History"]
+        UC_Commission["Disburse Sales Commissions"]
+        UC_CalcRevenue["Auto-Calculate & Distribute<br>Partner Revenue Shares"]
+        UC_SendRevenueReport["Email Revenue Share Reports<br>(Weekly/Monthly)"]
+    end
+
+    %% Define Actors
+    CEO["CEO"]
+    SalesRep["Sales Rep"]
+    SalesAssistant["Sales Assistant"]
+    SalesManager["Sales Manager"]
+    SatelliteManager["Satellite Manager"]
+    FinanceManager["Finance Manager"]
+    Partner["Partner"]
+    User["User"]
+
+    %% CEO Relationships
+    CEO --> UC_ManageShows
+    CEO --> UC_ManageSchedules
+    CEO --> UC_ManageMediaPacks
+    CEO --> UC_ManageEmployees
+    CEO --> UC_ManagePartners
+    CEO --> UC_ManageUsers
+    CEO --> UC_ViewAnalytics
+    CEO --> UC_MonitorComm
+
+    %% Sales Rep Relationships
+    SalesRep --> UC_ManageLeads
+    SalesRep --> UC_LogComm
+    SalesRep --> UC_RecordSale
+
+    %% Sales Assistant Relationships
+    SalesAssistant --> UC_MonitorCompetitors
+    SalesAssistant --> UC_MatchShows
+    SalesAssistant --> UC_ScheduleAds
+    SalesAssistant --> UC_VerifyDelivery
+    SalesAssistant --> UC_Compensate
+    SalesAssistant --> UC_GenerateReports
+    SalesAssistant --> UC_AdExpiryAlert
+
+    %% Sales Manager Relationships
+    SalesManager --> UC_MonitorComm
+    SalesManager --> UC_ReassignRep
+
+    %% Satellite Manager Relationships
+    SatelliteManager --> UC_VerifyPlacement
+
+    %% Finance Manager Relationships
+    FinanceManager --> UC_ManageInvoices
+    FinanceManager --> UC_TrackPayments
+    FinanceManager --> UC_Commission
+
+    %% Partner Relationships
+    Partner --> UC_SendRevenueReport
+
+    %% General User Relationships
+    User --> UC_LoginLogout
+    User --> UC_ViewProfile
+    User --> UC_ResetPassword
+
+    %% Automation Notes & Dependencies
+    N1(["Automated by System"])
+    UC_AdExpiryAlert -.-> N1
+    UC_CalcRevenue -.-> N1
+
+    %% Use Case Dependencies
+    UC_CalcRevenue --> UC_SendRevenueReport
+    UC_TrackPayments --> UC_Commission
+
+    %% Styling
+    classDef actorStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef useCaseStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:1px,rx:5px,ry:5px
+    classDef packageStyle fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class CEO,SalesRep,SalesAssistant,SalesManager,SatelliteManager,FinanceManager,Partner,User actorStyle
+    class UC_ViewProfile,UC_LoginLogout,UC_ResetPassword,UC_ManageShows,UC_ManageSchedules,UC_ManageMediaPacks,UC_ManageEmployees,UC_ManagePartners,UC_ManageUsers,UC_ViewAnalytics,UC_ManageLeads,UC_LogComm,UC_MonitorComm,UC_RecordSale,UC_MonitorCompetitors,UC_MatchShows,UC_ReassignRep,UC_ScheduleAds,UC_VerifyPlacement,UC_VerifyDelivery,UC_Compensate,UC_AdExpiryAlert,UC_GenerateReports,UC_ManageInvoices,UC_TrackPayments,UC_Commission,UC_CalcRevenue,UC_SendRevenueReport useCaseStyle
+```
+Figure 2: Usecase diagram
+
+
+**7Sequence Diagram**
+The following sequence diagrams illustrate the key automated workflows within the Abbay TV Sales Automation System. These diagrams demonstrate how the system streamlines operations from initial ad sales through final revenue distribution, ensuring efficient coordination between all stakeholders.
+
+**7.1 Ad Sale & Scheduling Process**
+
+**Overview**
+This diagram illustrates the foundational workflow from initial advertisement sale through customer communication and automated alerting. It demonstrates how the system coordinates between sales representatives, sales assistants, and satellite managers to ensure smooth ad placement operations.
+
+**Key Participants**
+- Sales Representative: Records new advertisement sales with complete deal details
+- Sales Assistant: Prepares contracts, schedules advertisements, and manages customer communications
+- Satellite Manager: Approves ad placements within technical and time constraints
+- CEO: Receives critical alerts and oversight notifications
+- Customer: Receives ad schedules and important communications
+
+**Business Value**
+- Automated Contract Generation: Eliminates manual document preparation, reducing errors and processing time
+- Intelligent Scheduling: Ensures ads are placed within show constraints and satellite capabilities
+- Proactive Customer Communication: Automatically sends ad schedules to customers, improving transparency
+- Smart Alert System: Provides 24-hour advance warnings for shows going off-air, preventing last-minute surprises
+- Daily Monitoring: Automated daily checks ensure no critical deadlines are missed
+
+**Process Flow**
+The workflow begins when a sales representative records a new ad sale, triggering automatic contract preparation by sales assistants. The system then facilitates ad scheduling through satellite manager approval, followed by customer notification via email. The process includes built-in safeguards with automated alerts for shows ending within 24 hours and daily monitoring routines.
+
+```mermaid
+sequenceDiagram
+   title Abbay TV - Ad Sale & Scheduling Process
+  
+   participant SalesRep as Sales Representative
+   participant SalesAssistant as Sales Assistant
+   participant SatelliteManager as Satellite Manager
+   participant CEO as CEO
+   participant Customer as Customer
+   participant AbbaySystem as Abbay TV System
+   participant Database as Database
+   participant EmailSystem as Email System
+   participant SatelliteSystem as Satellite System
+
+
+   Note over SalesRep, Database: 1. Advert Sale Process
+   SalesRep->>AbbaySystem: Record new ad sale (show, customer, agreement details)
+   AbbaySystem->>Database: Save sale record
+   AbbaySystem-->>SalesRep: Sale confirmation
+  
+   SalesAssistant->>AbbaySystem: Prepare agreement and contract documents
+   AbbaySystem->>Database: Generate contract based on sale details
+   AbbaySystem-->>SalesAssistant: Contract documents ready
+
+
+   Note over SalesAssistant, SatelliteSystem: 2. Ad Scheduling Process
+   SalesAssistant->>AbbaySystem: Schedule advertisement (time slot, show constraints)
+   AbbaySystem->>Database: Retrieve show constraints and availability
+   AbbaySystem->>SatelliteManager: Request ad placement approval for time constraints
+   SatelliteManager-->>AbbaySystem: Approve/Modify placement
+   AbbaySystem->>Database: Save approved ad schedule
+   AbbaySystem->>SatelliteSystem: Transmit broadcast schedule
+   AbbaySystem-->>SalesAssistant: Schedule confirmation
+
+
+   Note over SalesAssistant, Customer: 3. Customer Communication
+   SalesAssistant->>AbbaySystem: Generate ad schedule for customer
+   AbbaySystem->>Database: Compile ad schedule data
+   AbbaySystem->>EmailSystem: Send ad schedule to customer
+   EmailSystem->>Customer: Deliver ad schedule email
+   AbbaySystem-->>SalesAssistant: Schedule sent confirmation
+
+
+   Note over AbbaySystem, CEO: 4. Automated Alerts
+   alt Show/Ad ending within 24h
+       AbbaySystem->>SalesAssistant: Show/Ad ending alert
+       AbbaySystem->>CEO: Show/Ad ending alert
+   end
+
+
+   loop Daily at 6:00 AM
+       AbbaySystem->>AbbaySystem: Check shows/ads ending today
+       AbbaySystem->>SalesAssistant: Daily off-air alerts
+       AbbaySystem->>CEO: Daily off-air alerts
+   end
+```
+Figure 3: Sequence diagram - Ad Sale and Scheduling Process
+
+
+**7.2 Ad Verification & Compensation Process**
+
+**Overview**
+This diagram showcases the system's quality assurance capabilities, demonstrating how actual broadcast performance is verified against planned schedules and how customer compensation is handled when ads fail to air as planned.
+
+**Key Participants**
+- Sales Assistant: Initiates verification processes and manages compensation workflows
+- Satellite Manager: Provides actual broadcast logs for verification
+- Customer: Participates in compensation discussions and approvals
+- Satellite System: Records actual broadcast execution data
+
+**Business Value**
+- Quality Assurance: Systematic verification ensures customers receive the advertising exposure they paid for
+- Transparent Compensation: Automated detection of missed ads with structured compensation workflows
+- Customer Satisfaction: Interactive compensation process allows customer input and approval
+- Performance Reporting: Comprehensive campaign reports provide customers with detailed performance metrics
+- Trust Building: Proactive identification and resolution of issues strengthens customer relationships.
+Process Flow
+- The workflow begins with satellite systems recording actual broadcast logs, which are then uploaded by satellite managers. Sales assistants initiate verification by comparing planned schedules against actual broadcasts. When discrepancies are found, the system flags missing ads and initiates a compensation workflow that includes customer interaction, approval processes, and campaign performance reporting.
+
+
+```mermaid
+   sequenceDiagram
+   title Abbay TV - Ad Verification & Compensation Process
+  
+   participant SalesAssistant as Sales Assistant
+   participant SatelliteManager as Satellite Manager
+   participant Customer as Customer
+   participant AbbaySystem as Abbay TV System
+   participant Database as Database
+   participant EmailSystem as Email System
+   participant SatelliteSystem as Satellite System
+
+
+   Note over SatelliteSystem, Database: 1. Broadcast Execution & Log Collection
+   SatelliteSystem->>SatelliteSystem: Execute broadcast & record actual logs
+   SatelliteManager->>AbbaySystem: Upload actual satellite broadcast logs
+   AbbaySystem->>Database: Store satellite logs
+
+
+   Note over SalesAssistant, AbbaySystem: 2. Ad Verification Process
+   SalesAssistant->>AbbaySystem: Initiate ad delivery verification
+   AbbaySystem->>Database: Retrieve scheduled ads and satellite logs
+   AbbaySystem->>AbbaySystem: Compare ad schedule vs satellite log
+  
+   alt Ads delivered successfully
+       AbbaySystem-->>SalesAssistant: Verification successful
+       AbbaySystem->>AbbaySystem: Trigger payment and commission calculations
+   else Ads missing/failed
+       AbbaySystem->>SalesAssistant: Flag missing/failed ads
+       Note over SalesAssistant, Customer: 3. Compensation Process
+       SalesAssistant->>AbbaySystem: Propose compensation plan
+       AbbaySystem->>Database: Record compensation plan
+       AbbaySystem->>EmailSystem: Send compensation proposal to customer
+       EmailSystem->>Customer: Deliver compensation email
+      
+       alt Customer accepts compensation
+           Customer->>EmailSystem: Accept compensation plan
+           EmailSystem->>AbbaySystem: Customer acceptance
+           AbbaySystem->>Database: Update compensation status
+           AbbaySystem->>SalesAssistant: Compensation approved
+       else Customer rejects compensation
+           Customer->>EmailSystem: Reject with reason/counter-proposal
+           EmailSystem->>AbbaySystem: Customer rejection details
+           AbbaySystem->>SalesAssistant: Handle customer counter-proposal
+           SalesAssistant->>AbbaySystem: Revise compensation plan
+       end
+   end
+
+
+   Note over SalesAssistant, Customer: 4. Campaign Reporting
+   SalesAssistant->>AbbaySystem: Generate campaign performance report
+   AbbaySystem->>Database: Compile campaign data and results
+   AbbaySystem->>EmailSystem: Send performance report to customer
+   EmailSystem->>Customer: Deliver campaign report
+   AbbaySystem-->>SalesAssistant: Report sent confirmation
+```
+Figure 4: Sequence diagram - Add Verification and Compensation Process
+
+
+
+**7.3 Financial Processing & Revenue Distribution**
+
+**Overview**
+This diagram illustrates the system's financial automation capabilities, showing how payment requests are generated, revenue shares are calculated and distributed, and comprehensive analytics are provided to leadership for strategic decision-making.
+
+**Key Participants**
+- Finance Manager: Manages payment requests, commission disbursements, and partner payments
+- CEO: Accesses comprehensive analytics and performance dashboards
+- Customer: Receives payment requests and financial communications
+- External Partner: Receives revenue share reports and payments for outsourced shows
+
+**Business Value**
+- Automated Financial Processing: Eliminates manual payment request generation based on contract terms
+- Accurate Revenue Sharing: Automatically calculates and distributes revenue shares for outsourced shows
+- Commission Management: Streamlines sales representative commission calculations and payments
+- Partner Transparency: Regular revenue reports maintain strong external partnerships
+- Strategic Insights: Comprehensive analytics dashboard enables data-driven decision making
+
+**Process Flow**
+The workflow encompasses payment request generation based on contract installment schedules, automated calculation of sales commissions and partner revenue shares, systematic distribution of payments and reports to external partners, and provision of comprehensive analytics dashboards for executive oversight.
+
+
+```mermaid
+sequenceDiagram
+   title Abbay TV - Financial Processing & Revenue Distribution
+  
+   participant FinanceManager as Finance Manager
+   participant CEO as CEO
+   participant Customer as Customer
+   participant ExternalPartner as External Partner
+   participant AbbaySystem as Abbay TV System
+   participant Database as Database
+   participant EmailSystem as Email System
+
+
+   Note over FinanceManager, Customer: 1. Financial Processing
+   FinanceManager->>AbbaySystem: Generate payment requests
+   AbbaySystem->>Database: Retrieve contract terms and installment schedules
+   AbbaySystem->>EmailSystem: Send payment requests to customers
+   EmailSystem->>Customer: Deliver payment request
+   AbbaySystem-->>FinanceManager: Payment requests sent
+
+
+   Note over AbbaySystem, Database: 2. Automated Revenue Calculations
+   AbbaySystem->>AbbaySystem: Calculate sales rep commissions
+   AbbaySystem->>Database: Record commission amounts
+   AbbaySystem->>AbbaySystem: Calculate external partner revenue shares
+   AbbaySystem->>Database: Record revenue share amounts
+
+
+   Note over AbbaySystem, ExternalPartner: 3. Partner Revenue Distribution
+   alt For outsourced shows
+       AbbaySystem->>EmailSystem: Send revenue share report to external partners
+       EmailSystem->>ExternalPartner: Deliver revenue share report
+       AbbaySystem->>AbbaySystem: Process partner payments
+   end
+  
+   Note over FinanceManager, Database: 4. Payment Disbursements
+   FinanceManager->>AbbaySystem: Disburse commission payments to sales reps
+   AbbaySystem->>Database: Record commission disbursements
+   FinanceManager->>AbbaySystem: Disburse revenue shares to external partners
+   AbbaySystem->>Database: Record partner payments
+
+
+   Note over CEO, CEO: 5. Analytics Dashboard
+   CEO->>AbbaySystem: View analytics dashboard
+   AbbaySystem->>Database: Aggregate sales, performance, and financial data
+   AbbaySystem-->>CEO: Display comprehensive performance metrics
+```
+Figure 5: Sequence diagram - Financial Processing and Revenue Distribution
+
+**Integration & System Benefits**
+These three sequence diagrams collectively demonstrate how the Abbay TV Sales Automation System creates a seamless, end-to-end workflow that:
+- Reduces Manual Effort: Automates repetitive tasks across sales, scheduling, and financial processes
+- Improves Accuracy: Systematic verification and automated calculations minimize human errors
+- Enhances Customer Experience: Proactive communication and transparent compensation processes
+- Ensures Compliance: Structured workflows ensure all contractual obligations are met
+- Provides Visibility: Real-time alerts and comprehensive analytics enable proactive management
+- Scales Operations: Automated processes support business growth without proportional staff increases
+
+
+
+**8. Runtime View**
+
+```mermaid
+---
+title: Abbay TV Sales Automation System - Workflow
+---
+flowchart TD
+    %% Start and End
+    Start((Start))
+    Stop((Stop))
+    
+    %% Initial Steps
+    Start --> A1["CEO creates show"]
+    A1 --> A2["CEO sets satellite schedule"]
+    
+    %% Sales Process Partition
+    subgraph SalesProcess["Sales Process"]
+        B1["Sales Rep records customer"]
+        B2["Sales Rep logs communications"]
+        B3["Sales Rep closes ad sale"]
+        B4["System links sale to show/finance"]
+        
+        B1 --> B2 --> B3 --> B4
+    end
+    
+    A2 --> B1
+    
+    %% Ad Placement Partition
+    subgraph AdPlacement["Ad Placement"]
+        C1["Sales Assistant schedules ad"]
+        C2["Satellite Manager verifies constraints"]
+        C3{"Constraints met?"}
+        C4["System confirms schedule"]
+        C5["Satellite System broadcasts"]
+        C6["Flag constraints issue"]
+        C7["Sales Assistant adjusts schedule"]
+        
+        C1 --> C2 --> C3
+        C3 -- Yes --> C4 --> C5
+        C3 -- No --> C6 --> C7 --> C1
+    end
+    
+    B4 --> C1
+    
+    %% Verification Partition
+    subgraph Verification["Verification"]
+        D1["Satellite System records log"]
+        D2["Sales Assistant initiates verification"]
+        D3["System compares schedule vs log"]
+        D4{"Ads missing?"}
+        D5["Sales Assistant initiates compensation"]
+        D6["System records compensation"]
+        D7["Notify Customer About Compensation"]
+        D8["System generates verification report"]
+        
+        D1 --> D2 --> D3 --> D4
+        D4 -- Yes --> D5 --> D6 --> D7
+        D4 -- No --> D8
+    end
+    
+    C5 --> D1
+    
+    %% Finance Partition
+    subgraph Finance["Finance"]
+        E1["Finance Manager creates payment request"]
+        E2["System sends to customer"]
+        E3["System checks payment status"]
+        E4{"Payment overdue?"}
+        E5["System sends reminder"]
+        E6{"Payment pending?"}
+        E7["System marks payment complete"]
+        E8["System calculates partner shares and sales commission"]
+        E9["System distributes to partners and sales rep"]
+        
+        E1 --> E2 --> E3 --> E4
+        E4 -- Yes --> E5 --> E3
+        E4 -- No --> E6
+        E6 -- Yes --> E3
+        E6 -- No --> E7 --> E8 --> E9
+    end
+    
+    D8 --> E1
+    D7 --> E1
+    
+    %% Final Steps
+    E9 --> F1["CEO views analytics dashboard"]
+    F1 --> Stop
+    
+    %% Background Processes
+    subgraph Background["Background Processes"]
+        G1["Start background processes"]
+        G2["Daily at 6:00 AM"]
+        G3["System checks shows"]
+        G4{"Campaign ending < 24h?"}
+        G5["Alert Sales Assistant"]
+        G6["Alert CEO"]
+        
+        G1 --> G2
+        G2 --> G3
+        G3 --> G4
+        G4 -- Yes --> G5 --> G6
+        G4 -- No --> G2
+    end
+    
+    %% Style definitions
+    classDef startEnd fill:#90caf9,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px,color:#000
+    classDef decision fill:#ffecb3,stroke:#ff8f00,stroke-width:1px,color:#000,shape:diamond
+    classDef partition fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,stroke-dasharray: 5 5,color:#000
+    
+    class Start,Stop startEnd
+    class A1,A2,B1,B2,B3,B4,C1,C2,C4,C5,C6,C7,D1,D2,D3,D5,D6,D7,D8,E1,E2,E3,E5,E7,E8,E9,F1,G1,G2,G3,G5,G6 process
+    class C3,D4,E4,E6,G4 decision
+    class SalesProcess,AdPlacement,Verification,Finance,Background partition
+```
+Figure 6: Runtime view
