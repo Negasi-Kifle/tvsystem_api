@@ -1,6 +1,6 @@
 import { BaseRepository } from './base.repository';
 import { Compensation } from '../../../domain/entities/compensation.entity';
-import { CompensationModel } from '../models/compensation.model';
+import { CompensationModel } from '../mongodb-models/compensation.model';
 import { TenantContext } from '../../../shared/types/tenant-context.type';
 
 export class CompensationRepository extends BaseRepository<Compensation> {

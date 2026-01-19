@@ -1,4 +1,4 @@
-import { UserRepository, UserQueryOptions, UserFilter } from '../../../infrastructure/database/prisma/repositories/user.repository';
+import { UserRepository, UserFilter } from '../../../infrastructure/database/prisma/repositories/user.repository';
 import { User } from '../../../domain/entities/user.entity';
 import { FetchAllUsersDto } from '../../../presentation/dtos/requests/fetch-all-users.dto';
 
@@ -12,7 +12,8 @@ export class FetchAllUsersUseCase {
             ...(query.phoneNumber && { phoneNumber: query.phoneNumber }),
             ...(query.roles && { roles: query.roles }),
             ...(query.isActive !== undefined && { isActive: query.isActive }),
-            ...(query.sex && { sex: query.sex })
+            ...(query.sex && { sex: query.sex }),
+            ...(query.isFirstTimeAccount !== undefined && { isFirstTimeAccount: query.isFirstTimeAccount })
         };
 
         const page = query.page ?? 1;

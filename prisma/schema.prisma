@@ -188,8 +188,8 @@ model MediaPack {
 model TelegramGroup {
   id          String   @id @default(uuid())
   groupName   String   @map("group_name")
-  groupChatId String   @unique @map("group_chat_id")
-  groupLink   String?  @map("group_link")
+  groupChatId String?   @unique @map("group_chat_id")
+  groupLink   String  @map("group_link")
   description String?
   isActive    Boolean  @default(true) @map("is_active")
   createdAt   DateTime @default(now()) @map("created_at")

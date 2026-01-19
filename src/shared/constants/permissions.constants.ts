@@ -9,5 +9,6 @@ export const PERMISSIONS = {
   MANAGE_FINANCE: 'manage_finance',
   VIEW_ANALYTICS: 'view_analytics',
   MANAGE_SALES: 'manage_sales',
-  VIEW_SALES: 'view_sales'
+  VIEW_SALES: 'view_sales',
+  MANAGE_TELEGRAM_GROUPS: 'manage_telegram_groups'
 };

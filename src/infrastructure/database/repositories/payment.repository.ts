@@ -1,6 +1,6 @@
 import { BaseRepository } from './base.repository';
 import { Payment } from '../../../domain/entities/payment.entity';
-import { PaymentModel } from '../models/payment.model';
+import { PaymentModel } from '../mongodb-models/payment.model';
 import { TenantContext } from '../../../shared/types/tenant-context.type';
 import { PaymentStatus } from '../../../domain/enums/payment-status.enum';
 

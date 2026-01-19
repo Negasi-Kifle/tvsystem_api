@@ -9,19 +9,24 @@ import { UserRole } from '../../domain/enums/user-role.enum';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { SexTypes } from '../../domain/enums/sex-types.enum';
+import { UsersUseCases } from '../../application/use-cases/users';
 
-const userRepo = new UserRepository();
 const authService = new AuthService();
+const usersUseCases = new UsersUseCases();
+
 
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body as LoginDto;
-  const user = await userRepo.findByEmailOrPhoneNumber(email);
+  const user = await usersUseCases.getByEmailOrPhoneUseCase.execute(email);
+
   if (!user || !user.isActive) {
     const error = new Error('Invalid credentials');
     return sendErrorResponse(res, 401, 'Invalid credentials', error);
   }
-  const valid = await comparePassword(password, user.passwordHash);
-  if (!valid) {
+
+
+  const validPswd = await comparePassword(password, user.passwordHash);
+  if (!validPswd) {
     const error = new Error('Invalid credentials');
     return sendErrorResponse(res, 401, 'Invalid credentials', error);
   }
@@ -48,10 +53,10 @@ export async function login(req: Request, res: Response) {
 
 export async function register(req: Request, res: Response) {
   const { email, password, fullName, phoneNumber, sex } = req.body as RegisterDto;
-  
+
   // Check if first time account already exists
-  const existing = await userRepo.findByMultipleFields({ isFirstTimeAccount: true });
-  if (existing) {
+  const existing = await usersUseCases.fetchAllUsersUseCase.execute({ isFirstTimeAccount: true, isActive: true, page: 1, limit: 10 });
+  if (existing.length > 0) {
     const error = new Error('First time account already exists');
     return sendErrorResponse(res, 409, 'First time account already exists', error);
   }
@@ -59,8 +64,8 @@ export async function register(req: Request, res: Response) {
   // Hash password and create user with default role
   const passwordHash = await hashPassword(password);
 
-  
-  const user = await userRepo.create({
+
+  const user = await usersUseCases.createUserUseCase.execute({
     email,
     fullName,
     phoneNumber,
@@ -69,7 +74,9 @@ export async function register(req: Request, res: Response) {
     roles: [UserRole.CEO],
     permissions: Object.values(PERMISSIONS), // Give all permissions to the CEO
     isActive: true,
-    isFirstTimeAccount: true
+    isFirstTimeAccount: true,
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
 
   // Generate tokens for the new user
@@ -102,7 +109,14 @@ export async function refreshToken(req: Request, res: Response) {
       roles: payload.roles,
       permissions: payload.permissions
     });
-    res.json({ accessToken });
+
+    res.json({
+      status: 'SUCCESS',
+      message: 'Successfully refreshed token',
+      data: {
+        accessToken: accessToken
+      }
+    });
   } catch (error) {
     const err = error instanceof Error ? error : new Error('Invalid refresh token');
     sendErrorResponse(res, 401, 'Invalid refresh token', err);

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { UserRepository, UserFilter } from '../../infrastructure/database/prisma/repositories/user.repository';
 import { hashPassword } from '../../shared/utils/password';
 import { CreateUserDto } from '../dtos/requests/create-user.dto';
 import { sendErrorResponse } from '../../shared/utils/error-handler';

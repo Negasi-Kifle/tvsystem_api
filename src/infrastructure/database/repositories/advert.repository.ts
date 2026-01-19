@@ -1,7 +1,7 @@
 import { AdvertRepositoryInterface } from '../../../domain/interfaces/repositories/advert.repository.interface';
 import { Advert } from '../../../domain/entities/advert.entity';
 import { TenantContext } from '../../../shared/types/tenant-context.type';
-import { AdvertModel } from '../models/advert.model';
+import { AdvertModel } from '../mongodb-models/advert.model';
 import { BaseRepository } from './base.repository';
 
 export class AdvertRepository extends BaseRepository<Advert> implements AdvertRepositoryInterface {

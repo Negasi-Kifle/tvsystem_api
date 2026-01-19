@@ -1,6 +1,6 @@
 import { UserRepositoryInterface } from '../../../domain/interfaces/repositories/user.repository.interface';
 import { User } from '../../../domain/entities/user.entity';
-import { UserModel } from '../models/user.model';
+import { UserModel } from '../mongodb-models/user.model';
 import { BaseRepository } from './base.repository';
 
 export class UserRepository extends BaseRepository<User> implements UserRepositoryInterface {

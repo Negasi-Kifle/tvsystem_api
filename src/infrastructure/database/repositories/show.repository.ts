@@ -1,7 +1,7 @@
 import { ShowRepositoryInterface } from '../../../domain/interfaces/repositories/show.repository.interface';
 import { Show } from '../../../domain/entities/show.entity';
 import { TenantContext } from '../../../shared/types/tenant-context.type';
-import { ShowModel } from '../models/show.model';
+import { ShowModel } from '../mongodb-models/show.model';
 import { BaseRepository } from './base.repository';
 
 export class ShowRepository extends BaseRepository<Show> implements ShowRepositoryInterface {

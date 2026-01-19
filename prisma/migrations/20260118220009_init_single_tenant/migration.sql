@@ -5,8 +5,10 @@ CREATE SCHEMA IF NOT EXISTS "public";
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "phone_number" TEXT NOT NULL,
     "password_hash" TEXT NOT NULL,
     "full_name" TEXT NOT NULL,
+    "sex" TEXT NOT NULL,
     "roles" TEXT[],
     "permissions" TEXT[],
     "is_active" BOOLEAN NOT NULL DEFAULT true,
@@ -122,6 +124,9 @@ CREATE TABLE "media_packs" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_phone_number_key" ON "users"("phone_number");
 
 -- CreateIndex
 CREATE INDEX "users_email_idx" ON "users"("email");

@@ -11,6 +11,7 @@ export interface UserFilter {
   roles?: UserRole;
   isActive?: boolean;
   sex?: SexTypes;
+  isFirstTimeAccount?: boolean;
 }
 
 export interface UserQueryOptions {
@@ -31,7 +32,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       ...(filters.phoneNumber && { phoneNumber: { contains: filters.phoneNumber } }),
       ...(filters.roles && { roles: { has: filters.roles } }),
       ...(filters.isActive !== undefined && { isActive: filters.isActive }),
-      ...(filters.sex && { sex: filters.sex })
+      ...(filters.sex && { sex: filters.sex }),
+      ...(filters.isFirstTimeAccount !== undefined && { isFirstTimeAccount: filters.isFirstTimeAccount })
     };
   }
 
@@ -86,7 +88,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
         ...(fields.permissions !== undefined && { permissions: { equals: fields.permissions as any } }),
         ...(fields.isActive !== undefined && { isActive: fields.isActive }),
         ...(fields.isFirstTimeAccount !== undefined && { isFirstTimeAccount: fields.isFirstTimeAccount }),
-      }
+      },
+      orderBy: { createdAt: 'desc' }
     });
     return user ? this.toDomain(user) : null;
   }
@@ -116,17 +119,10 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
   /**
    * Update user by ID
    */
-  async updateById(
-    id: string,
-    update: Partial<DomainUser>
-  ): Promise<DomainUser | null> {
-    const existing = await this.prisma.user.findUnique({
-      where: { id }
-    });
+  async updateById(id: string, update: Partial<DomainUser>): Promise<DomainUser | null> {
+    const existing = await this.prisma.user.findUnique({ where: { id } });
 
-    if (!existing) {
-      return null;
-    }
+    if (!existing) return null;
 
     const user = await this.prisma.user.update({
       where: { id },
