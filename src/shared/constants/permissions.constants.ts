@@ -7,5 +7,7 @@ export const PERMISSIONS = {
   MANAGE_PARTNERS: 'manage_partners',
   MANAGE_ADVERTS: 'manage_adverts',
   MANAGE_FINANCE: 'manage_finance',
-  VIEW_ANALYTICS: 'view_analytics'
+  VIEW_ANALYTICS: 'view_analytics',
+  MANAGE_SALES: 'manage_sales',
+  VIEW_SALES: 'view_sales'
 };

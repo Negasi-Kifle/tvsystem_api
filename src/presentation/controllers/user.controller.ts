@@ -1,24 +1,31 @@
 import { Request, Response } from 'express';
-import { UserRepository } from '../../infrastructure/database/prisma/repositories/user.repository';
+import { UserRepository, UserFilter } from '../../infrastructure/database/prisma/repositories/user.repository';
 import { hashPassword } from '../../shared/utils/password';
 import { CreateUserDto } from '../dtos/requests/create-user.dto';
-import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
+import { ResetPasswordDto } from '../dtos/requests/reset-paswd.dto';
+import { FetchAllUsersDto } from '../dtos/requests/fetch-all-users.dto';
 
 const userRepo = new UserRepository();
 
 export async function createUser(req: Request, res: Response) {
   const payload = req.body as CreateUserDto;
-  const existing = await userRepo.findByEmail(payload.email);
-  if (existing) {
-    const error = new Error('User already exists');
-    return sendErrorResponse(res, 409, 'User already exists', error);
+  const [userByEmail, userByPhoneNumber] = await Promise.all([
+    userRepo.findByEmailOrPhoneNumber(payload.email),
+    userRepo.findByEmailOrPhoneNumber(payload.phoneNumber)
+  ]);
+  if (userByEmail || userByPhoneNumber) {
+    const errorMessage = userByEmail ? 'Email already taken' : 'Phone number already taken';
+    const error = new Error(errorMessage);
+    return sendErrorResponse(res, 409, errorMessage, error);
   }
 
-  const passwordHash = await hashPassword(payload.password);
+  const passwordHash = await hashPassword(process.env.DEFAULT_PASSWORD || '123456');
   const user = await userRepo.create({
     email: payload.email,
     fullName: payload.fullName,
+    phoneNumber: payload.phoneNumber,
+    sex: payload.sex,
     passwordHash,
     roles: payload.roles,
     permissions: payload.permissions,
@@ -26,7 +33,11 @@ export async function createUser(req: Request, res: Response) {
     isFirstTimeAccount: payload.isFirstTimeAccount
   });
 
-  res.status(201).json({ id: user.id, email: user.email });
+  res.status(201).json({
+    status: 'SUCCESS',
+    message: 'User created successfully',
+    data: { user }
+  });
 }
 
 export async function setUserActive(req: Request, res: Response) {
@@ -50,22 +61,69 @@ export function me(req: Request, res: Response) {
     return sendErrorResponse(res, 401, 'Unauthenticated', error);
   }
   res.json({
-    id: req.user.id,
-    roles: req.user.roles,
-    permissions: req.user.permissions,
-    permissionsAvailable: Object.values(PERMISSIONS)
+    status: 'SUCCESS',
+    data: { user: req.user }
   });
 }
 
-export async function requestPasswordReset(req: Request, res: Response) {
-  const { email } = req.body as { email: string };
-  const user = await userRepo.findByEmail(email);
+export async function resetPassword(req: Request, res: Response) {
+  const { id } = req.body as ResetPasswordDto;
+  const user = await userRepo.findById(id as string);
   if (!user) {
-    return res.status(202).json({ message: 'If the account exists, reset email will be sent' });
+    const error = new Error('User not found');
+    return sendErrorResponse(res, 404, 'User not found', error);
   }
 
-  // TODO: Implement password reset token generation and email delivery
-  return res
-    .status(202)
-    .json({ message: 'If the account exists, reset email will be sent' });
+  if (user.isFirstTimeAccount) {
+    const error = new Error('User is first time account');
+    return sendErrorResponse(res, 400, 'User is first time account', error);
+  }
+
+  // Set user password to the default password
+  const passwordHash = await hashPassword(process.env.DEFAULT_PASSWORD || '123456');
+  await userRepo.updateById(id as string, { passwordHash });
+
+  res.status(202).json({
+    status: 'SUCCESS',
+    message: 'Password reset successfully. Please tell user to use the default password.'
+  });
+}
+
+export async function getAllUsers(req: Request, res: Response) {
+  const query = res.locals.query as FetchAllUsersDto;
+  
+  // Build filters from query params
+  const filters: UserFilter = {
+    ...(query.email && { email: query.email }),
+    ...(query.phoneNumber && { phoneNumber: query.phoneNumber }),
+    ...(query.roles && { roles: query.roles }),
+    ...(query.isActive !== undefined && { isActive: query.isActive }),
+    ...(query.sex && { sex: query.sex })
+  };
+
+  const page = query.page ?? 1;
+  const limit = query.limit ?? 10;
+
+  // Fetch users and total count in parallel
+  const [users, total] = await Promise.all([
+    userRepo.findMany({
+      skip: (page - 1) * limit,
+      take: limit,
+      filters
+    }),
+    userRepo.count(filters)
+  ]);
+
+  res.status(200).json({
+    status: 'SUCCESS',
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit)
+    },
+    data: {
+      users,
+    }
+  });
 }

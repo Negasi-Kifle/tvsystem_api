@@ -8,8 +8,12 @@ export class UserRepository extends BaseRepository<User> implements UserReposito
     super(UserModel);
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    return this.findOne({ email } as Partial<User>);
+  async findByEmailOrPhoneNumber(emailOrPhoneNumber: string): Promise<User | null> {
+    return this.findOne({ OR: [{ email: emailOrPhoneNumber }, { phoneNumber: emailOrPhoneNumber }] } as Partial<User>);
+  }
+
+  async findByMultipleFields(fields: Partial<User>): Promise<User | null> {
+    return this.findOne(fields as Partial<User>);
   }
 
   override async create(user: Omit<User, 'id'>): Promise<User> {

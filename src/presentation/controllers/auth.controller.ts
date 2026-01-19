@@ -8,13 +8,14 @@ import { RegisterDto } from '../dtos/requests/register.dto';
 import { UserRole } from '../../domain/enums/user-role.enum';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
+import { SexTypes } from '../../domain/enums/sex-types.enum';
 
 const userRepo = new UserRepository();
 const authService = new AuthService();
 
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body as LoginDto;
-  const user = await userRepo.findByEmail(email);
+  const user = await userRepo.findByEmailOrPhoneNumber(email);
   if (!user || !user.isActive) {
     const error = new Error('Invalid credentials');
     return sendErrorResponse(res, 401, 'Invalid credentials', error);
@@ -35,18 +36,18 @@ export async function login(req: Request, res: Response) {
   const refreshToken = authService.generateRefreshToken(payload);
 
   res.json({
-    "status": "SUCCESS",
-    "message": "Successfully logged in",
-    "data": {
-      "user": user,
-      "accessToken": accessToken,
-      "refreshToken": refreshToken,
+    status: 'SUCCESS',
+    message: 'Successfully logged in',
+    data: {
+      user: user,
+      accessToken: accessToken,
+      refreshToken: refreshToken
     }
   });
 }
 
 export async function register(req: Request, res: Response) {
-  const { email, password, fullName } = req.body as RegisterDto;
+  const { email, password, fullName, phoneNumber, sex } = req.body as RegisterDto;
   
   // Check if first time account already exists
   const existing = await userRepo.findByMultipleFields({ isFirstTimeAccount: true });
@@ -62,6 +63,8 @@ export async function register(req: Request, res: Response) {
   const user = await userRepo.create({
     email,
     fullName,
+    phoneNumber,
+    sex: sex as SexTypes,
     passwordHash,
     roles: [UserRole.CEO],
     permissions: Object.values(PERMISSIONS), // Give all permissions to the CEO

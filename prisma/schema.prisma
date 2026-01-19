@@ -16,8 +16,10 @@ datasource db {
 model User {
   id                    String   @id @default(uuid())
   email                 String   @unique
+  phoneNumber           String   @unique @map("phone_number")
   passwordHash          String   @map("password_hash")
   fullName              String   @map("full_name")
+  sex                   String   @map("sex")
   roles                 String[] // Array of UserRole enum values
   permissions           String[] // Array of permission strings
   isActive              Boolean  @default(true) @map("is_active")

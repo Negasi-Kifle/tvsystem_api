@@ -1,9 +1,41 @@
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UserRepositoryInterface } from '../../../../domain/interfaces/repositories/user.repository.interface';
 import { User as DomainUser } from '../../../../domain/entities/user.entity';
 import { PrismaBaseRepository } from './base.repository';
+import { SexTypes } from '../../../../domain/enums/sex-types.enum';
+import { UserRole } from '../../../../domain/enums/user-role.enum';
+
+export interface UserFilter {
+  email?: string;
+  fullName?: string;
+  phoneNumber?: string;
+  roles?: UserRole;
+  isActive?: boolean;
+  sex?: SexTypes;
+}
+
+export interface UserQueryOptions {
+  skip: number;
+  take: number;
+  filters?: UserFilter;
+}
 
 export class UserRepository extends PrismaBaseRepository implements UserRepositoryInterface {
+  /**
+   * Build Prisma where clause from filters
+   */
+  private buildWhereClause(filters?: UserFilter): Prisma.UserWhereInput {
+    if (!filters) return {};
+    
+    return {
+      ...(filters.email && { email: { contains: filters.email, mode: 'insensitive' as Prisma.QueryMode } }),
+      ...(filters.fullName && { fullName: { contains: filters.fullName, mode: 'insensitive' as Prisma.QueryMode } }),
+      ...(filters.phoneNumber && { phoneNumber: { contains: filters.phoneNumber } }),
+      ...(filters.roles && { roles: { has: filters.roles } }),
+      ...(filters.isActive !== undefined && { isActive: filters.isActive }),
+      ...(filters.sex && { sex: filters.sex })
+    };
+  }
   /**
    * Map Prisma User to Domain User
    */
@@ -12,6 +44,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       id: user.id,
       email: user.email,
       passwordHash: user.passwordHash,
+      phoneNumber: user.phoneNumber,
+      sex: user.sex as SexTypes,
       fullName: user.fullName,
       roles: user.roles as DomainUser['roles'],
       permissions: user.permissions,
@@ -22,11 +56,16 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
   }
 
   /**
-   * Find user by email
+   * Find user by email or phone number
    */
-  async findByEmail(email: string): Promise<DomainUser | null> {
-    const user = await this.prisma.user.findUnique({
-      where: { email }
+  async findByEmailOrPhoneNumber(emailOrPhoneNumber: string): Promise<DomainUser | null> {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: emailOrPhoneNumber },
+          { phoneNumber: emailOrPhoneNumber }
+        ]
+      }
     });
     return user ? this.toDomain(user) : null;
   }
@@ -38,6 +77,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     const user = await this.prisma.user.findFirst({
       where: {
         ...(fields.email !== undefined && { email: fields.email }),
+        ...(fields.phoneNumber !== undefined && { phoneNumber: fields.phoneNumber }),
+        ...(fields.sex !== undefined && { sex: fields.sex }),
         ...(fields.roles !== undefined && { roles: { equals: fields.roles as any } }),
         ...(fields.permissions !== undefined && { permissions: { equals: fields.permissions as any } }),
         ...(fields.isActive !== undefined && { isActive: fields.isActive }),
@@ -54,6 +95,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     const user = await this.prisma.user.create({
       data: {
         email: data.email,
+        phoneNumber: data.phoneNumber,
+        sex: data.sex,
         passwordHash: data.passwordHash,
         fullName: data.fullName,
         roles: data.roles,
@@ -103,5 +146,27 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       where: { id }
     });
     return user ? this.toDomain(user) : null;
+  }
+
+  /**
+   * Find many users with optional filters
+   */
+  async findMany(query: UserQueryOptions): Promise<DomainUser[]> {
+    const where = this.buildWhereClause(query.filters);
+    const users = await this.prisma.user.findMany({
+      where,
+      skip: query.skip,
+      take: query.take,
+      orderBy: { createdAt: 'desc' }
+    });
+    return users.map(this.toDomain);
+  }
+
+  /**
+   * Count users with optional filters
+   */
+  async count(filters?: UserFilter): Promise<number> {
+    const where = this.buildWhereClause(filters);
+    return this.prisma.user.count({ where });
   }
 }
