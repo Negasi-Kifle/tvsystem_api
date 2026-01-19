@@ -27,6 +27,9 @@ model User {
   createdAt             DateTime @default(now()) @map("created_at")
   updatedAt             DateTime @updatedAt @map("updated_at")
 
+  // Relations
+  telegramGroupMemberships TelegramGroupMember[]
+
   @@index([email])
   @@map("users")
 }
@@ -177,4 +180,43 @@ model MediaPack {
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("media_packs")
+}
+
+// ============================================
+// TELEGRAM GROUP - Telegram notification groups
+// ============================================
+model TelegramGroup {
+  id          String   @id @default(uuid())
+  groupName   String   @map("group_name")
+  groupChatId String   @unique @map("group_chat_id")
+  groupLink   String?  @map("group_link")
+  description String?
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  members TelegramGroupMember[]
+
+  @@map("telegram_groups")
+}
+
+// ============================================
+// TELEGRAM GROUP MEMBER - Junction table for User-TelegramGroup
+// ============================================
+model TelegramGroupMember {
+  id              String   @id @default(uuid())
+  telegramGroupId String   @map("telegram_group_id")
+  userId          String   @map("user_id")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  telegramGroup TelegramGroup @relation(fields: [telegramGroupId], references: [id], onDelete: Cascade)
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([telegramGroupId, userId]) // Prevent duplicate memberships
+  @@index([telegramGroupId])
+  @@index([userId])
+  @@map("telegram_group_members")
 }

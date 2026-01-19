@@ -11,6 +11,7 @@ export interface User {
   roles: UserRole[];
   permissions: string[];
   isActive: boolean;
-  createdAt?: Date;
+  createdAt: Date;
   isFirstTimeAccount: boolean;
+  updatedAt: Date;
 }

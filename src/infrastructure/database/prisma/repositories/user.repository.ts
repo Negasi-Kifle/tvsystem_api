@@ -7,7 +7,6 @@ import { UserRole } from '../../../../domain/enums/user-role.enum';
 
 export interface UserFilter {
   email?: string;
-  fullName?: string;
   phoneNumber?: string;
   roles?: UserRole;
   isActive?: boolean;
@@ -26,16 +25,17 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
    */
   private buildWhereClause(filters?: UserFilter): Prisma.UserWhereInput {
     if (!filters) return {};
-    
+
     return {
       ...(filters.email && { email: { contains: filters.email, mode: 'insensitive' as Prisma.QueryMode } }),
-      ...(filters.fullName && { fullName: { contains: filters.fullName, mode: 'insensitive' as Prisma.QueryMode } }),
       ...(filters.phoneNumber && { phoneNumber: { contains: filters.phoneNumber } }),
       ...(filters.roles && { roles: { has: filters.roles } }),
       ...(filters.isActive !== undefined && { isActive: filters.isActive }),
       ...(filters.sex && { sex: filters.sex })
     };
   }
+
+
   /**
    * Map Prisma User to Domain User
    */
@@ -51,9 +51,11 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       permissions: user.permissions,
       isFirstTimeAccount: user.isFirstTimeAccount,
       isActive: user.isActive,
-      createdAt: user.createdAt
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
     };
   }
+
 
   /**
    * Find user by email or phone number
@@ -69,6 +71,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     });
     return user ? this.toDomain(user) : null;
   }
+
 
   /**
    * Find user by multiple fields
@@ -87,6 +90,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     });
     return user ? this.toDomain(user) : null;
   }
+
 
   /**
    * Create a new user
@@ -107,6 +111,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     });
     return this.toDomain(user);
   }
+
 
   /**
    * Update user by ID
@@ -138,6 +143,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     return this.toDomain(user);
   }
 
+
   /**
    * Find user by ID
    */
@@ -147,6 +153,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     });
     return user ? this.toDomain(user) : null;
   }
+
 
   /**
    * Find many users with optional filters
@@ -162,11 +169,22 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
     return users.map(this.toDomain);
   }
 
+
   /**
    * Count users with optional filters
    */
   async count(filters?: UserFilter): Promise<number> {
     const where = this.buildWhereClause(filters);
     return this.prisma.user.count({ where });
+  }
+
+
+  /**
+   * Delete a user with an id
+   */
+  async delete(id: string): Promise<DomainUser | null> {
+    const user = await this.prisma.user.delete({ where: { id } })
+    
+    return user ? this.toDomain(user) : null
   }
 }

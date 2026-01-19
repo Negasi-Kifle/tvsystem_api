@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import {
   createUser,
+  deleteUser,
   getAllUsers,
+  getUserById,
   me,
   resetPassword,
   setUserActive
@@ -30,5 +32,9 @@ router.patch(
   requirePermission(PERMISSIONS.MANAGE_USERS),
   setUserActive
 );
+
+router.route('/:id')
+  .get(authMiddleware, requirePermission(PERMISSIONS.MANAGE_USERS), getUserById)
+  .delete(authMiddleware, requirePermission(PERMISSIONS.MANAGE_USERS), deleteUser);
 
 export default router;
