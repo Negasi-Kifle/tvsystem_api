@@ -14,4 +14,5 @@ export interface User {
   createdAt: Date;
   isFirstTimeAccount: boolean;
   updatedAt: Date;
+  telegramUsername?: string;
 }

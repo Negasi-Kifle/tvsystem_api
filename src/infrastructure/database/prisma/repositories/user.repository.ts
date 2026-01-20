@@ -1,4 +1,4 @@
-import { Prisma, User } from '@prisma/client';
+import { Prisma, TelegramGroup, User } from '@prisma/client';
 import { UserRepositoryInterface } from '../../../../domain/interfaces/repositories/user.repository.interface';
 import { User as DomainUser } from '../../../../domain/entities/user.entity';
 import { PrismaBaseRepository } from './base.repository';
@@ -12,6 +12,7 @@ export interface UserFilter {
   isActive?: boolean;
   sex?: SexTypes;
   isFirstTimeAccount?: boolean;
+  telegramUsername?: string;
 }
 
 export interface UserQueryOptions {
@@ -33,7 +34,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       ...(filters.roles && { roles: { has: filters.roles } }),
       ...(filters.isActive !== undefined && { isActive: filters.isActive }),
       ...(filters.sex && { sex: filters.sex }),
-      ...(filters.isFirstTimeAccount !== undefined && { isFirstTimeAccount: filters.isFirstTimeAccount })
+      ...(filters.isFirstTimeAccount !== undefined && { isFirstTimeAccount: filters.isFirstTimeAccount }),
+      ...(filters.telegramUsername !== undefined && { telegramUsername: filters.telegramUsername }),
     };
   }
 
@@ -54,7 +56,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
       isFirstTimeAccount: user.isFirstTimeAccount,
       isActive: user.isActive,
       createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      updatedAt: user.updatedAt,
+      telegramUsername: user.telegramUsername ?? '',
     };
   }
 
@@ -88,6 +91,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
         ...(fields.permissions !== undefined && { permissions: { equals: fields.permissions as any } }),
         ...(fields.isActive !== undefined && { isActive: fields.isActive }),
         ...(fields.isFirstTimeAccount !== undefined && { isFirstTimeAccount: fields.isFirstTimeAccount }),
+        ...(fields.telegramUsername !== undefined && { telegramUsername: fields.telegramUsername }),
       },
       orderBy: { createdAt: 'desc' }
     });
@@ -110,6 +114,7 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
         permissions: data.permissions,
         isActive: data.isActive,
         isFirstTimeAccount: data.isFirstTimeAccount,
+        telegramUsername: data.telegramUsername,
       }
     });
     return this.toDomain(user);
@@ -132,7 +137,8 @@ export class UserRepository extends PrismaBaseRepository implements UserReposito
         ...(update.fullName !== undefined && { fullName: update.fullName }),
         ...(update.roles !== undefined && { roles: update.roles }),
         ...(update.permissions !== undefined && { permissions: update.permissions }),
-        ...(update.isActive !== undefined && { isActive: update.isActive })
+        ...(update.isActive !== undefined && { isActive: update.isActive }),
+        ...(update.telegramUsername !== undefined && { telegramUsername: update.telegramUsername }),
       }
     });
 

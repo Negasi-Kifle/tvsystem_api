@@ -1,7 +1,7 @@
 import { PrismaBaseRepository } from "./base.repository";
 import { Prisma, TelegramGroup } from "@prisma/client";
 import { TelegramGroup as DomainTelegramGroup } from "../../../../domain/entities/telegram-groups.entity";
-import { TelegramGroupRepositoryInterface } from "../../../../domain/interfaces/repositories/telegram-group.repository.interface";
+import { TelegramGroupRepositoryInterface } from "../../../../domain/interfaces/repositories/telegram-group.interface";
 
 
 export interface TelegramGroupFilter{

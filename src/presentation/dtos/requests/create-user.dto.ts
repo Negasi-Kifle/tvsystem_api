@@ -14,7 +14,8 @@ export const createUserDto = z.object({
   // Permissions in the array must be valid permission strings
   permissions: z.array(z.enum(PERMISSIONS, "Permissions must be a valid permission")),
   isActive: z.boolean("Is active must be a boolean").default(true),
-  isFirstTimeAccount: z.boolean("Is first time account must be a boolean").default(false)
+  isFirstTimeAccount: z.boolean("Is first time account must be a boolean").default(false),
+  telegramUsername: z.string("Telegram username is required and must be a valid telegram username").optional(),
 });
 
 export type CreateUserDto = z.infer<typeof createUserDto>;

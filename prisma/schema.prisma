@@ -17,6 +17,7 @@ model User {
   id                    String   @id @default(uuid())
   email                 String   @unique
   phoneNumber           String   @unique @map("phone_number")
+  telegramUsername      String?  @unique @map("telegram_username")
   passwordHash          String   @map("password_hash")
   fullName              String   @map("full_name")
   sex                   String   @map("sex")

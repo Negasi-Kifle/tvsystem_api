@@ -10,5 +10,6 @@ export const PERMISSIONS = {
   VIEW_ANALYTICS: 'view_analytics',
   MANAGE_SALES: 'manage_sales',
   VIEW_SALES: 'view_sales',
-  MANAGE_TELEGRAM_GROUPS: 'manage_telegram_groups'
+  MANAGE_TELEGRAM_GROUPS: 'manage_telegram_groups',
+  MANAGE_TELEGRAM_GROUP_MEMBERS: 'manage_telegram_group_members',
 };

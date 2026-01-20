@@ -171,3 +171,4 @@ export async function deleteUser(req: Request, res: Response) {
 
   res.json({ status: 'SUCCESS', message: 'User deleted successfully' });
 }
+

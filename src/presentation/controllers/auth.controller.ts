@@ -52,7 +52,7 @@ export async function login(req: Request, res: Response) {
 }
 
 export async function register(req: Request, res: Response) {
-  const { email, password, fullName, phoneNumber, sex } = req.body as RegisterDto;
+  const payload = req.body as RegisterDto;
 
   // Check if first time account already exists
   const existing = await usersUseCases.fetchAllUsersUseCase.execute({ isFirstTimeAccount: true, isActive: true, page: 1, limit: 10 });
@@ -62,32 +62,30 @@ export async function register(req: Request, res: Response) {
   }
 
   // Hash password and create user with default role
-  const passwordHash = await hashPassword(password);
-
-
-  const user = await usersUseCases.createUserUseCase.execute({
-    email,
-    fullName,
-    phoneNumber,
-    sex: sex as SexTypes,
+  const passwordHash = await hashPassword(payload.password);
+  
+  const userPayload = {
+    ...payload,
     passwordHash,
-    roles: [UserRole.CEO],
-    permissions: Object.values(PERMISSIONS), // Give all permissions to the CEO
     isActive: true,
     isFirstTimeAccount: true,
+    roles: [UserRole.CEO],
+    permissions: Object.values(PERMISSIONS),
     createdAt: new Date(),
-    updatedAt: new Date()
-  });
+    updatedAt: new Date(),
+  };
+
+  const user = await usersUseCases.createUserUseCase.execute(userPayload);
 
   // Generate tokens for the new user
-  const payload = {
+  const tokenPayload = {
     sub: user.id,
     roles: user.roles,
     permissions: user.permissions
   };
 
-  const accessToken = authService.generateAccessToken(payload);
-  const refreshToken = authService.generateRefreshToken(payload);
+  const accessToken = authService.generateAccessToken(tokenPayload);
+  const refreshToken = authService.generateRefreshToken(tokenPayload);
 
   res.status(201).json({
     "status": "SUCCESS",
