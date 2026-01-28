@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from "../../../domain/entities/user.entity";
 import { UserRepository } from "../../../infrastructure/database/prisma";
 
 export class DeleteUserUseCase {

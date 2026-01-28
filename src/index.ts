@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import app from './presentation/app';
 import { SchedulerService } from './infrastructure/services/scheduler.service';
+import { PermissionSyncService } from './infrastructure/services/permission-sync.service';
 import { AlertService } from './application/services/alert.service';
 import { connectPrisma, disconnectPrisma } from './infrastructure/database/prisma';
 
@@ -13,6 +14,13 @@ async function bootstrap(): Promise<void> {
   await connectPrisma();
   // eslint-disable-next-line no-console
   console.log('Connected to PostgreSQL database');
+
+  // Sync permissions in background (fire and forget)
+  const permissionSync = new PermissionSyncService();
+  permissionSync.syncPermissions().catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error('Failed to sync permissions:', error);
+  });
 
   const scheduler = new SchedulerService();
   const alertService = new AlertService();

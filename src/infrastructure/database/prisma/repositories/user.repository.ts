@@ -1,4 +1,4 @@
-import { Prisma, TelegramGroup, User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UserRepositoryInterface } from '../../../../domain/interfaces/repositories/user.repository.interface';
 import { User as DomainUser } from '../../../../domain/entities/user.entity';
 import { PrismaBaseRepository } from './base.repository';
