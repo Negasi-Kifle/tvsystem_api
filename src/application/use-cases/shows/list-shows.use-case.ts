@@ -1,4 +1,4 @@
-import { ShowRepository } from '../../../infrastructure/database/prisma/repositories/show.repository';
+import { ShowRepository } from "../../../infrastructure/database/prisma/repositories";
 import { Show } from '../../../domain/entities/show.entity';
 
 export class ListShowsUseCase {

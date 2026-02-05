@@ -30,6 +30,8 @@ model User {
 
   // Relations
   telegramGroupMemberships TelegramGroupMember[]
+  userPermissions          UserPermission[]  @relation("UserPermissions")
+  permissionsGranted       UserPermission[]  @relation("PermissionGranter")
 
   @@index([email])
   @@map("users")
@@ -233,4 +235,31 @@ model Permission {
   description     String?   
   createdAt       DateTime @default(now()) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  userPermissions UserPermission[]
+}
+
+
+// ============================================
+// USER PERMISSION - Junction table for User-Permission
+// ============================================
+model UserPermission {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  permissionId    String   @map("permission_id")
+  grantedBy       String?  @map("granted_by")
+  expiresAt       DateTime?   @map("expires_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  user          User          @relation("UserPermissions", fields: [userId], references: [id], onDelete: Cascade)
+  permission    Permission    @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  grantedByUser User?         @relation("PermissionGranter", fields: [grantedBy], references: [id], onDelete: SetNull)
+
+  @@unique([permissionId, userId]) // Prevent duplicate permissions
+  @@index([permissionId])
+  @@index([userId])
+  @@map("user_permissions")
 }

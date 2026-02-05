@@ -9,7 +9,8 @@ import compensationRoutes from './compensation.routes';
 import analyticsRoutes from './analytics.routes';
 import telegramGroupRoutes from './telegram-groups.routes';
 import telegramGroupMemberRoutes from './telegram-group-member.routes';
-import permissionRoutes from './permissions';
+import permissionRoutes from './permissions.routes';
+import userPermissionRoutes from './user-permissions.routes';
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use('/analytics', analyticsRoutes);
 router.use('/telegram-groups', telegramGroupRoutes);
 router.use('/telegram-group-members', telegramGroupMemberRoutes);
 router.use('/permissions', permissionRoutes);
+router.use('/user-permissions', userPermissionRoutes);
 
 export default router;

@@ -24,4 +24,6 @@ export const PERMISSIONS = {
   VIEW_TELEGRAM_GROUP_MEMBERS: 'view_telegram_group_members',
   MANAGE_PERMISSIONS: 'manage_permissions',
   VIEW_PERMISSIONS: 'view_permissions',
+  MANAGE_USER_PERMISSIONS: 'manage_user_permissions',
+  VIEW_USER_PERMISSIONS: 'view_user_permissions',
 };

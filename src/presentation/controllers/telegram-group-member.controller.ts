@@ -1,4 +1,4 @@
-import { TelegramGroupMembersUseCases } from "../../application/use-cases/telegram-group-memebers";
+import { TelegramGroupMembersUseCases } from "../../application/use-cases/telegram-group-members";
 import { AddUserToTelegramGroupDto } from "../dtos/requests/add-user-to-tg-group.dto";
 import { Request, Response } from "express";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
