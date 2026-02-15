@@ -1,10 +1,14 @@
-import { TelegramGroupRepository } from "../../../infrastructure/database/prisma/repositories/telegram-group.repository";
-import { TelegramGroup } from "../../../domain/entities/telegram-groups.entity";
+import { TelegramGroupEntity } from "../../../domain/entities/telegram-groups.entity";
+import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-group.repo";
 
 export class GetTgGroupByIdUseCase {
-    constructor(private readonly telegramGroupRepo = new TelegramGroupRepository()) { }
+    constructor(private readonly telegramGroupRepo: ITelegramGroupRepository) { }
 
-    async execute(id: string): Promise<TelegramGroup | null> {
-        return await this.telegramGroupRepo.findById(id);
+    async execute(id: string): Promise<TelegramGroupEntity | null> {
+        const telegramGroup = await this.telegramGroupRepo.findById(id);
+        if (!telegramGroup) {
+            throw new Error('Telegram group not found');
+        }
+        return telegramGroup;
     }
 }

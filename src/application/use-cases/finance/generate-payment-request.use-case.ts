@@ -1,4 +1,4 @@
-import { PaymentRepository } from '../../../infrastructure/database/prisma/repositories/payment.repository';
+import { PaymentRepository } from '../../../infrastructure/prisma/repositories/payment.repository';
 import { Payment } from '../../../domain/entities/payment.entity';
 import { EmailService } from '../../../infrastructure/external/email/email.service';
 import { Money } from '../../../domain/value-objects/money.value-object';
@@ -16,7 +16,7 @@ export class GeneratePaymentRequestUseCase {
   constructor(
     private readonly paymentRepo = new PaymentRepository(),
     private readonly emailService = new EmailService()
-  ) {}
+  ) { }
 
   async execute(payload: Payload): Promise<Payment> {
     const payment = await this.paymentRepo.createPayment({

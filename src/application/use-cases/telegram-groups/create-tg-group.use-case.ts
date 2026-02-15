@@ -1,11 +1,27 @@
-import { TelegramGroupRepository } from "../../../infrastructure/database/prisma/repositories/telegram-group.repository";
-import { TelegramGroup } from "../../../domain/entities/telegram-groups.entity";
+import { TelegramGroupEntity } from "../../../domain/entities/telegram-groups.entity";
+import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-group.repo";
 
+
+
+export interface CreateTgGroupInput {
+    groupName: string;
+    groupLink: string;
+    isActive: boolean;
+    groupChatId?: string;
+    description?: string;
+}
 
 export class CreateTgGroupUseCase {
-    constructor(private readonly telegramGroupRepo = new TelegramGroupRepository()) { }
+    constructor(private readonly telegramGroupRepo: ITelegramGroupRepository) { }
 
-    async execute(payload: Omit<TelegramGroup, 'id'>): Promise<TelegramGroup> {
-        return this.telegramGroupRepo.create(payload);
+    async execute(payload: CreateTgGroupInput): Promise<TelegramGroupEntity> {
+        const telegramGroupEntity = TelegramGroupEntity.createInstance(
+            payload.groupName,
+            payload.groupLink,
+            payload.isActive,
+            payload.groupChatId,
+            payload.description,
+        );
+        return await this.telegramGroupRepo.create(telegramGroupEntity);
     }
 }

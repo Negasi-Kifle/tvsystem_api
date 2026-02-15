@@ -1,19 +1,15 @@
 import jwt from 'jsonwebtoken';
 import { jwtConfig } from '../../infrastructure/config/jwt.config';
 
-interface TokenPayload {
-  sub: string;
-  roles: string[];
-  permissions: string[];
-}
+export interface TokenPayload { userId: string }
 
 export class AuthService {
   generateAccessToken(payload: TokenPayload): string {
-    return jwt.sign(payload, jwtConfig.secret, { expiresIn: jwtConfig.accessTokenTtl });
+    return jwt.sign(payload, jwtConfig.secret, { expiresIn: jwtConfig.accessTokenTtl } as jwt.SignOptions);
   }
 
   generateRefreshToken(payload: TokenPayload): string {
-    return jwt.sign(payload, jwtConfig.secret, { expiresIn: jwtConfig.refreshTokenTtl });
+    return jwt.sign(payload, jwtConfig.secret, { expiresIn: jwtConfig.refreshTokenTtl } as jwt.SignOptions);
   }
 
   verify(token: string): TokenPayload {

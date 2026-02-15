@@ -5,15 +5,15 @@ import { sendErrorResponse } from '../../shared/utils/error-handler';
 
 declare global {
   namespace Express {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface Request {
-      user?: { id: string; roles: string[]; permissions: string[] };
+      user?: { id: string; };
     }
   }
 }
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
+
   if (!authHeader?.startsWith('Bearer ')) {
     const error = new Error('Missing authorization header');
     return sendErrorResponse(res, 401, 'Missing authorization header', error);
@@ -21,15 +21,11 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
 
   const token = authHeader.substring('Bearer '.length);
   try {
-    const payload = jwt.verify(token, jwtConfig.secret) as {
-      sub: string;
-      roles: string[];
-      permissions: string[];
-    };
+    const payload = jwt.verify(token, jwtConfig.secret) as { userId: string }
+
+
     req.user = {
-      id: payload.sub,
-      roles: payload.roles,
-      permissions: payload.permissions
+      id: payload.userId,
     };
     next();
   } catch (error) {

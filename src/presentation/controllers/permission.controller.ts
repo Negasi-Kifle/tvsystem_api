@@ -1,23 +1,29 @@
 import { CreatePermissionDto } from "../dtos/requests/create-permission.dto";
 import { Request, Response } from "express";
-import { PermissionsUseCases } from "../../application/use-cases/permissions";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
 import { FetchAllPermissionsDto } from "../dtos/requests/fetch-all-permissions.dto";
 import { UpdatePermissionDto } from "../dtos/requests/update-permission.dto";
+import { CreatePermissionUseCase } from "../../application/use-cases/permissions/create.use-case";
+import { FetchAllPermissionsUseCase } from "../../application/use-cases/permissions/fetch-all.use-case";
+import { CountPermissionsUseCase } from "../../application/use-cases/permissions/count.use-case";
+import { FindPermissionByIdUseCase } from "../../application/use-cases/permissions/get-by-id.use-case";
+import { PermissionRepository } from "../../infrastructure/prisma/repositories/permission.repository";
+import { UpdatePermissionUseCase } from "../../application/use-cases/permissions/update.use-case";
+import { mapFetchAllPermissionsDtoToQueryOptions } from "../mappers/permission-to-query-options.mapper";
+import { DeletePermissionUseCase } from "../../application/use-cases/permissions/delete.use-case";
 
-const permissionsUseCases = new PermissionsUseCases();
+const permissionRepository = new PermissionRepository();
+const createPermissionUseCase = new CreatePermissionUseCase(permissionRepository);
+const fetchAllPermissionsUseCase = new FetchAllPermissionsUseCase(permissionRepository);
+const countPermissionsUseCase = new CountPermissionsUseCase(permissionRepository);
+const findPermissionByIdUseCase = new FindPermissionByIdUseCase(permissionRepository);
+const updatePermissionUseCase = new UpdatePermissionUseCase(permissionRepository);
+const deletePermissionUseCase = new DeletePermissionUseCase(permissionRepository);
+
 
 export async function createPermission(req: Request, res: Response) {
     const payload = req.body as CreatePermissionDto;
-
-    const completePayload = {
-        ...payload,
-        nameSlug: payload.name.toLowerCase().replace(/ /g, '_'),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    };
-
-    const permission = await permissionsUseCases.createPermissionUseCase.execute(completePayload);
+    const permission = await createPermissionUseCase.execute(payload);
 
     res.status(201).json({
         status: 'SUCCESS',
@@ -29,12 +35,7 @@ export async function createPermission(req: Request, res: Response) {
 
 export async function getPermissionById(req: Request, res: Response) {
     const { id } = req.params as { id: string };
-    const permission = await permissionsUseCases.getPermissionByIdUseCase.execute(id);
-
-    if (!permission) {
-        const error = new Error('Permission not found');
-        return sendErrorResponse(res, 404, 'Permission not found', error);
-    }
+    const permission = await findPermissionByIdUseCase.execute(id);
 
 
     res.json({
@@ -46,12 +47,14 @@ export async function getPermissionById(req: Request, res: Response) {
 
 export async function fetchAllPermissions(req: Request, res: Response) {
     const query = res.locals.query as FetchAllPermissionsDto;
+    const queryOptions = mapFetchAllPermissionsDtoToQueryOptions(query);
+
     const page = query.page ?? 1;
     const limit = query.limit ?? 10;
 
     const [permissions, total] = await Promise.all([
-        permissionsUseCases.fetchAllPermissionsUseCase.execute(query),
-        permissionsUseCases.countPermissionsUseCase.execute(query)
+        fetchAllPermissionsUseCase.execute(queryOptions),
+        countPermissionsUseCase.execute(queryOptions)
     ]);
 
     res.json({
@@ -71,12 +74,7 @@ export async function updatePermission(req: Request, res: Response) {
     const { id } = req.params as { id: string };
     const payload = req.body as UpdatePermissionDto;
 
-    const permission = await permissionsUseCases.updatePermissionUseCase.execute(id, payload);
-
-    if (!permission) {
-        const error = new Error('Permission not found');
-        return sendErrorResponse(res, 404, 'Permission not found', error);
-    }
+    const permission = await updatePermissionUseCase.execute(id, payload);
 
     res.json({
         status: 'SUCCESS',
@@ -87,12 +85,7 @@ export async function updatePermission(req: Request, res: Response) {
 
 export async function deletePermission(req: Request, res: Response) {
     const { id } = req.params as { id: string };
-    const permission = await permissionsUseCases.deletePermissionUseCase.execute(id);
-
-    if (!permission) {
-        const error = new Error('Permission not found');
-        return sendErrorResponse(res, 404, 'Permission not found', error);
-    }
+    await deletePermissionUseCase.execute(id);
 
     res.json({
         status: 'SUCCESS',

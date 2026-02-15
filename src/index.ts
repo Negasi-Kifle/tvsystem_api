@@ -3,7 +3,7 @@ import app from './presentation/app';
 import { SchedulerService } from './infrastructure/services/scheduler.service';
 import { PermissionSyncService } from './infrastructure/services/permission-sync.service';
 import { AlertService } from './application/services/alert.service';
-import { connectPrisma, disconnectPrisma } from './infrastructure/database/prisma';
+import { connectPrisma, disconnectPrisma } from './infrastructure/prisma';
 
 dotenv.config();
 

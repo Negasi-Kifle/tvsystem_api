@@ -1,16 +1,16 @@
 import nodemailer from 'nodemailer';
-import { EmailServiceInterface } from '../../../domain/interfaces/services/email.service.interface';
+import { IEmailService } from '../../../domain/services/email.service';
 import { emailConfig } from '../../config/email.config';
 
-export class EmailService implements EmailServiceInterface {
+export class EmailService implements IEmailService {
   private transporter = nodemailer.createTransport({
     host: emailConfig.host,
     port: emailConfig.port,
     auth: emailConfig.user
       ? {
-          user: emailConfig.user,
-          pass: emailConfig.pass
-        }
+        user: emailConfig.user,
+        pass: emailConfig.pass
+      }
       : undefined
   });
 

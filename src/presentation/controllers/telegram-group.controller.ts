@@ -1,24 +1,32 @@
 import { CreateTelegramGroupDto } from "../dtos/requests/create-tg.dto";
-import { TelegramGroupsUseCases } from "../../application/use-cases/telegram-groups";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
 import { FetchAllTgGroupsDto } from "../dtos/requests/fetch-all-tg-groups.dto";
 import { UpdateTelegramGroupDto } from "../dtos/requests/update-tg-group.dto";
+import { CreateTgGroupUseCase } from "../../application/use-cases/telegram-groups/create-tg-group.use-case";
+import { TelegramGroupRepository } from "../../infrastructure/prisma/repositories/telegram-group.repository";
+import { GetTgGroupByIdUseCase } from "../../application/use-cases/telegram-groups/get-by-id.use-case";
+import { FetchAllTgGroupsUseCase } from "../../application/use-cases/telegram-groups/fetch-all-tg-groups.use-case";
+import { CountTgGroupsUseCase } from "../../application/use-cases/telegram-groups/count-tg-groups.use-case";
+import { mapFetchAllTgGroupsDtoToQueryOptions } from "../mappers/tg-group-to-query-options.mapper";
+import { UpdateTgGroupUseCase } from "../../application/use-cases/telegram-groups/update-tg-group.use-case";
+import { DeleteTgGroupUseCase } from "../../application/use-cases/telegram-groups/delete-tg-group.use-case";
 
-const telegramGroupsUseCases = new TelegramGroupsUseCases();
 
-export async function createTelegramGroup(req: Request, res: Response) {
+const telegramGroupRepository = new TelegramGroupRepository();
+const createTelegramGroupUseCase = new CreateTgGroupUseCase(telegramGroupRepository);
+const getTgGroupByIdUseCase = new GetTgGroupByIdUseCase(telegramGroupRepository);
+const fetchAllTgGroupsUseCase = new FetchAllTgGroupsUseCase(telegramGroupRepository);
+const countTgGroupsUseCase = new CountTgGroupsUseCase(telegramGroupRepository);
+const updateTgGroupUseCase = new UpdateTgGroupUseCase(telegramGroupRepository);
+const deleteTgGroupUseCase = new DeleteTgGroupUseCase(telegramGroupRepository);
+
+
+export async function createTelegramGroup(req: Request, res: Response, next: NextFunction) {
     try {
         const payload = req.body as CreateTelegramGroupDto;
 
-        const completePayload = {
-            ...payload,
-            isActive: true,
-            createdAt: new Date(),
-            updatedAt: new Date()
-        };
-
-        const telegramGroup = await telegramGroupsUseCases.createTgGroupUseCase.execute(completePayload);
+        const telegramGroup = await createTelegramGroupUseCase.execute(payload);
 
 
         res.status(201).json({
@@ -27,20 +35,15 @@ export async function createTelegramGroup(req: Request, res: Response) {
             data: { telegramGroup }
         });
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-        return sendErrorResponse(res, 400, errorMessage, error as Error);
+        next(error);
     }
 }
 
 
-export async function getTelegramGroupById(req: Request, res: Response) {
+export async function getTelegramGroupById(req: Request, res: Response, next: NextFunction) {
     try {
         const { id } = req.params as { id: string };
-        const telegramGroup = await telegramGroupsUseCases.getTgGroupByIdUseCase.execute(id);
-        if (!telegramGroup) {
-            const error = new Error('Telegram group not found');
-            return sendErrorResponse(res, 404, 'Telegram group not found', error);
-        }
+        const telegramGroup = await getTgGroupByIdUseCase.execute(id);
 
 
         res.status(200).json({
@@ -56,13 +59,15 @@ export async function getTelegramGroupById(req: Request, res: Response) {
 
 export async function fetchAllTelegramGroups(req: Request, res: Response) {
     try {
-        const query = res.locals.query as FetchAllTgGroupsDto;
-        const page = query.page ?? 1;
-        const limit = query.limit ?? 10;
+        const dto = res.locals.query as FetchAllTgGroupsDto;
+        const queryOptions = mapFetchAllTgGroupsDtoToQueryOptions(dto);
+
+        const page = dto.page ?? 1;
+        const limit = dto.limit ?? 10;
 
         const [telegramGroups, total] = await Promise.all([
-            telegramGroupsUseCases.fetchAllTgGroupsUseCase.execute(query),
-            telegramGroupsUseCases.countTgGroupsUseCase.execute(query)
+            fetchAllTgGroupsUseCase.execute(queryOptions),
+            countTgGroupsUseCase.execute(queryOptions)
         ]);
 
         res.status(200).json({
@@ -86,12 +91,8 @@ export async function updateTelegramGroup(req: Request, res: Response) {
     try {
         const { id } = req.params as { id: string };
         const payload = req.body as UpdateTelegramGroupDto;
-        const telegramGroup = await telegramGroupsUseCases.updateTgGroupUseCase.execute(id, payload);
 
-        if (!telegramGroup) {
-            const error = new Error('Telegram group not found');
-            return sendErrorResponse(res, 404, 'Telegram group not found', error);
-        }
+        const telegramGroup = await updateTgGroupUseCase.execute(id, payload);
 
         res.status(200).json({
             status: 'SUCCESS',
@@ -104,14 +105,12 @@ export async function updateTelegramGroup(req: Request, res: Response) {
         return sendErrorResponse(res, 400, errorMessage, error as Error);
     }
 }
+
+
 export async function deleteTelegramGroup(req: Request, res: Response) {
     try {
         const { id } = req.params as { id: string };
-        const telegramGroup = await telegramGroupsUseCases.deleteTgGroupUseCase.execute(id);
-        if (!telegramGroup) {
-            const error = new Error('Telegram group not found');
-            return sendErrorResponse(res, 404, 'Telegram group not found', error);
-        }
+        const telegramGroup = await deleteTgGroupUseCase.execute(id);
 
         res.status(200).json({
             status: 'SUCCESS',

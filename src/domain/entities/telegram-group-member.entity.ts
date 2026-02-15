@@ -1,24 +1,39 @@
-import { TelegramGroup } from './telegram-groups.entity';
-import { SexTypes } from '../enums/sex-types.enum';
+import { TelegramGroupEntity } from './telegram-groups.entity';
+import { UserSummary } from '../interfaces/user-summary.interface';
 
-/**
- * Summary of user data for populated relations (excludes sensitive fields)
- */
-export interface UserSummary {
-    id: string;
-    email: string;
-    fullName: string;
-    sex: SexTypes;
-    phoneNumber: string;
-    isActive: boolean;
-}
+export class TelegramGroupMemberEntity {
+    constructor(
+        public telegramGroupId: string,
+        public userId: string,
+        public createdAt?: Date,
+        public updatedAt?: Date,
+        public id?: string,
+    ) { }
 
-export interface TelegramGroupMember {
-    id: string;
-    telegramGroupId: string;
-    userId: string;
-    createdAt: Date;
-    updatedAt: Date;
-    user?: UserSummary;
-    telegramGroup?: TelegramGroup;
+    public static createInstance(
+        telegramGroupId: string,
+        userId: string,
+        createdAt?: Date,
+        updatedAt?: Date,
+        id?: string,
+    ): TelegramGroupMemberEntity {
+        if (!telegramGroupId) {
+            throw new Error('Telegram group ID is required');
+        }
+
+        if (!userId) {
+            throw new Error('User ID is required');
+        }
+
+        createdAt = createdAt ?? new Date();
+        updatedAt = updatedAt ?? new Date();
+        return new TelegramGroupMemberEntity(telegramGroupId, userId, createdAt, updatedAt, id);
+    }
+
+    public updateInstance(telegramGroupId?: string, userId?: string): TelegramGroupMemberEntity {
+        if (telegramGroupId !== undefined) this.telegramGroupId = telegramGroupId;
+        if (userId !== undefined) this.userId = userId;
+        this.updatedAt = new Date();
+        return this;
+    }
 }

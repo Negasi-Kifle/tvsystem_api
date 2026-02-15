@@ -1,23 +1,11 @@
-import { PermissionFilter, PermissionRepository } from "../../../infrastructure/database/prisma/repositories/permission.repository";
-import { Permission } from "../../../domain/entities/permission";
-import { FetchAllPermissionsDto } from "../../../presentation/dtos/requests/fetch-all-permissions.dto";
+import { PermissionEntity } from "../../../domain/entities/permission.entity";
+import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
+import { QueryOptions } from "../../../domain/interfaces/query-options.interface";
 
 export class FetchAllPermissionsUseCase {
-    constructor(private readonly permissionRepo = new PermissionRepository()) { }
+    constructor(private readonly permissionRepo: IPermissionRepository) { }
 
-    async execute(query: FetchAllPermissionsDto): Promise<Permission[]> {
-        const page = query.page ?? 1;
-        const limit = query.limit ?? 10;
-
-        const filters: PermissionFilter = {
-            ...(query.name && { name: query.name }),
-            ...(query.description && { description: query.description })
-        };
-
-        return await this.permissionRepo.findMany({
-            skip: (page - 1) * limit,
-            take: limit,
-            filters
-        });
+    async execute(query: QueryOptions<PermissionEntity, Partial<PermissionEntity>>): Promise<PermissionEntity[]> {
+        return await this.permissionRepo.findMany(query);
     }
 }

@@ -1,17 +1,11 @@
-import { TelegramGroupFilter, TelegramGroupRepository } from "../../../infrastructure/database/prisma/repositories/telegram-group.repository";
-import { FetchAllTgGroupsDto } from "../../../presentation/dtos/requests/fetch-all-tg-groups.dto";
+import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-group.repo";
+import { QueryOptions } from "../../../domain/interfaces/query-options.interface";
+import { TelegramGroupEntity } from "../../../domain/entities/telegram-groups.entity";
 
 export class CountTgGroupsUseCase {
-    constructor(private readonly telegramGroupRepo = new TelegramGroupRepository()) { }
+    constructor(private readonly telegramGroupRepo: ITelegramGroupRepository) { }
 
-    async execute(query: FetchAllTgGroupsDto): Promise<number> {
-        // Build filters from query params
-        const filters: TelegramGroupFilter = {
-            ...(query.groupName && { groupName: query.groupName }),
-            ...(query.groupChatId && { groupChatId: query.groupChatId }),
-            ...(query.groupLink && { groupLink: query.groupLink }),
-            ...(query.isActive !== undefined && { isActive: query.isActive })
-        };
-        return this.telegramGroupRepo.count(filters);
+    async execute(query: QueryOptions<TelegramGroupEntity, Partial<TelegramGroupEntity>>): Promise<number> {
+        return await this.telegramGroupRepo.count(query.filters ?? {});
     }
 }

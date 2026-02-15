@@ -1,13 +1,41 @@
-import { UserPermission } from "../../../domain/entities/user-permissions";
-import { UserPermissionsRepository } from "../../../infrastructure/database/prisma/repositories/user-permissions.repository";
+import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
+import { IUserPermissionsRepository } from "../../../domain/repositories/user-permissions.repo";
 
-// Input type excluding auto-populated relation fields
-type CreateUserPermissionInput = Omit<UserPermission, 'id' | 'user' | 'permission' | 'grantedByUser'>;
+
+export interface CreateUserPermissionInput {
+    userId: string;
+    permissionId: string;
+    grantedBy: string;
+    expiresAt?: Date;
+}
 
 export class CreateUserPermissionUseCase {
-    constructor(private readonly userPermissionsRepository = new UserPermissionsRepository()) {}
+    constructor(private readonly userPermissionsRepository: IUserPermissionsRepository) { }
 
-    async execute(payload: CreateUserPermissionInput): Promise<UserPermission> {
-        return this.userPermissionsRepository.create(payload);
+    async execute(payload: CreateUserPermissionInput): Promise<UserPermissionEntity> {
+        const userPermissionEntity = UserPermissionEntity.createInstance(
+            payload.userId,
+            payload.permissionId,
+            payload.grantedBy,
+            payload.expiresAt,
+        );
+
+        // Check if user permission already exists (incl. non-expired)
+        const existingUserPermissions = await this.userPermissionsRepository.findMany({
+            filters: {
+                userId: userPermissionEntity.userId,
+                permissionId: userPermissionEntity.permissionId
+            }
+        });
+
+        const now = new Date();
+        const hasActivePermission = existingUserPermissions.some(
+            up => !up.expiresAt || up.expiresAt > now
+        );
+        if (hasActivePermission) {
+            throw new Error('User permission already exists');
+        }
+
+        return await this.userPermissionsRepository.create(userPermissionEntity);
     }
 }

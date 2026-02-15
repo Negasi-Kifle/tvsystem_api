@@ -1,4 +1,4 @@
-import { CompensationRepository } from '../../../infrastructure/database/prisma/repositories/compensation.repository';
+import { CompensationRepository } from '../../../infrastructure/prisma/repositories/compensation.repository';
 import { Compensation } from '../../../domain/entities/compensation.entity';
 import { EmailService } from '../../../infrastructure/external/email/email.service';
 
@@ -12,7 +12,7 @@ export class ProcessCompensationUseCase {
   constructor(
     private readonly repo = new CompensationRepository(),
     private readonly email = new EmailService()
-  ) {}
+  ) { }
 
   async execute(payload: Payload): Promise<Compensation> {
     const compensation = await this.repo.createCompensation({

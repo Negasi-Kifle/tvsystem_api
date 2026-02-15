@@ -1,16 +1,34 @@
-import { TelegramGroupMembersUseCases } from "../../application/use-cases/telegram-group-members";
+import { AddMemberToTelegramGroupUseCase } from "../../application/use-cases/telegram-group-members/add-member-to-tg-group.use-case";
 import { AddUserToTelegramGroupDto } from "../dtos/requests/add-user-to-tg-group.dto";
 import { Request, Response } from "express";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
 import { FetchAllTgMembersDto } from "../dtos/requests/fetch-all-tg-members.dto";
 import { RemoveUserFromTelegramGroupDto } from "../dtos/requests/remove-user-from-tg-group.dto";
+import { TelegramGroupMemberRepository } from "../../infrastructure/prisma/repositories/telegram-group-member.repository";
+import { ITelegramGroupRepository } from "../../domain/repositories/telegram-group.repo";
+import { UserRepository } from "../../infrastructure/prisma/repositories/user.repository";
+import { FindTelegramGroupMemberByIdUseCase } from "../../application/use-cases/telegram-group-members/find-by-id.use-case";
+import { GetByIdUseCase } from "../../application/use-cases/users/get-by-id.use-case";
+import { RemoveMemberFromTelegramGroupUseCase } from "../../application/use-cases/telegram-group-members/remove-member-from-teg";
+import { TelegramGroupRepository } from "../../infrastructure/prisma/repositories/telegram-group.repository";
+import { mapFetchAllTgMembersDtoToQueryOptions } from "../mappers/teg-member-to-query-options.mapper";
+import { CountTelegramGroupMembersUseCase } from "../../application/use-cases/telegram-group-members/count-tg-members.use-case";
+import { FetchAllTelegramGroupMembersUseCase } from "../../application/use-cases/telegram-group-members/fetch-all.use-case";
 
-const tgMembersUseCases = new TelegramGroupMembersUseCases();
+const telegramGroupRepository = new TelegramGroupRepository();
+const userRepository = new UserRepository();
+const telegramGroupMemberRepository = new TelegramGroupMemberRepository();
+const addMemberToTelegramGroupUseCase = new AddMemberToTelegramGroupUseCase(telegramGroupMemberRepository, telegramGroupRepository, userRepository);
+const findTelegramGroupMemberByIdUseCase = new FindTelegramGroupMemberByIdUseCase(telegramGroupMemberRepository);
+const removeMemberFromTelegramGroupUseCase = new RemoveMemberFromTelegramGroupUseCase(telegramGroupMemberRepository);
+const fetchAllTelegramGroupMembersUseCase = new FetchAllTelegramGroupMembersUseCase(telegramGroupMemberRepository);
+const countTelegramGroupMembersUseCase = new CountTelegramGroupMembersUseCase(telegramGroupMemberRepository);
+
 
 export async function addUserToTelegramGroup(req: Request, res: Response) {
     try {
         const payload = req.body as AddUserToTelegramGroupDto;
-        const telegramGroupMember = await tgMembersUseCases.addMemberToTelegramGroupUseCase.execute(payload.userId, payload.telegramGroupId);
+        const telegramGroupMember = await addMemberToTelegramGroupUseCase.execute(payload.userId, payload.telegramGroupId);
 
         res.status(201).json({
             status: 'SUCCESS',
@@ -27,12 +45,14 @@ export async function addUserToTelegramGroup(req: Request, res: Response) {
 export async function findManyTelegramGroupMembers(req: Request, res: Response) {
     try {
         const query = res.locals.query as FetchAllTgMembersDto;
+        const queryOptions = mapFetchAllTgMembersDtoToQueryOptions(query);
+
         const page = query.page ?? 1;
         const limit = query.limit ?? 10;
 
         const [telegramGroupMembers, total] = await Promise.all([
-            tgMembersUseCases.fetchAllTelegramGroupMembersUseCase.execute(query),
-            tgMembersUseCases.countTelegramGroupMembersUseCase.execute(query)
+            fetchAllTelegramGroupMembersUseCase.execute(queryOptions),
+            countTelegramGroupMembersUseCase.execute(queryOptions)
         ]);
 
         res.status(200).json({
@@ -55,7 +75,7 @@ export async function findManyTelegramGroupMembers(req: Request, res: Response) 
 export async function getTgMemberById(req: Request, res: Response) {
     try {
         const { id } = req.params as { id: string };
-        const telegramGroupMember = await tgMembersUseCases.findByIdTgMemberUseCase.execute(id);
+        const telegramGroupMember = await findTelegramGroupMemberByIdUseCase.execute(id);
         if (!telegramGroupMember) {
             const error = new Error('Telegram group member not found');
             return sendErrorResponse(res, 404, 'Telegram group member not found', error);
@@ -75,7 +95,7 @@ export async function getTgMemberById(req: Request, res: Response) {
 export async function removeTgMemberFromGroup(req: Request, res: Response) {
     try {
         const { id } = req.params as { id: string };
-        const tgMember = await tgMembersUseCases.deleteTgMemberByIdUseCase.execute(id);
+        const tgMember = await removeMemberFromTelegramGroupUseCase.execute(id);
 
         if (!tgMember) {
             const error = new Error('Telegram group member not found');

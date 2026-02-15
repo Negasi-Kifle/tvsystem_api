@@ -1,29 +1,11 @@
-import { UserRepository, UserFilter } from '../../../infrastructure/database/prisma/repositories/user.repository';
-import { User } from '../../../domain/entities/user.entity';
-import { FetchAllUsersDto } from '../../../presentation/dtos/requests/fetch-all-users.dto';
+import { UserEntity } from '../../../domain/entities/user.entity';
+import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
+import { IUserRepository } from '../../../domain/repositories/user.repo';
 
 export class FetchAllUsersUseCase {
-    constructor(private readonly userRepo = new UserRepository()) { }
+    constructor(private readonly userRepo: IUserRepository) { }
 
-    async execute(query: FetchAllUsersDto): Promise<User[]> {
-        // Build filters from query params
-        const filters: UserFilter = {
-            ...(query.email && { email: query.email }),
-            ...(query.phoneNumber && { phoneNumber: query.phoneNumber }),
-            ...(query.roles && { roles: query.roles }),
-            ...(query.isActive !== undefined && { isActive: query.isActive }),
-            ...(query.sex && { sex: query.sex }),
-            ...(query.isFirstTimeAccount !== undefined && { isFirstTimeAccount: query.isFirstTimeAccount })
-        };
-
-        const page = query.page ?? 1;
-        const limit = query.limit ?? 10;
-        const users = await this.userRepo.findMany({
-            skip: (page - 1) * limit,
-            take: limit,
-            filters
-        });
-        
-        return users;
+    async execute(query: QueryOptions<UserEntity, Partial<UserEntity>>): Promise<UserEntity[]> {
+        return await this.userRepo.findMany(query);
     }
 }

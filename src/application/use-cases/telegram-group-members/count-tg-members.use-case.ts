@@ -1,16 +1,11 @@
-import { TelegramGroupMemberFilter, TelegramGroupMemberRepository } from "../../../infrastructure/database/prisma/repositories/telegram-group-member.repository";
-import { FetchAllTgMembersDto } from "../../../presentation/dtos/requests/fetch-all-tg-members.dto";
+import { QueryOptions } from "../../../domain/interfaces/query-options.interface";
+import { TelegramGroupMemberEntity } from "../../../domain/entities/telegram-group-member.entity";
+import { ITelegramGroupMembersRepository } from "../../../domain/repositories/telegram-group-members.repo";
 
-export class CountTgMembersUseCase {
-    constructor(private readonly telegramGroupMembersRepository = new TelegramGroupMemberRepository()) { }
+export class CountTelegramGroupMembersUseCase {
+    constructor(private readonly telegramGroupMembersRepository: ITelegramGroupMembersRepository) { }
 
-    async execute(query: FetchAllTgMembersDto): Promise<number> {
-        // Build filters from query params
-        const filters: TelegramGroupMemberFilter = {
-            ...(query.userId && { userId: query.userId }),
-            ...(query.telegramGroupId && { telegramGroupId: query.telegramGroupId }),
-        };
-
-        return await this.telegramGroupMembersRepository.count(filters);
+    async execute(query: QueryOptions<TelegramGroupMemberEntity, Partial<TelegramGroupMemberEntity>>): Promise<number> {
+        return await this.telegramGroupMembersRepository.count(query.filters ?? {});
     }
 }

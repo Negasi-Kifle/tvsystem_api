@@ -1,174 +1,150 @@
 import { Request, Response } from 'express';
-import { hashPassword } from '../../shared/utils/password';
-import { CreateUserDto } from '../dtos/requests/create-user.dto';
+import { CreateUserDto } from '../dtos/requests/user/create-user.dto';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
-import { ResetPasswordDto } from '../dtos/requests/reset-paswd.dto';
-import { FetchAllUsersDto } from '../dtos/requests/fetch-all-users.dto';
-import { UsersUseCases } from '../../application/use-cases/users';
+import { NextFunction } from 'express';
+import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
+import { HashService } from '../../infrastructure/services/hash.service';
+import { CountUsersUseCase } from '../../application/use-cases/users/count-users.use-case';
+import { UpdateUserUseCase } from '../../application/use-cases/users/update-user.use-case';
+import { DeleteUserUseCase } from '../../application/use-cases/users/delete-user.uase-case';
+import { ResetPasswordUseCase } from '../../application/use-cases/users/reset-pswd.use-case';
+import { GetByEmailOrPhoneUseCase } from '../../application/use-cases/users/get-by-email-or-phone.use-case';
+import { GetByIdUseCase } from '../../application/use-cases/users/get-by-id.use-case';
+import { UpdateUserDto } from '../dtos/requests/user/update-user.dto';
+import { FetchAllUsersDto } from '../dtos/requests/user/fetch-all-users.dto';
+import { mapFetchAllUsersDtoToQueryOptions } from '../mappers/users-to-query-options.mapper';
+import { ResetPasswordDto } from '../dtos/requests/user/reset-paswd.dto';
+import { CreateUserUseCase } from '../../application/use-cases/users/create-user.use-case';
+import { FetchAllUsersUseCase } from '../../application/use-cases/users/fetch-all.use-case';
 
-const usersUseCases = new UsersUseCases();
+const userRepository = new UserRepository();
+const hashService = new HashService();
 
-export async function createUser(req: Request, res: Response) {
-  const payload = req.body as CreateUserDto;
-  const [userByEmail, userByPhoneNumber] = await Promise.all([
-    usersUseCases.getByEmailOrPhoneUseCase.execute(payload.email),
-    usersUseCases.getByEmailOrPhoneUseCase.execute(payload.phoneNumber)
-  ]);
+const createUserUseCase = new CreateUserUseCase(userRepository);
+const getByIdUseCase = new GetByIdUseCase(userRepository);
+const updateUserUseCase = new UpdateUserUseCase(userRepository);
+const resetPasswordUseCase = new ResetPasswordUseCase(userRepository, hashService);
+const countUsersUseCase = new CountUsersUseCase(userRepository);
+const deleteUserUseCase = new DeleteUserUseCase(userRepository);
+const fetchAllUsersUseCase = new FetchAllUsersUseCase(userRepository);
 
-  // Check if user already exists with given email or phone number
-  if (userByEmail || userByPhoneNumber) {
-    const errorMessage = userByEmail ? 'Email already taken' : 'Phone number already taken';
-    const error = new Error(errorMessage);
-    return sendErrorResponse(res, 409, errorMessage, error);
+export async function createUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const payload = req.body as CreateUserDto;
+    const user = await createUserUseCase.execute(payload);
+
+    res.status(201).json({
+      status: 'SUCCESS',
+      message: 'User created successfully',
+      data: { user }
+    });
+  } catch (error: any) {
+    return next(error);
   }
-
-  const passwordHash = await hashPassword(process.env.DEFAULT_PASSWORD || '123456');
-  // Add passwordHash to the payload
-  const payloadWithPasswordHash = {
-    ...payload,
-    passwordHash,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  };
-
-  const user = await usersUseCases.createUserUseCase.execute(payloadWithPasswordHash);
-
-  res.status(201).json({
-    status: 'SUCCESS',
-    message: 'User created successfully',
-    data: { user }
-  });
 }
 
 
-export async function setUserActive(req: Request, res: Response) {
-  const { isActive } = req.body as { isActive: boolean };
+export async function updateUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const payload = req.body as UpdateUserDto;
+    const id = req.params.id as string;
 
-  const id = Array.isArray(req.params.userId) ? req.params.userId[0] : req.params.userId;
+    const user = await updateUserUseCase.execute(id, payload);
 
-  if (!id) {
-    const error = new Error('User ID is required');
-    return sendErrorResponse(res, 400, 'User ID is required', error);
+    res.status(200).json({
+      status: 'SUCCESS',
+      message: 'User updated successfully',
+      data: { user }
+    });
+  } catch (error: any) {
+    return next(error);
   }
+}
 
-  // First time user cannot be deactivated
-  if (isActive === false) {
-    const user = await usersUseCases.getByIdUseCase.execute(id);
-    if (!user) {
-      const error = new Error('User not found');
-      return sendErrorResponse(res, 404, 'User not found', error);
-    }
+export async function me(req: Request, res: Response, next: NextFunction) {
+  try {
+    const user = await getByIdUseCase.execute(req.user!.id);
 
-    if (user.isFirstTimeAccount === true) {
-      const error = new Error('First time account cannot be deactivated');
-      return sendErrorResponse(res, 400, 'First time account cannot be deactivated', error);
-    }
+    res.status(200).json({
+      status: 'SUCCESS',
+      data: { user }
+    });
+  } catch (error: any) {
+    return next(error);
   }
-
-  const updatedUser = await usersUseCases.updateUserUseCase.execute(id, { isActive });
-
-  const statusToVerb = isActive ? 'activated' : 'deactivated';
-  res.json({
-    status: 'SUCCESS',
-    message: `User ${statusToVerb} successfully`,
-    data: { user: updatedUser }
-  });
 }
 
 
-export function me(req: Request, res: Response) {
-  if (!req.user) {
-    const error = new Error('Unauthenticated');
-    return sendErrorResponse(res, 401, 'Unauthenticated', error);
+export async function resetPassword(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.body as ResetPasswordDto;
+    const defaultPassword = process.env.DEFAULT_PASSWORD || '123456';
+
+    await resetPasswordUseCase.execute(id, defaultPassword);
+
+    res.status(202).json({
+      status: 'SUCCESS',
+      message: 'Password reset successfully. Please tell user to use the default password.'
+    });
+  } catch (error: any) {
+    return next(error);
   }
-  res.json({
-    status: 'SUCCESS',
-    data: { user: req.user }
-  });
 }
 
 
-export async function resetPassword(req: Request, res: Response) {
-  const { id } = req.body as ResetPasswordDto;
-  const user = await usersUseCases.getByIdUseCase.execute(id as string);
+export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
+  try {
+    const dto = res.locals.query as FetchAllUsersDto;
+    const queryOptions = mapFetchAllUsersDtoToQueryOptions(dto);
 
-  if (!user) {
-    const error = new Error('User not found');
-    return sendErrorResponse(res, 404, 'User not found', error);
+    const page = dto.page ?? 1;
+    const limit = dto.limit ?? 10;
+
+    const [users, total] = await Promise.all([
+      fetchAllUsersUseCase.execute(queryOptions),
+      countUsersUseCase.execute(queryOptions),
+    ]);
+
+    res.status(200).json({
+      status: 'SUCCESS',
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+      data: { users },
+    });
+  } catch (error: any) {
+    return next(error);
   }
-
-  if (user.isFirstTimeAccount) {
-    const error = new Error('User is first time account');
-    return sendErrorResponse(res, 400, 'User is first time account', error);
-  }
-
-  // Set user password to the default password
-  const passwordHash = await hashPassword(process.env.DEFAULT_PASSWORD || '123456');
-  await usersUseCases.updateUserUseCase.execute(id as string, { passwordHash });
-
-  res.status(202).json({
-    status: 'SUCCESS',
-    message: 'Password reset successfully. Please tell user to use the default password.'
-  });
 }
 
 
-export async function getAllUsers(req: Request, res: Response) {
-  const query = res.locals.query as FetchAllUsersDto;
+export async function getUserById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params as { id: string };
+    const user = await getByIdUseCase.execute(id);
 
-  const page = query.page ?? 1;
-  const limit = query.limit ?? 10;
-
-  // Fetch users and total count in parallel
-  const [users, total] = await Promise.all([
-    usersUseCases.fetchAllUsersUseCase.execute(query),
-    usersUseCases.countUsersUseCase.execute(query)
-  ]);
-
-  res.status(200).json({
-    status: 'SUCCESS',
-    pagination: {
-      page,
-      limit,
-      total,
-      totalPages: Math.ceil(total / limit)
-    },
-    data: { users }
-  });
+    res.status(200).json({
+      status: 'SUCCESS',
+      data: { user }
+    });
+  } catch (error: any) {
+    return next(error);
+  }
 }
 
 
-export async function getUserById(req: Request, res: Response) {
-  const { id } = req.params as { id: string };
-  const user = await usersUseCases.getByIdUseCase.execute(id);
-  if (!user) {
-    const error = new Error('User not found');
-    return sendErrorResponse(res, 404, 'User not found', error);
+export async function deleteUser(req: Request, res: Response, next: NextFunction) {
+
+  try {
+    const { id } = req.params as { id: string };
+
+    await deleteUserUseCase.execute(id);
+    res.status(200).json({ status: 'SUCCESS', message: 'User deleted successfully' });
+  } catch (error: any) {
+    return next(error);
   }
-
-
-  res.json({
-    status: 'SUCCESS',
-    data: { user }
-  });
-}
-
-
-export async function deleteUser(req: Request, res: Response) {
-  const { id } = req.params as { id: string };
-  const user = await usersUseCases.getByIdUseCase.execute(id)
-  if (!user) {
-    const error = new Error('User not found');
-    return sendErrorResponse(res, 404, 'User not found', error);
-  }
-
-  // First time account could not be deleted
-  if (user.isFirstTimeAccount)
-    return sendErrorResponse(res, 400, 'First time account could not be deleted', new Error('First time account could not be deleted'));
-
-  await usersUseCases.deleteUserUseCase.execute(id);
-
-
-  res.json({ status: 'SUCCESS', message: 'User deleted successfully' });
 }
 

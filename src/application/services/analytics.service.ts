@@ -1,4 +1,4 @@
-import { prisma } from '../../infrastructure/database/prisma';
+import { prisma } from '../../infrastructure/prisma';
 
 export class AnalyticsService {
   async salesByShow() {
