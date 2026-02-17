@@ -48,7 +48,7 @@ export class CreateUserUseCase {
       throw new Error(errorMessage);
     }
 
-    if (firstTimeAccExists.length > 0) {
+    if (firstTimeAccExists.length > 0 && payload.isFirstTimeAccount) {
       throw new Error('First time account already exists');
     }
 

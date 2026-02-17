@@ -30,7 +30,6 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
 
 
   async findById(id: string): Promise<UserEntity | null> {
-    console.log('findById', id);
     const user = await this.prisma.user.findUnique({ where: { id } });
     return user ? modelToEntity(user) : null;
   }
