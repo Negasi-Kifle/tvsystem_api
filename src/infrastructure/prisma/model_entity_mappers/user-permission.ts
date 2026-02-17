@@ -1,18 +1,29 @@
 import { UserPermission } from "@prisma/client";
 import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
+import { modelToEntity as userModelToEntity } from "./user";
+import { modelToEntity as permissionModelToEntity } from "./permission";
 
-export function modelToEntity(userPermission: UserPermission): UserPermissionEntity {
+/** Prisma UserPermission with optional included relations (use include: { user: true, permission: true } in query) */
+export type UserPermissionWithRelations = UserPermission & {
+    user?: import("@prisma/client").User | null;
+    permission?: import("@prisma/client").Permission | null;
+    grantedByUser?: import("@prisma/client").User | null;
+};
+
+export function modelToEntity(userPermission: UserPermissionWithRelations): UserPermissionEntity {
     return UserPermissionEntity.createInstance(
         userPermission.userId,
         userPermission.permissionId,
-        userPermission.grantedBy ?? '',
-        userPermission.expiresAt ?? new Date(),
+        userPermission.grantedBy ?? undefined,
+        userPermission.expiresAt ?? undefined,
         userPermission.createdAt,
         userPermission.updatedAt,
-        userPermission.id ?? ''
-    )
+        userPermission.id ?? undefined,
+        userPermission.user ? userModelToEntity(userPermission.user) : undefined,
+        userPermission.permission ? permissionModelToEntity(userPermission.permission) : undefined,
+        userPermission.grantedByUser ? userModelToEntity(userPermission.grantedByUser) : undefined,
+    );
 }
-
 
 export function entityToModel(userPermission: UserPermissionEntity): UserPermission {
     return {
@@ -20,7 +31,7 @@ export function entityToModel(userPermission: UserPermissionEntity): UserPermiss
         userId: userPermission.userId,
         permissionId: userPermission.permissionId,
         grantedBy: userPermission.grantedBy ?? null,
-        expiresAt: userPermission.expiresAt ?? null, // null = no expiration
+        expiresAt: userPermission.expiresAt ?? null,
         createdAt: userPermission.createdAt ?? new Date(),
         updatedAt: userPermission.updatedAt ?? new Date(),
     };

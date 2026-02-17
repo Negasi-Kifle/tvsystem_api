@@ -1,17 +1,20 @@
 import { CreateUserPermissionDto } from "../dtos/requests/create-user-permission.dto";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { FetchAllUserPermissionsDto } from "../dtos/requests/fetch-all-user-permissions.dto";
 import { CreateUserPermissionUseCase } from "../../application/use-cases/user-permissions/create.use-case";
 import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository";
 import { mapFetchAllUserPermissionsDtoToQueryOptions } from "../mappers/user-permission-to-query-options.mapper";
 import { FetchAllUserPermissionsUseCase } from "../../application/use-cases/user-permissions/fetch-all.use-case";
 import { CountUserPermissionsUseCase } from "../../application/use-cases/user-permissions/count.use-case";
+import { FindUserPermissionByIdUseCase } from "../../application/use-cases/user-permissions/get-by-id.use-case";
+import { RevokeUserPermissionUseCase } from "../../application/use-cases/user-permissions/revoke.usecase";
 
 const userPermissionRepository = new UserPermissionsRepository();
 const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionRepository);
 const fetchAllUserPermissionsUseCase = new FetchAllUserPermissionsUseCase(userPermissionRepository);
 const countUserPermissionsUseCase = new CountUserPermissionsUseCase(userPermissionRepository);
-
+const findUserPermissionByIdUseCase = new FindUserPermissionByIdUseCase(userPermissionRepository);
+const revokeUserPermissionUseCase = new RevokeUserPermissionUseCase(userPermissionRepository);
 
 export async function createUserPermission(req: Request, res: Response) {
     const payload = req.body as CreateUserPermissionDto;
@@ -51,4 +54,36 @@ export async function fetchAllUserPermissions(req: Request, res: Response) {
         },
         data: { userPermissions }
     });
+}
+
+
+export async function findUserPermissionById(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { id } = req.params as { id: string };
+        const userPermission = await findUserPermissionByIdUseCase.execute(id);
+
+        res.status(200).json({
+            status: 'SUCCESS',
+            data: { userPermission }
+        });
+    } catch (error) {
+        return next(error);
+    }
+}
+
+
+
+export async function deleteUserPermission(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { id } = req.params as { id: string };
+        const userPermission = await revokeUserPermissionUseCase.execute(id);
+
+        res.status(200).json({
+            status: 'SUCCESS',
+            message: 'User permission revoked successfully',
+            data: { userPermission }
+        });
+    } catch (error) {
+        return next(error);
+    }
 }

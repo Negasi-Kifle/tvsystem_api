@@ -17,7 +17,7 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
     }
 
     async findById(id: string): Promise<UserPermissionEntity | null> {
-        const userPermission = await this.prisma.userPermission.findUnique({ where: { id } });
+        const userPermission = await this.prisma.userPermission.findUnique({ where: { id }, include: { user: true, permission: true, grantedByUser: true } });
         return userPermission ? modelToEntity(userPermission) : null;
     }
 
@@ -27,7 +27,7 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
             where,
             skip: query.skip ?? 0,
             take: query.take ?? 10,
-            include: { permission: true },
+            include: { user: true, permission: true, grantedByUser: true },
         });
         return userPermissions.map(modelToEntity);
     }
@@ -58,7 +58,7 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
                     { expiresAt: { gt: new Date() } },
                 ],
             },
-            include: { permission: true },
+            include: { user: true, permission: true, grantedByUser: true },
         });
         return userPermissions.map((up) => up.permission.nameSlug);
     }
