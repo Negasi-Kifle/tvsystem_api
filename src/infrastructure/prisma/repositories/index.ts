@@ -5,4 +5,4 @@ export { ShowRepository } from './show.repository';
 export { AdvertRepository } from './advert.repository';
 export { PaymentRepository } from './payment.repository';
 export { CompensationRepository } from './compensation.repository';
-export { UserPermissionsRepository } from './user-permissions.repository copy';
+export { UserPermissionsRepository } from './user-permissions.repository';

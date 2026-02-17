@@ -20,7 +20,7 @@ export function entityToModel(userPermission: UserPermissionEntity): UserPermiss
         userId: userPermission.userId,
         permissionId: userPermission.permissionId,
         grantedBy: userPermission.grantedBy ?? null,
-        expiresAt: userPermission.expiresAt ?? new Date(),
+        expiresAt: userPermission.expiresAt ?? null, // null = no expiration
         createdAt: userPermission.createdAt ?? new Date(),
         updatedAt: userPermission.updatedAt ?? new Date(),
     };

@@ -22,7 +22,6 @@ model User {
   fullName              String   @map("full_name")
   sex                   String   @map("sex")
   roles                 String[] // Array of UserRole enum values
-  permissions           String[] // Array of permission strings
   isActive              Boolean  @default(true) @map("is_active")
   isFirstTimeAccount    Boolean  @default(false) @map("is_first_time_account")
   createdAt             DateTime @default(now()) @map("created_at")

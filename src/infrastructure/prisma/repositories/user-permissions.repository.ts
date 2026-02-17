@@ -10,7 +10,9 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
 
     async create(userPermission: Omit<UserPermissionEntity, 'id'>): Promise<UserPermissionEntity> {
         const userPermissionModel = entityToModel(userPermission);
-        const savedUserPermission = await this.prisma.userPermission.create({ data: userPermissionModel });
+
+        const { id: _omit, ...createData } = userPermissionModel; // Omit id so DB generates it via @default(uuid())
+        const savedUserPermission = await this.prisma.userPermission.create({ data: createData });
         return modelToEntity(savedUserPermission);
     }
 
@@ -21,7 +23,12 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
 
     async findMany(query: QueryOptions<UserPermissionEntity>): Promise<UserPermissionEntity[]> {
         const where = buildWhereClauseForUserPermission(query.filters ?? {});
-        const userPermissions = await this.prisma.userPermission.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
+        const userPermissions = await this.prisma.userPermission.findMany({
+            where,
+            skip: query.skip ?? 0,
+            take: query.take ?? 10,
+            include: { permission: true },
+        });
         return userPermissions.map(modelToEntity);
     }
 
@@ -40,5 +47,19 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
     async deleteById(id: string): Promise<UserPermissionEntity | null> {
         const userPermission = await this.prisma.userPermission.delete({ where: { id } });
         return userPermission ? modelToEntity(userPermission) : null;
+    }
+
+    async findPermissionSlugsByUserId(userId: string): Promise<string[]> {
+        const userPermissions = await this.prisma.userPermission.findMany({
+            where: {
+                userId,
+                OR: [
+                    { expiresAt: null },
+                    { expiresAt: { gt: new Date() } },
+                ],
+            },
+            include: { permission: true },
+        });
+        return userPermissions.map((up) => up.permission.nameSlug);
     }
 }

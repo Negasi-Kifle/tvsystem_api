@@ -5,12 +5,12 @@ export function modelToEntity(permission: Permission): PermissionEntity {
     return PermissionEntity.createInstance(
         permission.name,
         permission.nameSlug,
+        permission.isSystemPermission ? true : false,
         permission.description ?? undefined,
         permission.createdAt ?? new Date(),
         permission.updatedAt ?? new Date(),
-        permission.id ?? '',
-        // permission.isSystemPermission ?? true, // TODO: Get back to this once prisma synced
-    )
+        permission.id ?? undefined,
+    );
 }
 
 
@@ -19,9 +19,9 @@ export function entityToModel(permission: PermissionEntity): Permission {
         id: permission.id ?? '',
         name: permission.name,
         nameSlug: permission.nameSlug,
-        description: permission.description ?? '',
+        isSystemPermission: permission.isSystemPermission ? 'true' : null,
+        description: permission.description ?? null,
         createdAt: permission.createdAt ?? new Date(),
         updatedAt: permission.updatedAt ?? new Date(),
-        // isSystemPermission: permission.isSystemPermission ?? false, // TODO: Get back to this once prisma synced
     };
 }

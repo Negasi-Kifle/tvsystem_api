@@ -2,7 +2,7 @@ import { CreateUserPermissionDto } from "../dtos/requests/create-user-permission
 import { Request, Response } from "express";
 import { FetchAllUserPermissionsDto } from "../dtos/requests/fetch-all-user-permissions.dto";
 import { CreateUserPermissionUseCase } from "../../application/use-cases/user-permissions/create.use-case";
-import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository copy";
+import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository";
 import { mapFetchAllUserPermissionsDtoToQueryOptions } from "../mappers/user-permission-to-query-options.mapper";
 import { FetchAllUserPermissionsUseCase } from "../../application/use-cases/user-permissions/fetch-all.use-case";
 import { CountUserPermissionsUseCase } from "../../application/use-cases/user-permissions/count.use-case";

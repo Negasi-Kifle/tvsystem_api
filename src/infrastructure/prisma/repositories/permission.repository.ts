@@ -45,4 +45,21 @@ export class PermissionRepository extends PrismaBaseRepository implements IPermi
         const permission = await this.prisma.permission.delete({ where: { id } });
         return modelToEntity(permission);
     }
+
+    async findPermissionsBySlugs(slugs: string[]): Promise<PermissionEntity[]> {
+        if (slugs.length === 0) return [];
+        const permissions = await this.prisma.permission.findMany({
+            where: { nameSlug: { in: slugs } },
+        });
+        return permissions.map(modelToEntity);
+    }
+
+    async upsertByNameSlug(name: string, nameSlug: string): Promise<PermissionEntity> {
+        const permission = await this.prisma.permission.upsert({
+            where: { nameSlug },
+            create: { name, nameSlug },
+            update: { nameSlug },
+        });
+        return modelToEntity(permission);
+    }
 }

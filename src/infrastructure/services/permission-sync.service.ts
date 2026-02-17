@@ -1,20 +1,16 @@
-import { PERMISSIONS } from '../../shared/constants/permissions.constants';
-import prisma from '../prisma/prisma.client';
+import { SyncPermissionsUseCase } from '../../application/use-cases/permissions/sync-permissions.use-case';
+import { PermissionRepository } from '../prisma/repositories/permission.repository';
 
 export class PermissionSyncService {
+  private readonly syncPermissionsUseCase: SyncPermissionsUseCase;
+
+  constructor() {
+    this.syncPermissionsUseCase = new SyncPermissionsUseCase(new PermissionRepository());
+  }
+
   async syncPermissions(): Promise<void> {
-    const permissionValues = Object.values(PERMISSIONS);
-
-    for (const name of permissionValues) {
-      const nameSlug = name.toLowerCase().replace(/ /g, '_');
-      await prisma.permission.upsert({
-        where: { nameSlug },
-        create: { name, nameSlug },
-        update: { nameSlug }  // Update slug if name format changes
-      });
-    }
-
+    const count = await this.syncPermissionsUseCase.execute();
     // eslint-disable-next-line no-console
-    console.log(`Synced ${permissionValues.length} permissions`);
+    console.log(`Synced ${count} permissions`);
   }
 }

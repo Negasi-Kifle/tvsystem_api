@@ -6,7 +6,7 @@ import { sendErrorResponse } from '../../shared/utils/error-handler';
 declare global {
   namespace Express {
     interface Request {
-      user?: { id: string; };
+      user?: { id: string; permissions: string[] };
     }
   }
 }
@@ -21,11 +21,11 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
 
   const token = authHeader.substring('Bearer '.length);
   try {
-    const payload = jwt.verify(token, jwtConfig.secret) as { userId: string }
-
+    const payload = jwt.verify(token, jwtConfig.secret) as { userId: string; permissions?: string[] };
 
     req.user = {
       id: payload.userId,
+      permissions: payload.permissions ?? [],
     };
     next();
   } catch (error) {

@@ -33,7 +33,6 @@ export function entityToModel(user: UserEntity): User {
         isActive: user.isActive,
         isFirstTimeAccount: user.isFirstTimeAccount,
         telegramUsername: user.telegramUsername ?? null,
-        permissions: [],
         createdAt: user.createdAt ?? new Date(),
         updatedAt: user.updatedAt ?? new Date(),
     };

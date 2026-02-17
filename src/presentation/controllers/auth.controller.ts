@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
+import { UserPermissionsRepository } from '../../infrastructure/prisma/repositories/user-permissions.repository';
+import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 import { comparePassword } from '../../shared/utils/password';
 import { AuthService, TokenPayload } from '../../application/services/auth.service';
 import { LoginDto } from '../dtos/requests/login.dto';
@@ -8,10 +10,21 @@ import { RegisterDto } from '../dtos/requests/user/register.dto';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
 import { CreateUserUseCase } from '../../application/use-cases/users/create-user.use-case';
 import { GetByEmailOrPhoneUseCase } from '../../application/use-cases/users/get-by-email-or-phone.use-case';
+import { PERMISSIONS } from '../../shared/constants/permissions.constants';
+import { CreateUserPermissionUseCase } from '../../application/use-cases/user-permissions/create.use-case';
+import { FindPermissionsBySlugsUseCase } from '../../application/use-cases/permissions/find-by-slugs';
+import { FindSlugsByUserIdUseCase } from '../../application/use-cases/user-permissions/find-slugs-by-user-id.use-case';
+
 
 const authService = new AuthService();
-const createUserUseCase = new CreateUserUseCase(new UserRepository());
-const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(new UserRepository());
+const userRepository = new UserRepository();
+const userPermissionsRepository = new UserPermissionsRepository();
+const permissionRepository = new PermissionRepository();
+const createUserUseCase = new CreateUserUseCase(userRepository);
+const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(userRepository);
+const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
+const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);
+const findSlugsByUserIdUseCase = new FindSlugsByUserIdUseCase(userPermissionsRepository);
 
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body as LoginDto;
@@ -29,10 +42,11 @@ export async function login(req: Request, res: Response) {
     return sendErrorResponse(res, 401, 'Invalid credentials', error);
   }
 
-  const payload: TokenPayload = { userId: user.id! };
+  const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
+  const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
 
-  const accessToken = authService.generateAccessToken(payload);
-  const refreshToken = authService.generateRefreshToken(payload);
+  const accessToken = authService.generateAccessToken(tokenPayload);
+  const refreshToken = authService.generateRefreshToken({ userId: user.id! });
 
   res.json({
     status: 'SUCCESS',
@@ -49,35 +63,24 @@ export async function register(req: Request, res: Response) {
   try {
     const payload = req.body as RegisterDto;
 
-    // Check if first time account already exists
-    // const existing = await usersUseCases.fetchAllUsersUseCase.execute({ isFirstTimeAccount: true, isActive: true, page: 1, limit: 10 });
-    // if (existing.length > 0) {
-    //   const error = new Error('First time account already exists');
-    //   return sendErrorResponse(res, 409, 'First time account already exists', error);
-    // }
-
-    // Hash password and create user with default role
-    // const passwordHash = await hashPassword(payload.password);
-
-    // const userPayload = {
-    //   ...payload,
-    //   passwordHash,
-    //   isActive: true,
-    //   isFirstTimeAccount: true,
-    //   roles: [UserRole.CEO],
-    //   permissions: Object.values(PERMISSIONS),
-    //   createdAt: new Date(),
-    //   updatedAt: new Date(),
-    // };
-
     payload.isFirstTimeAccount = true;
     const user = await createUserUseCase.execute(payload);
 
-    // Generate tokens for the new user (id is set by the repository after create)
-    const tokenPayload: TokenPayload = { userId: user.id! };
+    // Assign all permissions to first-time user
+    const permissions = await findPermissionsBySlugsUseCase.execute(Object.values(PERMISSIONS));
+    for (const permission of permissions) {
+      await createUserPermissionUseCase.execute({
+        userId: user.id!,
+        permissionId: permission.id!,
+        grantedBy: user.id!
+      });
+    }
+
+    const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
+    const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
 
     const accessToken = authService.generateAccessToken(tokenPayload);
-    const refreshToken = authService.generateRefreshToken(tokenPayload);
+    const refreshToken = authService.generateRefreshToken({ userId: user.id! });
 
     res.status(201).json({
       "status": "SUCCESS",
@@ -89,7 +92,11 @@ export async function register(req: Request, res: Response) {
       }
     });
   } catch (error) {
-
+    const err = error instanceof Error ? error : new Error('Registration failed');
+    const message = err.message;
+    const status =
+      message.includes('already exists') || message.includes('already taken') ? 409 : 500;
+    return sendErrorResponse(res, status, message, err);
   }
 
 }
@@ -98,8 +105,12 @@ export async function refreshToken(req: Request, res: Response) {
   const { refreshToken } = req.body as RefreshTokenDto;
   try {
     const payload = authService.verify(refreshToken);
+    const userId = payload.userId;
+
+    const permissions = await findSlugsByUserIdUseCase.execute(userId);
     const accessToken = authService.generateAccessToken({
-      userId: payload.userId
+      userId,
+      permissions,
     });
 
     res.json({

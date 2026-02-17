@@ -15,7 +15,9 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
     // Hash password
     userModel.passwordHash = await hashPassword(userModel.passwordHash);
 
-    const savedUser = await this.prisma.user.create({ data: userModel });
+    // Omit id so DB generates it via @default(uuid())
+    const { id: _omit, ...createData } = userModel;
+    const savedUser = await this.prisma.user.create({ data: createData });
     return modelToEntity(savedUser);
   }
 
