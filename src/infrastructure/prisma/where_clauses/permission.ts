@@ -8,6 +8,8 @@ export function buildWhereClauseForPermission(filters: Partial<PermissionEntity>
         ...(filters.name && { name: { contains: filters.name, mode: 'insensitive' as Prisma.QueryMode } }),
         ...(filters.nameSlug && { nameSlug: { contains: filters.nameSlug, mode: 'insensitive' as Prisma.QueryMode } }),
         ...(filters.description && { description: { contains: filters.description, mode: 'insensitive' as Prisma.QueryMode } }),
-        ...(filters.isSystemPermission && { isSystemPermission: filters.isSystemPermission }),
+        ...(filters.isSystemPermission !== undefined && {
+            isSystemPermission: filters.isSystemPermission ? 'true' : null,
+        }),
     };
 }

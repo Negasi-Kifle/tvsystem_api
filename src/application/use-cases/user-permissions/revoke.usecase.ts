@@ -10,6 +10,12 @@ export class RevokeUserPermissionUseCase {
         if (!userPermission) {
             throw new Error('User permission not found');
         }
+
+        // If user is first time account, do not revoke permission
+        if (userPermission.user?.isFirstTimeAccount) {
+            throw new Error("First time account's permission could not be revoked");
+        }
+
         return await this.userPermissionsRepository.deleteById(id);
     }
 }

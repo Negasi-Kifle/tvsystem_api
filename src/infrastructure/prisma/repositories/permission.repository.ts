@@ -11,7 +11,8 @@ export class PermissionRepository extends PrismaBaseRepository implements IPermi
 
     async create(payload: Omit<PermissionEntity, 'id'>): Promise<PermissionEntity> {
         const permissionModel = entityToModel(payload);
-        const savedPermission = await this.prisma.permission.create({ data: permissionModel });
+        const { id: _omit, ...createData } = permissionModel;
+        const savedPermission = await this.prisma.permission.create({ data: createData });
         return modelToEntity(savedPermission);
     }
 

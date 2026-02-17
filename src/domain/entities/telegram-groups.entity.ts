@@ -31,7 +31,7 @@ export class TelegramGroupEntity {
 
         createdAt = createdAt ?? new Date();
         updatedAt = updatedAt ?? new Date();
-        return new TelegramGroupEntity(groupName, groupLink, isActive, groupChatId, description, createdAt, updatedAt);
+        return new TelegramGroupEntity(groupName, groupLink, isActive, groupChatId, description, createdAt, updatedAt, id);
     }
 
     public updateInstance(groupName?: string, groupLink?: string, isActive?: boolean, groupChatId?: string, description?: string): TelegramGroupEntity {

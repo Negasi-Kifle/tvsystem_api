@@ -9,7 +9,8 @@ export class TelegramGroupMemberRepository extends PrismaBaseRepository implemen
 
     async create(telegramGroupMember: Omit<TelegramGroupMemberEntity, 'id'>): Promise<TelegramGroupMemberEntity> {
         const telegramGroupMemberModel = entityToModel(telegramGroupMember);
-        const savedTelegramGroupMember = await this.prisma.telegramGroupMember.create({ data: telegramGroupMemberModel });
+        const { id: _omit, ...createData } = telegramGroupMemberModel;
+        const savedTelegramGroupMember = await this.prisma.telegramGroupMember.create({ data: createData });
         return modelToEntity(savedTelegramGroupMember);
     }
 

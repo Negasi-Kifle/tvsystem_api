@@ -9,7 +9,8 @@ import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-
 export class TelegramGroupRepository extends PrismaBaseRepository implements ITelegramGroupRepository {
     async create(telegramGroup: Omit<TelegramGroupEntity, 'id'>): Promise<TelegramGroupEntity> {
         const telegramGroupModel = entityToModel(telegramGroup);
-        const savedTelegramGroup = await this.prisma.telegramGroup.create({ data: telegramGroupModel });
+        const { id: _omit, ...createData } = telegramGroupModel;
+        const savedTelegramGroup = await this.prisma.telegramGroup.create({ data: createData });
         return modelToEntity(savedTelegramGroup);
     }
 
