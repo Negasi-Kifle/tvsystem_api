@@ -31,6 +31,7 @@ model User {
   telegramGroupMemberships TelegramGroupMember[]
   userPermissions          UserPermission[]  @relation("UserPermissions")
   permissionsGranted       UserPermission[]  @relation("PermissionGranter")
+  hostedShows              Show[]
 
   @@index([email])
   @@map("users")
@@ -42,17 +43,18 @@ model User {
 model Show {
   id                 String   @id @default(uuid())
   title              String
-  type               String // ShowType enum: 'InHouse' | 'Outsourced'
+  titleSlug         String   @unique @map("titel_slug")
+  type               String  // ShowType enum: 'InHouse' | 'Outsourced'
   durationMinutes    Int      @map("duration_minutes")
-  maxAdLengthSeconds Int      @map("max_ad_length_seconds")
-  schedule           Json     @default("[]") // Array of { day, startTime, endTime }
-  assignedStaff      String?  @map("assigned_staff")
+  maxAdLengthMinutes Int      @map("max_ad_length_minutes")
+  hostId             String?  @map("host")
   createdAt          DateTime @default(now()) @map("created_at")
   updatedAt          DateTime @updatedAt @map("updated_at")
 
   // Relations
-  adverts       Advert[]
-  satelliteLogs SatelliteLog[]
+  host               User?    @relation(fields: [hostId], references: [id], onDelete: SetNull)
+  adverts            Advert[]
+  satelliteLogs      SatelliteLog[]
 
   @@map("shows")
 }

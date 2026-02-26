@@ -3,13 +3,13 @@ import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-
 
 
 
-export interface CreateTgGroupInput {
+export type CreateTgGroupInput = {
     groupName: string;
     groupLink: string;
     isActive: boolean;
     groupChatId?: string;
     description?: string;
-}
+};
 
 export class CreateTgGroupUseCase {
     constructor(private readonly telegramGroupRepo: ITelegramGroupRepository) { }

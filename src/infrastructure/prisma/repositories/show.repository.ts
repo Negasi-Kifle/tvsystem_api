@@ -1,113 +1,59 @@
-import { Prisma, Show } from '@prisma/client';
-import { ShowRepositoryInterface } from '../../../domain/repositories/show.repository.interface';
-import { Show as DomainShow } from '../../../domain/entities/show.entity';
+
+import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
+import { ShowEntity } from '../../../domain/entities/show.entity';
 import { PrismaBaseRepository } from './base.repository';
+import { ShowType } from '../../../domain/enums/show-type.enum';
+import { entityToModel, modelToEntity } from '../model_entity_mappers/show';
+import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
+import { buildWhereClauseForShow } from '../where_clauses/show';
 
-type ScheduleItem = { day: string; startTime: string; endTime: string };
+export class ShowRepository extends PrismaBaseRepository implements IShowRepository {
 
-export class ShowRepository extends PrismaBaseRepository implements ShowRepositoryInterface {
-  /**
-   * Map Prisma Show to Domain Show
-   */
-  private toDomain(show: Show): DomainShow {
-    return {
-      id: show.id,
-      title: show.title,
-      type: show.type as DomainShow['type'],
-      durationMinutes: show.durationMinutes,
-      maxAdLengthSeconds: show.maxAdLengthSeconds,
-      schedule: (show.schedule as ScheduleItem[]) || [],
-      assignedStaff: show.assignedStaff ?? undefined,
-      createdAt: show.createdAt
-    };
+  async create(data: Omit<ShowEntity, 'id'>): Promise<ShowEntity> {
+    const showModel = entityToModel(data);
+
+    // Omit id so DB generates it via @default(uuid())
+    const { id: _omit, ...createData } = showModel;
+    const savedShow = await this.prisma.show.create({ data: createData });
+    return modelToEntity(savedShow);
   }
 
-  /**
-   * Create a new show
-   */
-  async create(data: Omit<DomainShow, 'id'>): Promise<DomainShow> {
-    const show = await this.prisma.show.create({
-      data: {
-        title: data.title,
-        type: data.type,
-        durationMinutes: data.durationMinutes,
-        maxAdLengthSeconds: data.maxAdLengthSeconds,
-        schedule: data.schedule as Prisma.InputJsonValue,
-        assignedStaff: data.assignedStaff
-      }
-    });
-    return this.toDomain(show);
+  async findById(id: string): Promise<ShowEntity | null> {
+    const show = await this.prisma.show.findUnique({ where: { id } });
+    return show ? modelToEntity(show) : null;
   }
 
-  /**
-   * Find show by ID
-   */
-  async findById(id: string): Promise<DomainShow | null> {
-    const show = await this.prisma.show.findUnique({
-      where: { id }
-    });
-    return show ? this.toDomain(show) : null;
+  async findMany(query: QueryOptions<ShowEntity>): Promise<ShowEntity[]> {
+    const where = buildWhereClauseForShow(query.filters ?? {});
+    const shows = await this.prisma.show.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
+    return shows.map(modelToEntity);
   }
 
-  /**
-   * List all shows
-   */
-  async list(): Promise<DomainShow[]> {
-    const shows = await this.prisma.show.findMany({
-      orderBy: { createdAt: 'desc' }
-    });
-    return shows.map((show) => this.toDomain(show));
-  }
-
-  /**
-   * Update show by ID
-   */
-  async updateById(
-    id: string,
-    update: Partial<DomainShow>
-  ): Promise<DomainShow | null> {
-    const existing = await this.prisma.show.findUnique({
-      where: { id }
-    });
-
-    if (!existing) {
-      return null;
-    }
-
+  async update(entity: ShowEntity): Promise<ShowEntity | null> {
     const show = await this.prisma.show.update({
-      where: { id },
-      data: {
-        ...(update.title !== undefined && { title: update.title }),
-        ...(update.type !== undefined && { type: update.type }),
-        ...(update.durationMinutes !== undefined && {
-          durationMinutes: update.durationMinutes
-        }),
-        ...(update.maxAdLengthSeconds !== undefined && {
-          maxAdLengthSeconds: update.maxAdLengthSeconds
-        }),
-        ...(update.schedule !== undefined && {
-          schedule: update.schedule as Prisma.InputJsonValue
-        }),
-        ...(update.assignedStaff !== undefined && { assignedStaff: update.assignedStaff })
-      }
+      where: { id: entity.id },
+      data: entityToModel(entity)
     });
 
-    return this.toDomain(show);
+    return modelToEntity(show);
   }
 
-  /**
-   * Delete show by ID
-   */
-  async deleteById(id: string): Promise<boolean> {
-    const existing = await this.prisma.show.findUnique({
-      where: { id }
-    });
 
-    if (!existing) {
-      return false;
-    }
-
-    await this.prisma.show.delete({ where: { id } });
-    return true;
+  async deleteById(id: string): Promise<ShowEntity | null> {
+    const show = await this.prisma.show.delete({ where: { id } });
+    return show ? modelToEntity(show) : null;
   }
+
+  async findByTitleSlug(titleSlug: string): Promise<ShowEntity | null> {
+    const show = await this.prisma.show.findUnique({ where: { titleSlug } });
+    return show ? modelToEntity(show) : null;
+  }
+
+
+  async count(filters?: Partial<ShowEntity>): Promise<number> {
+    return this.prisma.show.count({ where: buildWhereClauseForShow(filters ?? {}) });
+  }
+
+
+
 }

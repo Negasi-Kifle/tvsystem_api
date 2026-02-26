@@ -1,7 +1,6 @@
-import { Show } from '../entities/show.entity';
+import { ShowEntity } from '../entities/show.entity';
+import { IBaseRepository } from './base.repository.interface';
 
-export interface ShowRepositoryInterface {
-  create(show: Omit<Show, 'id'>): Promise<Show>;
-  findById(id: string): Promise<Show | null>;
-  list(): Promise<Show[]>;
+export interface IShowRepository extends IBaseRepository<ShowEntity> {
+  findByTitleSlug(titleSlug: string): Promise<ShowEntity | null>;
 }

@@ -1,4 +1,4 @@
-import { Money } from '../../src/domain/value-objects/money.value-object';
+import { Money } from '../../domain/value-objects/money.value-object';
 
 describe('Money', () => {
   it('adds amounts in same currency', () => {

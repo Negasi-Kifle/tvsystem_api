@@ -2,7 +2,7 @@ import { PermissionEntity } from "../../../domain/entities/permission.entity";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
 
 
-export interface CreatePermissionInput {
+export type CreatePermissionInput = {
     name: string;
     nameSlug?: string;
     isSystemPermission?: boolean;

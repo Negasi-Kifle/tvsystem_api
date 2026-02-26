@@ -2,12 +2,12 @@ import { UserPermissionEntity } from "../../../domain/entities/user-permissions.
 import { IUserPermissionsRepository } from "../../../domain/repositories/user-permissions.repo";
 
 
-export interface CreateUserPermissionInput {
+export type CreateUserPermissionInput = {
     userId: string;
     permissionId: string;
     grantedBy: string;
     expiresAt?: Date;
-}
+};
 
 export class CreateUserPermissionUseCase {
     constructor(private readonly userPermissionsRepository: IUserPermissionsRepository) { }
