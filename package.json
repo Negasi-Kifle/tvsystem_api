@@ -16,6 +16,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "prisma": {
+    "schema": "src/infrastructure/prisma/schema.prisma"
+  },
   "dependencies": {
     "@prisma/client": "^6.19.2",
     "bcryptjs": "^3.0.3",
