@@ -1,6 +1,6 @@
-import { CreateUserPermissionDto } from "../dtos/requests/create-user-permission.dto";
+import { CreateUserPermissionDto } from "../dtos/requests/user-permission/create-user-permission.dto";
 import { NextFunction, Request, Response } from "express";
-import { FetchAllUserPermissionsDto } from "../dtos/requests/fetch-all-user-permissions.dto";
+import { FetchAllUserPermissionsDto } from "../dtos/requests/user-permission/fetch-all-user-permissions.dto";
 import { CreateUserPermissionUseCase } from "../../application/use-cases/user-permissions/create.use-case";
 import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository";
 import { mapFetchAllUserPermissionsDtoToQueryOptions } from "../mappers/user-permission-to-query-options.mapper";
@@ -16,44 +16,54 @@ const countUserPermissionsUseCase = new CountUserPermissionsUseCase(userPermissi
 const findUserPermissionByIdUseCase = new FindUserPermissionByIdUseCase(userPermissionRepository);
 const revokeUserPermissionUseCase = new RevokeUserPermissionUseCase(userPermissionRepository);
 
-export async function createUserPermission(req: Request, res: Response) {
-    const payload = req.body as CreateUserPermissionDto;
+export async function createUserPermission(req: Request, res: Response, next: NextFunction) {
+    try {
 
-    const userPermission = await createUserPermissionUseCase.execute({
-        ...payload,
-        grantedBy: req.user?.id!
-    });
+        const payload = req.body as CreateUserPermissionDto;
 
-    res.status(201).json({
-        status: 'SUCCESS',
-        message: 'User permission created successfully',
-        data: { userPermission }
-    });
+        const userPermission = await createUserPermissionUseCase.execute({
+            ...payload,
+            grantedBy: req.user?.id!
+        });
+
+        res.status(201).json({
+            status: 'SUCCESS',
+            message: 'User permission created successfully',
+            data: { userPermission }
+        });
+    } catch (error) {
+        next(error)
+    }
 }
 
 
-export async function fetchAllUserPermissions(req: Request, res: Response) {
-    const query = res.locals.query as FetchAllUserPermissionsDto;
-    const queryOptions = mapFetchAllUserPermissionsDtoToQueryOptions(query);
-
-    const page = query.page ?? 1;
-    const limit = query.limit ?? 10;
-
-    const [userPermissions, total] = await Promise.all([
-        fetchAllUserPermissionsUseCase.execute(queryOptions),
-        countUserPermissionsUseCase.execute(queryOptions)
-    ]);
-
-    res.json({
-        status: 'SUCCESS',
-        pagination: {
-            page,
-            limit,
-            total,
-            totalPages: Math.ceil(total / limit)
-        },
-        data: { userPermissions }
-    });
+export async function fetchAllUserPermissions(req: Request, res: Response, next: NextFunction) {
+    try{
+        
+        const query = res.locals.query as FetchAllUserPermissionsDto;
+        const queryOptions = mapFetchAllUserPermissionsDtoToQueryOptions(query);
+    
+        const page = query.page ?? 1;
+        const limit = query.limit ?? 10;
+    
+        const [userPermissions, total] = await Promise.all([
+            fetchAllUserPermissionsUseCase.execute(queryOptions),
+            countUserPermissionsUseCase.execute(queryOptions)
+        ]);
+    
+        res.json({
+            status: 'SUCCESS',
+            pagination: {
+                page,
+                limit,
+                total,
+                totalPages: Math.ceil(total / limit)
+            },
+            data: { userPermissions }
+        });
+    } catch (error) {
+        next(error)
+    }
 }
 
 
@@ -67,7 +77,7 @@ export async function findUserPermissionById(req: Request, res: Response, next: 
             data: { userPermission }
         });
     } catch (error) {
-        return next(error);
+        next(error);
     }
 }
 
@@ -84,6 +94,6 @@ export async function deleteUserPermission(req: Request, res: Response, next: Ne
             data: { userPermission }
         });
     } catch (error) {
-        return next(error);
+        next(error);
     }
 }

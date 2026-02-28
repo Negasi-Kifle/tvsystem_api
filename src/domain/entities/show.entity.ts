@@ -1,4 +1,6 @@
 import { ShowType } from '../enums/show-type.enum';
+import { Status } from '../enums/status';
+import { ValidationError } from '../errors/validation.error';
 
 export class ShowEntity {
   constructor(
@@ -11,6 +13,7 @@ export class ShowEntity {
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
+    public status: Status = Status.Draft
   ) { }
 
   public static createInstance(
@@ -20,13 +23,14 @@ export class ShowEntity {
     durationMinutes: number,
     maxAdLengthMinutes: number,
     hostId: string,
+    status: Status = Status.Draft,
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
   ): ShowEntity {
 
     if (!title) {
-      throw new Error('Title is required');
+      throw new ValidationError('Title is required');
     }
 
     if (!titleSlug) {
@@ -35,19 +39,19 @@ export class ShowEntity {
     }
 
     if (!type) {
-      throw new Error('Type is required');
+      throw new ValidationError('Type is required');
     }
 
     if (!durationMinutes || durationMinutes <= 0) {
-      throw new Error('Duration minutes is required');
+      throw new ValidationError('Show duration (in minutes) is required and must be greater than 0');
     }
 
     if (!maxAdLengthMinutes || maxAdLengthMinutes <= 0) {
-      throw new Error('Max ad length minutes is required');
+      throw new ValidationError('Max ad length (in minutes) is required and must be greater than 0');
     }
 
     if (!hostId) {
-      throw new Error('Host is required');
+      throw new ValidationError('Host is required');
     }
 
 
@@ -62,7 +66,8 @@ export class ShowEntity {
       hostId,
       createdAt,
       updatedAt,
-      id);
+      id,
+      status);
   }
 
   public updateInstance(
@@ -71,7 +76,8 @@ export class ShowEntity {
     type?: ShowType,
     durationMinutes?: number,
     maxAdLengthMinutes?: number,
-    hostId?: string
+    hostId?: string,
+    status?: Status
   ): ShowEntity {
     if (title !== undefined) {
       this.title = title;
@@ -81,6 +87,7 @@ export class ShowEntity {
     if (durationMinutes !== undefined) this.durationMinutes = durationMinutes;
     if (maxAdLengthMinutes !== undefined) this.maxAdLengthMinutes = maxAdLengthMinutes;
     if (hostId !== undefined) this.hostId = hostId;
+    if (status !== undefined) this.status = status;
 
     this.updatedAt = new Date();
     return this

@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { jwtConfig } from '../config/jwt.config';
 import { sendErrorResponse } from '../../shared/utils/error-handler';
+import { Exception } from '../../shared/utils/error-constructor';
+import { Code } from '../../shared/utils/http_code';
 
 declare global {
   namespace Express {
@@ -15,8 +17,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   const authHeader = req.headers.authorization;
 
   if (!authHeader?.startsWith('Bearer ')) {
-    const error = new Error('Missing authorization header');
-    return sendErrorResponse(res, 401, 'Missing authorization header', error);
+    throw Exception.new<unknown>({ code: Code.MISSING_AUTHORIZATION_HEADER });
   }
 
   const token = authHeader.substring('Bearer '.length);
@@ -29,7 +30,6 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     };
     next();
   } catch (error) {
-    const err = error instanceof Error ? error : new Error('Invalid token');
-    return sendErrorResponse(res, 401, 'Invalid token', err);
+    throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: error });
   }
 }

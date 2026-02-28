@@ -4,10 +4,10 @@ import { authMiddleware } from "../../infrastructure/middlewares/auth.middleware
 import { requirePermission } from "../../infrastructure/middlewares/permission.middleware";
 import { PERMISSIONS } from "../../shared/constants/permissions.constants";
 import { validateBody } from "../validators/validate-body";
-import { createTelegramGroupDto } from "../dtos/requests/create-tg.dto";
-import { fetchAllTgGroupsDto } from "../dtos/requests/fetch-all-tg-groups.dto";
+import { createTelegramGroupDto } from "../dtos/requests/telegram-group/create-tg.dto";
+import { fetchAllTgGroupsDto } from "../dtos/requests/telegram-group/fetch-all-tg-groups.dto";
 import { validateQuery } from "../validators/validate-query";
-import { updateTelegramGroupDto } from "../dtos/requests/update-tg-group.dto";
+import { updateTelegramGroupDto } from "../dtos/requests/telegram-group/update-tg-group.dto";
 
 const router = Router();
 

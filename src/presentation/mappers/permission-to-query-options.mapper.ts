@@ -1,6 +1,6 @@
 import { QueryOptions } from '../../domain/interfaces/query-options.interface';
 import { PermissionEntity } from '../../domain/entities/permission.entity';
-import { FetchAllPermissionsDto } from '../dtos/requests/fetch-all-permissions.dto';
+import { FetchAllPermissionsDto } from '../dtos/requests/permission/fetch-all-permissions.dto';
 import { Prisma } from '@prisma/client';
 
 /**

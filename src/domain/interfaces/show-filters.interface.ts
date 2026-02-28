@@ -1,0 +1,13 @@
+import { ShowEntity } from '../entities/show.entity';
+import { ShowType } from '../enums/show-type.enum';
+
+export type ShowFilters = Partial<ShowEntity> & {
+  title?: string;
+  titleSlug?: string;
+  type?: ShowType;
+  hostId?: string;
+  minDurationMinutes?: number;
+  maxDurationMinutes?: number;
+  minAdLengthMinutes?: number;
+  maxAdLengthMinutes?: number;
+};

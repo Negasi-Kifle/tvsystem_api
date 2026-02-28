@@ -1,3 +1,5 @@
+import { ValidationError } from "../errors/validation.error";
+
 export class TelegramGroupEntity {
     constructor(
         public groupName: string,
@@ -22,11 +24,11 @@ export class TelegramGroupEntity {
     ): TelegramGroupEntity {
 
         if (!groupName) {
-            throw new Error('Group name is required');
+            throw new ValidationError('Group name is required');
         }
 
         if (!groupLink) {
-            throw new Error('Group link is required');
+            throw new ValidationError('Group link is required');
         }
 
         createdAt = createdAt ?? new Date();

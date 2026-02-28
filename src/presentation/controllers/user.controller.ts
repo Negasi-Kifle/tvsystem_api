@@ -8,7 +8,6 @@ import { CountUsersUseCase } from '../../application/use-cases/users/count-users
 import { UpdateUserUseCase } from '../../application/use-cases/users/update-user.use-case';
 import { DeleteUserUseCase } from '../../application/use-cases/users/delete-user.uase-case';
 import { ResetPasswordUseCase } from '../../application/use-cases/users/reset-pswd.use-case';
-import { GetByEmailOrPhoneUseCase } from '../../application/use-cases/users/get-by-email-or-phone.use-case';
 import { GetByIdUseCase } from '../../application/use-cases/users/get-by-id.use-case';
 import { UpdateUserDto } from '../dtos/requests/user/update-user.dto';
 import { FetchAllUsersDto } from '../dtos/requests/user/fetch-all-users.dto';
@@ -39,7 +38,7 @@ export async function createUser(req: Request, res: Response, next: NextFunction
       data: { user }
     });
   } catch (error: any) {
-    return next(error);
+     next(error);
   }
 }
 
@@ -57,7 +56,7 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
       data: { user }
     });
   } catch (error: any) {
-    return next(error);
+    next(error);
   }
 }
 
@@ -87,7 +86,7 @@ export async function resetPassword(req: Request, res: Response, next: NextFunct
       message: 'Password reset successfully. Please tell user to use the default password.'
     });
   } catch (error: any) {
-    return next(error);
+    next(error);
   }
 }
 
@@ -116,7 +115,7 @@ export async function getAllUsers(req: Request, res: Response, next: NextFunctio
       data: { users },
     });
   } catch (error: any) {
-    return next(error);
+    next(error);
   }
 }
 
@@ -131,7 +130,7 @@ export async function getUserById(req: Request, res: Response, next: NextFunctio
       data: { user }
     });
   } catch (error: any) {
-    return next(error);
+    next(error);
   }
 }
 
@@ -144,7 +143,7 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
     await deleteUserUseCase.execute(id);
     res.status(200).json({ status: 'SUCCESS', message: 'User deleted successfully' });
   } catch (error: any) {
-    return next(error);
+    next(error);
   }
 }
 

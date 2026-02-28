@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import routes from './routes';
 import { errorHandler, sendErrorResponse } from '../shared/utils/error-handler';
+import globalErrorHandler from '../shared/utils/global-error-handler';
 
 const app = express();
 
@@ -19,6 +20,6 @@ app.use(/.*/, (req, res) => {
     sendErrorResponse(res, 404, 'API endpoint not found');
 });
 
-app.use(errorHandler);
+app.use(globalErrorHandler);
 
 export default app;

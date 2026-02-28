@@ -1,5 +1,5 @@
 import { QueryOptions } from '../../domain/interfaces/query-options.interface';
-import { FetchAllTgMembersDto } from '../dtos/requests/fetch-all-tg-members.dto';
+import { FetchAllTgMembersDto } from '../dtos/tg-group-member/fetch-all-tg-members.dto';
 import { TelegramGroupMemberEntity } from '../../domain/entities/telegram-group-member.entity';
 
 /**

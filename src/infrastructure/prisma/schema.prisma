@@ -43,11 +43,12 @@ model User {
 model Show {
   id                 String   @id @default(uuid())
   title              String
-  titleSlug         String   @unique @map("titel_slug")
-  type               String  // ShowType enum: 'InHouse' | 'Outsourced'
+  titleSlug          String   @unique @map("titel_slug")
+  type               String   // ShowType enum: 'InHouse' | 'Outsourced'
   durationMinutes    Int      @map("duration_minutes")
   maxAdLengthMinutes Int      @map("max_ad_length_minutes")
   hostId             String?  @map("host")
+  status             String    @default("Draft") // Status enum: 'Draft' | 'Active' | 'Archived' | 'InActive'
   createdAt          DateTime @default(now()) @map("created_at")
   updatedAt          DateTime @updatedAt @map("updated_at")
 

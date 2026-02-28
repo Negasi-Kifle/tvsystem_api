@@ -1,5 +1,6 @@
 import { UserRole } from '../enums/user-role.enum';
 import { SexTypes } from '../enums/sex-types.enum';
+import { ValidationError } from '../errors/validation.error';
 
 
 export class UserEntity {
@@ -26,19 +27,19 @@ export class UserEntity {
     telegramUsername?: string, createdAt?: Date, updatedAt?: Date, id?: string): UserEntity {
 
     if (!email.includes('@')) {
-      throw new Error('Email must be a valid email address');
+      throw new ValidationError('Email must be a valid email address');
     }
 
     if (phoneNumber.length !== 10) {
-      throw new Error('Phone number is required and must be only 10 characters long');
+      throw new ValidationError('Phone number is required and must be only 10 characters long');
     }
 
     if (!fullName || fullName.trim().length < 2) {
-      throw new Error('Full name is required and must be at least 2 characters long');
+      throw new ValidationError('Full name is required and must be at least 2 characters long');
     }
 
     if (roles.length === 0) {
-      throw new Error('Roles are required');
+      throw new ValidationError('Roles are required');
     }
 
 

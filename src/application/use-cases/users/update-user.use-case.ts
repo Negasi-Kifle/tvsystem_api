@@ -2,6 +2,7 @@ import { IUserRepository } from '../../../domain/repositories/user.repo';
 import { UserEntity } from '../../../domain/entities/user.entity';
 import { SexTypes } from '../../../domain/enums/sex-types.enum';
 import { UserRole } from '../../../domain/enums/user-role.enum';
+import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 
 
 export type UpdateUserInput = {
@@ -26,11 +27,16 @@ export class UpdateUserUseCase {
             this.userRepo.findMany({ filters: { isFirstTimeAccount: true, isActive: true } })
         ]);
         if (!user) {
-            throw new Error('User not found');
+            throw new EntityNotFoundError('User not found', 'User', id);
         }
 
         if (payload.isFirstTimeAccount && firstTimeAccExists.length > 0 && firstTimeAccExists[0]?.id !== id) {
-            throw new Error('First time account already exists');
+            throw new ValidationError('First time account already exists');
+        }
+
+        // First time account could not be deactivated
+        if (user.isFirstTimeAccount && payload.isActive === false) {
+            throw new ValidationError("First time account could not be deactivated")
         }
 
         const updatedUser = user.updateInstance(

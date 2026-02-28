@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { addUserToTelegramGroup, findManyTelegramGroupMembers, getTgMemberById, removeTgMemberFromGroup } from "../controllers/telegram-group-member.controller";
 import { validateBody } from "../validators/validate-body";
-import { addUserToTelegramGroupDto } from "../dtos/requests/add-user-to-tg-group.dto";
+import { addUserToTelegramGroupDto } from "../dtos/tg-group-member/add-user-to-tg-group.dto";
 import { authMiddleware } from "../../infrastructure/middlewares/auth.middleware";
 import { requirePermission } from "../../infrastructure/middlewares/permission.middleware";
 import { PERMISSIONS } from "../../shared/constants/permissions.constants";
-import { fetchAllTgMembersDto } from "../dtos/requests/fetch-all-tg-members.dto";
+import { fetchAllTgMembersDto } from "../dtos/tg-group-member/fetch-all-tg-members.dto";
 import { validateQuery } from "../validators/validate-query";
-import { removeUserFromTelegramGroupDto } from "../dtos/requests/remove-user-from-tg-group.dto";
+import { removeUserFromTelegramGroupDto } from "../dtos/tg-group-member/remove-user-from-tg-group.dto";
 
 const router = Router();
 

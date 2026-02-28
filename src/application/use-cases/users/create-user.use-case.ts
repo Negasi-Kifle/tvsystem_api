@@ -2,6 +2,7 @@ import { UserEntity } from '../../../domain/entities/user.entity';
 import { IUserRepository } from '../../../domain/repositories/user.repo';
 import { SexTypes } from '../../../domain/enums/sex-types.enum';
 import { UserRole } from '../../../domain/enums/user-role.enum';
+import { ValidationError } from '../../../domain/errors';
 
 /** Data-only input for creating a user (no class methods). */
 export type CreateUserInput = {
@@ -45,11 +46,11 @@ export class CreateUserUseCase {
 
     if (existingUserByEmail || existingUserByPhoneNumber) {
       const errorMessage = existingUserByEmail ? 'Email already taken' : 'Phone number already taken';
-      throw new Error(errorMessage);
+      throw new ValidationError(errorMessage);
     }
 
     if (firstTimeAccExists.length > 0 && payload.isFirstTimeAccount) {
-      throw new Error('First time account already exists');
+      throw new ValidationError('First time account already exists');
     }
 
     return await this.userRepo.create(userEntity);

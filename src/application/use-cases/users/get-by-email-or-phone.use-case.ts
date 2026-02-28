@@ -1,5 +1,6 @@
 
 import { UserEntity } from '../../../domain/entities/user.entity';
+import { EntityNotFoundError } from '../../../domain/errors';
 import { IUserRepository } from '../../../domain/repositories/user.repo';
 
 export class GetByEmailOrPhoneUseCase {
@@ -8,7 +9,7 @@ export class GetByEmailOrPhoneUseCase {
     async execute(emailOrPhone: string): Promise<UserEntity | null> {
         const user = await this.userRepo.findByEmailOrPhoneNumber(emailOrPhone);
         if (!user) {
-            throw new Error('User not found');
+            throw new EntityNotFoundError('User not found', 'User', emailOrPhone);
         }
         return user;
     }

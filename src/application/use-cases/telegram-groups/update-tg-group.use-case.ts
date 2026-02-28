@@ -1,4 +1,5 @@
 import { TelegramGroupEntity } from "../../../domain/entities/telegram-groups.entity";
+import { EntityNotFoundError } from "../../../domain/errors";
 import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-group.repo";
 
 export class UpdateTgGroupUseCase {
@@ -7,7 +8,7 @@ export class UpdateTgGroupUseCase {
     async execute(id: string, payload: Partial<TelegramGroupEntity>): Promise<TelegramGroupEntity | null> {
         const telegramGroup = await this.telegramGroupRepo.findById(id);
         if (!telegramGroup) {
-            throw new Error('Telegram group not found');
+            throw new EntityNotFoundError('Telegram group not found', 'TelegramGroup', id);
         }
 
         const updatedTelegramGroup = telegramGroup.updateInstance(

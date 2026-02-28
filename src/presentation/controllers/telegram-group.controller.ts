@@ -1,8 +1,8 @@
-import { CreateTelegramGroupDto } from "../dtos/requests/create-tg.dto";
+import { CreateTelegramGroupDto } from "../dtos/requests/telegram-group/create-tg.dto";
 import { NextFunction, Request, Response } from "express";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
-import { FetchAllTgGroupsDto } from "../dtos/requests/fetch-all-tg-groups.dto";
-import { UpdateTelegramGroupDto } from "../dtos/requests/update-tg-group.dto";
+import { FetchAllTgGroupsDto } from "../dtos/requests/telegram-group/fetch-all-tg-groups.dto";
+import { UpdateTelegramGroupDto } from "../dtos/requests/telegram-group/update-tg-group.dto";
 import { CreateTgGroupUseCase } from "../../application/use-cases/telegram-groups/create-tg-group.use-case";
 import { TelegramGroupRepository } from "../../infrastructure/prisma/repositories/telegram-group.repository";
 import { GetTgGroupByIdUseCase } from "../../application/use-cases/telegram-groups/get-by-id.use-case";
@@ -51,13 +51,12 @@ export async function getTelegramGroupById(req: Request, res: Response, next: Ne
             data: { telegramGroup }
         });
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-        return sendErrorResponse(res, 400, errorMessage, error as Error);
+        next(error)
     }
 }
 
 
-export async function fetchAllTelegramGroups(req: Request, res: Response) {
+export async function fetchAllTelegramGroups(req: Request, res: Response, next: NextFunction) {
     try {
         const dto = res.locals.query as FetchAllTgGroupsDto;
         const queryOptions = mapFetchAllTgGroupsDtoToQueryOptions(dto);
@@ -81,13 +80,12 @@ export async function fetchAllTelegramGroups(req: Request, res: Response) {
             data: { telegramGroups }
         });
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-        return sendErrorResponse(res, 400, errorMessage, error as Error);
+        next(error)
     }
 }
 
 
-export async function updateTelegramGroup(req: Request, res: Response) {
+export async function updateTelegramGroup(req: Request, res: Response, next: NextFunction) {
     try {
         const { id } = req.params as { id: string };
         const payload = req.body as UpdateTelegramGroupDto;
@@ -101,13 +99,12 @@ export async function updateTelegramGroup(req: Request, res: Response) {
         });
     }
     catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-        return sendErrorResponse(res, 400, errorMessage, error as Error);
+        next(error)
     }
 }
 
 
-export async function deleteTelegramGroup(req: Request, res: Response) {
+export async function deleteTelegramGroup(req: Request, res: Response, next: NextFunction) {
     try {
         const { id } = req.params as { id: string };
         const telegramGroup = await deleteTgGroupUseCase.execute(id);
@@ -117,7 +114,6 @@ export async function deleteTelegramGroup(req: Request, res: Response) {
             message: 'Telegram group deleted successfully',
         });
     } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-        return sendErrorResponse(res, 400, errorMessage, error as Error);
+        next(error)
     }
 }

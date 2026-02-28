@@ -1,4 +1,5 @@
 import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
+import { EntityAlreadyExistsError } from "../../../domain/errors";
 import { IUserPermissionsRepository } from "../../../domain/repositories/user-permissions.repo";
 
 
@@ -33,7 +34,7 @@ export class CreateUserPermissionUseCase {
             up => !up.expiresAt || up.expiresAt > now
         );
         if (hasActivePermission) {
-            throw new Error('User permission already exists');
+            throw new EntityAlreadyExistsError('User permission already exists', 'UserPermission');
         }
 
         return await this.userPermissionsRepository.create(userPermissionEntity);

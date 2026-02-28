@@ -17,6 +17,6 @@ export const fetchAllUsersDto = z.object({
   isActive: stringToBoolean,
   sex: z.enum(SexTypes).optional(),
   isFirstTimeAccount: stringToBoolean
-});
+}).strict();
 
 export type FetchAllUsersDto = z.infer<typeof fetchAllUsersDto>;

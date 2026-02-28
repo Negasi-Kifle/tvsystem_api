@@ -1,5 +1,6 @@
 import { PermissionEntity } from "../../../domain/entities/permission.entity";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
+import { EntityAlreadyExistsError } from "../../../domain/errors";
 
 
 export type CreatePermissionInput = {
@@ -28,7 +29,7 @@ export class CreatePermissionUseCase {
         });
 
         if (existingPermission.length > 0) {
-            throw new Error('Permission already exists');
+            throw new EntityAlreadyExistsError('Permission already exists', 'Permission');
         }
 
         return await this.permissionRepo.create(permissionEntity);

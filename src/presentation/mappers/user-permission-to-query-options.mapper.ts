@@ -1,7 +1,7 @@
 import { QueryOptions } from '../../domain/interfaces/query-options.interface';
 import { UserEntity } from '../../domain/entities/user.entity';
 import { UserPermissionEntity } from '../../domain/entities/user-permissions.entity';
-import { FetchAllUserPermissionsDto } from '../dtos/requests/fetch-all-user-permissions.dto';
+import { FetchAllUserPermissionsDto } from '../dtos/requests/user-permission/fetch-all-user-permissions.dto';
 
 /**
  * Maps the fetch-all-user-permissions request DTO to repo QueryOptions.

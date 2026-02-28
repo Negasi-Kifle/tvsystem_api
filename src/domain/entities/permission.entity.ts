@@ -1,3 +1,5 @@
+import { ValidationError } from "../errors/validation.error";
+
 export class PermissionEntity {
     constructor(
         public name: string,
@@ -18,9 +20,9 @@ export class PermissionEntity {
         updatedAt?: Date,
         id?: string,
     ): PermissionEntity {
-        if (name === undefined || !name) throw new Error('Name is required');
+        if (name === undefined || !name) throw new ValidationError('Name is required');
 
-        if (nameSlug === undefined || !nameSlug) throw new Error('Name slug is required');
+        if (nameSlug === undefined || !nameSlug) throw new ValidationError('Name slug is required');
 
         if (isSystemPermission === undefined || !isSystemPermission) isSystemPermission = false;
 
@@ -31,7 +33,10 @@ export class PermissionEntity {
 
 
     public updateInstance(name?: string, nameSlug?: string, description?: string, isSystemPermission?: boolean): PermissionEntity {
-        if (name !== undefined) this.name = name;
+        if (name !== undefined) {
+            this.name = name;
+            if (nameSlug == undefined) this.nameSlug = name.toLowerCase().replace(/ /g, '_')
+        }
         if (nameSlug !== undefined) this.nameSlug = nameSlug;
         if (description !== undefined) this.description = description;
         if (isSystemPermission !== undefined) this.isSystemPermission = isSystemPermission;

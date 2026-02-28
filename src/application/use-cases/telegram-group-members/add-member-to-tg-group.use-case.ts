@@ -1,4 +1,6 @@
 import { TelegramGroupMemberEntity } from "../../../domain/entities/telegram-group-member.entity";
+import { EntityNotFoundError } from "../../../domain/errors";
+import { ValidationError } from "../../../domain/errors/validation.error";
 import { ITelegramGroupMembersRepository } from "../../../domain/repositories/telegram-group-members.repo";
 import { ITelegramGroupRepository } from "../../../domain/repositories/telegram-group.repo";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
@@ -24,15 +26,15 @@ export class AddMemberToTelegramGroupUseCase {
         ]);
 
         if (existingTelegramGroupMember.length > 0) {
-            throw new Error('User is already a member of the telegram group');
+            throw new ValidationError('User is already a member of the telegram group');
         }
 
         if (!telegramGroupExists) {
-            throw new Error('Telegram group not found');
+            throw new EntityNotFoundError('Telegram group not found');
         }
 
         if (!userExists) {
-            throw new Error('User not found');
+            throw new EntityNotFoundError('User not found');
         }
 
         return await this.telegramGroupMembersRepository.create(telegramGroupMemberEntity);

@@ -38,28 +38,44 @@ export class Code {
   };
   
   public static ENTITY_NOT_FOUND_ERROR: CodeDescription = {
-    code: 1000,
+    code: 404,
     message: 'Entity not found.'
   };
   
   public static ENTITY_VALIDATION_ERROR: CodeDescription = {
-    code: 1001,
+    code: 400,
     message: 'Entity validation error.'
   };
   
   public static USE_CASE_PORT_VALIDATION_ERROR: CodeDescription = {
-    code: 1002,
+    code: 400,
     message: 'Use-case port validation error.'
   };
   
   public static VALUE_OBJECT_VALIDATION_ERROR: CodeDescription = {
-    code: 1003,
+    code: 400,
     message: 'Value object validation error.'
   };
   
   public static ENTITY_ALREADY_EXISTS_ERROR: CodeDescription = {
-    code: 1004,
+    code: 400,
     message: 'Entity already exists.'
+  };
+
+  public static MISSING_AUTHORIZATION_HEADER: CodeDescription = {
+    code: 403,
+    message: 'Missing authorization header.'
+  };
+
+  public static INVALID_TOKEN: CodeDescription = {
+    code: 401,
+    message: 'Invalid token.'
+  };
+
+
+  public static REFRESH_TOKEN_INVALID: CodeDescription = {
+    code: 401,
+    message: 'Refresh token invalid.'
   };
   
 }

@@ -4,10 +4,10 @@ import { authMiddleware } from "../../infrastructure/middlewares/auth.middleware
 import { requirePermission } from "../../infrastructure/middlewares/permission.middleware";
 import { PERMISSIONS } from "../../shared/constants/permissions.constants";
 import { validateBody } from "../validators/validate-body";
-import { createPermissionDto } from "../dtos/requests/create-permission.dto";
-import { fetchAllPermissionsDto } from "../dtos/requests/fetch-all-permissions.dto";
+import { createPermissionDto } from "../dtos/requests/permission/create-permission.dto";
+import { fetchAllPermissionsDto } from "../dtos/requests/permission/fetch-all-permissions.dto";
 import { validateQuery } from "../validators/validate-query";
-import { updatePermissionDto } from "../dtos/requests/update-permission.dto";
+import { updatePermissionDto } from "../dtos/requests/permission/update-permission.dto";
 
 const router = Router();
 

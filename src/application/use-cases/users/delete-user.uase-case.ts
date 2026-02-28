@@ -1,4 +1,5 @@
 import { UserEntity } from "../../../domain/entities/user.entity";
+import { EntityNotFoundError, ValidationError } from "../../../domain/errors";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 
 export class DeleteUserUseCase {
@@ -7,16 +8,16 @@ export class DeleteUserUseCase {
     async execute(id: string): Promise<UserEntity | null> {
         const user = await this.userRepo.findById(id);
         if (!user) {
-            throw new Error('User not found');
+            throw new EntityNotFoundError('User not found', 'User', id);
         }
 
         if (user.isFirstTimeAccount) {
-            throw new Error('First time account could not be deleted');
+            throw new ValidationError('First time account could not be deleted');
         }
 
         const deletedUser = await this.userRepo.deleteById(id);
         if (!deletedUser) {
-            throw new Error('Failed to delete user');
+            throw new ValidationError('Failed to delete user');
         }
 
         return deletedUser;

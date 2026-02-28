@@ -2,6 +2,7 @@
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 import { IHashService } from "../../../domain/services/hash-service.interface";
 import { UserEntity } from "../../../domain/entities/user.entity";
+import { EntityNotFoundError, ValidationError } from "../../../domain/errors";
 
 export class ResetPasswordUseCase {
     constructor(
@@ -12,11 +13,11 @@ export class ResetPasswordUseCase {
     async execute(userId: string, newPlainPassword: string): Promise<UserEntity> {
         const user = await this.userRepo.findById(userId);
         if (!user) {
-            throw new Error('User not found');
+            throw new EntityNotFoundError('User not found', 'User', userId);
         }
 
         if (user.isFirstTimeAccount) {
-            throw new Error('User is first time account');
+            throw new ValidationError('User is first time account');
         }
 
         const passwordHash = await this.hashService.hash(newPlainPassword);

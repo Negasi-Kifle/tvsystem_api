@@ -1,5 +1,6 @@
 import { TelegramGroupEntity } from './telegram-groups.entity';
 import { UserSummary } from '../interfaces/user-summary.interface';
+import { ValidationError } from '../errors/validation.error';
 
 export class TelegramGroupMemberEntity {
     constructor(
@@ -18,11 +19,11 @@ export class TelegramGroupMemberEntity {
         id?: string,
     ): TelegramGroupMemberEntity {
         if (!telegramGroupId) {
-            throw new Error('Telegram group ID is required');
+            throw new ValidationError('Telegram group ID is required');
         }
 
         if (!userId) {
-            throw new Error('User ID is required');
+            throw new ValidationError('User ID is required');
         }
 
         createdAt = createdAt ?? new Date();

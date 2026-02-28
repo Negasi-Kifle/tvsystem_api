@@ -1,8 +1,7 @@
-import { CreatePermissionDto } from "../dtos/requests/create-permission.dto";
-import { Request, Response } from "express";
-import { sendErrorResponse } from "../../shared/utils/error-handler";
-import { FetchAllPermissionsDto } from "../dtos/requests/fetch-all-permissions.dto";
-import { UpdatePermissionDto } from "../dtos/requests/update-permission.dto";
+import { CreatePermissionDto } from "../dtos/requests/permission/create-permission.dto";
+import { NextFunction, Request, Response } from "express";
+import { FetchAllPermissionsDto } from "../dtos/requests/permission/fetch-all-permissions.dto";
+import { UpdatePermissionDto } from "../dtos/requests/permission/update-permission.dto";
 import { CreatePermissionUseCase } from "../../application/use-cases/permissions/create.use-case";
 import { FetchAllPermissionsUseCase } from "../../application/use-cases/permissions/fetch-all.use-case";
 import { CountPermissionsUseCase } from "../../application/use-cases/permissions/count.use-case";
@@ -11,6 +10,7 @@ import { PermissionRepository } from "../../infrastructure/prisma/repositories/p
 import { UpdatePermissionUseCase } from "../../application/use-cases/permissions/update.use-case";
 import { mapFetchAllPermissionsDtoToQueryOptions } from "../mappers/permission-to-query-options.mapper";
 import { DeletePermissionUseCase } from "../../application/use-cases/permissions/delete.use-case";
+import { error } from "node:console";
 
 const permissionRepository = new PermissionRepository();
 const createPermissionUseCase = new CreatePermissionUseCase(permissionRepository);
@@ -21,74 +21,96 @@ const updatePermissionUseCase = new UpdatePermissionUseCase(permissionRepository
 const deletePermissionUseCase = new DeletePermissionUseCase(permissionRepository);
 
 
-export async function createPermission(req: Request, res: Response) {
-    const payload = req.body as CreatePermissionDto;
-    const permission = await createPermissionUseCase.execute(payload);
+export async function createPermission(req: Request, res: Response, next: NextFunction) {
+    try {
+        const payload = req.body as CreatePermissionDto;
+        const permission = await createPermissionUseCase.execute(payload);
 
-    res.status(201).json({
-        status: 'SUCCESS',
-        message: 'Permission created successfully',
-        data: { permission }
-    });
+        res.status(201).json({
+            status: 'SUCCESS',
+            message: 'Permission created successfully',
+            data: { permission }
+        });
+    } catch (error) {
+        next(error);
+    }
 }
 
 
-export async function getPermissionById(req: Request, res: Response) {
-    const { id } = req.params as { id: string };
-    const permission = await findPermissionByIdUseCase.execute(id);
+export async function getPermissionById(req: Request, res: Response, next: NextFunction) {
+    try {
+        const { id } = req.params as { id: string };
+        const permission = await findPermissionByIdUseCase.execute(id);
 
 
-    res.json({
-        status: 'SUCCESS',
-        data: { permission }
-    });
+        res.status(200).json({
+            status: 'SUCCESS',
+            data: { permission }
+        });
+    } catch (error) {
+        next(error);
+    }
 }
 
 
-export async function fetchAllPermissions(req: Request, res: Response) {
-    const query = res.locals.query as FetchAllPermissionsDto;
-    const queryOptions = mapFetchAllPermissionsDtoToQueryOptions(query);
+export async function fetchAllPermissions(req: Request, res: Response, next: NextFunction) {
+    try {
+        const query = res.locals.query as FetchAllPermissionsDto;
+        const queryOptions = mapFetchAllPermissionsDtoToQueryOptions(query);
 
-    const page = query.page ?? 1;
-    const limit = query.limit ?? 10;
+        const page = query.page ?? 1;
+        const limit = query.limit ?? 10;
 
-    const [permissions, total] = await Promise.all([
-        fetchAllPermissionsUseCase.execute(queryOptions),
-        countPermissionsUseCase.execute(queryOptions)
-    ]);
+        const [permissions, total] = await Promise.all([
+            fetchAllPermissionsUseCase.execute(queryOptions),
+            countPermissionsUseCase.execute(queryOptions)
+        ]);
 
-    res.json({
-        status: 'SUCCESS',
-        pagination: {
-            page,
-            limit,
-            total,
-            totalPages: Math.ceil(total / limit)
-        },
-        data: { permissions }
-    });
+        res.json({
+            status: 'SUCCESS',
+            pagination: {
+                page,
+                limit,
+                total,
+                totalPages: Math.ceil(total / limit)
+            },
+            data: { permissions }
+        });
+    } catch (error) {
+        next(error)
+    }
 }
 
 
-export async function updatePermission(req: Request, res: Response) {
-    const { id } = req.params as { id: string };
-    const payload = req.body as UpdatePermissionDto;
+export async function updatePermission(req: Request, res: Response, next: NextFunction) {
+    try {
 
-    const permission = await updatePermissionUseCase.execute(id, payload);
+        const { id } = req.params as { id: string };
+        const payload = req.body as UpdatePermissionDto;
 
-    res.json({
-        status: 'SUCCESS',
-        message: 'Permission updated successfully',
-        data: { permission }
-    });
+        const permission = await updatePermissionUseCase.execute(id, payload);
+
+        res.json({
+            status: 'SUCCESS',
+            message: 'Permission updated successfully',
+            data: { permission }
+        });
+    } catch (error) {
+        next(error)
+    }
 }
 
-export async function deletePermission(req: Request, res: Response) {
-    const { id } = req.params as { id: string };
-    await deletePermissionUseCase.execute(id);
+export async function deletePermission(req: Request, res: Response, next: NextFunction) {
+    try {
 
-    res.json({
-        status: 'SUCCESS',
-        message: 'Permission deleted successfully'
-    });
+        const { id } = req.params as { id: string };
+        await deletePermissionUseCase.execute(id);
+
+        res.json({
+            status: 'SUCCESS',
+            message: 'Permission deleted successfully'
+        });
+    } catch (error) {
+        next(error)
+    }
 }

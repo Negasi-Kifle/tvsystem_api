@@ -1,3 +1,4 @@
+import { ValidationError } from "../errors/validation.error";
 import { PermissionEntity } from "./permission.entity";
 import { UserEntity } from "./user.entity";
 
@@ -25,10 +26,10 @@ export class UserPermissionEntity {
         grantedByUser?: UserEntity,
     ): UserPermissionEntity {
         if (!userId) {
-            throw new Error('User ID is required');
+            throw new ValidationError('User ID is required');
         }
         if (!permissionId) {
-            throw new Error('Permission ID is required');
+            throw new ValidationError('Permission ID is required');
         }
 
         createdAt = createdAt ?? new Date();

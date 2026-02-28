@@ -1,7 +1,7 @@
 import { Show } from "@prisma/client";
 import { ShowEntity } from "../../../domain/entities/show.entity";
 import { ShowType } from "../../../domain/enums/show-type.enum";
-
+import { Status } from "../../../domain/enums/status";
 
 export function modelToEntity(show: Show): ShowEntity {
     return ShowEntity.createInstance(
@@ -11,6 +11,7 @@ export function modelToEntity(show: Show): ShowEntity {
         show.durationMinutes,
         show.maxAdLengthMinutes,
         show.hostId ?? '',
+        show.status as Status,
         show.createdAt,
         show.updatedAt,
         show.id,
@@ -26,6 +27,7 @@ export function entityToModel(show: ShowEntity): Show {
         durationMinutes: show.durationMinutes,
         maxAdLengthMinutes: show.maxAdLengthMinutes,
         hostId: show.hostId,
+        status: show.status,
         createdAt: show.createdAt ?? new Date(),
         updatedAt: show.updatedAt ?? new Date(),
     };

@@ -1,8 +1,8 @@
 import { ShowEntity } from '../../../domain/entities/show.entity';
 import { ShowType } from '../../../domain/enums/show-type.enum';
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
-
-
+import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
+import { Status } from '../../../domain/enums/status';
 
 export type CreateShowInput = {
   title: string;
@@ -11,6 +11,7 @@ export type CreateShowInput = {
   durationMinutes: number;
   maxAdLengthMinutes: number;
   host: string;
+  status?: Status;
 };
 
 export class CreateShowUseCase {
@@ -24,14 +25,15 @@ export class CreateShowUseCase {
       payload.durationMinutes,
       payload.maxAdLengthMinutes,
       payload.host,
+      payload.status
     );
 
     //  Check for duplicate title slug
     const duplicateShow = await this.showRepo.findByTitleSlug(showEntity.titleSlug);
     if (duplicateShow) {
-      throw new Error('Show with this title slug already exists');
+      throw new EntityAlreadyExistsError('Show with this title slug already exists', 'Show');
     }
 
-    return this.showRepo.create(showEntity);
+      return this.showRepo.create(showEntity);
+    }
   }
-}

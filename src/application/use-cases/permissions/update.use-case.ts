@@ -1,4 +1,5 @@
 import { PermissionEntity } from "../../../domain/entities/permission.entity";
+import { EntityNotFoundError, ValidationError } from "../../../domain/errors";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
 
 export class UpdatePermissionUseCase {
@@ -7,11 +8,11 @@ export class UpdatePermissionUseCase {
     async execute(id: string, payload: Partial<PermissionEntity>): Promise<PermissionEntity | null> {
         const permission = await this.permissionRepo.findById(id);
         if (!permission) {
-            throw new Error('Permission not found');
+            throw new EntityNotFoundError('Permission not found', 'Permission', id);
         }
 
         if (permission.isSystemPermission) {
-            throw new Error('System permission could not be updated');
+            throw new ValidationError('System permission could not be updated');
         }
 
         const updatedPermission = permission.updateInstance(
