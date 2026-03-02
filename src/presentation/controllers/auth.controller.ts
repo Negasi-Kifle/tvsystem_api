@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
+import { PartnerRepository } from '../../infrastructure/prisma/repositories/partner.repository';
+import { EmployeeRepository } from '../../infrastructure/prisma/repositories/employee.repository';
 import { UserPermissionsRepository } from '../../infrastructure/prisma/repositories/user-permissions.repository';
 import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 import { comparePassword } from '../../shared/utils/password';
@@ -18,9 +20,11 @@ import { FindSlugsByUserIdUseCase } from '../../application/use-cases/user-permi
 
 const authService = new AuthService();
 const userRepository = new UserRepository();
+const partnerRepository = new PartnerRepository();
+const employeeRepository = new EmployeeRepository();
 const userPermissionsRepository = new UserPermissionsRepository();
 const permissionRepository = new PermissionRepository();
-const createUserUseCase = new CreateUserUseCase(userRepository);
+const createUserUseCase = new CreateUserUseCase(userRepository, partnerRepository, employeeRepository);
 const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(userRepository);
 const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
 const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);

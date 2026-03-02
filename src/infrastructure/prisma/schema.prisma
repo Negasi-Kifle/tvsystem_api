@@ -10,30 +10,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRefModel {
+  Partner
+  Employee
+  Internal
+}
+
 // ============================================
 // USER - System users with roles and permissions
 // ============================================
 model User {
-  id                    String   @id @default(uuid())
-  email                 String   @unique
-  phoneNumber           String   @unique @map("phone_number")
-  telegramUsername      String?  @unique @map("telegram_username")
-  passwordHash          String   @map("password_hash")
-  fullName              String   @map("full_name")
-  sex                   String   @map("sex")
-  roles                 String[] // Array of UserRole enum values
-  isActive              Boolean  @default(true) @map("is_active")
-  isFirstTimeAccount    Boolean  @default(false) @map("is_first_time_account")
-  createdAt             DateTime @default(now()) @map("created_at")
-  updatedAt             DateTime @updatedAt @map("updated_at")
+  id                    String       @id @default(uuid())
+  email                 String       @unique
+  phoneNumber           String       @unique @map("phone_number")
+  telegramUsername      String?      @unique @map("telegram_username")
+  passwordHash          String       @map("password_hash")
+  fullName              String       @map("full_name")
+  sex                   String       @map("sex")
+  roles                 String[]     // Array of UserRole enum values
+  isActive              Boolean      @default(true) @map("is_active")
+  isFirstTimeAccount    Boolean      @default(false) @map("is_first_time_account")
+  refModel              UserRefModel @default(Internal) @map("ref_model")
+  partnerId             String?      @unique @map("partner_id")
+  employeeId            String?      @unique @map("employee_id")
+  createdAt             DateTime     @default(now()) @map("created_at")
+  updatedAt             DateTime     @updatedAt @map("updated_at")
 
   // Relations
+  partner               Partner?     @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  employee              Employee?    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
   telegramGroupMemberships TelegramGroupMember[]
   userPermissions          UserPermission[]  @relation("UserPermissions")
   permissionsGranted       UserPermission[]  @relation("PermissionGranter")
   hostedShows              Show[]
 
   @@index([email])
+  @@index([refModel])
   @@map("users")
 }
 
@@ -109,10 +121,27 @@ model Partner {
   id           String   @id @default(uuid())
   name         String
   revenueShare Json     // { value: number } - Percentage value object
+  isActive     Boolean  @default(true) @map("is_active")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
+  user User?
   @@map("partners")
+}
+
+// ============================================
+// EMPLOYEE - Internal staff (sales, managers)
+// ============================================
+model Employee {
+  id              String   @id @default(uuid())
+  employeeNumber  String?  @unique @map("employee_number")
+  department      String?
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  user User?
+  @@map("employees")
 }
 
 // ============================================

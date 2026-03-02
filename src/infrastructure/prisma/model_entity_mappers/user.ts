@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import { SexTypes } from "../../../domain/enums/sex-types.enum";
 import { UserEntity } from "../../../domain/entities/user.entity";
 import { UserRole } from "../../../domain/enums/user-role.enum";
+import { UserRefModel } from "../../../domain/enums/user-ref-model.enum";
 
 export function modelToEntity(user: User): UserEntity {
     return UserEntity.createInstance(
@@ -13,13 +14,15 @@ export function modelToEntity(user: User): UserEntity {
         user.roles as UserRole[],
         user.isActive,
         user.isFirstTimeAccount,
-        user.telegramUsername ?? '',
+        user.refModel as UserRefModel,
+        user.telegramUsername ?? undefined,
+        user.partnerId ?? undefined,
+        user.employeeId ?? undefined,
         user.createdAt,
         user.updatedAt,
         user.id,
-    )
+    );
 }
-
 
 export function entityToModel(user: UserEntity): User {
     return {
@@ -32,7 +35,10 @@ export function entityToModel(user: UserEntity): User {
         roles: user.roles as UserRole[],
         isActive: user.isActive,
         isFirstTimeAccount: user.isFirstTimeAccount,
+        refModel: user.refModel,
         telegramUsername: user.telegramUsername ?? null,
+        partnerId: user.partnerId ?? null,
+        employeeId: user.employeeId ?? null,
         createdAt: user.createdAt ?? new Date(),
         updatedAt: user.updatedAt ?? new Date(),
     };

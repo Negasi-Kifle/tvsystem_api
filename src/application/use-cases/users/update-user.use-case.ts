@@ -1,4 +1,6 @@
 import { IUserRepository } from '../../../domain/repositories/user.repo';
+import { IPartnerRepository } from '../../../domain/repositories/partner.repo';
+import { IEmployeeRepository } from '../../../domain/repositories/employee.repo';
 import { UserEntity } from '../../../domain/entities/user.entity';
 import { SexTypes } from '../../../domain/enums/sex-types.enum';
 import { UserRole } from '../../../domain/enums/user-role.enum';
@@ -19,7 +21,11 @@ export type UpdateUserInput = {
 
 
 export class UpdateUserUseCase {
-    constructor(private readonly userRepo: IUserRepository) { }
+    constructor(
+        private readonly userRepo: IUserRepository,
+        private readonly partnerRepo: IPartnerRepository,
+        private readonly employeeRepo: IEmployeeRepository,
+    ) { }
 
     async execute(id: string, payload: UpdateUserInput): Promise<UserEntity | null> {
         const [user, firstTimeAccExists] = await Promise.all([
@@ -34,9 +40,8 @@ export class UpdateUserUseCase {
             throw new ValidationError('First time account already exists');
         }
 
-        // First time account could not be deactivated
         if (user.isFirstTimeAccount && payload.isActive === false) {
-            throw new ValidationError("First time account could not be deactivated")
+            throw new ValidationError("First time account could not be deactivated");
         }
 
         const updatedUser = user.updateInstance(
@@ -50,6 +55,23 @@ export class UpdateUserUseCase {
             payload.isFirstTimeAccount ?? user.isFirstTimeAccount,
             payload.telegramUsername ?? user.telegramUsername);
 
-        return await this.userRepo.update(updatedUser);
+        const result = await this.userRepo.update(updatedUser);
+
+        if (result && payload.isActive !== undefined && (user.partnerId || user.employeeId)) {
+            if (user.partnerId) {
+                const partner = await this.partnerRepo.findById(user.partnerId);
+                if (partner) {
+                    await this.partnerRepo.update({ ...partner, isActive: payload.isActive });
+                }
+            }
+            if (user.employeeId) {
+                const employee = await this.employeeRepo.findById(user.employeeId);
+                if (employee) {
+                    await this.employeeRepo.update(employee.updateInstance(undefined, undefined, payload.isActive));
+                }
+            }
+        }
+
+        return result;
     }
 }

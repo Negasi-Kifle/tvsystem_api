@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CreateUserDto } from '../dtos/requests/user/create-user.dto';
-import { sendErrorResponse } from '../../shared/utils/error-handler';
-import { NextFunction } from 'express';
 import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
+import { PartnerRepository } from '../../infrastructure/prisma/repositories/partner.repository';
+import { EmployeeRepository } from '../../infrastructure/prisma/repositories/employee.repository';
 import { HashService } from '../../infrastructure/services/hash.service';
 import { CountUsersUseCase } from '../../application/use-cases/users/count-users.use-case';
 import { UpdateUserUseCase } from '../../application/use-cases/users/update-user.use-case';
@@ -17,14 +17,16 @@ import { CreateUserUseCase } from '../../application/use-cases/users/create-user
 import { FetchAllUsersUseCase } from '../../application/use-cases/users/fetch-all.use-case';
 
 const userRepository = new UserRepository();
+const partnerRepository = new PartnerRepository();
+const employeeRepository = new EmployeeRepository();
 const hashService = new HashService();
 
-const createUserUseCase = new CreateUserUseCase(userRepository);
+const createUserUseCase = new CreateUserUseCase(userRepository, partnerRepository, employeeRepository);
 const getByIdUseCase = new GetByIdUseCase(userRepository);
-const updateUserUseCase = new UpdateUserUseCase(userRepository);
+const updateUserUseCase = new UpdateUserUseCase(userRepository, partnerRepository, employeeRepository);
 const resetPasswordUseCase = new ResetPasswordUseCase(userRepository, hashService);
 const countUsersUseCase = new CountUsersUseCase(userRepository);
-const deleteUserUseCase = new DeleteUserUseCase(userRepository);
+const deleteUserUseCase = new DeleteUserUseCase(userRepository, partnerRepository, employeeRepository);
 const fetchAllUsersUseCase = new FetchAllUsersUseCase(userRepository);
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {

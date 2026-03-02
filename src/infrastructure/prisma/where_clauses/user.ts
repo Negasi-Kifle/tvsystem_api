@@ -12,5 +12,8 @@ export function buildWhereClauseForUser(filters: Partial<UserEntity>): Prisma.Us
         ...(filters.sex && { sex: filters.sex }),
         ...(filters.isFirstTimeAccount !== undefined && { isFirstTimeAccount: filters.isFirstTimeAccount }),
         ...(filters.telegramUsername !== undefined && { telegramUsername: filters.telegramUsername }),
+        ...(filters.refModel !== undefined && { refModel: filters.refModel }),
+        ...(filters.partnerId !== undefined && { partnerId: filters.partnerId }),
+        ...(filters.employeeId !== undefined && { employeeId: filters.employeeId }),
     };
 }

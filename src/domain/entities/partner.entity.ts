@@ -4,5 +4,7 @@ export interface Partner {
   id: string;
   name: string;
   revenueShare: Percentage;
+  isActive: boolean;
   createdAt?: Date;
+  updatedAt?: Date;
 }
