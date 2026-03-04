@@ -9,7 +9,7 @@ import globalErrorHandler from '../shared/utils/global-error-handler';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*", credentials: false }));
 app.use(helmet());
 app.use(morgan('combined'));
 
