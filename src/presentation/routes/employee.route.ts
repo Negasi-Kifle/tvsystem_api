@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createEmployee, deleteEmployee, getAllEmployees, getEmployee, updateEmployee, updateEmployeeStatus } from "../controllers/employee.controller";
+import { createEmployee, deleteEmployee, getAllEmployees, getEmployee, getEmployeesWithoutUserAccount, updateEmployee, updateEmployeeStatus } from "../controllers/employee.controller";
 import { createEmployeeDto } from "../dtos/requests/employee/create-emp.dto";
 import { validateBody } from "../validators/validate-body";
 import { authMiddleware } from "../../infrastructure/middlewares/auth.middleware";
@@ -16,6 +16,8 @@ router.route('/')
     .post(authMiddleware, requirePermission(PERMISSIONS.MANAGE_EMPLOYEES), validateBody(createEmployeeDto), createEmployee)
     .get(authMiddleware, requirePermission(PERMISSIONS.MANAGE_EMPLOYEES), validateQuery(fetchAllEmployeesDto), getAllEmployees)
     
+router.get('/without-user-account', authMiddleware, requirePermission(PERMISSIONS.MANAGE_EMPLOYEES), validateQuery(fetchAllEmployeesDto), getEmployeesWithoutUserAccount);
+
 
 router.route('/:id/status')
     .patch(authMiddleware, requirePermission(PERMISSIONS.MANAGE_EMPLOYEES), validateBody(updateEmployeeStatusDto), updateEmployeeStatus);   

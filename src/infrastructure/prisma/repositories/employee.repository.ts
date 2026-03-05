@@ -80,6 +80,20 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
     return list.map(modelToEntity);
   }
 
+  async findManyWithoutUser(query: QueryOptions<EmployeeEntity>): Promise<EmployeeEntity[]> {
+    const where = buildWhereClauseForEmployee(query.filters ?? {});
+    const list = await this.prisma.employee.findMany({
+      where: {
+        ...where,
+        user: null,
+      },
+      skip: query.skip ?? 0,
+      take: query.take ?? 10,
+      include: { user: true },
+    });
+    return list.map(modelToEntity);
+  }
+
   async update(entity: EmployeeEntity): Promise<EmployeeEntity | null> {
     const updated = await this.prisma.employee.update({
       where: { id: entity.id },
@@ -96,6 +110,16 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
   async count(filters?: Partial<EmployeeEntity>): Promise<number> {
     const where = buildWhereClauseForEmployee(filters ?? {});
     return this.prisma.employee.count({ where });
+  }
+
+  async countWithoutUser(filters?: Partial<EmployeeEntity>): Promise<number> {
+    const where = buildWhereClauseForEmployee(filters ?? {});
+    return this.prisma.employee.count({
+      where: {
+        ...where,
+        user: null,
+      },
+    });
   }
 
   async updateEmployeeAndUserStatus(employee: EmployeeEntity, user: UserEntity): Promise<{ employee: EmployeeEntity, user: UserEntity }> {

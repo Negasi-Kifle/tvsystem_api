@@ -1,6 +1,7 @@
 import { EmployeeEntity } from '../entities/employee.entity';
 import { IBaseRepository } from './base.repository.interface';
 import { UserEntity } from '../entities/user.entity';
+import { QueryOptions } from '../interfaces/query-options.interface';
 
 export interface IEmployeeRepository extends IBaseRepository<EmployeeEntity> {
     createEmployeeAndUser(
@@ -19,4 +20,7 @@ export interface IEmployeeRepository extends IBaseRepository<EmployeeEntity> {
         employee: EmployeeEntity,
         user: UserEntity,
     ): Promise<{ employee: EmployeeEntity, user: UserEntity }>;
+
+    findManyWithoutUser(query: QueryOptions<EmployeeEntity>): Promise<EmployeeEntity[]>;
+    countWithoutUser(filters?: Partial<EmployeeEntity>): Promise<number>;
 }

@@ -14,6 +14,8 @@ import { UpdateEmployeeStatusUseCase } from '../../application/use-cases/employe
 import { UpdateEmployeeStatusDto } from '../dtos/requests/employee/update-status.dto';
 import { DeleteEmployeeUseCase } from '../../application/use-cases/employee/delete.use-case';
 import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
+import { FetchEmployeesWithoutUserUseCase } from '../../application/use-cases/employee/fetch-without-user.use-case';
+import { CountEmployeesWithoutUserUseCase } from '../../application/use-cases/employee/count-without-user.use-case';
 
 const employeeRepository = new EmployeeRepository();
 const userRepository = new UserRepository();
@@ -30,6 +32,8 @@ const countEmployeesUseCase = new CountEmployeesUseCase(employeeRepository);
 const updateEmployeeUseCase = new UpdateEmployeeUseCase(employeeRepository);
 const updateEmployeeStatusUseCase = new UpdateEmployeeStatusUseCase(employeeRepository, userRepository);
 const deleteEmployeeUseCase = new DeleteEmployeeUseCase(employeeRepository, userRepository);
+const fetchEmployeesWithoutUserUseCase = new FetchEmployeesWithoutUserUseCase(employeeRepository);
+const countEmployeesWithoutUserUseCase = new CountEmployeesWithoutUserUseCase(employeeRepository);
 
 export async function createEmployee(req: Request, res: Response, next: NextFunction) {
     try {
@@ -95,6 +99,34 @@ export async function getAllEmployees(req: Request, res: Response, next: NextFun
         next(error);
     }
 }   
+
+export async function getEmployeesWithoutUserAccount(req: Request, res: Response, next: NextFunction) {
+    try {
+        const dto = res.locals.query as FetchAllEmployeesDto;
+        const queryOptions = mapFetchAllEmployeesDtoToQueryOptions(dto);
+
+        const page = dto.page ?? 1;
+        const limit = dto.limit ?? 10;
+
+        const [employees, total] = await Promise.all([
+            fetchEmployeesWithoutUserUseCase.execute(queryOptions),
+            countEmployeesWithoutUserUseCase.execute(queryOptions.filters),
+        ]);
+
+        res.status(200).json({
+            status: 'SUCCESS',
+            pagination: {
+                page,
+                limit,
+                total,
+                totalPages: Math.ceil(total / limit),
+            },
+            data: { employees },
+        });
+    } catch (error: any) {
+        next(error);
+    }
+}
 
 
 export async function updateEmployee(req: Request, res: Response, next: NextFunction) {
