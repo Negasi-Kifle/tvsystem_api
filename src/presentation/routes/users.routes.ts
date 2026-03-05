@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createUser,
   updateUser,
+  updateUserStatus,
   getAllUsers,
   getUserById,
   deleteUser,
@@ -17,6 +18,7 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { resetPasswordDto } from '../dtos/requests/user/reset-paswd.dto';
 import { fetchAllUsersDto } from '../dtos/requests/user/fetch-all-users.dto';
 import { updateUserDto } from '../dtos/requests/user/update-user.dto';
+import { updateUserStatusDto } from '../dtos/requests/user/update-status.dto';
 
 const router = Router();
 
@@ -27,6 +29,7 @@ router.route('/')
   .post(authMiddleware, requirePermission(PERMISSIONS.MANAGE_USERS), validateBody(createUserDto), createUser);
 
 router.patch('/reset-password', authMiddleware, requirePermission(PERMISSIONS.MANAGE_USERS), validateBody(resetPasswordDto), resetPassword);
+router.patch('/:id/status', authMiddleware, requirePermission(PERMISSIONS.MANAGE_USERS), validateBody(updateUserStatusDto), updateUserStatus);
 
 
 router.route('/:id')

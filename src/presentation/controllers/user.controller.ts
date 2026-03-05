@@ -6,6 +6,7 @@ import { EmployeeRepository } from '../../infrastructure/prisma/repositories/emp
 import { HashService } from '../../infrastructure/services/hash.service';
 import { CountUsersUseCase } from '../../application/use-cases/users/count-users.use-case';
 import { UpdateUserUseCase } from '../../application/use-cases/users/update-user.use-case';
+import { UpdateUserStatusUseCase } from '../../application/use-cases/users/update-user-status.use-case';
 import { DeleteUserUseCase } from '../../application/use-cases/users/delete-user.uase-case';
 import { ResetPasswordUseCase } from '../../application/use-cases/users/reset-pswd.use-case';
 import { GetByIdUseCase } from '../../application/use-cases/users/get-by-id.use-case';
@@ -15,6 +16,7 @@ import { mapFetchAllUsersDtoToQueryOptions } from '../mappers/users-to-query-opt
 import { ResetPasswordDto } from '../dtos/requests/user/reset-paswd.dto';
 import { CreateUserUseCase } from '../../application/use-cases/users/create-user.use-case';
 import { FetchAllUsersUseCase } from '../../application/use-cases/users/fetch-all.use-case';
+import { UpdateUserStatusDto } from '../dtos/requests/user/update-status.dto';
 
 const userRepository = new UserRepository();
 const partnerRepository = new PartnerRepository();
@@ -23,7 +25,8 @@ const hashService = new HashService();
 
 const createUserUseCase = new CreateUserUseCase(userRepository, partnerRepository, employeeRepository);
 const getByIdUseCase = new GetByIdUseCase(userRepository);
-const updateUserUseCase = new UpdateUserUseCase(userRepository, partnerRepository, employeeRepository);
+const updateUserUseCase = new UpdateUserUseCase(userRepository);
+const updateUserStatusUseCase = new UpdateUserStatusUseCase(userRepository);
 const resetPasswordUseCase = new ResetPasswordUseCase(userRepository, hashService);
 const countUsersUseCase = new CountUsersUseCase(userRepository);
 const deleteUserUseCase = new DeleteUserUseCase(userRepository, partnerRepository, employeeRepository);
@@ -55,6 +58,23 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
     res.status(200).json({
       status: 'SUCCESS',
       message: 'User updated successfully',
+      data: { user }
+    });
+  } catch (error: any) {
+    next(error);
+  }
+}
+
+export async function updateUserStatus(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id = req.params.id as string;
+    const { isActive } = req.body as UpdateUserStatusDto;
+
+    const user = await updateUserStatusUseCase.execute(id, isActive);
+
+    res.status(200).json({
+      status: 'SUCCESS',
+      message: 'User status updated successfully',
       data: { user }
     });
   } catch (error: any) {

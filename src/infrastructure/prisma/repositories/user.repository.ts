@@ -5,6 +5,8 @@ import { QueryOptions } from "../../../domain/interfaces/query-options.interface
 import { modelToEntity, entityToModel } from "../model_entity_mappers/user";
 import { buildWhereClauseForUser } from "../where_clauses/user";
 import { hashPassword } from "../../../shared/utils/password";
+import { UserRefModel } from "../../../domain/enums/user-ref-model.enum";
+import { EntityNotFoundError } from "../../../domain/errors";
 
 
 export class UserRepository extends PrismaBaseRepository implements IUserRepository {
@@ -68,5 +70,36 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
       data: { passwordHash },
     });
     return user ? modelToEntity(user) : null;
+  }
+
+  async updateStatusWithParentSync(userEntity: UserEntity): Promise<UserEntity | null> {
+    return this.prisma.$transaction(async (tx) => {
+      const updatedUser = await tx.user.update({
+        where: { id: userEntity.id },
+        data: { isActive: userEntity.isActive },
+      });
+
+      if (userEntity.refModel === UserRefModel.Employee) {
+        if (!userEntity.employeeId) {
+          throw new EntityNotFoundError('Employee reference missing for user', 'Employee');
+        }
+        await tx.employee.update({
+          where: { id: userEntity.employeeId },
+          data: { isActive: userEntity.isActive },
+        });
+      }
+
+      if (userEntity.refModel === UserRefModel.Partner) {
+        if (!userEntity.partnerId) {
+          throw new EntityNotFoundError('Partner reference missing for user', 'Partner');
+        }
+        await tx.partner.update({
+          where: { id: userEntity.partnerId },
+          data: { isActive: userEntity.isActive },
+        });
+      }
+
+      return modelToEntity(updatedUser);
+    });
   }
 }
