@@ -15,13 +15,21 @@ export class TelegramGroupMemberRepository extends PrismaBaseRepository implemen
     }
 
     async findById(id: string): Promise<TelegramGroupMemberEntity | null> {
-        const telegramGroupMember = await this.prisma.telegramGroupMember.findUnique({ where: { id } });
+        const telegramGroupMember = await this.prisma.telegramGroupMember.findUnique({
+            where: { id },
+            include: { telegramGroup: true, user: true },
+        });
         return telegramGroupMember ? modelToEntity(telegramGroupMember) : null;
     }
 
     async findMany(query: QueryOptions<TelegramGroupMemberEntity>): Promise<TelegramGroupMemberEntity[]> {
         const where = buildWhereClauseForTelegramGroupMember(query.filters ?? {});
-        const telegramGroupMembers = await this.prisma.telegramGroupMember.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
+        const telegramGroupMembers = await this.prisma.telegramGroupMember.findMany({
+            where,
+            skip: query.skip ?? 0,
+            take: query.take ?? 10,
+            include: { telegramGroup: true, user: true },
+        });
         return telegramGroupMembers.map(modelToEntity);
     }
 

@@ -9,6 +9,8 @@ export class TelegramGroupMemberEntity {
         public createdAt?: Date,
         public updatedAt?: Date,
         public id?: string,
+        public telegramGroup?: TelegramGroupEntity,
+        public user?: UserSummary,
     ) { }
 
     public static createInstance(
@@ -17,6 +19,8 @@ export class TelegramGroupMemberEntity {
         createdAt?: Date,
         updatedAt?: Date,
         id?: string,
+        telegramGroup?: TelegramGroupEntity,
+        user?: UserSummary,
     ): TelegramGroupMemberEntity {
         if (!telegramGroupId) {
             throw new ValidationError('Telegram group ID is required');
@@ -28,7 +32,7 @@ export class TelegramGroupMemberEntity {
 
         createdAt = createdAt ?? new Date();
         updatedAt = updatedAt ?? new Date();
-        return new TelegramGroupMemberEntity(telegramGroupId, userId, createdAt, updatedAt, id);
+        return new TelegramGroupMemberEntity(telegramGroupId, userId, createdAt, updatedAt, id, telegramGroup, user);
     }
 
     public updateInstance(telegramGroupId?: string, userId?: string): TelegramGroupMemberEntity {
