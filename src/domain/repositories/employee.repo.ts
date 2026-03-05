@@ -6,8 +6,15 @@ export interface IEmployeeRepository extends IBaseRepository<EmployeeEntity> {
     createEmployeeAndUser(
         employee: Omit<EmployeeEntity, 'id'>,
         user: Omit<UserEntity, 'id'>): Promise<{ employee: EmployeeEntity, user: UserEntity }>;
-    
-    
+
+    createEmployeeUserAndPermissions(
+        employee: Omit<EmployeeEntity, 'id'>,
+        user: Omit<UserEntity, 'id'>,
+        permissionIds: string[],
+        grantedBy?: string,
+    ): Promise<{ employee: EmployeeEntity, user: UserEntity }>;
+
+
     updateEmployeeAndUserStatus(
         employee: EmployeeEntity,
         user: UserEntity,

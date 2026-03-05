@@ -13,10 +13,17 @@ import { UpdateEmployeeUseCase } from '../../application/use-cases/employee/upda
 import { UpdateEmployeeStatusUseCase } from '../../application/use-cases/employee/update_status.use-case';
 import { UpdateEmployeeStatusDto } from '../dtos/requests/employee/update-status.dto';
 import { DeleteEmployeeUseCase } from '../../application/use-cases/employee/delete.use-case';
+import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 
 const employeeRepository = new EmployeeRepository();
 const userRepository = new UserRepository();
-const createEmployeeAndUserUseCase = new CreateEmployeeAndUserUseCase(employeeRepository, userRepository);
+const permissionRepository = new PermissionRepository();
+
+const createEmployeeAndUserUseCase = new CreateEmployeeAndUserUseCase(
+    employeeRepository,
+    userRepository,
+    permissionRepository,
+);
 const getEmployeeByIdUseCase = new GetEmployeeByIdUseCase(employeeRepository);
 const getAllEmployeesUseCase = new GetAllEmployeesUseCase(employeeRepository);
 const countEmployeesUseCase = new CountEmployeesUseCase(employeeRepository);
@@ -28,7 +35,10 @@ export async function createEmployee(req: Request, res: Response, next: NextFunc
     try {
         const payload = req.body as CreateEmployeeDto;
         
-        const { employee, user } = await createEmployeeAndUserUseCase.execute(payload);
+        const { employee, user } = await createEmployeeAndUserUseCase.execute({
+            ...payload,
+            grantedBy: req.user?.id,
+        });
         
         res.status(201).json({
             status: 'SUCCESS',

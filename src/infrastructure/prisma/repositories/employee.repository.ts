@@ -7,23 +7,46 @@ import { buildWhereClauseForEmployee } from "../where_clauses/employee";
 import { UserEntity } from "../../../domain/entities/user.entity";
 import { entityToModel as userEntityToModel, modelToEntity as userModelToEntity } from "../model_entity_mappers/user";
 import { UserRefModel } from "../../../domain/enums/user-ref-model.enum";
+import { ValidationError } from "../../../domain/errors";
 
 export class EmployeeRepository extends PrismaBaseRepository implements IEmployeeRepository {
 
   async createEmployeeAndUser(employee: Omit<EmployeeEntity, 'id'>, user: Omit<UserEntity, 'id'>): Promise<{ employee: EmployeeEntity, user: UserEntity }> {
+    return this.createEmployeeUserAndPermissions(employee, user, []);
+  }
+
+  async createEmployeeUserAndPermissions(
+    employee: Omit<EmployeeEntity, 'id'>,
+    user: Omit<UserEntity, 'id'>,
+    permissionIds: string[],
+    grantedBy?: string,
+  ): Promise<{ employee: EmployeeEntity, user: UserEntity }> {
     const empModel = entityToModel(employee);
     const userModel = userEntityToModel(user);
-    
+
     const { id: _omitEmp, ...empData } = empModel;
-    const {id: _omitUser, ...userData} = userModel;
-    
+    const { id: _omitUser, ...userData } = userModel;
+
     return this.prisma.$transaction(async (tx) => {
+      const uniquePermissionIds = [...new Set(permissionIds)];
+
       const savedEmployee = await tx.employee.create({ data: empData });
       // Add refModel and employee id to user
       userData.refModel = UserRefModel.Employee;
       userData.employeeId = savedEmployee.id;
       const savedUser = await tx.user.create({ data: userData });
-      
+
+      if (uniquePermissionIds.length > 0) {
+        const effectiveGrantedBy = grantedBy ?? savedUser.id;
+        await tx.userPermission.createMany({
+          data: uniquePermissionIds.map((permissionId) => ({
+            userId: savedUser.id,
+            permissionId,
+            grantedBy: effectiveGrantedBy,
+          })),
+        });
+      }
+
       return { employee: modelToEntity(savedEmployee), user: userModelToEntity(savedUser) };
     });
   }

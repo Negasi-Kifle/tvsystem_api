@@ -2,464 +2,329 @@
 
 ## Overview
 
-A single-tenant platform for TV broadcasting sales automation built for Abbay TV. The system automates end-to-end TV advertising sales operations including show management, ad placement, satellite scheduling, customer communications, finance, and compensation workflows.
+This repository is a **single-tenant** backend API for TV sales and operations automation at Abbay TV.  
+It follows a layered architecture inspired by Clean Architecture + DDD, with pragmatic direct wiring in some controllers/use-cases.
 
-**Project Name:** `media_automation`
-**Version:** 1.0.0
-**Language:** TypeScript (strict mode)
-**Runtime:** Node.js
-**Framework:** Express.js v5
-**Database:** PostgreSQL (Prisma ORM)
-**Architecture:** Clean Architecture with Domain-Driven Design
+- Project: `media_automation`
+- Version: `1.0.0`
+- Language: TypeScript (`strict: true`)
+- Runtime: Node.js
+- Framework: Express `^5.2.1`
+- Primary Database: PostgreSQL via Prisma
+- Legacy Dependency Present: Mongoose (no active MongoDB route surface)
 
----
+
+## Current State Snapshot
+
+- Multi-tenant design from original docs is removed in runtime code; system now operates as single-tenant.
+- Primary data access is Prisma (`src/infrastructure/prisma/*`).
+- Permission model is DB-backed and auto-synced at startup from `PERMISSIONS`.
+- API surface includes user, employee, permission, user-permission, shows, telegram groups/members, adverts, finance, compensations, and analytics.
+- Several business TODOs remain (alerts, richer emails, some domain workflows).
+
 
 ## Tech Stack
 
 | Category | Technology | Version |
-|----------|-----------|---------|
+|----------|------------|---------|
 | Runtime | Node.js | - |
-| Framework | Express.js | ^5.2.1 |
-| Database | PostgreSQL (Prisma) | ^6.19.2 |
-| Database (Legacy) | MongoDB (Mongoose) | ^9.1.3 |
-| Language | TypeScript | ^5.9.3 |
-| Authentication | JWT (jsonwebtoken) | ^9.0.3 |
-| Validation | Zod | ^4.3.5 |
-| Email | Nodemailer | ^7.0.12 |
-| Scheduling | node-cron | ^4.2.1 |
-| Password Hashing | bcryptjs | ^3.0.3 |
-| Testing | Jest + Supertest | ^29.7.0 |
-| File Upload | Multer | ^2.0.2 |
+| Language | TypeScript | `^5.9.3` |
+| API | Express | `^5.2.1` |
+| ORM | Prisma Client + Prisma CLI | `^6.19.2` |
+| Database | PostgreSQL | via `DATABASE_URL` |
+| Auth | jsonwebtoken | `^9.0.3` |
+| Validation | Zod | `^4.3.5` |
+| Hashing | bcryptjs | `^3.0.3` |
+| Scheduling | node-cron | `^4.2.1` |
+| Email | Nodemailer | `^7.0.12` |
+| HTTP Middleware | cors, helmet, morgan | `^2.8.6`, `^8.1.0`, `^1.10.1` |
+| Legacy/Compatibility | mongoose | `^9.1.3` |
+| Testing | Jest + Supertest | `^29.7.0`, `^7.2.2` |
+| Formatting/Linting | Prettier + ESLint + TS ESLint | configured |
 
----
 
-## Project Structure
+## Top-Level Structure
 
-```
+```text
 tvsystem_api/
-├── prisma/
-│   └── schema.prisma           # PostgreSQL database schema
-│
 ├── src/
-│   ├── domain/                 # Business Logic Layer
-│   │   ├── entities/           # Core business objects
-│   │   ├── enums/              # Domain enumerations
-│   │   ├── interfaces/         # Contracts (repositories/services)
-│   │   └── value-objects/      # Immutable value objects
-│   │
-│   ├── application/            # Application Logic Layer
-│   │   ├── services/           # Application services
-│   │   └── use-cases/          # Business operations
-│   │
-│   ├── infrastructure/         # External Concerns Layer
-│   │   ├── config/             # Configuration files
-│   │   ├── database/
-│   │   │   ├── models/         # MongoDB models (legacy/reference)
-│   │   │   ├── repositories/   # MongoDB repositories (legacy/reference)
-│   │   │   └── prisma/         # PostgreSQL Prisma repositories (PRIMARY)
-│   │   │       ├── prisma.client.ts
-│   │   │       └── repositories/
-│   │   ├── external/           # External service implementations
-│   │   ├── middlewares/        # Express middlewares
-│   │   └── services/           # Infrastructure services
-│   │
-│   ├── presentation/           # API Layer
-│   │   ├── controllers/        # Route handlers
-│   │   ├── dtos/               # Data Transfer Objects
-│   │   ├── routes/             # Express route definitions
-│   │   └── validators/         # Request validation
-│   │
-│   ├── shared/                 # Shared Utilities
-│   │   ├── constants/          # System constants
-│   │   └── utils/              # Utility functions
-│   │
-│   └── index.ts                # Application entry point
-│
-├── tests/
-│   ├── integration/            # Integration tests
-│   └── unit/                   # Unit tests
-│
-├── system_design/              # Design documentation
-│   ├── requirements.mdc        # Functional requirements
-│   └── technical_specifications.mdc
-│
-└── [Config files]              # Project configuration
+│   ├── domain/
+│   ├── application/
+│   ├── infrastructure/
+│   ├── presentation/
+│   ├── shared/
+│   ├── tests/
+│   └── index.ts
+├── docs/
+├── postman_collection.json
+├── prisma.config.ts
+├── PROJECT_INDEX.md
+├── TODO.md
+├── package.json
+└── tsconfig.json
 ```
 
----
-
-## Domain Layer
-
-### Entities
-
-| Entity | File | Description |
-|--------|------|-------------|
-| User | `domain/entities/user.entity.ts` | System user with roles and permissions |
-| Show | `domain/entities/show.entity.ts` | TV show (InHouse/Outsourced) with scheduling |
-| Advert | `domain/entities/advert.entity.ts` | Advertisement campaign linked to show/customer |
-| Customer | `domain/entities/customer.entity.ts` | Advertiser company with contacts |
-| Partner | `domain/entities/partner.entity.ts` | External partner with revenue share |
-| Payment | `domain/entities/payment.entity.ts` | Financial transactions with installments |
-| Compensation | `domain/entities/compensation.entity.ts` | Missed ad compensation records |
-| SatelliteLog | `domain/entities/satellite-log.entity.ts` | Broadcast verification logs |
-| MediaPack | `domain/entities/media-pack.entity.ts` | Advertising packages with versioning |
-
-### Enums
-
-| Enum | File | Values |
-|------|------|--------|
-| UserRole | `domain/enums/user-role.enum.ts` | CEO, SalesRep, SalesAssistant, SalesManager, SatelliteManager, FinanceManager, Partner |
-| ShowType | `domain/enums/show-type.enum.ts` | InHouse, Outsourced |
-| AdvertStatus | `domain/enums/advert-status.enum.ts` | Draft, Scheduled, Active, Completed, Failed |
-| PaymentStatus | `domain/enums/payment-status.enum.ts` | Pending, Sent, Overdue, Paid, Failed |
-
-### Value Objects
-
-| Value Object | File | Purpose |
-|--------------|------|---------|
-| Money | `domain/value-objects/money.value-object.ts` | Currency handling with add/subtract/multiply (default: ETB) |
-| Percentage | `domain/value-objects/percentage.value-object.ts` | Commission/revenue share calculations (0-100) |
-| CalendarDate | `domain/value-objects/calendar-date.value-object.ts` | Dual calendar support (Gregorian/Ethiopian) |
-| ScheduleSlot | `domain/value-objects/schedule-slot.value-object.ts` | Time slot management with duration calculation |
-
-### Interfaces
-
-#### Repository Interfaces
-
-| Interface | File |
-|-----------|------|
-| BaseRepositoryInterface | `domain/interfaces/repositories/base.repository.interface.ts` |
-| ShowRepositoryInterface | `domain/interfaces/repositories/show.repository.interface.ts` |
-| AdvertRepositoryInterface | `domain/interfaces/repositories/advert.repository.interface.ts` |
-| UserRepositoryInterface | `domain/interfaces/repositories/user.repository.interface.ts` |
-
-#### Service Interfaces
-
-| Interface | File |
-|-----------|------|
-| EmailServiceInterface | `domain/interfaces/services/email.service.interface.ts` |
-| CalendarServiceInterface | `domain/interfaces/services/calendar.service.interface.ts` |
-| CompensationCalculatorInterface | `domain/interfaces/services/compensation-calculator.interface.ts` |
-
----
-
-## Application Layer
-
-### Services
-
-| Service | File | Purpose |
-|---------|------|---------|
-| AuthService | `application/services/auth.service.ts` | JWT token generation and verification |
-| AlertService | `application/services/alert.service.ts` | Off-air alerts processing (scheduled daily at 6 AM) |
-| AnalyticsService | `application/services/analytics.service.ts` | Sales analytics aggregation |
-
-### Use Cases
-
-| Use Case | File | Description |
-|----------|------|-------------|
-| CreateShowUseCase | `application/use-cases/shows/create-show.use-case.ts` | Create new TV show |
-| ListShowsUseCase | `application/use-cases/shows/list-shows.use-case.ts` | List all shows |
-| CreateAdvertUseCase | `application/use-cases/adverts/create-advert.use-case.ts` | Create advertisement |
-| ProcessCompensationUseCase | `application/use-cases/adverts/process-compensation.use-case.ts` | Handle missed ad compensation |
-| GeneratePaymentRequestUseCase | `application/use-cases/finance/generate-payment-request.use-case.ts` | Generate and send payment requests |
-
----
-
-## Infrastructure Layer
-
-### Configuration
-
-| Config | File | Environment Variables |
-|--------|------|----------------------|
-| Database | `infrastructure/config/database.config.ts` | MONGO_URI (legacy) |
-| JWT | `infrastructure/config/jwt.config.ts` | JWT_SECRET |
-| Email | `infrastructure/config/email.config.ts` | SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_FROM |
-
-### PostgreSQL Schema (Prisma)
-
-Schema location: `prisma/schema.prisma`
-
-| Model | Table | Description |
-|-------|-------|-------------|
-| User | users | System users with roles/permissions |
-| Show | shows | TV shows with JSON schedule |
-| Customer | customers | Advertiser companies |
-| Advert | adverts | Advertisement campaigns |
-| Partner | partners | External partners |
-| Payment | payments | Financial transactions |
-| Compensation | compensations | Missed ad compensation |
-| SatelliteLog | satellite_logs | Broadcast verification |
-| MediaPack | media_packs | Advertising packages |
-
-### PostgreSQL Repositories
-
-| Repository | File | Implements |
-|------------|------|------------|
-| PrismaBaseRepository | `infrastructure/database/prisma/repositories/base.repository.ts` | Base class with Prisma client |
-| UserRepository | `infrastructure/database/prisma/repositories/user.repository.ts` | UserRepositoryInterface |
-| ShowRepository | `infrastructure/database/prisma/repositories/show.repository.ts` | ShowRepositoryInterface |
-| AdvertRepository | `infrastructure/database/prisma/repositories/advert.repository.ts` | AdvertRepositoryInterface |
-| PaymentRepository | `infrastructure/database/prisma/repositories/payment.repository.ts` | Payment operations |
-| CompensationRepository | `infrastructure/database/prisma/repositories/compensation.repository.ts` | Compensation operations |
-
-### MongoDB Models (LEGACY - kept for reference)
-
-| Model | File | Collections |
-|-------|------|-------------|
-| UserModel | `infrastructure/database/models/user.model.ts` | users |
-| ShowModel | `infrastructure/database/models/show.model.ts` | shows |
-| AdvertModel | `infrastructure/database/models/advert.model.ts` | adverts |
-| PaymentModel | `infrastructure/database/models/payment.model.ts` | payments |
-| CompensationModel | `infrastructure/database/models/compensation.model.ts` | compensations |
-
-### MongoDB Repositories (LEGACY - kept for reference)
-
-| Repository | File | Implements |
-|------------|------|------------|
-| BaseRepository | `infrastructure/database/repositories/base.repository.ts` | Generic CRUD operations |
-| UserRepository | `infrastructure/database/repositories/user.repository.ts` | UserRepositoryInterface |
-| ShowRepository | `infrastructure/database/repositories/show.repository.ts` | ShowRepositoryInterface |
-| AdvertRepository | `infrastructure/database/repositories/advert.repository.ts` | AdvertRepositoryInterface |
-| PaymentRepository | `infrastructure/database/repositories/payment.repository.ts` | - |
-| CompensationRepository | `infrastructure/database/repositories/compensation.repository.ts` | - |
-
-### Middlewares
-
-| Middleware | File | Purpose |
-|------------|------|---------|
-| authMiddleware | `infrastructure/middlewares/auth.middleware.ts` | JWT verification |
-| requirePermission | `infrastructure/middlewares/permission.middleware.ts` | PBAC enforcement |
-
-### External Services
-
-| Service | File | Description |
-|---------|------|-------------|
-| EmailService | `infrastructure/external/email/email.service.ts` | Nodemailer implementation |
-| SchedulerService | `infrastructure/services/scheduler.service.ts` | Cron job scheduling |
-
-### Email Templates
-
-| Template | File |
-|----------|------|
-| Ad Schedule | `infrastructure/external/email/templates/ad-schedule.html` |
-| Compensation | `infrastructure/external/email/templates/compensation.html` |
-
----
-
-## Presentation Layer
-
-### API Routes
-
-| Route | File | Base Path |
-|-------|------|-----------|
-| Health | `presentation/routes/index.ts` | `/api/health` |
-| Auth | `presentation/routes/auth.routes.ts` | `/api/auth` |
-| Users | `presentation/routes/users.routes.ts` | `/api/users` |
-| Shows | `presentation/routes/shows.routes.ts` | `/api/shows` |
-| Adverts | `presentation/routes/adverts.routes.ts` | `/api/adverts` |
-| Finance | `presentation/routes/finance.routes.ts` | `/api/finance` |
-| Compensations | `presentation/routes/compensation.routes.ts` | `/api/compensations` |
-| Analytics | `presentation/routes/analytics.routes.ts` | `/api/analytics` |
-
-### API Endpoints
-
-| Method | Endpoint | Auth | Permission | Controller |
-|--------|----------|------|------------|------------|
-| GET | `/api/health` | No | - | health |
-| POST | `/api/auth/register` | No | - | register |
-| POST | `/api/auth/login` | No | - | login |
-| POST | `/api/auth/refresh` | No | - | refreshToken |
-| GET | `/api/users/me` | Yes | - | me |
-| POST | `/api/users` | Yes | manage_users | createUser |
-| PATCH | `/api/users/:userId/active` | Yes | manage_users | setUserActive |
-| POST | `/api/users/reset-password` | No | - | requestPasswordReset |
-| GET | `/api/shows` | Yes | - | listShows |
-| POST | `/api/shows` | Yes | manage_shows | createShow |
-| POST | `/api/adverts` | Yes | manage_adverts | createAdvert |
-| POST | `/api/finance/payments` | Yes | manage_finance | createPaymentRequest |
-| POST | `/api/compensations` | Yes | manage_adverts | proposeCompensation |
-| GET | `/api/analytics/summary` | Yes | view_analytics | analyticsSummary |
-
-### Controllers
-
-| Controller | File | Handlers |
-|------------|------|----------|
-| health | `presentation/controllers/health.controller.ts` | health |
-| auth | `presentation/controllers/auth.controller.ts` | login, register, refreshToken |
-| user | `presentation/controllers/user.controller.ts` | createUser, me, setUserActive, requestPasswordReset |
-| show | `presentation/controllers/show.controller.ts` | createShow, listShows |
-| advert | `presentation/controllers/advert.controller.ts` | createAdvert |
-| finance | `presentation/controllers/finance.controller.ts` | createPaymentRequest |
-| compensation | `presentation/controllers/compensation.controller.ts` | proposeCompensation |
-| analytics | `presentation/controllers/analytics.controller.ts` | analyticsSummary |
-
-### DTOs (Zod Schemas)
-
-| DTO | File | Fields |
-|-----|------|--------|
-| loginDto | `presentation/dtos/requests/login.dto.ts` | email, password |
-| registerDto | `presentation/dtos/requests/register.dto.ts` | email, password, fullName |
-| refreshTokenDto | `presentation/dtos/requests/refresh-token.dto.ts` | refreshToken |
-| createUserDto | `presentation/dtos/requests/create-user.dto.ts` | email, fullName, password, roles, permissions, isActive |
-| createShowDto | `presentation/dtos/requests/create-show.dto.ts` | title, type, durationMinutes, maxAdLengthSeconds, schedule, assignedStaff |
-| createAdvertDto | `presentation/dtos/requests/create-advert.dto.ts` | showId, customerId, slot, contractDetails |
-| createPaymentDto | `presentation/dtos/requests/create-payment.dto.ts` | advertId, installmentLabel, amount, currency, dueDate, customerEmail |
-| compensationDto | `presentation/dtos/requests/compensation.dto.ts` | advertId, proposal, customerEmail |
-
----
-
-## Shared Utilities
-
-### Constants
-
-| Constant | File | Values |
-|----------|------|--------|
-| PERMISSIONS | `shared/constants/permissions.constants.ts` | manage_users, manage_shows, manage_schedules, manage_media_packs, manage_employees, manage_partners, manage_adverts, manage_finance, view_analytics |
-
-### Utilities
-
-| Utility | File | Functions |
-|---------|------|-----------|
-| password | `shared/utils/password.ts` | hashPassword, comparePassword |
-| error-handler | `shared/utils/error-handler.ts` | sendErrorResponse, errorHandler |
-
----
-
-## Authentication & Authorization
-
-### Authentication Flow
-
-1. User registers/logs in with email/password
-2. Server issues JWT access token (15m) and refresh token (7d)
-3. Client includes `Authorization: Bearer <token>` header
-4. `authMiddleware` verifies token and populates `req.user`
-
-### JWT Payload Structure
-
-```typescript
-{
-  sub: string;        // User ID
-  roles: string[];    // User roles
-  permissions: string[];  // User permissions
-}
-```
-
-### Permission-Based Access Control (PBAC)
-
-- Permissions defined in `PERMISSIONS` constant
-- `requirePermission(permission)` middleware enforces access
-- CEO has superuser access to define all permissions
-
----
-
-## Scheduled Tasks
-
-| Task | Schedule | Service | Description |
-|------|----------|---------|-------------|
-| Off-Air Alerts | Daily 6:00 AM | AlertService.processOffAirAlerts() | Check shows/ads ending within 24 hours |
-
----
-
-## Scripts
-
-```bash
-npm run dev      # Start development server (ts-node-dev)
-npm run build    # Compile TypeScript
-npm run start    # Run production build
-npm run lint     # Run ESLint
-npm run format   # Run Prettier
-npm run test     # Run Jest tests
-npm run test:watch  # Run tests in watch mode
-```
-
----
+
+## Architecture and Layer Responsibilities
+
+### 1) Domain Layer (`src/domain`)
+
+Core business types and contracts:
+
+- Entities (`15`): includes `user`, `employee`, `show`, `advert`, `permission`, `user-permissions`, `telegram-groups`, `telegram-group-member`, `payment`, `compensation`, `partner`, `customer`, `satellite-log`, `media-pack`, and `media_monitroing`.
+- Repositories interfaces (`10`): contracts for users, employees, permissions, shows, adverts, telegram groups/members, user-permissions, etc.
+- Value objects (`4`): `money`, `percentage`, `schedule-slot`, `calendar-date`.
+- Enums (`8`): user roles, show type, advert/payment statuses, user ref model, sex, status.
+- Domain errors: `EntityNotFoundError`, `EntityAlreadyExistsError`, `ValidationError`.
+
+### 2) Application Layer (`src/application`)
+
+- Services (`3`):
+  - `AuthService`: access/refresh token generation and verification.
+  - `AnalyticsService`: aggregations (currently sales by show/status and totals).
+  - `AlertService`: scheduled alert entry point (implementation TODO).
+- Use-cases (`49`): organized by module folders:
+  - users
+  - employee
+  - permissions
+  - user-permissions
+  - shows
+  - adverts
+  - finance
+  - telegram-groups
+  - telegram-group-members
+
+### 3) Infrastructure Layer (`src/infrastructure`)
+
+- Prisma client, repositories, entity mappers, where-clause builders, and Prisma error mapping:
+  - `prisma.client.ts`
+  - `repositories/*`
+  - `model_entity_mappers/*`
+  - `where_clauses/*`
+  - `exceptions.ts`
+- Middleware:
+  - `auth.middleware.ts`
+  - `permission.middleware.ts`
+- Services:
+  - `permission-sync.service.ts`
+  - `scheduler.service.ts`
+  - `hash.service.ts`
+- Config:
+  - `jwt.config.ts`
+  - `email.config.ts`
+  - `database.config.ts` (legacy mongoose connector)
+- External:
+  - `external/email/email.service.ts`
+  - email templates under `external/email/templates/`
+
+### 4) Presentation Layer (`src/presentation`)
+
+- `app.ts`: express app wiring (JSON parsing, CORS, Helmet, Morgan, routes, unknown route handling, global error handler).
+- Routes (`13`) and Controllers (`13`) for all HTTP modules.
+- DTOs (`28`) with Zod validation.
+- Query mapper utilities (`7`) from request DTOs to query options.
+- Validators:
+  - `validate-body.ts`
+  - `validate-query.ts`
+
+### 5) Shared Layer (`src/shared`)
+
+- Permissions constants (`PERMISSIONS`)
+- Error constructor and HTTP code registry
+- Password and error utility helpers
+
+
+## Bootstrap and Runtime Flow
+
+### Startup (`src/index.ts`)
+
+1. Loads env (`dotenv`).
+2. Connects Prisma (`connectPrisma`).
+3. Fires permission sync in background (`PermissionSyncService.syncPermissions()`).
+4. Schedules daily 6:00 AM alert job (`SchedulerService` + `AlertService.processOffAirAlerts()`).
+5. Starts express server on `PORT` (default `3000`).
+6. Handles graceful shutdown on `SIGTERM`/`SIGINT` (server close + `disconnectPrisma`).
+
+### Request Execution Flow
+
+1. `presentation/routes/*` selects endpoint.
+2. Zod validation middleware parses/coerces request (`validateBody`/`validateQuery`).
+3. `authMiddleware` verifies bearer JWT and sets `req.user`.
+4. `requirePermission` checks permission slug.
+5. Controller executes use-case/service.
+6. Use-case talks to repository (interface-driven in many places, direct repo in others).
+7. Prisma repository executes SQL through Prisma Client.
+8. Response returns success envelope or global error mapping handles failure.
+
+
+## Module and Endpoint Index
+
+All routes are mounted under `/api` in `presentation/routes/index.ts`.
+
+| Module | Base Path | Route File | Controller File | Notes |
+|--------|-----------|------------|-----------------|-------|
+| Health | `/health` | `routes/index.ts` | `health.controller.ts` | Public health probe |
+| Auth | `/auth` | `auth.routes.ts` | `auth.controller.ts` | Register, login, refresh token |
+| Users | `/users` | `users.routes.ts` | `user.controller.ts` | CRUD-like user admin + `me` |
+| Shows | `/shows` | `shows.routes.ts` | `show.controller.ts` | Create/list/get/update/delete |
+| Adverts | `/adverts` | `adverts.routes.ts` | `advert.controller.ts` | Create advert |
+| Finance | `/finance` | `finance.routes.ts` | `finance.controller.ts` | Create payment requests |
+| Compensations | `/compensations` | `compensation.routes.ts` | `compensation.controller.ts` | Propose compensations |
+| Analytics | `/analytics` | `analytics.routes.ts` | `analytics.controller.ts` | Summary endpoint |
+| Permissions | `/permissions` | `permissions.routes.ts` | `permission.controller.ts` | Permission CRUD/query |
+| User Permissions | `/user-permissions` | `user-permissions.routes.ts` | `user-permission.controller.ts` | Grant/list/get/revoke |
+| Employees | `/employees` | `employee.route.ts` | `employee.controller.ts` | Employee + linked user lifecycle |
+| Telegram Groups | `/telegram-groups` | `telegram-groups.routes.ts` | `telegram-group.controller.ts` | Group CRUD/query |
+| Telegram Group Members | `/telegram-group-members` | `telegram-group-member.routes.ts` | `telegram-group-member.controller.ts` | Membership CRUD/query |
+
+
+## Data Model Index (Prisma)
+
+Prisma schema path: `src/infrastructure/prisma/schema.prisma`  
+Prisma config path: `prisma.config.ts`
+
+### Enums in Prisma
+
+- `UserRefModel`: `Partner`, `Employee`, `Internal`
+
+### Models
+
+- `User` (`users`)
+- `Show` (`shows`)
+- `Customer` (`customers`)
+- `Advert` (`adverts`)
+- `Partner` (`partners`)
+- `Employee` (`employees`)
+- `Payment` (`payments`)
+- `Compensation` (`compensations`)
+- `SatelliteLog` (`satellite_logs`)
+- `MediaPack` (`media_packs`)
+- `TelegramGroup` (`telegram_groups`)
+- `TelegramGroupMember` (`telegram_group_members`)
+- `Permission` (table name defaults to prisma convention)
+- `UserPermission` (`user_permissions`)
+
+### Relationship Highlights
+
+- `User` can reference either `Partner` or `Employee` via polymorphic-like fields + `refModel`.
+- `UserPermission` maps users to permissions with optional granter and expiration.
+- `TelegramGroupMember` is a junction table (`@@unique([telegramGroupId, userId])`).
+- `Advert` links `Show` + `Customer`, then `Payment` and `Compensation` link to `Advert`.
+
+### Migration Status
+
+Migrations present: `9` SQL migrations in `src/infrastructure/prisma/migrations/*/migration.sql`.
+
+
+## Security Model
+
+### Authentication
+
+- JWT access + refresh token flow via `AuthService`.
+- Access token payload uses `{ userId, permissions }`.
+- `authMiddleware` reads bearer token and injects `req.user`.
+
+### Authorization
+
+- Permission slugs are centrally defined in `shared/constants/permissions.constants.ts`.
+- `requirePermission(permissionSlug)` enforces endpoint-level access.
+- On startup, `PermissionSyncService` ensures DB permission rows exist for current constant set.
+
+
+## Error Handling Strategy
+
+- Domain/application errors map to HTTP codes in `shared/utils/global-error-handler.ts`.
+- Prisma known request errors are converted in `infrastructure/prisma/exceptions.ts` (`P2002`, `P2003`, `P2025`, fallback).
+- Validation middleware returns normalized bad request errors via `Exception` + `Code`.
+
+
+## Background Jobs and Async Processes
+
+- Daily cron job at `0 6 * * *` executes `AlertService.processOffAirAlerts()`.
+- Permission sync is fire-and-forget during bootstrap.
+- Alert processing and richer mail workflows are partially TODO.
+
+
+## Dependencies by Concern
+
+- API and HTTP: `express`, `cors`, `helmet`, `morgan`
+- Data and ORM: `@prisma/client`, `prisma`, `mongoose` (legacy)
+- Auth and security: `jsonwebtoken`, `bcryptjs`
+- Validation: `zod`
+- Scheduling: `node-cron`
+- Messaging/email: `nodemailer`
+- Utilities: `dotenv`, `dayjs`, `uuid`, `multer`
+- Dev/test: `typescript`, `ts-node-dev`, `jest`, `ts-jest`, `supertest`, ESLint toolchain, Prettier
+
+
+## Build, Run, and Test
+
+Scripts from `package.json`:
+
+- `npm run dev` - start dev server with `ts-node-dev`
+- `npm run build` - compile TypeScript (`tsc`)
+- `npm run start` - run compiled app
+- `npm run lint` - eslint for `src/**/*.{ts,tsx}`
+- `npm run format` - prettier write
+- `npm run test` - run jest serially
+- `npm run test:watch` - watch mode
+
+Current tests in repo:
+
+- `src/tests/integration/health.spec.ts`
+- `src/tests/unit/money.spec.ts`
+
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| PORT | Server port | 3000 |
-| DATABASE_URL | PostgreSQL connection string (Prisma) | - |
-| MONGO_URI | MongoDB connection string (legacy) | mongodb://localhost:27017/abbaytv |
-| JWT_SECRET | JWT signing secret | changeme |
-| SMTP_HOST | SMTP server host | - |
-| SMTP_PORT | SMTP server port | 587 |
-| SMTP_USER | SMTP username | - |
-| SMTP_PASS | SMTP password | - |
-| EMAIL_FROM | Default sender email | no-reply@example.com |
-| NODE_ENV | Environment mode | development |
+| Variable | Purpose | Used In |
+|----------|---------|---------|
+| `PORT` | HTTP listen port | `src/index.ts` |
+| `DATABASE_URL` | PostgreSQL connection for Prisma | `prisma.client.ts`, Prisma CLI |
+| `JWT_SECRET` | JWT signing/verifying secret | `jwt.config.ts` |
+| `SMTP_HOST` | SMTP host | `email.config.ts` |
+| `SMTP_PORT` | SMTP port | `email.config.ts` |
+| `SMTP_USER` | SMTP username | `email.config.ts` |
+| `SMTP_PASS` | SMTP password | `email.config.ts` |
+| `EMAIL_FROM` | Default sender address | `email.config.ts` |
+| `DEFAULT_PASSWORD` | Reset password fallback | `user.controller.ts` |
+| `NODE_ENV` | runtime mode (dev/prod behavior toggles) | multiple files |
+| `MONGO_URI` | legacy connector only | `database.config.ts` |
 
----
 
-## Tests
+## Known Gaps and Technical Debt
 
-| Type | Location | Files |
-|------|----------|-------|
-| Unit | `tests/unit/` | money.spec.ts |
-| Integration | `tests/integration/` | health.spec.ts |
+- `docs/technical_specifications.mdc` still describes old multi-tenant + MongoDB architecture; runtime code is now single-tenant + Prisma.
+- `AlertService.processOffAirAlerts()` not implemented.
+- Payment/compensation email content is placeholder-level and marked TODO.
+- Mixed dependency style: some use-cases use injected interfaces, others instantiate infra repositories directly.
+- Some naming/typo inconsistencies remain in filenames (e.g., `delete-user.uase-case.ts`, `media_monitroing.entity.ts`, `employee.route.ts` singular naming).
 
----
 
-## TODOs in Codebase
+## Approximate File Count Summary (Current Codebase)
 
-| File | TODO |
-|------|------|
-| `application/services/alert.service.ts` | Implement show/ad expiry detection and notification delivery |
-| `application/use-cases/adverts/process-compensation.use-case.ts` | Send compensation proposal email with actionable link |
-| `application/use-cases/finance/generate-payment-request.use-case.ts` | Send formatted payment request email with invoice details |
-| `presentation/controllers/user.controller.ts` | Implement password reset token generation and email delivery |
-| `infrastructure/external/email/templates/compensation.html` | Replace with branded compensation proposal template |
-| `infrastructure/external/email/templates/ad-schedule.html` | Replace with branded schedule template |
-
----
-
-## Key Business Rules
-
-1. **24-Hour Alert Rule:** System checks daily at 6:00 AM for shows/ads ending within 24 hours
-2. **Compensation Workflow:** Must allow customer feedback and alternative proposals
-3. **Revenue Sharing:** Automatic calculation based on contract terms
-4. **Satellite Log Verification:** Manual upload process (no direct integration)
-5. **Calendar Support:** All date operations support Ethiopian and Gregorian calendars
-6. **Permission Hierarchy:** CEO has superuser access to define all permissions
-
----
-
-## User Roles & Responsibilities
-
-| Role | Responsibilities |
-|------|------------------|
-| CEO | Manages shows, employees, partners, schedules, media packs; Views analytics; Full system access |
-| SalesManager | Monitors communication logs; Reassigns sales reps |
-| SalesRep | Records customers/leads; Logs communications; Records sales deals |
-| SalesAssistant | Schedules ads; Verifies delivery; Manages compensations; Generates reports |
-| SatelliteManager | Verifies ad placement integrity; Provides broadcast logs |
-| FinanceManager | Manages payment requests; Tracks payments; Disburses commissions |
-| Partner | Receives revenue share reports |
-
----
-
-## File Count Summary
-
-| Layer | Files |
-|-------|-------|
-| Domain (entities) | 9 |
-| Domain (enums) | 4 |
-| Domain (interfaces) | 7 |
-| Domain (value-objects) | 4 |
-| Application (services) | 3 |
-| Application (use-cases) | 5 |
-| Infrastructure (config) | 3 |
-| Infrastructure (database) | 10 |
-| Infrastructure (middlewares) | 2 |
-| Infrastructure (external) | 3 |
-| Presentation (controllers) | 7 |
-| Presentation (routes) | 8 |
-| Presentation (dtos) | 6 |
-| Presentation (validators) | 1 |
-| Shared | 3 |
+| Area | Count |
+|------|-------|
+| Domain entities | 15 |
+| Domain repositories/interfaces | 10 |
+| Domain enums | 8 |
+| Domain value-objects | 4 |
+| Application services | 3 |
+| Application use-cases | 49 |
+| Infrastructure TS files | 40 |
+| Presentation routes | 13 |
+| Presentation controllers | 13 |
+| Presentation DTOs | 28 |
+| Presentation mappers | 7 |
 | Tests | 2 |
-| **Total Source Files** | ~77 |
+| Total project files (all types) | ~243 |
 
----
 
-*Last Updated: January 18, 2026*
+## References
+
+- Architecture baseline docs: `docs/technical_specifications.mdc` (partially outdated)
+- Active API test collection: `postman_collection.json`
+- Task tracker: `TODO.md`
+
+
+*Last Updated: March 5, 2026*

@@ -1,7 +1,5 @@
 import { z } from "zod";
-import { SexTypes, UserRefModel, UserRole } from "../../../../domain/enums/index";
-
-const userRefModelValues = [UserRefModel.Partner, UserRefModel.Employee, UserRefModel.Internal] as const;
+import { SexTypes, UserRole } from "../../../../domain/enums/index";
 
 export const createEmployeeDto = z.object({
 fullName: z.string("Full name is required and must be at least 2 characters long").min(2),
@@ -15,6 +13,7 @@ isFirstTimeAccount: z.boolean("Is first time account must be a boolean").default
 telegramUsername: z.string("Telegram username is required and must be a valid telegram username").optional(),
 employeeNumber: z.string().optional(),
 department: z.string().optional(),
+permissionIds: z.array(z.uuid("Each permission ID must be a valid UUID")).default([]),
 })
     .strict();
 
