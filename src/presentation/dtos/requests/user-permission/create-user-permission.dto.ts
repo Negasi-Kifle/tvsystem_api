@@ -2,9 +2,11 @@ import { z } from "zod";
 
 export const createUserPermissionDto = z.object({
     userId: z.uuid("User ID is required and must be a valid UUID"),
-    permissionId: z.uuid("Permission ID is required and must be a valid UUID"),
-    grantedBy: z.uuid("Granted by is required and must be a valid UUID").optional(),
-    expiresAt: z.date("Expires at must be a valid date").optional(),
+    permissionIds: z.array(
+        z.uuid("Each permission ID must be a valid UUID"), "Permission IDs must be an array of valid UUIDs"
+    ).min(1, "At least one permission ID is required"),
+    grantedBy: z.uuid().optional(),
+    expiresAt: z.date().optional(),
 });
 
 export type CreateUserPermissionDto = z.infer<typeof createUserPermissionDto>;

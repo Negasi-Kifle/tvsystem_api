@@ -1,16 +1,24 @@
 import { CreateUserPermissionDto } from "../dtos/requests/user-permission/create-user-permission.dto";
 import { NextFunction, Request, Response } from "express";
 import { FetchAllUserPermissionsDto } from "../dtos/requests/user-permission/fetch-all-user-permissions.dto";
-import { CreateUserPermissionUseCase } from "../../application/use-cases/user-permissions/create.use-case";
+import { CreateManyUserPermissionsUseCase } from "../../application/use-cases/user-permissions/create-many.use-case";
 import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository";
 import { mapFetchAllUserPermissionsDtoToQueryOptions } from "../mappers/user-permission-to-query-options.mapper";
 import { FetchAllUserPermissionsUseCase } from "../../application/use-cases/user-permissions/fetch-all.use-case";
 import { CountUserPermissionsUseCase } from "../../application/use-cases/user-permissions/count.use-case";
 import { FindUserPermissionByIdUseCase } from "../../application/use-cases/user-permissions/get-by-id.use-case";
 import { RevokeUserPermissionUseCase } from "../../application/use-cases/user-permissions/revoke.usecase";
+import { UserRepository } from "../../infrastructure/prisma/repositories/user.repository";
+import { PermissionRepository } from "../../infrastructure/prisma/repositories/permission.repository";
 
 const userPermissionRepository = new UserPermissionsRepository();
-const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionRepository);
+const userRepository = new UserRepository();
+const permissionRepository = new PermissionRepository();
+const createManyUserPermissionsUseCase = new CreateManyUserPermissionsUseCase(
+    userPermissionRepository,
+    userRepository,
+    permissionRepository,
+);
 const fetchAllUserPermissionsUseCase = new FetchAllUserPermissionsUseCase(userPermissionRepository);
 const countUserPermissionsUseCase = new CountUserPermissionsUseCase(userPermissionRepository);
 const findUserPermissionByIdUseCase = new FindUserPermissionByIdUseCase(userPermissionRepository);
@@ -21,15 +29,15 @@ export async function createUserPermission(req: Request, res: Response, next: Ne
 
         const payload = req.body as CreateUserPermissionDto;
 
-        const userPermission = await createUserPermissionUseCase.execute({
+        const userPermissions = await createManyUserPermissionsUseCase.execute({
             ...payload,
             grantedBy: req.user?.id!
         });
 
         res.status(201).json({
             status: 'SUCCESS',
-            message: 'User permission created successfully',
-            data: { userPermission }
+            message: 'User permissions created successfully',
+            data: { userPermissions }
         });
     } catch (error) {
         next(error)
