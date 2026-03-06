@@ -12,6 +12,7 @@ import telegramGroupMemberRoutes from './telegram-group-member.routes';
 import permissionRoutes from './permissions.routes';
 import userPermissionRoutes from './user-permissions.routes';
 import employeeRoutes from './employee.route';
+import partnerRoutes from './partner.route';
 
 const router = Router();
 
@@ -28,5 +29,6 @@ router.use('/telegram-group-members', telegramGroupMemberRoutes);
 router.use('/permissions', permissionRoutes);
 router.use('/user-permissions', userPermissionRoutes);
 router.use('/employees', employeeRoutes);
+router.use("/partners", partnerRoutes);
 
 export default router;

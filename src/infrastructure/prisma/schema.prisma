@@ -119,7 +119,6 @@ model Advert {
 // ============================================
 model Partner {
   id           String   @id @default(uuid())
-  name         String
   revenueShare Json     // { value: number } - Percentage value object
   isActive     Boolean  @default(true) @map("is_active")
   createdAt    DateTime @default(now()) @map("created_at")

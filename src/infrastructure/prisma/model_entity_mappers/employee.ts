@@ -1,6 +1,5 @@
 import { Employee, User } from "@prisma/client";
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
-import { UserEntity } from "../../../domain/entities/user.entity";
 import { modelToEntity as userModelToEntity } from "./user";
 
 export function modelToEntity(employee: Employee & { user?: User | null }): EmployeeEntity {

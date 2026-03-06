@@ -1,28 +1,36 @@
 import { Percentage } from '../value-objects/percentage.value-object';
+import { UserEntity } from './user.entity';
 
 export class PartnerEntity {
   constructor(
-    private name: string,
-    private revenueShare: Percentage,
-    private isActive: boolean,
-    private createdAt?: Date,
-    private updatedAt?: Date,
-    private id?: string,
+    public revenueShare: Percentage,
+    public isActive: boolean,
+    public createdAt?: Date,
+    public updatedAt?: Date,
+    public id?: string,
+    public user?: UserEntity,
   ) { }
 
   public static createInstance(
-    name: string,
     revenueShare: Percentage,
     isActive: boolean,
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
+    user?: UserEntity,
   ): PartnerEntity {
-    return new PartnerEntity(name, revenueShare, isActive, createdAt, updatedAt, id);
+    return new PartnerEntity(
+      revenueShare, 
+      isActive, 
+      createdAt, 
+      updatedAt, 
+      id,
+      user,
+    );
   }
 
-  public updateInstance(name?: string, revenueShare?: Percentage, isActive?: boolean): PartnerEntity {
-    if (name !== undefined) this.name = name;
+  
+  public updateInstance(revenueShare?: Percentage, isActive?: boolean): PartnerEntity {
     if (revenueShare !== undefined) this.revenueShare = revenueShare;
     if (isActive !== undefined) this.isActive = isActive;
 

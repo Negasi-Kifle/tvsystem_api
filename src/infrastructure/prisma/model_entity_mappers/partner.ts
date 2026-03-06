@@ -1,23 +1,29 @@
-import { Partner as PrismaPartner } from "@prisma/client";
-import { Partner } from "../../../domain/entities/partner.entity";
+import { Partner as Partner, User } from "@prisma/client";
+import { PartnerEntity } from "../../../domain/entities/partner.entity";
 import { Percentage } from "../../../domain/value-objects/percentage.value-object";
+import { modelToEntity as userModelToEntity } from "./user";
 
-export function modelToEntity(partner: PrismaPartner): Partner {
+export function modelToEntity(partner: Partner & { user?: User | null }): PartnerEntity {
     const revenueShare = partner.revenueShare as { value?: number };
-    return {
-        id: partner.id,
-        name: partner.name,
-        revenueShare: new Percentage(revenueShare?.value ?? 0),
-        isActive: partner.isActive,
-        createdAt: partner.createdAt,
-        updatedAt: partner.updatedAt,
-    };
+
+    const entity: PartnerEntity = PartnerEntity.createInstance(
+        new Percentage(revenueShare?.value ?? 0),
+        partner.isActive,
+        partner.createdAt,
+        partner.updatedAt,
+        partner.id,
+    );
+
+    if (partner.user) {
+        entity.user = userModelToEntity(partner.user as User);
+    }
+
+    return entity;
 }
 
-export function entityToModel(partner: Partner): PrismaPartner {
+export function entityToModel(partner: PartnerEntity): Partner {
     return {
-        id: partner.id,
-        name: partner.name,
+        id: partner.id ?? '',
         revenueShare: { value: partner.revenueShare.value },
         isActive: partner.isActive,
         createdAt: partner.createdAt ?? new Date(),
