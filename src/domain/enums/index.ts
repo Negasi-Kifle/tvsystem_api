@@ -5,6 +5,10 @@ import { AdvertStatus } from './advert-status.enum';
 import { PaymentStatus } from "./payment-status.enum";
 import { ShowType } from "./show-type.enum"
 import { Status } from "./status"
+import { DayOfWeek } from "./day-of-week.enum"
+import { BroadcastType } from "./broadcast-type.enum"
+import { SatelliteScheduleStatus } from "./satellite-schedule-status.enum"
+import { SatelliteScheduleType } from "./satellite-schedule-type.enum"
 
 export {
     UserRole,
@@ -13,5 +17,9 @@ export {
     AdvertStatus,
     PaymentStatus,
     ShowType,
-    Status
+    Status,
+    DayOfWeek,
+    BroadcastType,
+    SatelliteScheduleStatus,
+    SatelliteScheduleType
 };

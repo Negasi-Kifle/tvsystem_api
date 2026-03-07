@@ -188,6 +188,23 @@ model Compensation {
 }
 
 // ============================================
+// SATELLITE SCHEDULE - Schedule definitions (effective date range, type)
+// ============================================
+model SatelliteSchedule {
+  id            String   @id @default(uuid())
+  name          String
+  nameSlug      String   @unique @map("name_slug")
+  effectiveFrom DateTime @map("effective_from")
+  effectiveTo   DateTime @map("effective_to")
+  status        String   @default("DRAFT") // SatelliteScheduleStatus: DRAFT | ACTIVE | ARCHIVED
+  scheduleType  String   @map("schedule_type") // SatelliteScheduleType: Regular | Holiday
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("satellite_schedules")
+}
+
+// ============================================
 // SATELLITE LOG - Broadcast verification logs
 // ============================================
 model SatelliteLog {
