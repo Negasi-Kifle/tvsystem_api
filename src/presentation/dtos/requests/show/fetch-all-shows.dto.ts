@@ -13,6 +13,11 @@ export const fetchAllShowsDto = z.object({
   maxDurationMinutes: z.coerce.number().int().optional(),
   minAdLengthMinutes: z.coerce.number().int().optional(),
   maxAdLengthMinutes: z.coerce.number().int().optional(),
+  minTotalDurationMinutes: z.coerce.number().int().optional(),
+  maxTotalDurationMinutes: z.coerce.number().int().optional(),
+  partsCount: z.coerce.number().int().optional(),
+  rerunsCount: z.coerce.number().int().optional(),
+  bonusCount: z.coerce.number().int().optional(),
   host: z.string().optional(),
   status: z.enum(Status).optional(),
 });

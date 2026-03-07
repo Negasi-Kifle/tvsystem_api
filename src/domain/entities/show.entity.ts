@@ -1,3 +1,4 @@
+import { DayOfWeek } from '../enums/day-of-week.enum';
 import { ShowType } from '../enums/show-type.enum';
 import { Status } from '../enums/status';
 import { ValidationError } from '../errors/validation.error';
@@ -10,12 +11,22 @@ export class ShowEntity {
     public durationMinutes: number,
     public maxAdLengthMinutes: number,
     public hostId: string,
+    public totalDurationMinutes: number,     // durationMinutes + maxAdLengthMinutes (= "Total" column)
+    public partsCount: number,           // Number of segments/parts (= "Parts" column)
+    public rerunsCount: number,         // = "Re-run" column (0 or 1)
+    public bonusCount: number,         // = "Bonus" column (0 or 1)
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
     public status: Status = Status.Draft
+    
   ) { }
 
+  get totalShowDurationMinutes(): number {
+    return this.durationMinutes + this.maxAdLengthMinutes;
+  }
+
+  
   public static createInstance(
     title: string,
     titleSlug: string,
@@ -23,6 +34,9 @@ export class ShowEntity {
     durationMinutes: number,
     maxAdLengthMinutes: number,
     hostId: string,
+    partsCount: number,
+    rerunsCount: number,
+    bonusCount: number,
     status: Status = Status.Draft,
     createdAt?: Date,
     updatedAt?: Date,
@@ -54,9 +68,21 @@ export class ShowEntity {
       throw new ValidationError('Host is required');
     }
 
+    if(!partsCount || partsCount <= 0) {
+      throw new ValidationError('Parts count is required and must be greater than 0');
+    }
 
-    createdAt = createdAt ?? new Date();
-    updatedAt = updatedAt ?? new Date();
+    if(!rerunsCount || rerunsCount < 0) {
+      throw new ValidationError('Reruns count is required and must be greater than 0');
+    }
+
+    if (bonusCount === undefined || bonusCount < 0) {
+      throw new ValidationError('Bonus count is required and must be greater than 0');
+    }
+
+
+    const totalDurationMinutes = durationMinutes + maxAdLengthMinutes;
+
     return new ShowEntity(
       title,
       titleSlug,
@@ -64,6 +90,10 @@ export class ShowEntity {
       durationMinutes,
       maxAdLengthMinutes,
       hostId,
+      totalDurationMinutes,
+      partsCount,
+      rerunsCount,
+      bonusCount,
       createdAt,
       updatedAt,
       id,
@@ -77,6 +107,9 @@ export class ShowEntity {
     durationMinutes?: number,
     maxAdLengthMinutes?: number,
     hostId?: string,
+    partsCount?: number,
+    rerunsCount?: number,
+    bonusCount?: number,
     status?: Status
   ): ShowEntity {
     if (title !== undefined) {
@@ -87,7 +120,15 @@ export class ShowEntity {
     if (durationMinutes !== undefined) this.durationMinutes = durationMinutes;
     if (maxAdLengthMinutes !== undefined) this.maxAdLengthMinutes = maxAdLengthMinutes;
     if (hostId !== undefined) this.hostId = hostId;
+    if (partsCount !== undefined) this.partsCount = partsCount;
+    if (rerunsCount !== undefined) this.rerunsCount = rerunsCount;
+    if (bonusCount !== undefined) this.bonusCount = bonusCount;
     if (status !== undefined) this.status = status;
+    if (durationMinutes !== undefined || maxAdLengthMinutes !== undefined) {
+      const duration = durationMinutes ?? this.durationMinutes;
+      const maxAdLength = maxAdLengthMinutes ?? this.maxAdLengthMinutes;
+      this.totalDurationMinutes = duration + maxAdLength;
+    }
 
     this.updatedAt = new Date();
     return this

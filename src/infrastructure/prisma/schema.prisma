@@ -60,7 +60,11 @@ model Show {
   durationMinutes    Int      @map("duration_minutes")
   maxAdLengthMinutes Int      @map("max_ad_length_minutes")
   hostId             String?  @map("host")
-  status             String    @default("Draft") // Status enum: 'Draft' | 'Active' | 'Archived' | 'InActive'
+  totalDurationMinutes Int    @map("total_duration_minutes")
+  partsCount         Int      @map("parts_count")
+  rerunsCount        Int      @default(0) @map("reruns_count")
+  bonusCount         Int      @default(0) @map("bonus_count")
+  status             String   @default("Draft") // Status enum: 'Draft' | 'Active' | 'Archived' | 'InActive'
   createdAt          DateTime @default(now()) @map("created_at")
   updatedAt          DateTime @updatedAt @map("updated_at")
 

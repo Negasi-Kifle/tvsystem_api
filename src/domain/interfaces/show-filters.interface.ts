@@ -10,4 +10,6 @@ export type ShowFilters = Partial<ShowEntity> & {
   maxDurationMinutes?: number;
   minAdLengthMinutes?: number;
   maxAdLengthMinutes?: number;
+  minTotalDurationMinutes?: number;
+  maxTotalDurationMinutes?: number;
 };

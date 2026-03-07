@@ -15,6 +15,11 @@ export function mapFetchAllShowsDtoToQueryOptions(dto: FetchAllShowsDto): QueryO
     ...(dto.maxDurationMinutes != null && { maxDurationMinutes: dto.maxDurationMinutes }),
     ...(dto.minAdLengthMinutes != null && { minAdLengthMinutes: dto.minAdLengthMinutes }),
     ...(dto.maxAdLengthMinutes != null && { maxAdLengthMinutes: dto.maxAdLengthMinutes }),
+    ...(dto.minTotalDurationMinutes != null && { minTotalDurationMinutes: dto.minTotalDurationMinutes }),
+    ...(dto.maxTotalDurationMinutes != null && { maxTotalDurationMinutes: dto.maxTotalDurationMinutes }),
+    ...(dto.partsCount != null && { partsCount: dto.partsCount }),
+    ...(dto.rerunsCount != null && { rerunsCount: dto.rerunsCount }),
+    ...(dto.bonusCount != null && { bonusCount: dto.bonusCount }),
     ...(dto.host != null && { hostId: dto.host }),
     ...(dto.status != null && { status: dto.status }),
   };

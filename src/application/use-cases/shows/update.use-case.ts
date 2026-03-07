@@ -14,6 +14,9 @@ export type UpdateShowPayload = {
     durationMinutes?: number;
     maxAdLengthMinutes?: number;
     hostId?: string;
+    partsCount?: number;
+    rerunsCount?: number;
+    bonusCount?: number;
     status?: Status;
 };
 
@@ -39,6 +42,9 @@ export class UpdateShowUseCase {
             payload.durationMinutes,
             payload.maxAdLengthMinutes,
             payload.hostId,
+            payload.partsCount,
+            payload.rerunsCount,
+            payload.bonusCount,
             payload.status
         );
 

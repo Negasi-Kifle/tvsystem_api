@@ -9,7 +9,10 @@ export const updateShowDto = z.object({
   type: z.enum(ShowType).optional(),
   durationMinutes: z.number().min(1).optional(),
   maxAdLengthMinutes: z.number().min(1).optional(),
-    host: z.string().min(1).optional(),
+  host: z.string().min(1).optional(),
+  partsCount: z.number().int().min(1).optional(),
+  rerunsCount: z.number().int().min(0).optional(),
+  bonusCount: z.number().int().min(0).optional(),
   status: z.enum(Status).optional(),
 });
 

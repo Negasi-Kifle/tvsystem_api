@@ -11,6 +11,9 @@ export type CreateShowInput = {
   durationMinutes: number;
   maxAdLengthMinutes: number;
   host: string;
+  partsCount: number;
+  rerunsCount: number;
+  bonusCount: number;
   status?: Status;
 };
 
@@ -25,6 +28,9 @@ export class CreateShowUseCase {
       payload.durationMinutes,
       payload.maxAdLengthMinutes,
       payload.host,
+      payload.partsCount,
+      payload.rerunsCount,
+      payload.bonusCount,
       payload.status
     );
 

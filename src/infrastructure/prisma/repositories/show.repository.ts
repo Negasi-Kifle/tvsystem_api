@@ -9,7 +9,7 @@ import { buildWhereClauseForShow } from '../where_clauses/show';
 
 export class ShowRepository extends PrismaBaseRepository implements IShowRepository {
 
-  async create(data: Omit<ShowEntity, 'id'>): Promise<ShowEntity> {
+  async create(data: ShowEntity): Promise<ShowEntity> {
     const showModel = entityToModel(data);
 
     // Omit id so DB generates it via @default(uuid())
