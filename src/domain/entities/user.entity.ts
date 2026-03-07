@@ -61,7 +61,7 @@ export class UserEntity {
     if(refModel == UserRefModel.Employee && !employeeId) {
       throw new ValidationError('employeeId is required when refModel is Employee');
     }
-    if(refModel == UserRefModel.Internal && (partnerId || employeeId)) {
+    if (refModel == UserRefModel.Internal && (partnerId || employeeId)) {
       throw new ValidationError('partnerId and employeeId must not be set when refModel is Internal');
     }
 

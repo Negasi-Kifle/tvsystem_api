@@ -17,13 +17,20 @@ import { ResetPasswordDto } from '../dtos/requests/user/reset-paswd.dto';
 import { CreateUserUseCase } from '../../application/use-cases/users/create-user.use-case';
 import { FetchAllUsersUseCase } from '../../application/use-cases/users/fetch-all.use-case';
 import { UpdateUserStatusDto } from '../dtos/requests/user/update-status.dto';
+import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 
 const userRepository = new UserRepository();
 const partnerRepository = new PartnerRepository();
 const employeeRepository = new EmployeeRepository();
+const permissionRepository = new PermissionRepository();
 const hashService = new HashService();
 
-const createUserUseCase = new CreateUserUseCase(userRepository, partnerRepository, employeeRepository);
+const createUserUseCase = new CreateUserUseCase(
+  userRepository,
+  partnerRepository,
+  employeeRepository,
+  permissionRepository,
+);
 const getByIdUseCase = new GetByIdUseCase(userRepository);
 const updateUserUseCase = new UpdateUserUseCase(userRepository);
 const updateUserStatusUseCase = new UpdateUserStatusUseCase(userRepository);
@@ -35,7 +42,10 @@ const fetchAllUsersUseCase = new FetchAllUsersUseCase(userRepository);
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
     const payload = req.body as CreateUserDto;
-    const user = await createUserUseCase.execute(payload);
+    const user = await createUserUseCase.execute({
+      ...payload,
+      grantedBy: req.user?.id,
+    });
 
     res.status(201).json({
       status: 'SUCCESS',

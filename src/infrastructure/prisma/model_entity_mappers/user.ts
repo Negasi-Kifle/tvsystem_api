@@ -5,7 +5,7 @@ import { UserRole } from "../../../domain/enums/user-role.enum";
 import { UserRefModel } from "../../../domain/enums/user-ref-model.enum";
 
 export function modelToEntity(user: User): UserEntity {
-    return UserEntity.createInstance(
+    return new UserEntity(
         user.fullName,
         user.email,
         user.passwordHash,

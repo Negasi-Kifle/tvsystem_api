@@ -24,7 +24,12 @@ const partnerRepository = new PartnerRepository();
 const employeeRepository = new EmployeeRepository();
 const userPermissionsRepository = new UserPermissionsRepository();
 const permissionRepository = new PermissionRepository();
-const createUserUseCase = new CreateUserUseCase(userRepository, partnerRepository, employeeRepository);
+const createUserUseCase = new CreateUserUseCase(
+  userRepository,
+  partnerRepository,
+  employeeRepository,
+  permissionRepository,
+);
 const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(userRepository);
 const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
 const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);

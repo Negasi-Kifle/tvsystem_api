@@ -15,10 +15,11 @@ export const createUserDto = z
     roles: z.array(z.enum(UserRole, "Roles must be a valid user role")),
     isActive: z.boolean("Is active must be a boolean").default(true),
     isFirstTimeAccount: z.boolean("Is first time account must be a boolean").default(false),
-    refModel: z.enum(userRefModelValues, "Ref model must be one of the following: " + userRefModelValues.join(", ")).optional().default(UserRefModel.Internal),
+    refModel: z.enum(userRefModelValues, "Ref model must be one of the following: " + userRefModelValues.join(", ")).optional(),
     telegramUsername: z.string("Telegram username is required and must be a valid telegram username").optional(),
     partnerId: z.uuid("Partner must be a valid UUID if refModel is Partner").optional(),
     employeeId: z.uuid("Employee must be a valid UUID if refModel is Employee").optional(),
+    permissionIds: z.array(z.uuid("Each permission ID must be a valid UUID")).default([]),
   })
   .strict()
   .refine(
@@ -35,12 +36,12 @@ export const createUserDto = z
     },
     { message: "employeeId is required when refModel is Employee." }
   )
-  .refine(
-    (data) => {
-      if (data.refModel === UserRefModel.Internal) return !data.partnerId && !data.employeeId;
-      return true;
-    },
-    { message: "partnerId and employeeId must not be set when refModel is Internal" }
-  );
+  // .refine(
+  //   (data) => {
+  //     if (data.refModel === UserRefModel.Internal) return !data.partnerId && !data.employeeId;
+  //     return true;
+  //   },
+  //   { message: "partnerId and employeeId must not be set when refModel is Internal" }
+  // );
 
 export type CreateUserDto = z.infer<typeof createUserDto>;

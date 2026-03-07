@@ -23,6 +23,30 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
     return modelToEntity(savedUser);
   }
 
+  async createUserWithPermissions(userEntity: UserEntity, permissionIds: string[], grantedBy?: string): Promise<UserEntity> {
+    const userModel = entityToModel(userEntity);
+    userModel.passwordHash = await hashPassword(userModel.passwordHash);
+    const { id: _omit, ...createData } = userModel;
+    const uniquePermissionIds = [...new Set(permissionIds)];
+
+    return this.prisma.$transaction(async (tx) => {
+      const savedUser = await tx.user.create({ data: createData });
+
+      if (uniquePermissionIds.length > 0) {
+        const effectiveGrantedBy = grantedBy ?? savedUser.id;
+
+        await tx.userPermission.createMany({
+          data: uniquePermissionIds.map((permissionId) => ({
+            userId: savedUser.id,
+            permissionId,
+            grantedBy: effectiveGrantedBy,
+          })),
+        });
+      }
+      
+      return modelToEntity(savedUser);
+    });
+  }
 
   async findMany(query: QueryOptions<UserEntity>): Promise<UserEntity[]> {
     const where = buildWhereClauseForUser(query.filters ?? {});
