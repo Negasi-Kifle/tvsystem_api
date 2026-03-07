@@ -5,5 +5,6 @@ export enum UserRole {
   SalesManager = 'SalesManager',
   SatelliteManager = 'SatelliteManager',
   FinanceManager = 'FinanceManager',
-  Partner = 'Partner'
+  Partner = 'Partner',
+  Host = 'Host'
 }
