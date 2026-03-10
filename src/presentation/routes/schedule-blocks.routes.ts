@@ -3,6 +3,7 @@ import {
   createScheduleBlock,
   createBatchScheduleBlocks,
   listScheduleBlocks,
+  listScheduleFreeBlocks,
   getScheduleBlockById,
   updateScheduleBlock,
   deleteScheduleBlock,
@@ -42,6 +43,13 @@ router
     validateBody(createBatchScheduleBlocksDto),
     createBatchScheduleBlocks,
   );
+
+router.get(
+  '/free',
+  authMiddleware,
+  requirePermission(PERMISSIONS.VIEW_SCHEDULES),
+  listScheduleFreeBlocks,
+);
 
 router
   .route('/:blockId')

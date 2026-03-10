@@ -4,6 +4,7 @@ import { CreateBatchScheduleBlocksUseCase } from '../../application/use-cases/sa
 import { FetchBlocksByScheduleUseCase } from '../../application/use-cases/satellite-schedule-blocks/fetch-blocks-by-schedule.use-case';
 import { CountScheduleBlocksUseCase } from '../../application/use-cases/satellite-schedule-blocks/count-schedule-blocks.use-case';
 import { GetScheduleBlockByIdUseCase } from '../../application/use-cases/satellite-schedule-blocks/get-schedule-block-by-id.use-case';
+import { GetScheduleFreeBlocksUseCase } from '../../application/use-cases/satellite-schedule-blocks/get-schedule-free-blocks.use-case';
 import { UpdateScheduleBlockUseCase } from '../../application/use-cases/satellite-schedule-blocks/update-schedule-block.use-case';
 import { DeleteScheduleBlockUseCase } from '../../application/use-cases/satellite-schedule-blocks/delete-schedule-block.use-case';
 import { ScheduleBlockRepository } from '../../infrastructure/prisma/repositories/schedule-block.repository';
@@ -14,6 +15,8 @@ import { CreateBatchScheduleBlocksDto } from '../dtos/requests/satellite-schedul
 import { FetchScheduleBlocksDto } from '../dtos/requests/satellite-schedule-block/fetch-schedule-blocks.dto';
 import { UpdateScheduleBlockDto } from '../dtos/requests/satellite-schedule-block/update-schedule-block.dto';
 import { mapFetchScheduleBlocksDtoToQueryOptions } from '../mappers/schedule-block-to-query-options.mapper';
+import { ScheduleBlockEntity } from '../../domain/entities/satellite-schedule-block.entity';
+import { FreeBlock } from '../../application/use-cases/satellite-schedule-blocks/get-schedule-free-blocks.use-case';
 
 const blockRepo = new ScheduleBlockRepository();
 const scheduleRepo = new SatelliteScheduleRepository();
@@ -24,6 +27,7 @@ const createBatchUseCase = new CreateBatchScheduleBlocksUseCase(blockRepo, sched
 const fetchUseCase = new FetchBlocksByScheduleUseCase(blockRepo);
 const countUseCase = new CountScheduleBlocksUseCase(blockRepo);
 const getByIdUseCase = new GetScheduleBlockByIdUseCase(blockRepo);
+const getFreeBlocksUseCase = new GetScheduleFreeBlocksUseCase(blockRepo, scheduleRepo);
 const updateUseCase = new UpdateScheduleBlockUseCase(blockRepo, scheduleRepo);
 const deleteUseCase = new DeleteScheduleBlockUseCase(blockRepo, scheduleRepo);
 
@@ -85,6 +89,20 @@ export async function listScheduleBlocks(req: Request, res: Response, next: Next
   }
 }
 
+export async function listScheduleFreeBlocks(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { scheduleId } = req.params as { scheduleId: string };
+    const {freeBlocks, schedule} = await getFreeBlocksUseCase.execute(scheduleId);
+    
+    res.status(200).json({
+      status: 'SUCCESS',
+      data: { schedule, freeBlocks },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function getScheduleBlockById(req: Request, res: Response, next: NextFunction) {
   try {
     const { blockId } = req.params as { blockId: string };
@@ -126,7 +144,7 @@ export async function deleteScheduleBlock(req: Request, res: Response, next: Nex
   }
 }
 
-function formatBlockResponse(block: import('../../domain/entities/satellite-schedule-block.entity').ScheduleBlockEntity) {
+function formatBlockResponse(block: ScheduleBlockEntity) {
   return {
     id: block.id,
     scheduleId: block.scheduleId,
