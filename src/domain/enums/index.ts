@@ -9,6 +9,7 @@ import { DayOfWeek } from "./day-of-week.enum"
 import { BroadcastType } from "./broadcast-type.enum"
 import { SatelliteScheduleStatus } from "./satellite-schedule-status.enum"
 import { SatelliteScheduleType } from "./satellite-schedule-type.enum"
+import { BroadcastSlotStatus } from "./broadcast-slot-status.enum"
 
 export {
     UserRole,
@@ -21,5 +22,6 @@ export {
     DayOfWeek,
     BroadcastType,
     SatelliteScheduleStatus,
-    SatelliteScheduleType
+    SatelliteScheduleType,
+    BroadcastSlotStatus,
 };

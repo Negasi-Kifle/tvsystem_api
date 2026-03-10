@@ -8,6 +8,7 @@ import { UserEntity } from "../../../domain/entities/user.entity";
 import { entityToModel as userEntityToModel, modelToEntity as userModelToEntity } from "../model_entity_mappers/user";
 import { UserRefModel } from "../../../domain/enums/user-ref-model.enum";
 import { ValidationError } from "../../../domain/errors";
+import { hashPassword } from "../../../shared/utils/password";
 
 export class EmployeeRepository extends PrismaBaseRepository implements IEmployeeRepository {
 
@@ -34,6 +35,7 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
       // Add refModel and employee id to user
       userData.refModel = UserRefModel.Employee;
       userData.employeeId = savedEmployee.id;
+      userData.passwordHash = await hashPassword(userData.passwordHash);
       const savedUser = await tx.user.create({ data: userData });
 
       if (uniquePermissionIds.length > 0) {

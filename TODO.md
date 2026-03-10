@@ -27,7 +27,7 @@
 - 🟨 Sales follow-up / communication logging functionality
 - 🟨 Revenue share calculation and distribution
 - 🟨 Commission calculation for sales reps
-- 🟨 Ethiopian calendar date conversion service
+- ✅ Ethiopian calendar date conversion service (CalendarService.formatEthiopianDate)
 - 🟨 Audit logging middleware for critical actions
 - 🟨 Contract document generation
 - 🟨 Ad delivery verification (schedule vs satellite log comparison)
@@ -58,6 +58,28 @@
 - 🟨 Add environment setup guide
 
 ## ✅ Completed Tasks
+
+### 03/10/2026
+
+- ✅ Implemented full BroadcastSlot feature (domain entity, Prisma model, repository, use cases, DTOs, controller, routes)
+- ✅ Added materialization endpoint (`POST /satellite-schedules/:scheduleId/broadcast-slots`) to generate date-specific slots from weekly ScheduleBlock templates
+- ✅ Auto-materialization: BroadcastSlots are automatically generated when a schedule status changes to ACTIVE
+- ✅ Added BroadcastSlotStatus enum (SCHEDULED, AIRED, MISSED, PREEMPTED, CANCELLED) with validated status transitions
+- ✅ Added Ethiopian calendar date display on BroadcastSlots via CalendarService.formatEthiopianDate
+- ✅ BroadcastSlot CRUD: List with filters (date range, status, show, dayOfWeek), GetById, Update (status/time/override), Delete (only SCHEDULED)
+- ✅ Idempotent materialization: re-running skips already-existing slots (unique constraint on scheduleBlockId + date)
+- ✅ Updated Postman collection with 5 new broadcast-slot endpoints
+
+### 03/09/2026
+
+- ✅ Implemented full SatelliteScheduleBlock CRUD (domain entity, Prisma model, repository, use cases, DTOs, controller, routes)
+- ✅ Added batch block creation endpoint (`POST /satellite-schedules/:scheduleId/blocks/batch`) with overlap validation
+- ✅ Fixed EthiopianTime.toGregorianMinutes() bug in toEth24Hour for ከሰአት and ሌሊት periods
+- ✅ Fixed SatelliteScheduleEntity/mapper mismatch: effectiveFromEth/effectiveToEth changed to optional strings, mapper argument order corrected
+- ✅ Added Ethiopian date columns (effective_from_eth, effective_to_eth) to satellite_schedules table
+- ✅ Added satellite_schedule_blocks table with unique constraint on (scheduleId, dayOfWeek, startTimeMinutes)
+- ✅ Schedule blocks use weekly template model (keyed by dayOfWeek, not specific dates)
+- ✅ API accepts Ethiopian time input (hour, minute, dayPart) and returns both Gregorian and Ethiopian time representations
 
 ### 01/18/2026
 

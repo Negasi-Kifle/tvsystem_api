@@ -1,4 +1,4 @@
-import { IHashService } from '../../domain/services/hash-service.interface';
+import { IHashService } from '../../domain/services/hash-service.service';
 import { hashPassword } from '../../shared/utils/password';
 
 export class HashService implements IHashService {

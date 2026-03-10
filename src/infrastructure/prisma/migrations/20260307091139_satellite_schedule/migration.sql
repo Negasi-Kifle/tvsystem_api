@@ -6,7 +6,3 @@
 */
 -- AlterTable
 ALTER TABLE "partners" DROP COLUMN "fullName";
-
--- AlterTable
-ALTER TABLE "shows" ALTER COLUMN "total_duration_minutes" DROP DEFAULT,
-ALTER COLUMN "parts_count" DROP DEFAULT;

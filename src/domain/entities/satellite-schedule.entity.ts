@@ -10,6 +10,8 @@ export class SatelliteScheduleEntity {
     public status: SatelliteScheduleStatus = SatelliteScheduleStatus.Draft,
     public scheduleType: SatelliteScheduleType,
     public id?: string,
+    public effectiveFromEth?: Date,
+    public effectiveToEth?: Date,
     public createdAt?: Date,
     public updatedAt?: Date,
   ) {}
@@ -21,9 +23,11 @@ export class SatelliteScheduleEntity {
     effectiveTo: Date,
     scheduleType: SatelliteScheduleType,
     status: SatelliteScheduleStatus = SatelliteScheduleStatus.Draft,
+    id?: string,
+    effectiveFromEth?: Date,
+    effectiveToEth?: Date,
     createdAt?: Date,
     updatedAt?: Date,
-    id?: string,
   ): SatelliteScheduleEntity {
     if (!name || name.trim().length < 2) {
       throw new ValidationError('Name is required and must be at least 2 characters long');
@@ -33,7 +37,7 @@ export class SatelliteScheduleEntity {
     if (effectiveFrom >= effectiveTo) {
       throw new ValidationError('effectiveTo must be after effectiveFrom');
     }
-      
+
     return new SatelliteScheduleEntity(
       name,
       slug,
@@ -42,6 +46,8 @@ export class SatelliteScheduleEntity {
       status,
       scheduleType,
       id,
+      effectiveFromEth,
+      effectiveToEth,
       createdAt,
       updatedAt,
     );
@@ -54,6 +60,8 @@ export class SatelliteScheduleEntity {
     effectiveTo?: Date,
     status?: SatelliteScheduleStatus,
     scheduleType?: SatelliteScheduleType,
+    effectiveFromEth?: Date,
+    effectiveToEth?: Date,
   ): SatelliteScheduleEntity {
     if (name !== undefined) {
       this.name = name;
@@ -65,6 +73,8 @@ export class SatelliteScheduleEntity {
     if (effectiveTo !== undefined) this.effectiveTo = effectiveTo;
     if (status !== undefined) this.status = status;
     if (scheduleType !== undefined) this.scheduleType = scheduleType;
+    if (effectiveFromEth !== undefined) this.effectiveFromEth = effectiveFromEth;
+    if (effectiveToEth !== undefined) this.effectiveToEth = effectiveToEth;
     if (effectiveFrom !== undefined || effectiveTo !== undefined) {
       const from = effectiveFrom ?? this.effectiveFrom;
       const to = effectiveTo ?? this.effectiveTo;

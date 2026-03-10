@@ -4,6 +4,8 @@ import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
 import { EntityNotFoundError } from '../../../domain/errors';
 import { EntityAlreadyExistsError } from '../../../domain/errors';
+import { ICalendarService } from '../../../domain/services/calendar.service';
+import { IScheduleActivationHandler } from '../../../domain/services/schedule-activation.handler';
 
 export type UpdateSatelliteSchedulePayload = {
   name?: string;
@@ -12,10 +14,16 @@ export type UpdateSatelliteSchedulePayload = {
   effectiveTo?: Date;
   status?: SatelliteScheduleStatus;
   scheduleType?: SatelliteScheduleType;
+  effectiveFromEth?: Date;
+  effectiveToEth?: Date;
 };
 
 export class UpdateSatelliteScheduleUseCase {
-  constructor(private readonly scheduleRepo: ISatelliteScheduleRepository) {}
+  constructor(
+    private readonly scheduleRepo: ISatelliteScheduleRepository,
+    private readonly calendarService: ICalendarService,
+    private readonly activationHandler?: IScheduleActivationHandler,
+  ) {}
 
   async execute(
     id: string,
@@ -25,6 +33,8 @@ export class UpdateSatelliteScheduleUseCase {
     if (!schedule) {
       throw new EntityNotFoundError('Satellite schedule not found', 'SatelliteSchedule', id);
     }
+
+    const previousStatus = schedule.status;
 
     if (payload.nameSlug != null && payload.nameSlug !== schedule.nameSlug) {
       const duplicate = await this.scheduleRepo.findByNameSlug(payload.nameSlug);
@@ -37,6 +47,9 @@ export class UpdateSatelliteScheduleUseCase {
       }
     }
 
+    const effFromConverter = this.calendarService.convertToEthiopian(payload.effectiveFrom ?? schedule.effectiveFrom);
+    const effToConverter = this.calendarService.convertToEthiopian(payload.effectiveTo ?? schedule.effectiveTo);
+
     const updated = schedule.updateInstance(
       payload.name,
       payload.nameSlug,
@@ -44,8 +57,20 @@ export class UpdateSatelliteScheduleUseCase {
       payload.effectiveTo,
       payload.status,
       payload.scheduleType,
+      effFromConverter,
+      effToConverter,
     );
 
-    return this.scheduleRepo.update(updated);
+    const result = await this.scheduleRepo.update(updated);
+
+    const activating =
+      previousStatus !== SatelliteScheduleStatus.Active &&
+      payload.status === SatelliteScheduleStatus.Active;
+
+    if (activating && this.activationHandler && result) {
+      await this.activationHandler.onScheduleActivated(id);
+    }
+
+    return result;
   }
 }

@@ -11,9 +11,11 @@ export function modelToEntity(schedule: SatelliteSchedule): SatelliteScheduleEnt
     schedule.effectiveTo,
     schedule.scheduleType as SatelliteScheduleType,
     schedule.status as SatelliteScheduleStatus,
+    schedule.id,
+    schedule.effectiveFromEth ?? undefined,
+    schedule.effectiveToEth ?? undefined,
     schedule.createdAt,
     schedule.updatedAt,
-    schedule.id,
   );
 }
 
@@ -26,6 +28,8 @@ export function entityToModel(schedule: SatelliteScheduleEntity): SatelliteSched
     effectiveTo: schedule.effectiveTo,
     status: schedule.status,
     scheduleType: schedule.scheduleType,
+    effectiveFromEth: schedule.effectiveFromEth ?? null,
+    effectiveToEth: schedule.effectiveToEth ?? null,
     createdAt: schedule.createdAt ?? new Date(),
     updatedAt: schedule.updatedAt ?? new Date(),
   };

@@ -14,8 +14,13 @@ import { fetchAllSatelliteSchedulesDto } from '../dtos/requests/satellite-schedu
 import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
 import { requirePermission } from '../../infrastructure/middlewares/permission.middleware';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
+import scheduleBlockRoutes from './schedule-blocks.routes';
+import broadcastSlotRoutes from './broadcast-slots.routes';
 
 const router = Router();
+
+router.use('/:scheduleId/blocks', scheduleBlockRoutes);
+router.use('/:scheduleId/broadcast-slots', broadcastSlotRoutes);
 
 router
   .route('/')

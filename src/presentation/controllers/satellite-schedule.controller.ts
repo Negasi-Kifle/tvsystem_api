@@ -10,13 +10,23 @@ import { CreateSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/
 import { UpdateSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/update-satellite-schedule.dto';
 import { FetchAllSatelliteSchedulesDto } from '../dtos/requests/satellite-schedule/fetch-all-satellite-schedules.dto';
 import { mapFetchAllSatelliteSchedulesDtoToQueryOptions } from '../mappers/satellite-schedule-to-query-options.mapper';
+import { CalendarService } from '../../infrastructure/services/calendar.service';
+import { GenerateBroadcastSlotsUseCase } from '../../application/use-cases/broadcast-slots/generate-broadcast-slots.use-case';
+import { BroadcastSlotRepository } from '../../infrastructure/prisma/repositories/broadcast-slot.repository';
+import { ScheduleBlockRepository } from '../../infrastructure/prisma/repositories/schedule-block.repository';
 
 const repo = new SatelliteScheduleRepository();
-const createUseCase = new CreateSatelliteScheduleUseCase(repo);
+const calendarService = new CalendarService();
+const slotRepo = new BroadcastSlotRepository();
+const blockRepo = new ScheduleBlockRepository();
+
+const activationHandler = new GenerateBroadcastSlotsUseCase(slotRepo, blockRepo, repo, calendarService);
+
+const createUseCase = new CreateSatelliteScheduleUseCase(repo, calendarService);
 const fetchAllUseCase = new FetchAllSatelliteSchedulesUseCase(repo);
 const countUseCase = new CountSatelliteSchedulesUseCase(repo);
 const getByIdUseCase = new GetSatelliteScheduleByIdUseCase(repo);
-const updateUseCase = new UpdateSatelliteScheduleUseCase(repo);
+const updateUseCase = new UpdateSatelliteScheduleUseCase(repo, calendarService, activationHandler);
 const deleteUseCase = new DeleteSatelliteScheduleUseCase(repo);
 
 export async function createSatelliteSchedule(req: Request, res: Response) {

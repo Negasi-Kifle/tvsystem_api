@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "8e121002-b0f7-4c58-83a8-7b6f6c743ecf",
+    "_postman_id": "cfb2732b-5bd1-4a5c-a266-f43270804a1b",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-8e121002-b0f7-4c58-83a8-7b6f6c743ecf?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-cfb2732b-5bd1-4a5c-a266-f43270804a1b?source=collection_link"
   },
   "item": [
     {
@@ -138,7 +138,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -323,7 +323,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -507,7 +507,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -659,7 +659,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -790,7 +790,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -913,10 +913,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"nega@abbaytv.com\",\n  \"fullName\": \"Negasi Kiflom\",\n  \"sex\": \"Female\",\n  \"phoneNumber\": \"0900000004\",\n  \"passwordHash\": \"password123\",\n  \"roles\": [\"SalesRep\"],\n  \"isActive\": true,\n  \"telegramUsername\": \"@negasik\"\n}"
-                },
                 "url": {
                   "raw": "{{baseUrl}}/api/employees",
                   "host": [
@@ -930,7 +926,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1079,7 +1075,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1230,7 +1226,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1361,7 +1357,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1492,7 +1488,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1644,7 +1640,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1773,7 +1769,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1904,7 +1900,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2053,7 +2049,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2204,7 +2200,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2335,7 +2331,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2510,7 +2506,7 @@
               },
               "status": "Conflict",
               "code": 409,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2630,7 +2626,7 @@
               },
               "status": "Conflict",
               "code": 409,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2750,7 +2746,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -2884,7 +2880,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3057,15 +3053,6 @@
                     "type": "text"
                   }
                 ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"page\": 1,\n    \"limit\": 10\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/api/users?limit=2&page=1&email=newuser3@example.com",
                   "host": [
@@ -3093,7 +3080,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3224,7 +3211,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3325,7 +3312,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3487,7 +3474,7 @@
               },
               "status": "Accepted",
               "code": 202,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3603,7 +3590,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3765,7 +3752,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -3886,7 +3873,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4050,7 +4037,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4181,7 +4168,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4282,7 +4269,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4383,7 +4370,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4535,7 +4522,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4644,7 +4631,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4791,7 +4778,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -4922,7 +4909,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5023,7 +5010,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5172,7 +5159,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5282,7 +5269,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5392,7 +5379,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5523,7 +5510,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5624,7 +5611,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5776,7 +5763,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -5905,7 +5892,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "",
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6011,7 +5998,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6142,7 +6129,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6243,7 +6230,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6374,7 +6361,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "",
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6532,7 +6519,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6672,7 +6659,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6803,7 +6790,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -6904,7 +6891,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7053,7 +7040,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7163,7 +7150,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7294,7 +7281,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7395,7 +7382,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7547,7 +7534,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7686,7 +7673,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7817,7 +7804,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "",
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -7924,7 +7911,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": "",
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8061,7 +8048,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8162,7 +8149,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8263,7 +8250,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8370,7 +8357,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Alebe Show\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"schedule\": [\n    {\n      \"day\": \"Monday\",\n      \"startTime\": \"08:00\",\n      \"endTime\": \"10:00\"\n    }\n  ],\n  \"host\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n  \"partsCount\": 3,\n  \"rerunsCount\": 2,\n  \"bonusCount\": 0\n}",
+              "raw": "{\n  \"title\": \"Alebe Show\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n//   \"schedule\": [\n//     {\n//       \"day\": \"Monday\",\n//       \"startTime\": \"08:00\",\n//       \"endTime\": \"10:00\"\n//     }\n//   ],\n  \"host\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n  \"partsCount\": 3,\n  \"rerunsCount\": 2,\n  \"bonusCount\": 0\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8428,7 +8415,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8624,7 +8611,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8755,7 +8742,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8904,7 +8891,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9035,7 +9022,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9136,7 +9123,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9248,7 +9235,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Weekly Regular Schedule\",\n  \"nameSlug\": \"weekly-regular\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
+              "raw": "{\n  \"name\": \"New Year Regular Schedule 6\",\n//   \"nameSlug\": \"weekly-regular\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -9267,7 +9254,123 @@
             },
             "description": "Create a new satellite schedule. Requires MANAGE_SCHEDULES permission. scheduleType: Regular | Holiday. status: DRAFT | ACTIVE | ARCHIVED (optional). effectiveTo must be after effectiveFrom."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Year Regular Schedule 6\",\n//   \"nameSlug\": \"weekly-regular\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "510"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1fe-tlYROkwKcA5KjQZthSSq2du8v5w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 08:35:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite schedule created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"New Year Regular Schedule 6\",\n            \"nameSlug\": \"new-year-regular-schedule-6\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"ac03e52d-6f21-4342-80aa-49aa9aea6041\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T08:35:40.675Z\",\n            \"updatedAt\": \"2026-03-10T08:35:40.675Z\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "List Satellite Schedules",
@@ -9348,7 +9451,160 @@
             },
             "description": "List satellite schedules with optional filters. Requires VIEW_SCHEDULES permission. Query params: page, limit, name, nameSlug, status (DRAFT|ACTIVE|ARCHIVED), scheduleType (Regular|Holiday), effectiveFromAfter, effectiveFromBefore, effectiveToAfter, effectiveToBefore (ISO date strings)."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "disabled": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "nameSlug",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "DRAFT",
+                      "disabled": true
+                    },
+                    {
+                      "key": "scheduleType",
+                      "value": "Regular",
+                      "disabled": true
+                    },
+                    {
+                      "key": "effectiveFromAfter",
+                      "value": "2026-01-01",
+                      "disabled": true
+                    },
+                    {
+                      "key": "effectiveFromBefore",
+                      "value": "2026-12-31",
+                      "disabled": true
+                    },
+                    {
+                      "key": "effectiveToAfter",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "effectiveToBefore",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "521"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"209-otBEeHDRVR4OcA/Ptx8GkfabIwA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 08:37:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"schedules\": [\n            {\n                \"name\": \"New Year Regular Schedule 6\",\n                \"nameSlug\": \"new-year-regular-schedule-6\",\n                \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n                \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n                \"status\": \"DRAFT\",\n                \"scheduleType\": \"Regular\",\n                \"id\": \"ac03e52d-6f21-4342-80aa-49aa9aea6041\",\n                \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n                \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n                \"createdAt\": \"2026-03-10T08:35:40.675Z\",\n                \"updatedAt\": \"2026-03-10T08:35:40.675Z\"\n            }\n        ]\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get Satellite Schedule By ID",
@@ -9378,13 +9634,121 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "schedule-id-here"
+                  "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
                 }
               ]
             },
             "description": "Get a satellite schedule by ID. Requires VIEW_SCHEDULES permission."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ca-KVZ8Or6Q/kDVNYozhu4ge5EPHAY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 08:37:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"New Year Regular Schedule 6\",\n            \"nameSlug\": \"new-year-regular-schedule-6\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"ac03e52d-6f21-4342-80aa-49aa9aea6041\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T08:35:40.675Z\",\n            \"updatedAt\": \"2026-03-10T08:35:40.675Z\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Update Satellite Schedule",
@@ -9429,13 +9793,136 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "schedule-id-here"
+                  "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
                 }
               ]
             },
             "description": "Update a satellite schedule. Requires MANAGE_SCHEDULES permission. All body fields optional: name, nameSlug, effectiveFrom, effectiveTo, scheduleType (Regular|Holiday), status (DRAFT|ACTIVE|ARCHIVED). effectiveTo must be after effectiveFrom when both provided."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Schedule Name\",\n  \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n  \"scheduleType\": \"Holiday\",\n  \"status\": \"ACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "499"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1f3-+yFz6YTlKOhucwyOc2DH0kl1THk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 08:45:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite schedule updated successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"Updated Schedule Name\",\n            \"nameSlug\": \"updated-schedule-name\",\n            \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n            \"status\": \"ACTIVE\",\n            \"scheduleType\": \"Holiday\",\n            \"id\": \"ac03e52d-6f21-4342-80aa-49aa9aea6041\",\n            \"effectiveFromEth\": \"2018-05-24T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-03-21T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T08:35:40.675Z\",\n            \"updatedAt\": \"2026-03-10T08:45:02.573Z\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Delete Satellite Schedule",
@@ -9465,11 +9952,704 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "schedule-id-here"
+                  "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
                 }
               ]
             },
             "description": "Delete a satellite schedule by ID. Requires MANAGE_SCHEDULES permission."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "72"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"48-Jd6oT80zyTBlEZCI/IdPP4qgcGA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 08:46:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite schedule deleted successfully\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Satellite Schedule Block",
+      "item": [
+        {
+          "name": "Create Schedule Block",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"showId\": \"show-id-here\",\n  \"dayOfWeek\": \"MONDAY\",\n  \"hour\": 12,\n  \"minute\": 0,\n  \"dayPart\": \"ጠዋት\",\n  \"durationMinutes\": 120,\n  \"broadcastType\": \"Fresh_Content\",\n  \"label\": \"Mon New\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                }
+              ]
+            },
+            "description": "Create a schedule block within a satellite schedule. Requires MANAGE_SCHEDULES permission. Time is specified in Ethiopian format (hour 1-12, minute 0-59, dayPart: ጠዋት|ከሰአት|ማታ|ሌሊት). dayOfWeek: MONDAY-SUNDAY. broadcastType: Fresh_Content|First_Rerun|Second_Rerun|Third_Rerun|Bonus_Slot. durationMinutes is optional (defaults to show's totalDurationMinutes). Schedule must be in DRAFT status."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Batch Schedule Blocks",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blocks\": [\n    {\n      \"showId\": \"show-id-here\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"durationMinutes\": 120,\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"show-id-here\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"durationMinutes\": 60,\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/batch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks",
+                "batch"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                }
+              ]
+            },
+            "description": "Create multiple schedule blocks at once. Requires MANAGE_SCHEDULES permission. Validates no overlaps among new blocks and with existing blocks on the same day. Schedule must be in DRAFT status."
+          },
+          "response": []
+        },
+        {
+          "name": "List Schedule Blocks",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "200",
+                  "disabled": true
+                },
+                {
+                  "key": "dayOfWeek",
+                  "value": "MONDAY",
+                  "disabled": true
+                },
+                {
+                  "key": "showId",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "broadcastType",
+                  "value": "Fresh_Content",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                }
+              ]
+            },
+            "description": "List all schedule blocks for a satellite schedule. Requires VIEW_SCHEDULES permission. Optional filters: dayOfWeek (MONDAY-SUNDAY), showId (UUID), broadcastType (Fresh_Content|First_Rerun|Second_Rerun|Third_Rerun|Bonus_Slot). Response includes both Gregorian and Ethiopian time representations."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Schedule Block By ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/:blockId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks",
+                ":blockId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "blockId",
+                  "value": "block-id-here"
+                }
+              ]
+            },
+            "description": "Get a specific schedule block by ID. Requires VIEW_SCHEDULES permission."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Schedule Block",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dayOfWeek\": \"TUESDAY\",\n  \"hour\": 3,\n  \"minute\": 0,\n  \"dayPart\": \"ማታ\",\n  \"durationMinutes\": 90,\n  \"broadcastType\": \"First_Rerun\",\n  \"label\": \"Tue R1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/:blockId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks",
+                ":blockId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "blockId",
+                  "value": "block-id-here"
+                }
+              ]
+            },
+            "description": "Update a schedule block. Requires MANAGE_SCHEDULES permission. All body fields optional. When updating time (hour, minute, dayPart must all be provided together). Validates no overlaps after update. Schedule must be in DRAFT status."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Schedule Block",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/:blockId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "blocks",
+                ":blockId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "blockId",
+                  "value": "block-id-here"
+                }
+              ]
+            },
+            "description": "Delete a schedule block by ID. Requires MANAGE_SCHEDULES permission. Schedule must be in DRAFT status."
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Broadcast Slots",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromDate\": \"2026-01-01T00:00:00.000Z\",\n  \"toDate\": \"2026-03-31T23:59:59.000Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "broadcast-slots"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                }
+              ]
+            },
+            "description": "Generate broadcast slots from weekly schedule block templates for a date range. Schedule must be ACTIVE. If fromDate/toDate are omitted, uses the schedule's effectiveFrom/effectiveTo. Idempotent: existing slots are skipped. Requires MANAGE_SCHEDULES permission."
+          },
+          "response": []
+        },
+        {
+          "name": "List Broadcast Slots",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots?page=1&limit=200",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "broadcast-slots"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "200"
+                },
+                {
+                  "key": "status",
+                  "value": "SCHEDULED",
+                  "disabled": true
+                },
+                {
+                  "key": "dayOfWeek",
+                  "value": "MONDAY",
+                  "disabled": true
+                },
+                {
+                  "key": "showId",
+                  "value": "show-id-here",
+                  "disabled": true
+                },
+                {
+                  "key": "dateFrom",
+                  "value": "2026-01-01",
+                  "disabled": true
+                },
+                {
+                  "key": "dateTo",
+                  "value": "2026-03-31",
+                  "disabled": true
+                },
+                {
+                  "key": "broadcastType",
+                  "value": "Fresh_Content",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                }
+              ]
+            },
+            "description": "List broadcast slots for a schedule with optional filters: status (SCHEDULED|AIRED|MISSED|PREEMPTED|CANCELLED), dayOfWeek, showId, broadcastType, dateFrom, dateTo. Requires VIEW_SCHEDULES permission."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Broadcast Slot By ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots/:slotId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "broadcast-slots",
+                ":slotId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "slotId",
+                  "value": "slot-id-here"
+                }
+              ]
+            },
+            "description": "Get a single broadcast slot by ID. Returns both Gregorian and Ethiopian time/date representations. Requires VIEW_SCHEDULES permission."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Broadcast Slot",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CANCELLED\",\n  \"overrideReason\": \"Holiday broadcast preemption\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots/:slotId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "broadcast-slots",
+                ":slotId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "slotId",
+                  "value": "slot-id-here"
+                }
+              ]
+            },
+            "description": "Update a broadcast slot. Can override time (hour/minute/dayPart in Ethiopian), duration, status, label, or overrideReason. Status transitions: SCHEDULED can go to AIRED|MISSED|PREEMPTED|CANCELLED. PREEMPTED can go back to SCHEDULED. Terminal states (AIRED, MISSED, CANCELLED) cannot be changed. Requires MANAGE_SCHEDULES permission."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Broadcast Slot",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots/:slotId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-schedules",
+                ":scheduleId",
+                "broadcast-slots",
+                ":slotId"
+              ],
+              "variable": [
+                {
+                  "key": "scheduleId",
+                  "value": "schedule-id-here"
+                },
+                {
+                  "key": "slotId",
+                  "value": "slot-id-here"
+                }
+              ]
+            },
+            "description": "Delete a broadcast slot by ID. Only slots with SCHEDULED status can be deleted. Requires MANAGE_SCHEDULES permission."
           },
           "response": []
         }

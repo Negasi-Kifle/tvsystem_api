@@ -1,4 +1,5 @@
 export interface ICalendarService {
-  toGregorian(date: string, calendar: 'Gregorian' | 'Ethiopian'): string;
-  toEthiopian(date: string, calendar: 'Gregorian' | 'Ethiopian'): string;
+  convertToGregorian(date: Date): Date;
+  convertToEthiopian(date: Date): Date;
+  formatEthiopianDate(date: Date): string;
 }

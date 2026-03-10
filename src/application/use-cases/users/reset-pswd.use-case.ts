@@ -1,6 +1,6 @@
 
 import { IUserRepository } from "../../../domain/repositories/user.repo";
-import { IHashService } from "../../../domain/services/hash-service.interface";
+import { IHashService } from "../../../domain/services/hash-service.service";
 import { UserEntity } from "../../../domain/entities/user.entity";
 import { EntityNotFoundError, ValidationError } from "../../../domain/errors";
 
