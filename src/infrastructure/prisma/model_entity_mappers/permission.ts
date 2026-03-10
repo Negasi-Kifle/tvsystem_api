@@ -1,4 +1,4 @@
-import { Permission } from "@prisma/client";
+import { Permission } from '../generated/client';
 import { PermissionEntity } from "../../../domain/entities/permission.entity";
 
 export function modelToEntity(permission: Permission): PermissionEntity {

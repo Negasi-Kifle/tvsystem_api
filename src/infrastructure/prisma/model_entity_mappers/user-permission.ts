@@ -1,13 +1,13 @@
-import { UserPermission } from "@prisma/client";
+import { UserPermission } from '../generated/client';
 import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
 import { modelToEntity as userModelToEntity } from "./user";
 import { modelToEntity as permissionModelToEntity } from "./permission";
 
 /** Prisma UserPermission with optional included relations (use include: { user: true, permission: true } in query) */
 export type UserPermissionWithRelations = UserPermission & {
-    user?: import("@prisma/client").User | null;
-    permission?: import("@prisma/client").Permission | null;
-    grantedByUser?: import("@prisma/client").User | null;
+    user?: import('../generated/client').User | null;
+    permission?: import('../generated/client').Permission | null;
+    grantedByUser?: import('../generated/client').User | null;
 };
 
 export function modelToEntity(userPermission: UserPermissionWithRelations): UserPermissionEntity {

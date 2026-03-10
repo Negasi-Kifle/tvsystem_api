@@ -61,6 +61,16 @@
 
 ### 03/10/2026
 
+- ✅ Upgraded Prisma from v6.19.2 to v7.4.2 (major version migration)
+- ✅ Converted project from CommonJS to ESM (type: module, NodeNext module resolution)
+- ✅ Switched to Prisma driver adapter (`@prisma/adapter-pg`) -- no more Rust query engine
+- ✅ Created `prisma.config.ts` for centralized Prisma CLI configuration
+- ✅ Updated Prisma generator from `prisma-client-js` to `prisma-client` with local output directory
+- ✅ Added `.js` extensions to all 949 relative imports across 214 files for ESM compatibility
+- ✅ Replaced `ts-node-dev` with `tsx` for ESM-compatible development
+- ✅ Fixed ESM module loading order issue (switched to `import 'dotenv/config'`)
+- ✅ Updated Jest configuration for ESM support
+- ✅ Installed Node.js 22 LTS (required by Prisma 7)
 - ✅ Implemented full BroadcastSlot feature (domain entity, Prisma model, repository, use cases, DTOs, controller, routes)
 - ✅ Added materialization endpoint (`POST /satellite-schedules/:scheduleId/broadcast-slots`) to generate date-specific slots from weekly ScheduleBlock templates
 - ✅ Auto-materialization: BroadcastSlots are automatically generated when a schedule status changes to ACTIVE

@@ -1,7 +1,7 @@
 import { QueryOptions } from '../../domain/interfaces/query-options.interface';
 import { PermissionEntity } from '../../domain/entities/permission.entity';
 import { FetchAllPermissionsDto } from '../dtos/requests/permission/fetch-all-permissions.dto';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../infrastructure/prisma/generated/client';
 
 /**
  * Maps the fetch-all-permissions request DTO to repo QueryOptions.

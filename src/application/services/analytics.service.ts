@@ -8,7 +8,7 @@ export class AnalyticsService {
     });
 
     // Transform to match the previous MongoDB aggregate format
-    return result.map((item) => ({
+    return result.map((item: typeof result[number]) => ({
       _id: item.showId,
       total: item._count.id
     }));
@@ -20,7 +20,7 @@ export class AnalyticsService {
       _count: { id: true }
     });
 
-    return result.map((item) => ({
+    return result.map((item: typeof result[number]) => ({
       _id: item.status,
       total: item._count.id
     }));

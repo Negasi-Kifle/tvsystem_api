@@ -1,4 +1,4 @@
-import { Employee, User } from "@prisma/client";
+import { Employee, User } from '../generated/client';
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
 import { modelToEntity as userModelToEntity } from "./user";
 

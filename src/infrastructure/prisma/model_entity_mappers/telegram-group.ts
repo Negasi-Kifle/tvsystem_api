@@ -1,4 +1,4 @@
-import { TelegramGroup } from "@prisma/client";
+import { TelegramGroup } from '../generated/client';
 import { TelegramGroupEntity } from "../../../domain/entities/telegram-groups.entity";
 
 export function modelToEntity(telegramGroup: TelegramGroup): TelegramGroupEntity {

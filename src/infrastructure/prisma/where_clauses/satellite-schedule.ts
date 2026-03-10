@@ -1,5 +1,5 @@
 import { SatelliteScheduleFilters } from '../../../domain/interfaces/satellite-schedule-filters.interface';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../generated/client';
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
 import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-type.enum';
 

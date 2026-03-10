@@ -60,6 +60,6 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
             },
             include: { user: true, permission: true, grantedByUser: true },
         });
-        return userPermissions.map((up) => up.permission.nameSlug);
+        return userPermissions.map((up: typeof userPermissions[number]) => up.permission.nameSlug);
     }
 }

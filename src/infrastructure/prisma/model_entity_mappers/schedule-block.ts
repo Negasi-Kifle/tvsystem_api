@@ -1,4 +1,4 @@
-import { SatelliteScheduleBlock } from '@prisma/client';
+import { SatelliteScheduleBlock } from '../generated/client';
 import { ScheduleBlockEntity } from '../../../domain/entities/satellite-schedule-block.entity';
 import { DayOfWeek } from '../../../domain/enums/day-of-week.enum';
 import { BroadcastType } from '../../../domain/enums/broadcast-type.enum';

@@ -1,4 +1,4 @@
-import { Partner, Prisma, User } from "@prisma/client";
+import { Partner, Prisma, User } from '../generated/client';
 import { PrismaBaseRepository } from "./base.repository";
 import { IPartnerRepository } from "../../../domain/repositories/partner.repo";
 import { PartnerEntity } from "../../../domain/entities/partner.entity";
@@ -38,7 +38,7 @@ export class PartnerRepository extends PrismaBaseRepository implements IPartnerR
     };
     const { id: _omitUser, ...userData } = userModel;
 
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const uniquePermissionIds = [...new Set(permissionIds)];
 
       const savedPartner = await tx.partner.create({ data: partnerData });
@@ -121,7 +121,7 @@ export class PartnerRepository extends PrismaBaseRepository implements IPartnerR
     partner: PartnerEntity,
     user: UserEntity,
   ): Promise<{ partner: PartnerEntity; user: UserEntity }> {
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const updatedPartner = await tx.partner.update({
         where: { id: partner.id },
         data: {

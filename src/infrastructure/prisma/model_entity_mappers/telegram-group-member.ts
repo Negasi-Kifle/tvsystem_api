@@ -1,4 +1,4 @@
-import { Prisma, TelegramGroupMember } from "@prisma/client";
+import { Prisma, TelegramGroupMember } from '../generated/client';
 import { TelegramGroupMemberEntity } from "../../../domain/entities/telegram-group-member.entity";
 import { modelToEntity as mapTelegramGroupToEntity } from "./telegram-group";
 import { SexTypes } from "../../../domain/enums/sex-types.enum";

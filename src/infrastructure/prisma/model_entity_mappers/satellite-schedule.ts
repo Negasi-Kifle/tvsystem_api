@@ -1,4 +1,4 @@
-import { SatelliteSchedule } from '@prisma/client';
+import { SatelliteSchedule } from '../generated/client';
 import { SatelliteScheduleEntity } from '../../../domain/entities/satellite-schedule.entity';
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
 import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-type.enum';

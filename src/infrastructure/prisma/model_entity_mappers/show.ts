@@ -1,4 +1,4 @@
-import { Show } from "@prisma/client";
+import { Show } from '../generated/client';
 import { ShowEntity } from "../../../domain/entities/show.entity";
 import { ShowType } from "../../../domain/enums/show-type.enum";
 import { Status } from "../../../domain/enums/status";

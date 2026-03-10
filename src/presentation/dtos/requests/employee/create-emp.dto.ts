@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SexTypes, UserRole } from "../../../../domain/enums/index";
+import { SexTypes, UserRole } from "../../../../domain/enums";
 
 export const createEmployeeDto = z.object({
 fullName: z.string("Full name is required and must be at least 2 characters long").min(2),

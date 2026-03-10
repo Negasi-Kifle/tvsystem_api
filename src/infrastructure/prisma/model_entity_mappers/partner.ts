@@ -1,4 +1,4 @@
-import { Partner as Partner, User } from "@prisma/client";
+import { Partner, User } from '../generated/client';
 import { PartnerEntity } from "../../../domain/entities/partner.entity";
 import { Percentage } from "../../../domain/value-objects/percentage.value-object";
 import { modelToEntity as userModelToEntity } from "./user";

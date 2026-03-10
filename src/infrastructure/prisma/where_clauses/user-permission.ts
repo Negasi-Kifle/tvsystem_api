@@ -1,5 +1,5 @@
 import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 
 export function buildWhereClauseForUserPermission(filters: Partial<UserPermissionEntity>): Prisma.UserPermissionWhereInput {
     if (!filters) return {};

@@ -1,5 +1,5 @@
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 
 export function buildWhereClauseForEmployee(filters: Partial<EmployeeEntity>): Prisma.EmployeeWhereInput {
     if (!filters) return {};

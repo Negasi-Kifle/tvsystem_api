@@ -1,5 +1,5 @@
 import { ShowFilters } from "../../../domain/interfaces/show-filters.interface";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 import { ShowType } from "../../../domain/enums/show-type.enum";
 import { Status } from "../../../domain/enums/status";
 

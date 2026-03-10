@@ -1,4 +1,4 @@
-import { BroadcastSlot } from '@prisma/client';
+import { BroadcastSlot } from '../generated/client';
 import { BroadcastSlotEntity } from '../../../domain/entities/broadcast-slot.entity';
 import { BroadcastSlotStatus } from '../../../domain/enums/broadcast-slot-status.enum';
 import { BroadcastType } from '../../../domain/enums/broadcast-type.enum';

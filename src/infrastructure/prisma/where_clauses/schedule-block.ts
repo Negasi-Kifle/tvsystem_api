@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../generated/client';
 import { ScheduleBlockFilters } from '../../../domain/interfaces/schedule-block-filters.interface';
 
 export function buildWhereClauseForScheduleBlock(

@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../generated/client';
 import { BroadcastSlotFilters } from '../../../domain/interfaces/broadcast-slot-filters.interface';
 
 export function buildWhereClauseForBroadcastSlot(

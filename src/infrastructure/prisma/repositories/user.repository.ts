@@ -1,3 +1,4 @@
+import { Prisma } from '../generated/client';
 import { PrismaBaseRepository } from "./base.repository";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 import { UserEntity } from "../../../domain/entities/user.entity";
@@ -29,7 +30,7 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
     const { id: _omit, ...createData } = userModel;
     const uniquePermissionIds = [...new Set(permissionIds)];
 
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const savedUser = await tx.user.create({ data: createData });
 
       if (uniquePermissionIds.length > 0) {
@@ -97,7 +98,7 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
   }
 
   async updateStatusWithParentSync(userEntity: UserEntity): Promise<UserEntity | null> {
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const updatedUser = await tx.user.update({
         where: { id: userEntity.id },
         data: { isActive: userEntity.isActive },

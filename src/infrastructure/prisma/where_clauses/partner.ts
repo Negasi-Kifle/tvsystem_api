@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 import { PartnerEntity } from "../../../domain/entities/partner.entity";
 
 export function buildWhereClauseForPartner(filters: Partial<PartnerEntity>): Prisma.PartnerWhereInput {

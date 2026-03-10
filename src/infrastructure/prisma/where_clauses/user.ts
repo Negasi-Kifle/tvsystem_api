@@ -1,5 +1,5 @@
 import { UserEntity } from "../../../domain/entities/user.entity";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 
 export function buildWhereClauseForUser(filters: Partial<UserEntity>): Prisma.UserWhereInput {
     if (!filters) return {};

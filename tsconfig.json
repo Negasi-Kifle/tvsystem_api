@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "CommonJS",
-    "lib": ["ES2021"],
+    "target": "ES2023",
+    "module": "ESNext",
+    "lib": ["ES2023"],
     "rootDir": "src",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

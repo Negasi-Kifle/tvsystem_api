@@ -1,3 +1,4 @@
+import { Prisma } from '../generated/client';
 import { PrismaBaseRepository } from "./base.repository";
 import { IEmployeeRepository } from "../../../domain/repositories/employee.repo";
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
@@ -28,7 +29,7 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
     const { id: _omitEmp, ...empData } = empModel;
     const { id: _omitUser, ...userData } = userModel;
 
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const uniquePermissionIds = [...new Set(permissionIds)];
 
       const savedEmployee = await tx.employee.create({ data: empData });
@@ -125,7 +126,7 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
   }
 
   async updateEmployeeAndUserStatus(employee: EmployeeEntity, user: UserEntity): Promise<{ employee: EmployeeEntity, user: UserEntity }> {
-    return this.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const updatedEmployee = await tx.employee.update({ where: { id: employee.id }, data: entityToModel(employee) });
       const updatedUser = await tx.user.update({ where: { id: user.id }, data: userEntityToModel(user) });
       return { employee: modelToEntity(updatedEmployee), user: userModelToEntity(updatedUser) };

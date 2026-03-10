@@ -1,5 +1,5 @@
 import { TelegramGroupMemberEntity } from "../../../domain/entities/telegram-group-member.entity";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../generated/client";
 
 export function buildWhereClauseForTelegramGroupMember(filters: Partial<TelegramGroupMemberEntity>): Prisma.TelegramGroupMemberWhereInput {
     if (!filters) return {};

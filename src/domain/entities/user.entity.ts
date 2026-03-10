@@ -1,4 +1,4 @@
-import { UserRole, SexTypes, UserRefModel } from '../enums/index';
+import { UserRole, SexTypes, UserRefModel } from '../enums';
 import { ValidationError } from '../errors/validation.error';
 
 

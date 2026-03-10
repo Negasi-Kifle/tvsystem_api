@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from '../generated/client';
 import { SexTypes } from "../../../domain/enums/sex-types.enum";
 import { UserEntity } from "../../../domain/entities/user.entity";
 import { UserRole } from "../../../domain/enums/user-role.enum";
