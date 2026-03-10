@@ -13,7 +13,6 @@ export type CreateScheduleBlockInput = {
   hour: number;
   minute: number;
   dayPart: EthiopianDayPart;
-  durationMinutes?: number;
   broadcastType: BroadcastType;
   label?: string;
 };
@@ -40,23 +39,22 @@ export class CreateScheduleBlockUseCase {
     }
 
     const startTimeMinutes = EthiopianTime.toGregorianMinutes(input.hour, input.minute, input.dayPart);
-    const durationMinutes = input.durationMinutes ?? show.totalDurationMinutes;
 
     const entity = ScheduleBlockEntity.createInstance(
       input.showId,
       input.scheduleId,
       input.dayOfWeek,
       startTimeMinutes,
-      durationMinutes,
+      show.totalDurationMinutes,
       input.broadcastType,
-      input.label,
+      input.label ?? show.title,
     );
 
     const existing = await this.blockRepo.findByScheduleAndDay(input.scheduleId, input.dayOfWeek);
     for (const block of existing) {
       if (entity.overlaps(block)) {
         throw new ValidationError(
-          `Overlaps with existing block "${block.label ?? block.id}" (${block.startTimeGregorian}–${block.endTimeGregorian})`,
+          `Overlaps with existing block ${block.label ?? block.id} (${block.startTimeGregorian}–${block.endTimeGregorian})`,
         );
       }
     }

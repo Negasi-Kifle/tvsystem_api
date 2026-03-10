@@ -12,7 +12,6 @@ export type BatchBlockInput = {
   hour: number;
   minute: number;
   dayPart: EthiopianDayPart;
-  durationMinutes?: number;
   broadcastType: BroadcastType;
   label?: string;
 };
@@ -33,19 +32,14 @@ export class CreateBatchScheduleBlocksUseCase {
       throw new ValidationError('Can only add blocks to a DRAFT schedule');
     }
 
-    const showIds = [...new Set(inputs.map((i) => i.showId))];
-    for (const showId of showIds) {
-      const show = await this.showRepo.findById(showId);
-      if (!show) {
-        throw new EntityNotFoundError('Show not found', 'Show', showId);
-      }
-    }
-
     const entities: ScheduleBlockEntity[] = [];
     for (const input of inputs) {
       const show = await this.showRepo.findById(input.showId);
+      if (!show) {
+        throw new EntityNotFoundError('Show not found', 'Show', input.showId);
+      }
+
       const startTimeMinutes = EthiopianTime.toGregorianMinutes(input.hour, input.minute, input.dayPart);
-      const durationMinutes = input.durationMinutes ?? show!.totalDurationMinutes;
 
       entities.push(
         ScheduleBlockEntity.createInstance(
@@ -53,9 +47,9 @@ export class CreateBatchScheduleBlocksUseCase {
           scheduleId,
           input.dayOfWeek,
           startTimeMinutes,
-          durationMinutes,
+          show.totalDurationMinutes,
           input.broadcastType,
-          input.label,
+          input.label ?? show.title,
         ),
       );
     }
@@ -77,6 +71,7 @@ export class CreateBatchScheduleBlocksUseCase {
         const current = allBlocks[i]!;
         const next = allBlocks[i + 1]!;
         if (current.endTimeMinutes > next.startTimeMinutes) {
+          // TODO: use ethiopian time
           throw new ValidationError(
             `Overlap detected on ${day}: block at ${current.startTimeGregorian} overlaps with ${next.startTimeGregorian}`,
           );

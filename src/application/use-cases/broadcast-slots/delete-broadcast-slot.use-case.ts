@@ -12,12 +12,6 @@ export class DeleteBroadcastSlotUseCase {
       throw new EntityNotFoundError('Broadcast slot not found', 'BroadcastSlot', id);
     }
 
-    if (slot.status !== BroadcastSlotStatus.Scheduled) {
-      throw new ValidationError(
-        `Can only delete slots with status SCHEDULED, current status is ${slot.status}`,
-      );
-    }
-
     return this.slotRepo.deleteById(id);
   }
 }

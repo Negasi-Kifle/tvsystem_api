@@ -4,14 +4,13 @@ import { BroadcastType } from '../../../../domain/enums/broadcast-type.enum';
 import { DayOfWeek } from '../../../../domain/enums/day-of-week.enum';
 
 export const createScheduleBlockDto = z.object({
-  showId: z.string().uuid(),
-  dayOfWeek: z.enum(DayOfWeek),
+  showId: z.uuid(),
+  dayOfWeek: z.enum(DayOfWeek, "Day of week must be one of the following: " + Object.values(DayOfWeek).join(', ')),
   hour: z.number().int().min(1).max(12),
   minute: z.number().int().min(0).max(59),
-  dayPart: z.enum(ETHIOPIAN_DAY_PART_VALUES),
-  durationMinutes: z.number().int().positive().optional(),
-  broadcastType: z.enum(BroadcastType),
+  dayPart: z.enum(ETHIOPIAN_DAY_PART_VALUES, "Day part must be one of the following: " + Object.values(ETHIOPIAN_DAY_PART_VALUES).join(', ')),
+  broadcastType: z.enum(BroadcastType, "Broadcast type must be one of the following: " + Object.values(BroadcastType).join(', ')),
   label: z.string().optional(),
-});
+}).strict();
 
 export type CreateScheduleBlockDto = z.infer<typeof createScheduleBlockDto>;
