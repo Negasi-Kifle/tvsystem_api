@@ -1,8 +1,8 @@
 import { AddMemberToTelegramGroupUseCase } from "../../application/use-cases/telegram-group-members/add-member-to-tg-group.use-case";
-import { AddUserToTelegramGroupDto } from "../dtos/tg-group-member/add-user-to-tg-group.dto";
+import { AddUserToTelegramGroupDto } from "../dtos/requests/tg-group-member/add-user-to-tg-group.dto";
 import { NextFunction, Request, Response } from "express";
 import { sendErrorResponse } from "../../shared/utils/error-handler";
-import { FetchAllTgMembersDto } from "../dtos/tg-group-member/fetch-all-tg-members.dto";
+import { FetchAllTgMembersDto } from "../dtos/requests/tg-group-member/fetch-all-tg-members.dto";
 import { TelegramGroupMemberRepository } from "../../infrastructure/prisma/repositories/telegram-group-member.repository";
 import { UserRepository } from "../../infrastructure/prisma/repositories/user.repository";
 import { FindTelegramGroupMemberByIdUseCase } from "../../application/use-cases/telegram-group-members/find-by-id.use-case";
