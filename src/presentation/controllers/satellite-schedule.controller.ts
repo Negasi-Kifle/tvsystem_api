@@ -1,28 +1,35 @@
 import { NextFunction, Request, Response } from 'express';
 import { CreateSatelliteScheduleUseCase } from '../../application/use-cases/satellite-schedules/create-satellite-schedule.use-case';
+import { CreateSatelliteScheduleWithBlocksUseCase } from '../../application/use-cases/satellite-schedules/create-satellite-schedule-with-blocks.use-case';
 import { FetchAllSatelliteSchedulesUseCase } from '../../application/use-cases/satellite-schedules/fetch-all-satellite-schedules.use-case';
 import { CountSatelliteSchedulesUseCase } from '../../application/use-cases/satellite-schedules/count-satellite-schedules.use-case';
 import { GetSatelliteScheduleByIdUseCase } from '../../application/use-cases/satellite-schedules/get-satellite-schedule-by-id.use-case';
 import { UpdateSatelliteScheduleUseCase } from '../../application/use-cases/satellite-schedules/update-satellite-schedule.use-case';
 import { DeleteSatelliteScheduleUseCase } from '../../application/use-cases/satellite-schedules/delete-satellite-schedule.use-case';
+import { CreateBatchScheduleBlocksUseCase } from '../../application/use-cases/satellite-schedule-blocks/create-batch-schedule-blocks.use-case';
 import { SatelliteScheduleRepository } from '../../infrastructure/prisma/repositories/satellite-schedule.repository';
+import { ScheduleBlockRepository } from '../../infrastructure/prisma/repositories/schedule-block.repository';
+import { ShowRepository } from '../../infrastructure/prisma/repositories/show.repository';
 import { CreateSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/create-satellite-schedule.dto';
+import { CreateSatelliteScheduleWithBlocksDto } from '../dtos/requests/satellite-schedule/create-satellite-schedule-with-blocks.dto';
 import { UpdateSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/update-satellite-schedule.dto';
 import { FetchAllSatelliteSchedulesDto } from '../dtos/requests/satellite-schedule/fetch-all-satellite-schedules.dto';
 import { mapFetchAllSatelliteSchedulesDtoToQueryOptions } from '../mappers/satellite-schedule-to-query-options.mapper';
 import { CalendarService } from '../../infrastructure/services/calendar.service';
 import { GenerateBroadcastSlotsUseCase } from '../../application/use-cases/broadcast-slots/generate-broadcast-slots.use-case';
 import { BroadcastSlotRepository } from '../../infrastructure/prisma/repositories/broadcast-slot.repository';
-import { ScheduleBlockRepository } from '../../infrastructure/prisma/repositories/schedule-block.repository';
 
 const repo = new SatelliteScheduleRepository();
 const calendarService = new CalendarService();
 const slotRepo = new BroadcastSlotRepository();
 const blockRepo = new ScheduleBlockRepository();
+const showRepo = new ShowRepository();
 
 const activationHandler = new GenerateBroadcastSlotsUseCase(slotRepo, blockRepo, repo, calendarService);
+const createWithBlocksHandler = new CreateBatchScheduleBlocksUseCase(blockRepo, repo, showRepo);
 
 const createUseCase = new CreateSatelliteScheduleUseCase(repo, calendarService);
+const createWithBlocksUseCase = new CreateSatelliteScheduleWithBlocksUseCase(repo, calendarService, createWithBlocksHandler);
 const fetchAllUseCase = new FetchAllSatelliteSchedulesUseCase(repo);
 const countUseCase = new CountSatelliteSchedulesUseCase(repo);
 const getByIdUseCase = new GetSatelliteScheduleByIdUseCase(repo);
@@ -37,6 +44,21 @@ export async function createSatelliteSchedule(req: Request, res: Response) {
     message: 'Satellite schedule created successfully',
     data: { schedule },
   });
+}
+
+export async function createSatelliteScheduleWithBlocks(req: Request, res: Response, next: NextFunction) {
+  try {
+    const payload = req.body as CreateSatelliteScheduleWithBlocksDto;
+    const { schedule, count } = await createWithBlocksUseCase.execute(payload);
+    
+    res.status(201).json({
+      status: 'SUCCESS',
+      message: `A satellite schedule with ${count} schedule blocks created successfully`,
+      data: { schedule, scheduleBlocksCount: count },
+    });
+  } catch (error) {
+    next(error);
+  }
 }
 
 export async function listSatelliteSchedules(req: Request, res: Response, next: NextFunction) {

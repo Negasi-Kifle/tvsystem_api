@@ -3,8 +3,6 @@ import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
 import { ISatelliteScheduleRepository } from '../../../domain/repositories/satellite-schedule.repository.interface';
 import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
-import { EthiopianTime } from '../../../domain/value-objects/ethiopian-time.value-objects';
-import { CalendarService } from '../../../infrastructure/services/calendar.service';
 import { ICalendarService } from '../../../domain/services/calendar.service';
 
 export type CreateSatelliteScheduleInput = {

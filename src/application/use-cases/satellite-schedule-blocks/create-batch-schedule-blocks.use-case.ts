@@ -5,6 +5,7 @@ import { IScheduleBlockRepository } from '../../../domain/repositories/schedule-
 import { ISatelliteScheduleRepository } from '../../../domain/repositories/satellite-schedule.repository.interface';
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
 import { EthiopianTime, EthiopianDayPart } from '../../../domain/value-objects/ethiopian-time.value-objects';
+import { ISatelliteScheduleCreateWithBlocksHandler } from '../../../domain/services/create-satellite-schedule-with-blocks.handler';
 
 export type BatchBlockInput = {
   showId: string;
@@ -16,7 +17,7 @@ export type BatchBlockInput = {
   label?: string;
 };
 
-export class CreateBatchScheduleBlocksUseCase {
+export class CreateBatchScheduleBlocksUseCase implements ISatelliteScheduleCreateWithBlocksHandler {
   constructor(
     private readonly blockRepo: IScheduleBlockRepository,
     private readonly scheduleRepo: ISatelliteScheduleRepository,
@@ -80,5 +81,11 @@ export class CreateBatchScheduleBlocksUseCase {
     }
 
     return this.blockRepo.createMany(entities);
+  }
+
+
+  async onScheduleCreatedWithBlocks(scheduleId: string, blocks: BatchBlockInput[]): Promise<number> {
+    const result = await this.execute(scheduleId, blocks); 
+    return result.count;
   }
 }

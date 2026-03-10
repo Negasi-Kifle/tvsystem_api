@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   createSatelliteSchedule,
+  createSatelliteScheduleWithBlocks,
   deleteSatelliteSchedule,
   getSatelliteScheduleById,
   listSatelliteSchedules,
@@ -9,6 +10,7 @@ import {
 import { validateBody } from '../validators/validate-body';
 import { validateQuery } from '../validators/validate-query';
 import { createSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/create-satellite-schedule.dto';
+import { createSatelliteScheduleWithBlocksDto } from '../dtos/requests/satellite-schedule/create-satellite-schedule-with-blocks.dto';
 import { updateSatelliteScheduleDto } from '../dtos/requests/satellite-schedule/update-satellite-schedule.dto';
 import { fetchAllSatelliteSchedulesDto } from '../dtos/requests/satellite-schedule/fetch-all-satellite-schedules.dto';
 import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
@@ -36,6 +38,14 @@ router
     validateBody(createSatelliteScheduleDto),
     createSatelliteSchedule,
   );
+
+router.post(
+  '/with-blocks',
+  authMiddleware,
+  requirePermission(PERMISSIONS.MANAGE_SCHEDULES),
+  validateBody(createSatelliteScheduleWithBlocksDto),
+  createSatelliteScheduleWithBlocks,
+);
 
 router
   .route('/:id')
