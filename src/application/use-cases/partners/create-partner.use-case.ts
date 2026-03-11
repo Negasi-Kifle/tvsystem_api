@@ -3,7 +3,6 @@ import { UserEntity } from "../../../domain/entities/user.entity";
 import { SexTypes, UserRole } from "../../../domain/enums";
 import { ValidationError } from "../../../domain/errors/validation.error";
 import { IPartnerRepository,  } from "../../../domain/repositories/partner.repo";
-import { Percentage } from "../../../domain/value-objects/percentage.value-object";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 
@@ -14,7 +13,6 @@ export type CreatePartnerInput = {
     passwordHash: string;
     phoneNumber: string;
     sex: SexTypes;
-    revenueShare: Percentage;
     roles?: UserRole[];
     isActive?: boolean;
     isFirstTimeAccount?: boolean;
@@ -66,7 +64,6 @@ export class CreatePartnerAndUserUseCase {
         }
 
         const partnerEntity = PartnerEntity.createInstance(
-            payload.revenueShare,
             payload.isActive ?? true,
         );
 

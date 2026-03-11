@@ -31,7 +31,6 @@ export class PartnerRepository extends PrismaBaseRepository implements IPartnerR
     const userModel = userEntityToModel(user);
 
     const partnerData: Prisma.PartnerUncheckedCreateInput = {
-      revenueShare: partnerModel.revenueShare as Prisma.InputJsonValue,
       isActive: partnerModel.isActive,
       createdAt: partnerModel.createdAt,
       updatedAt: partnerModel.updatedAt,
@@ -84,7 +83,6 @@ export class PartnerRepository extends PrismaBaseRepository implements IPartnerR
   async create(data: Omit<PartnerEntity, "id">): Promise<PartnerEntity> {
     const partnerModel = entityToModel(data as PartnerEntity);
     const createData: Prisma.PartnerCreateInput = {
-      revenueShare: partnerModel.revenueShare as Prisma.InputJsonValue,
       isActive: partnerModel.isActive,
       createdAt: partnerModel.createdAt,
       updatedAt: partnerModel.updatedAt,
@@ -106,7 +104,7 @@ export class PartnerRepository extends PrismaBaseRepository implements IPartnerR
   // TODO: When UpdatePartnerUseCase exists, sync partner.isActive to linked User.isActive
   async update(partner: PartnerEntity): Promise<PartnerEntity | null> {
     const data: Prisma.PartnerUpdateInput = {
-      revenueShare: { value: partner.revenueShare.value },
+      isActive: partner.isActive,
       updatedAt: new Date(),
     };
 

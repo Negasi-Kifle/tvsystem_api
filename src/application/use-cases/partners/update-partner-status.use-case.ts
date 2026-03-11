@@ -21,7 +21,7 @@ export class UpdatePartnerStatusUseCase {
             throw new EntityNotFoundError('User not found', 'User', id);
         }
 
-        const updatedPartner = partner.updateInstance(undefined, isActive);
+        const updatedPartner = partner.updateInstance(isActive);
         const updatedUser = users[0]!.updateInstance(
             undefined,
             undefined,

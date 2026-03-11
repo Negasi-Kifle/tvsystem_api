@@ -5,7 +5,6 @@ export function buildWhereClauseForPartner(filters: Partial<PartnerEntity>): Pri
     if (!filters) return {};
 
     return {
-        ...(filters.revenueShare && { revenueShare: { equals: { value: filters.revenueShare.value } } }),
         ...(filters.isActive !== undefined && { isActive: filters.isActive }),
     };
 }

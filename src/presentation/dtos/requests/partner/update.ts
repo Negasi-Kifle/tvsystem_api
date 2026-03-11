@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const updatePartnerDto = z.object({
-    revenueShare: z.number("Revenue share must be a number").min(0).max(100).optional(),
+    isActive: z.boolean("Is active must be a boolean"),
 }).strict();
 
 export type UpdatePartnerDto = z.infer<typeof updatePartnerDto>;

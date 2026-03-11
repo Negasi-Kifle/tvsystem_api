@@ -1,10 +1,9 @@
 import { PartnerEntity } from "../../../domain/entities/partner.entity";
 import { EntityNotFoundError } from "../../../domain/errors";
 import { IPartnerRepository } from "../../../domain/repositories/partner.repo";
-import { Percentage } from "../../../domain/value-objects/percentage.value-object";
 
 export type UpdatePartnerInput = {
-    revenueShare?: number;
+    isActive: boolean;
 }
 
 export class UpdatePartnerUseCase {
@@ -16,12 +15,7 @@ export class UpdatePartnerUseCase {
             throw new EntityNotFoundError('Partner not found', 'Partner', id);
         }
 
-        const updatedPartner = partner.updateInstance(
-            payload.revenueShare !== undefined
-                ? new Percentage(payload.revenueShare)
-                : partner.revenueShare,
-        );
-
+        const updatedPartner = partner.updateInstance(payload.isActive);
         return this.partnerRepository.update(updatedPartner);
     }
 }

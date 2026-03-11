@@ -4,7 +4,6 @@ import { PartnerRepository } from '../../infrastructure/prisma/repositories/part
 import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
 import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 import { CreatePartnerAndUserUseCase } from '../../application/use-cases/partners/create-partner.use-case';
-import { Percentage } from '../../domain/value-objects/percentage.value-object';
 import { FetchAllPartnersUseCase } from '../../application/use-cases/partners/fetch-all-partners.use-case';
 import { CountPartnersUseCase } from '../../application/use-cases/partners/count-partners.use-case';
 import { mapFetchAllPartnersDtoToQueryOptions } from '../mappers/partner-to-query-options.mapper';
@@ -36,7 +35,6 @@ const deletePartnerUseCase = new DeletePartnerUseCase(partnerRepository);
 export async function createPartner(req: Request, res: Response, next: NextFunction) {
     try {
         const payload = req.body as CreatePartnerDto;
-        const revenueShare = new Percentage(payload.revenueShare);
 
 
         const { partner, user } = await createPartnerAndUserUseCase.execute({
@@ -45,7 +43,6 @@ export async function createPartner(req: Request, res: Response, next: NextFunct
             passwordHash: payload.passwordHash,
             phoneNumber: payload.phoneNumber,
             sex: payload.sex,
-            revenueShare: revenueShare,
             roles: payload.roles,
             permissionIds: payload.permissionIds,
             grantedBy: req.user?.id,
@@ -106,14 +103,20 @@ export async function getPartner(req: Request, res: Response, next: NextFunction
 export async function updatePartner(req: Request, res: Response, next: NextFunction) {
     try {
         const { id } = req.params as { id: string };
-        const payload = req.body as UpdatePartnerDto;
-        const partner = await updatePartnerUseCase.execute(id, payload);
+        // const payload = req.body as UpdatePartnerDto;
+        // const partner = await updatePartnerUseCase.execute(id, payload);
 
-        res.status(200).json({
-            status: 'SUCCESS',
-            message: 'Partner updated successfully',
-            data: { partner },
-        });
+        // res.status(200).json({
+        //     status: 'SUCCESS',
+        //     message: 'Partner updated successfully',
+        //     data: { partner },
+        // });
+
+        // TODO: Remove this after more fields are added to the partner entity
+        res.status(400).json({
+            status: 'ERROR',
+            message: 'API Disabled Temporarily',
+        })
     } catch (error: any) {
         next(error);
     }
