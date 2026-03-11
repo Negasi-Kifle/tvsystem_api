@@ -1,7 +1,9 @@
 import { BroadcastType, DayOfWeek } from '../enums/';
 import { ValidationError } from '../errors/validation.error';
 import { EthiopianTime } from '../value-objects/ethiopian-time.value-objects';
-
+import { ShowSummary } from '../interfaces/show-summary.interface';
+import { SatelliteScheduleSummary } from '../interfaces/satellite-schedule-summary.interface';
+import { BroadcastSlotSummary } from '../interfaces/broadcast-slot-summary-interface';
 export class ScheduleBlockEntity {
   constructor(
     public showId: string,
@@ -14,6 +16,9 @@ export class ScheduleBlockEntity {
     public id?: string,
     public createdAt?: Date,
     public updatedAt?: Date,
+    public show?: ShowSummary,
+    public schedule?: SatelliteScheduleSummary,
+    public broadcastSlots?: BroadcastSlotSummary[],
   ) {}
 
   static createInstance(
@@ -27,6 +32,9 @@ export class ScheduleBlockEntity {
     id?: string,
     createdAt?: Date,
     updatedAt?: Date,
+    show?: ShowSummary,
+    schedule?: SatelliteScheduleSummary,
+    broadcastSlots?: BroadcastSlotSummary[],
   ): ScheduleBlockEntity {
     if (!Object.values(DayOfWeek).includes(dayOfWeek)) {
       throw new ValidationError(`Invalid dayOfWeek: ${dayOfWeek}`);
@@ -52,6 +60,9 @@ export class ScheduleBlockEntity {
       id,
       createdAt,
       updatedAt,
+      show,
+      schedule,
+      broadcastSlots,
     );
   }
 

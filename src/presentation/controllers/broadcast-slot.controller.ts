@@ -140,5 +140,8 @@ function formatSlotResponse(slot: BroadcastSlotEntity) {
     },
     createdAt: slot.createdAt,
     updatedAt: slot.updatedAt,
+    scheduleBlock: slot.scheduleBlock,
+    schedule: slot.schedule,
+    show: slot.show,
   };
 }

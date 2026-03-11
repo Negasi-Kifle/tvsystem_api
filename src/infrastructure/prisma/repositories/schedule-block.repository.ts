@@ -19,7 +19,10 @@ export class ScheduleBlockRepository
   }
 
   async findById(id: string): Promise<ScheduleBlockEntity | null> {
-    const block = await this.prisma.satelliteScheduleBlock.findUnique({ where: { id } });
+    const block = await this.prisma.satelliteScheduleBlock.findUnique({
+      where: { id },
+      include: { show: true, schedule: true, broadcastSlots: true },
+    });
     return block ? modelToEntity(block) : null;
   }
 
@@ -32,6 +35,7 @@ export class ScheduleBlockRepository
       skip: query.skip ?? 0,
       take: query.take ?? 200,
       orderBy: [{ dayOfWeek: 'asc' }, { startTimeMinutes: 'asc' }],
+      include: { show: true, schedule: true, broadcastSlots: true },
     });
     return blocks.map(modelToEntity);
   }
@@ -62,6 +66,7 @@ export class ScheduleBlockRepository
     const blocks = await this.prisma.satelliteScheduleBlock.findMany({
       where: { scheduleId, dayOfWeek },
       orderBy: { startTimeMinutes: 'asc' },
+      include: { show: true, schedule: true, broadcastSlots: true },
     });
     return blocks.map(modelToEntity);
   }

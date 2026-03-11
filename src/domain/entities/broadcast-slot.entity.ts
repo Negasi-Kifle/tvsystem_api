@@ -1,6 +1,9 @@
 import { BroadcastSlotStatus, BroadcastType, DayOfWeek } from '../enums';
 import { ValidationError } from '../errors/validation.error';
+import { SatelliteScheduleSummary } from '../interfaces/satellite-schedule-summary.interface';
+import { ShowSummary } from '../interfaces/show-summary.interface';
 import { EthiopianTime } from '../value-objects/ethiopian-time.value-objects';
+import { ScheduleBlockEntity } from './satellite-schedule-block.entity';
 
 const VALID_STATUS_TRANSITIONS: Record<BroadcastSlotStatus, BroadcastSlotStatus[]> = {
   [BroadcastSlotStatus.Scheduled]: [BroadcastSlotStatus.Aired, BroadcastSlotStatus.Missed, BroadcastSlotStatus.Preempted, BroadcastSlotStatus.Cancelled],
@@ -27,6 +30,9 @@ export class BroadcastSlotEntity {
     public id?: string,
     public createdAt?: Date,
     public updatedAt?: Date,
+    public scheduleBlock?: ScheduleBlockEntity,
+    public schedule?: SatelliteScheduleSummary,
+    public show?: ShowSummary,
   ) {}
 
   static createInstance(
@@ -45,6 +51,9 @@ export class BroadcastSlotEntity {
     id?: string,
     createdAt?: Date,
     updatedAt?: Date,
+    scheduleBlock?: ScheduleBlockEntity,
+    schedule?: SatelliteScheduleSummary,
+    show?: ShowSummary,
   ): BroadcastSlotEntity {
     if (!Object.values(DayOfWeek).includes(dayOfWeek)) {
       throw new ValidationError(`Invalid dayOfWeek: ${dayOfWeek}`);
@@ -78,6 +87,9 @@ export class BroadcastSlotEntity {
       id,
       createdAt,
       updatedAt,
+      scheduleBlock,
+      schedule,
+      show,
     );
   }
 

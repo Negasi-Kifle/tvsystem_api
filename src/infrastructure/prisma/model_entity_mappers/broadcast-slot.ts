@@ -3,8 +3,18 @@ import { BroadcastSlotEntity } from '../../../domain/entities/broadcast-slot.ent
 import { BroadcastSlotStatus } from '../../../domain/enums/broadcast-slot-status.enum';
 import { BroadcastType } from '../../../domain/enums/broadcast-type.enum';
 import { DayOfWeek } from '../../../domain/enums/day-of-week.enum';
+import { Prisma } from '../generated/client';
+import { modelToEntity as mapScheduleBlockToEntity } from './schedule-block';
+import { modelToEntity as mapSatelliteScheduleToEntity } from './satellite-schedule';
+import { modelToEntity as mapShowToEntity } from './show';
 
-export function modelToEntity(slot: BroadcastSlot): BroadcastSlotEntity {
+type BroadcastSlotWithRelations = Prisma.BroadcastSlotGetPayload<{
+  include: { scheduleBlock: true; schedule: true; show: true };
+}>;
+
+type BroadcastSlotLike = Prisma.BroadcastSlotGetPayload<{}> | BroadcastSlotWithRelations;
+
+export function modelToEntity(slot: BroadcastSlotLike): BroadcastSlotEntity {
   return BroadcastSlotEntity.createInstance(
     slot.scheduleBlockId,
     slot.scheduleId,
@@ -21,6 +31,9 @@ export function modelToEntity(slot: BroadcastSlot): BroadcastSlotEntity {
     slot.id,
     slot.createdAt,
     slot.updatedAt,
+    'scheduleBlock' in slot && slot.scheduleBlock ? mapScheduleBlockToEntity(slot.scheduleBlock) : undefined,
+    'schedule' in slot && slot.schedule ? mapSatelliteScheduleToEntity(slot.schedule) : undefined,
+    'show' in slot && slot.show ? mapShowToEntity(slot.show) : undefined,
   );
 }
 

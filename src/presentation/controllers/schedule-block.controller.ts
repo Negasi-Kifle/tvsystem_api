@@ -164,5 +164,8 @@ function formatBlockResponse(block: ScheduleBlockEntity) {
     },
     createdAt: block.createdAt,
     updatedAt: block.updatedAt,
+    show: block.show,
+    schedule: block.schedule,
+    broadcastSlots: block.broadcastSlots,
   };
 }
