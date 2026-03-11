@@ -21,7 +21,6 @@ export function modelToEntity(telegramGroupMember: TelegramGroupMemberLike): Tel
             : undefined,
         'user' in telegramGroupMember && telegramGroupMember.user
             ? {
-                id: telegramGroupMember.user.id,
                 email: telegramGroupMember.user.email,
                 fullName: telegramGroupMember.user.fullName,
                 sex: telegramGroupMember.user.sex as SexTypes,

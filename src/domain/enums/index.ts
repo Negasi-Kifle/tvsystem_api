@@ -10,6 +10,7 @@ import { BroadcastType } from "./broadcast-type.enum"
 import { SatelliteScheduleStatus } from "./satellite-schedule-status.enum"
 import { SatelliteScheduleType } from "./satellite-schedule-type.enum"
 import { BroadcastSlotStatus } from "./broadcast-slot-status.enum"
+import { RevenueShareType } from "./revenue-share-type.enum"
 
 export {
     UserRole,
@@ -24,4 +25,5 @@ export {
     SatelliteScheduleStatus,
     SatelliteScheduleType,
     BroadcastSlotStatus,
+    RevenueShareType,
 };

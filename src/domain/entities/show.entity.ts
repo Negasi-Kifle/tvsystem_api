@@ -10,7 +10,6 @@ export class ShowEntity {
     public type: ShowType,
     public durationMinutes: number,
     public maxAdLengthMinutes: number,
-    public hostId: string,
     public totalDurationMinutes: number,     // durationMinutes + maxAdLengthMinutes (= "Total" column)
     public partsCount: number,           // Number of segments/parts (= "Parts" column)
     public rerunsCount: number,         // = "Re-run" column (0 or 1)
@@ -33,7 +32,6 @@ export class ShowEntity {
     type: ShowType,
     durationMinutes: number,
     maxAdLengthMinutes: number,
-    hostId: string,
     partsCount: number,
     rerunsCount: number,
     bonusCount: number,
@@ -64,10 +62,6 @@ export class ShowEntity {
       throw new ValidationError('Max ad length (in minutes) is required and must be greater than 0');
     }
 
-    if (!hostId) {
-      throw new ValidationError('Host is required');
-    }
-
     if(!partsCount || partsCount <= 0) {
       throw new ValidationError('Parts count is required and must be greater than 0');
     }
@@ -89,7 +83,6 @@ export class ShowEntity {
       type,
       durationMinutes,
       maxAdLengthMinutes,
-      hostId,
       totalDurationMinutes,
       partsCount,
       rerunsCount,
@@ -106,7 +99,6 @@ export class ShowEntity {
     type?: ShowType,
     durationMinutes?: number,
     maxAdLengthMinutes?: number,
-    hostId?: string,
     partsCount?: number,
     rerunsCount?: number,
     bonusCount?: number,
@@ -119,7 +111,6 @@ export class ShowEntity {
     if (type !== undefined) this.type = type;
     if (durationMinutes !== undefined) this.durationMinutes = durationMinutes;
     if (maxAdLengthMinutes !== undefined) this.maxAdLengthMinutes = maxAdLengthMinutes;
-    if (hostId !== undefined) this.hostId = hostId;
     if (partsCount !== undefined) this.partsCount = partsCount;
     if (rerunsCount !== undefined) this.rerunsCount = rerunsCount;
     if (bonusCount !== undefined) this.bonusCount = bonusCount;

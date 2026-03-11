@@ -5,7 +5,6 @@ export type ShowFilters = Partial<ShowEntity> & {
   title?: string;
   titleSlug?: string;
   type?: ShowType;
-  hostId?: string;
   minDurationMinutes?: number;
   maxDurationMinutes?: number;
   minAdLengthMinutes?: number;

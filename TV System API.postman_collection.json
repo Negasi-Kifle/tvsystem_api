@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "4b3493d7-ceb7-486a-9bb2-2dec7e540453",
+    "_postman_id": "00a5588a-c586-4b91-b93a-3812fd7525fb",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-4b3493d7-ceb7-486a-9bb2-2dec7e540453?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-00a5588a-c586-4b91-b93a-3812fd7525fb?source=collection_link"
   },
   "item": [
     {
@@ -659,7 +659,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8357,7 +8357,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Seifu Show\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"host\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
+              "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8395,7 +8395,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"title\": \"Alebe Show\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"host\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n  \"partsCount\": 3,\n  \"rerunsCount\": 2,\n  \"bonusCount\": 0\n}",
+                  "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -8415,7 +8415,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8475,15 +8475,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "445"
+                  "value": "411"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"1bd-2KiAbtT7+dV34J42mvTQN1VFvRQ\""
+                  "value": "W/\"19b-F2VNxo+KwTKec9RFPSj5/Gg+AD4\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 07 Mar 2026 07:45:09 GMT"
+                  "value": "Wed, 11 Mar 2026 14:40:42 GMT"
                 },
                 {
                   "key": "Connection",
@@ -8495,7 +8495,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Alebe Show\",\n            \"titleSlug\": \"alebe-show\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"hostId\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 3,\n            \"rerunsCount\": 2,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-07T07:45:09.306Z\",\n            \"updatedAt\": \"2026-03-07T07:45:09.306Z\",\n            \"id\": \"e3efb0a4-b939-4f01-ad56-727090a33b4b\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
             }
           ]
         },
@@ -8556,7 +8556,7 @@
           },
           "response": [
             {
-              "name": "Success",
+              "name": "Succes",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -8611,7 +8611,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8671,15 +8671,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "470"
+                  "value": "745"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"1d6-FcQAaz1LtW0//6rWTPxkyhEHa5k\""
+                  "value": "W/\"2e9-3FzRFQg5t2xR4a57mVP2Wko9rW8\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 07 Mar 2026 07:45:29 GMT"
+                  "value": "Wed, 11 Mar 2026 14:06:24 GMT"
                 },
                 {
                   "key": "Connection",
@@ -8691,7 +8691,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"shows\": [\n            {\n                \"title\": \"Alebe Show\",\n                \"titleSlug\": \"alebe-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"hostId\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 3,\n                \"rerunsCount\": 2,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-07T07:45:09.306Z\",\n                \"updatedAt\": \"2026-03-07T07:45:09.306Z\",\n                \"id\": \"e3efb0a4-b939-4f01-ad56-727090a33b4b\",\n                \"status\": \"Draft\"\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"shows\": [\n            {\n                \"title\": \"Seifu Show\",\n                \"titleSlug\": \"seifu-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"status\": \"Draft\"\n            },\n            {\n                \"title\": \"Alebe Show\",\n                \"titleSlug\": \"alebe-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 3,\n                \"rerunsCount\": 2,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:03:39.750Z\",\n                \"updatedAt\": \"2026-03-10T12:03:39.750Z\",\n                \"id\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"status\": \"Draft\"\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -8711,14 +8711,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/shows/e3efb0a4-b939-4f01-ad56-727090a33b4b",
+              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "e3efb0a4-b939-4f01-ad56-727090a33b4b"
+                "bd011097-e79f-4eb5-9671-c21cd245c9b9"
               ]
             }
           },
@@ -8729,20 +8729,20 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseURL}}/api/shows/e3efb0a4-b939-4f01-ad56-727090a33b4b",
+                  "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
                   "host": [
                     "{{baseURL}}"
                   ],
                   "path": [
                     "api",
                     "shows",
-                    "e3efb0a4-b939-4f01-ad56-727090a33b4b"
+                    "bd011097-e79f-4eb5-9671-c21cd245c9b9"
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8802,15 +8802,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "407"
+                  "value": "373"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"197-1ypEo5YVzwrgVZXSSnTN2/fwZHM\""
+                  "value": "W/\"175-LvYuwlf0GOiL/NKj9yB5Jnocs+Y\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 07 Mar 2026 07:45:45 GMT"
+                  "value": "Wed, 11 Mar 2026 14:41:18 GMT"
                 },
                 {
                   "key": "Connection",
@@ -8822,7 +8822,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Alebe Show\",\n            \"titleSlug\": \"alebe-show\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"hostId\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 3,\n            \"rerunsCount\": 2,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-07T07:45:09.306Z\",\n            \"updatedAt\": \"2026-03-07T07:45:09.306Z\",\n            \"id\": \"e3efb0a4-b939-4f01-ad56-727090a33b4b\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
             }
           ]
         },
@@ -8843,7 +8843,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"title\": \"negu-testing\",\n    // \"titleSlug\": \"negu-testing\",\n    \"type\": \"Outsourced\",\n    \"maxAdLengthMinutes\": 34,\n    \"durationMinutes\": 88,\n    \"host\": \"16401d69-c948-4b61-81bf-8f012432416b\",\n    \"status\": \"Archived\",\n    \"partsCount\": 1,\n    \"bonusCount\": 4,\n    \"rerunsCount\": 3\n}",
+              "raw": "{\n    \"title\": \"negu-testing\",\n    // \"titleSlug\": \"negu-testing\",\n    \"type\": \"Outsourced\",\n    \"maxAdLengthMinutes\": 34,\n    \"durationMinutes\": 88,\n    \"status\": \"Archived\",\n    \"partsCount\": 1,\n    \"bonusCount\": 4,\n    \"rerunsCount\": 3\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8851,14 +8851,14 @@
               }
             },
             "url": {
-              "raw": "{{baseURL}}/api/shows/e3efb0a4-b939-4f01-ad56-727090a33b4b",
+              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "e3efb0a4-b939-4f01-ad56-727090a33b4b"
+                "bd011097-e79f-4eb5-9671-c21cd245c9b9"
               ]
             }
           },
@@ -8870,7 +8870,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"title\": \"negu-testing\",\n    // \"titleSlug\": \"negu-testing\",\n    \"type\": \"Outsourced\",\n    \"maxAdLengthMinutes\": 34,\n    \"durationMinutes\": 88,\n    \"host\": \"16401d69-c948-4b61-81bf-8f012432416b\",\n    \"status\": \"Archived\",\n    \"partsCount\": 1,\n    \"bonusCount\": 4,\n    \"rerunsCount\": 3\n}",
+                  "raw": "{\n    \"title\": \"negu-testing\",\n    // \"titleSlug\": \"negu-testing\",\n    \"type\": \"Outsourced\",\n    \"maxAdLengthMinutes\": 34,\n    \"durationMinutes\": 88,\n    \"status\": \"Archived\",\n    \"partsCount\": 1,\n    \"bonusCount\": 4,\n    \"rerunsCount\": 3\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -8878,20 +8878,20 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseURL}}/api/shows/e3efb0a4-b939-4f01-ad56-727090a33b4b",
+                  "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
                   "host": [
                     "{{baseURL}}"
                   ],
                   "path": [
                     "api",
                     "shows",
-                    "e3efb0a4-b939-4f01-ad56-727090a33b4b"
+                    "bd011097-e79f-4eb5-9671-c21cd245c9b9"
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8951,15 +8951,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "454"
+                  "value": "406"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"1c6-afPF/YqycjjdXuouYVohBZ/LOfk\""
+                  "value": "W/\"196-xTB/9/b8Dsad4h1pqkOirCKcDVw\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 07 Mar 2026 07:47:20 GMT"
+                  "value": "Wed, 11 Mar 2026 14:42:23 GMT"
                 },
                 {
                   "key": "Connection",
@@ -8971,7 +8971,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show updated successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"negu-testing\",\n            \"titleSlug\": \"negu-testing\",\n            \"type\": \"Outsourced\",\n            \"durationMinutes\": 88,\n            \"maxAdLengthMinutes\": 34,\n            \"hostId\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n            \"totalDurationMinutes\": 122,\n            \"partsCount\": 1,\n            \"rerunsCount\": 3,\n            \"bonusCount\": 4,\n            \"createdAt\": \"2026-03-07T07:45:09.306Z\",\n            \"updatedAt\": \"2026-03-07T07:47:20.301Z\",\n            \"id\": \"e3efb0a4-b939-4f01-ad56-727090a33b4b\",\n            \"status\": \"Archived\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show updated successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"negu-testing\",\n            \"titleSlug\": \"negu-testing\",\n            \"type\": \"Outsourced\",\n            \"durationMinutes\": 88,\n            \"maxAdLengthMinutes\": 34,\n            \"totalDurationMinutes\": 122,\n            \"partsCount\": 1,\n            \"rerunsCount\": 3,\n            \"bonusCount\": 4,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:42:23.522Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Archived\"\n        }\n    }\n}"
             }
           ]
         },
@@ -8991,14 +8991,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/shows/e3efb0a4-b939-4f01-ad56-727090a33b4b",
+              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "e3efb0a4-b939-4f01-ad56-727090a33b4b"
+                "bd011097-e79f-4eb5-9671-c21cd245c9b9"
               ]
             }
           },
@@ -9210,6 +9210,1008 @@
       ]
     },
     {
+      "name": "Show Hosts",
+      "item": [
+        {
+          "name": "Assign Show Host",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts"
+              ]
+            },
+            "description": "Create a new show host assignment. Requires MANAGE_SHOWS permission."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "375"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"177-koUiuuZajJuSvvBH39La2JlI8vw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:08:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show host created successfully\",\n    \"data\": {\n        \"showHost\": {\n            \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n            \"revenueShareType\": \"Percentage\",\n            \"revenueShareValue\": 50,\n            \"isPrimary\": true,\n            \"createdAt\": \"2026-03-11T14:08:10.246Z\",\n            \"updatedAt\": \"2026-03-11T14:08:10.246Z\",\n            \"id\": \"ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd\"\n        }\n    }\n}"
+            },
+            {
+              "name": "Error - Only One Primary Host Per Show",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "557"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"22d-5sWPpwBYBOmCwCFkNj3YqTtfxUI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:09:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Only one primary host per show is allowed\",\n    \"errorStack\": \"EntityAlreadyExistsError: Only one primary host per show is allowed\\n    at CreateShowHostUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/show-hosts/create-show-host.use-case.ts:37:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async createShowHost (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/show-host.controller.ts:30:22)\"\n}"
+            },
+            {
+              "name": "Error - Host Already Assigned",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "543"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"21f-0x71yHrs9TbVNTuUdJilpEPpiQc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:09:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Host already assigned to this show\",\n    \"errorStack\": \"EntityAlreadyExistsError: Host already assigned to this show\\n    at CreateShowHostUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/show-hosts/create-show-host.use-case.ts:34:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async createShowHost (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/show-host.controller.ts:30:22)\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Show Hosts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts"
+              ],
+              "query": [
+                {
+                  "key": "showId",
+                  "value": "e3efb0a4-b939-4f01-ad56-727090a33b4b",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                },
+                {
+                  "key": "isPrimary",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get list of show hosts. Requires VIEW_SHOWS permission."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts"
+                  ],
+                  "query": [
+                    {
+                      "key": "showId",
+                      "value": "e3efb0a4-b939-4f01-ad56-727090a33b4b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isPrimary",
+                      "value": "true",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1194"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4aa-rnN+ga8wZQ38N8pLnYWUT1U2btc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:25:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"showHosts\": [\n            {\n                \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 50,\n                \"isPrimary\": true,\n                \"createdAt\": \"2026-03-11T14:08:10.246Z\",\n                \"updatedAt\": \"2026-03-11T14:08:10.246Z\",\n                \"id\": \"ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd\",\n                \"show\": {\n                    \"title\": \"Seifu Show\",\n                    \"titleSlug\": \"seifu-show\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0,\n                    \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                    \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                    \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                    \"status\": \"Draft\"\n                },\n                \"user\": {\n                    \"fullName\": \"Negasi Kiflom\",\n                    \"email\": \"nega@abbaytv.com\",\n                    \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                    \"phoneNumber\": \"0900000004\",\n                    \"sex\": \"Female\",\n                    \"roles\": [\n                        \"Host\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": false,\n                    \"refModel\": \"Employee\",\n                    \"telegramUsername\": \"@negasik\",\n                    \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                    \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"updatedAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n                }\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Show Host By ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts",
+                "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts",
+                    "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1131"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46b-6CjZDWYtf/S3SVF1bZKdhM3EqKA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:27:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"showHost\": {\n            \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n            \"revenueShareType\": \"Percentage\",\n            \"revenueShareValue\": 50,\n            \"isPrimary\": true,\n            \"createdAt\": \"2026-03-11T14:08:10.246Z\",\n            \"updatedAt\": \"2026-03-11T14:08:10.246Z\",\n            \"id\": \"ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd\",\n            \"show\": {\n                \"title\": \"Seifu Show\",\n                \"titleSlug\": \"seifu-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"status\": \"Draft\"\n            },\n            \"user\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-03-10T11:55:14.557Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Show Host",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 60,\n  \"isPrimary\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts",
+                "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 60,\n  \"isPrimary\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts",
+                    "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1175"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"497-WJRBbt2CnjC8vzG/w4PAL+5ZNEA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:28:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show host updated successfully\",\n    \"data\": {\n        \"showHost\": {\n            \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n            \"revenueShareType\": \"Percentage\",\n            \"revenueShareValue\": 60,\n            \"isPrimary\": false,\n            \"createdAt\": \"2026-03-11T14:08:10.246Z\",\n            \"updatedAt\": \"2026-03-11T14:28:04.607Z\",\n            \"id\": \"ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd\",\n            \"show\": {\n                \"title\": \"Seifu Show\",\n                \"titleSlug\": \"seifu-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"status\": \"Draft\"\n            },\n            \"user\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-03-10T11:55:14.557Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Show Host",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts",
+                "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts/ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts",
+                    "ee48dc5c-715d-4d0d-b9ef-cc5f16a62ecd"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3f-SkneoZQnTk2/ZKyHpeHhuPNgPUQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:30:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show host deleted successfully\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Satellite",
       "item": [
         {
@@ -9372,6 +10374,155 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite schedule created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"New Year Regular Schedule 6\",\n            \"nameSlug\": \"new-year-regular-schedule-6\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"ac03e52d-6f21-4342-80aa-49aa9aea6041\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T08:35:40.675Z\",\n            \"updatedAt\": \"2026-03-10T08:35:40.675Z\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Create Schedule With Blocks",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"2018 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules/with-blocks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules",
+                    "with-blocks"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"2018 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/with-blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        "with-blocks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "565"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"235-WpNGkhCOVBNXuR1Nm4AOlmOwbS4\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 10 Mar 2026 21:44:17 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A satellite schedule with 4 schedule blocks created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2018 New Year Regular Schedule\",\n            \"nameSlug\": \"2018-new-year-regular-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"32ad1e5c-8fe0-4265-9f9c-f8d0d440c10e\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T21:44:17.670Z\",\n            \"updatedAt\": \"2026-03-10T21:44:17.670Z\"\n        },\n        \"scheduleBlocksCount\": 4\n    }\n}"
                 }
               ]
             },
@@ -9776,7 +10927,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n//   \"name\": \"Updated Schedule Name\",\n//   \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n//   \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n//   \"scheduleType\": \"Holiday\",\n  \"status\": \"DRAFT\"\n}",
+                  "raw": "{\n//   \"name\": \"Updated Schedule Name\",\n//   \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n//   \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n//   \"scheduleType\": \"Holiday\",\n  \"status\": \"ACTIVE\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -9955,7 +11106,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
+                      "value": "ab43ffec-e7ce-4f5a-8f21-1b0089e9f320"
                     }
                   ]
                 },
@@ -10168,7 +11319,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10291,7 +11442,7 @@
                   },
                   "status": "Bad Request",
                   "code": 400,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10469,7 +11620,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10593,7 +11744,7 @@
                   },
                   "status": "Bad Request",
                   "code": 400,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10679,6 +11830,9 @@
             },
             {
               "name": "List Schedule Blocks",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -10692,6 +11846,15 @@
                 },
                 "method": "GET",
                 "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
                   "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
                   "host": [
@@ -10733,7 +11896,7 @@
                   "variable": [
                     {
                       "key": "scheduleId",
-                      "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                      "value": "ab43ffec-e7ce-4f5a-8f21-1b0089e9f320"
                     }
                   ]
                 },
@@ -10793,7 +11956,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10874,6 +12037,141 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 200,\n        \"total\": 4,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"blocks\": [\n            {\n                \"id\": \"1e1d9fbb-b0c8-4073-9d74-01e8247faec1\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"Fresh_Content\",\n                \"label\": \"Mon New\",\n                \"startTimeMinutes\": 360,\n                \"durationMinutes\": 120,\n                \"gregorian\": {\n                    \"start\": \"06:00\",\n                    \"end\": \"08:00\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"12:00 ጠዋት\",\n                    \"end\": \"2:00 ጠዋት\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            },\n            {\n                \"id\": \"da9a23ad-7be1-404c-b155-8ba06632df1f\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"Fresh_Content\",\n                \"label\": \"Mon New\",\n                \"startTimeMinutes\": 510,\n                \"durationMinutes\": 60,\n                \"gregorian\": {\n                    \"start\": \"08:30\",\n                    \"end\": \"09:30\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"2:30 ጠዋት\",\n                    \"end\": \"3:30 ጠዋት\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            },\n            {\n                \"id\": \"22f9a962-e0f3-440e-bbe9-83c89a0eb009\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"First_Rerun\",\n                \"label\": \"Mon R1\",\n                \"startTimeMinutes\": 900,\n                \"durationMinutes\": 120,\n                \"gregorian\": {\n                    \"start\": \"15:00\",\n                    \"end\": \"17:00\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"9:00 ከሰአት\",\n                    \"end\": \"11:00 ከሰአት\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            },\n            {\n                \"id\": \"d2a1602f-9fd3-4715-9515-27c4fad31252\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"First_Rerun\",\n                \"label\": \"Mon R1\",\n                \"startTimeMinutes\": 1170,\n                \"durationMinutes\": 60,\n                \"gregorian\": {\n                    \"start\": \"19:30\",\n                    \"end\": \"20:30\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"1:30 ማታ\",\n                    \"end\": \"2:30 ማታ\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            }\n        ]\n    }\n}"
+                },
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "200",
+                          "disabled": true
+                        },
+                        {
+                          "key": "dayOfWeek",
+                          "value": "MONDAY",
+                          "disabled": true
+                        },
+                        {
+                          "key": "showId",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "broadcastType",
+                          "value": "Fresh_Content",
+                          "disabled": true
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1882"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"75a-py/ZWiKCGOrzWabUM3t9ckv/Yxw\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 10 Mar 2026 21:20:35 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 200,\n        \"total\": 4,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"blocks\": [\n            {\n                \"id\": \"da9a23ad-7be1-404c-b155-8ba06632df1f\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"Fresh_Content\",\n                \"label\": \"Mon New\",\n                \"startTimeMinutes\": 510,\n                \"durationMinutes\": 60,\n                \"gregorian\": {\n                    \"start\": \"08:30\",\n                    \"end\": \"09:30\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"2:30 ጠዋት\",\n                    \"end\": \"3:30 ጠዋት\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            },\n            {\n                \"id\": \"0cd567f8-9eaf-4d2f-be42-e475956ae2ef\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"Fresh_Content\",\n                \"label\": \"Mon New\",\n                \"startTimeMinutes\": 600,\n                \"durationMinutes\": 120,\n                \"gregorian\": {\n                    \"start\": \"10:00\",\n                    \"end\": \"12:00\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"4:00 ጠዋት\",\n                    \"end\": \"6:00 ከሰአት\"\n                },\n                \"createdAt\": \"2026-03-10T12:19:53.086Z\",\n                \"updatedAt\": \"2026-03-10T12:19:53.086Z\"\n            },\n            {\n                \"id\": \"22f9a962-e0f3-440e-bbe9-83c89a0eb009\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"First_Rerun\",\n                \"label\": \"Mon R1\",\n                \"startTimeMinutes\": 900,\n                \"durationMinutes\": 120,\n                \"gregorian\": {\n                    \"start\": \"15:00\",\n                    \"end\": \"17:00\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"9:00 ከሰአት\",\n                    \"end\": \"11:00 ከሰአት\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            },\n            {\n                \"id\": \"d2a1602f-9fd3-4715-9515-27c4fad31252\",\n                \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"dayOfWeek\": \"MONDAY\",\n                \"broadcastType\": \"First_Rerun\",\n                \"label\": \"Mon R1\",\n                \"startTimeMinutes\": 1170,\n                \"durationMinutes\": 60,\n                \"gregorian\": {\n                    \"start\": \"19:30\",\n                    \"end\": \"20:30\"\n                },\n                \"ethiopian\": {\n                    \"start\": \"1:30 ማታ\",\n                    \"end\": \"2:30 ማታ\"\n                },\n                \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n                \"updatedAt\": \"2026-03-10T12:14:17.853Z\"\n            }\n        ]\n    }\n}"
                 }
               ]
             },
@@ -10949,7 +12247,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11062,7 +12360,7 @@
                   },
                   "status": "Not Found",
                   "code": 404,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11248,7 +12546,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11376,7 +12674,7 @@
                   },
                   "status": "Not Found",
                   "code": 404,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11532,7 +12830,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11613,6 +12911,214 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule block deleted successfully\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Free Blocks",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/free",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-schedules",
+                    ":scheduleId",
+                    "blocks",
+                    "free"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "200",
+                      "disabled": true
+                    },
+                    {
+                      "key": "dayOfWeek",
+                      "value": "MONDAY",
+                      "disabled": true
+                    },
+                    {
+                      "key": "showId",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "broadcastType",
+                      "value": "Fresh_Content",
+                      "disabled": true
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "scheduleId",
+                      "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/free",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks",
+                        "free"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "200",
+                          "disabled": true
+                        },
+                        {
+                          "key": "dayOfWeek",
+                          "value": "MONDAY",
+                          "disabled": true
+                        },
+                        {
+                          "key": "showId",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "broadcastType",
+                          "value": "Fresh_Content",
+                          "disabled": true
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "3500"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"dac-bl7dy6kdFOukULQXrG2MWXl+Pg4\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Tue, 10 Mar 2026 22:59:19 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2019 New Year Regular Schedule\",\n            \"nameSlug\": \"2019-new-year-regular-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"ACTIVE\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T11:37:23.934Z\",\n            \"updatedAt\": \"2026-03-10T20:34:12.162Z\"\n        },\n        \"freeBlocks\": [\n            {\n                \"dayOfWeek\": \"MONDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 510,\n                \"durationMinutes\": 510,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"08:30\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 2,\n                    \"minute\": 30,\n                    \"dayPart\": \"ጠዋት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"MONDAY\",\n                \"startTimeMinutes\": 570,\n                \"endTimeMinutes\": 600,\n                \"durationMinutes\": 30,\n                \"startTimeGregorian\": \"09:30\",\n                \"endTimeGregorian\": \"10:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 3,\n                    \"minute\": 30,\n                    \"dayPart\": \"ጠዋት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 4,\n                    \"minute\": 0,\n                    \"dayPart\": \"ጠዋት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"MONDAY\",\n                \"startTimeMinutes\": 720,\n                \"endTimeMinutes\": 900,\n                \"durationMinutes\": 180,\n                \"startTimeGregorian\": \"12:00\",\n                \"endTimeGregorian\": \"15:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ከሰአት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 9,\n                    \"minute\": 0,\n                    \"dayPart\": \"ከሰአት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"MONDAY\",\n                \"startTimeMinutes\": 1020,\n                \"endTimeMinutes\": 1170,\n                \"durationMinutes\": 150,\n                \"startTimeGregorian\": \"17:00\",\n                \"endTimeGregorian\": \"19:30\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 11,\n                    \"minute\": 0,\n                    \"dayPart\": \"ከሰአት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 1,\n                    \"minute\": 30,\n                    \"dayPart\": \"ማታ\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"MONDAY\",\n                \"startTimeMinutes\": 1230,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 210,\n                \"startTimeGregorian\": \"20:30\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 2,\n                    \"minute\": 30,\n                    \"dayPart\": \"ማታ\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"TUESDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"WEDNESDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"THURSDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"FRIDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"SATURDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            },\n            {\n                \"dayOfWeek\": \"SUNDAY\",\n                \"startTimeMinutes\": 0,\n                \"endTimeMinutes\": 1440,\n                \"durationMinutes\": 1440,\n                \"startTimeGregorian\": \"00:00\",\n                \"endTimeGregorian\": \"00:00\",\n                \"startTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                },\n                \"endTimeEthiopian\": {\n                    \"hour\": 6,\n                    \"minute\": 0,\n                    \"dayPart\": \"ሌሊት\"\n                }\n            }\n        ]\n    }\n}"
                 }
               ]
             }
@@ -11713,7 +13219,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11939,7 +13445,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12095,7 +13601,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12281,7 +13787,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12437,7 +13943,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",

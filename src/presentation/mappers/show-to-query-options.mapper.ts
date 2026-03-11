@@ -20,7 +20,6 @@ export function mapFetchAllShowsDtoToQueryOptions(dto: FetchAllShowsDto): QueryO
     ...(dto.partsCount != null && { partsCount: dto.partsCount }),
     ...(dto.rerunsCount != null && { rerunsCount: dto.rerunsCount }),
     ...(dto.bonusCount != null && { bonusCount: dto.bonusCount }),
-    ...(dto.host != null && { hostId: dto.host }),
     ...(dto.status != null && { status: dto.status }),
   };
 

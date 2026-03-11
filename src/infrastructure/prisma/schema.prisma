@@ -42,7 +42,7 @@ model User {
   telegramGroupMemberships TelegramGroupMember[]
   userPermissions          UserPermission[]  @relation("UserPermissions")
   permissionsGranted       UserPermission[]  @relation("PermissionGranter")
-  hostedShows              Show[]
+  showHosts                ShowHost[]
 
   @@index([email])
   @@index([refModel])
@@ -59,7 +59,6 @@ model Show {
   type               String   // ShowType enum: 'InHouse' | 'Outsourced'
   durationMinutes    Int      @map("duration_minutes")
   maxAdLengthMinutes Int      @map("max_ad_length_minutes")
-  hostId             String?  @map("host")
   totalDurationMinutes Int    @map("total_duration_minutes")
   partsCount         Int      @map("parts_count")
   rerunsCount        Int      @default(0) @map("reruns_count")
@@ -69,13 +68,37 @@ model Show {
   updatedAt          DateTime @updatedAt @map("updated_at")
 
   // Relations
-  host               User?    @relation(fields: [hostId], references: [id], onDelete: SetNull)
   adverts            Advert[]
   satelliteLogs      SatelliteLog[]
   scheduleBlocks     SatelliteScheduleBlock[]
   broadcastSlots     BroadcastSlot[]
 
+  showHosts          ShowHost[]
+
   @@map("shows")
+}
+
+// ============================================
+// SHOW HOST - Junction table between Show and User with revenue share
+// ============================================
+model ShowHost {
+  id               String           @id @default(uuid())
+  showId           String           @map("show_id")
+  userId           String           @map("user_id")
+  revenueShareType String?          @map("revenue_share_type")
+  revenueShareValue Int?            @map("revenue_share_value")
+  isPrimary        Boolean          @default(false) @map("is_primary")
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  // Relations
+  show             Show             @relation(fields: [showId], references: [id], onDelete: Cascade)
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([showId, userId])
+  @@index([showId])
+  @@index([userId])
+  @@map("show_hosts")
 }
 
 // ============================================

@@ -50,7 +50,6 @@ export function buildWhereClauseForShow(filters: ShowFilters): Prisma.ShowWhereI
         ...(filters.partsCount != null && { partsCount: filters.partsCount }),
         ...(filters.rerunsCount != null && { rerunsCount: filters.rerunsCount }),
         ...(filters.bonusCount != null && { bonusCount: filters.bonusCount }),
-        ...(filters.hostId && { hostId: filters.hostId }),
         ...(filters.status && { status: filters.status as Status }),
     };
 }

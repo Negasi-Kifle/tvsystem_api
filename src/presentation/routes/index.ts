@@ -10,6 +10,7 @@ import userPermissionRoutes from './user-permissions.routes';
 import employeeRoutes from './employee.route';
 import partnerRoutes from './partner.route';
 import satelliteScheduleRoutes from './satellite-schedules.routes';
+import showHostRoutes from './show-hosts.routes';
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use('/user-permissions', userPermissionRoutes);
 router.use('/employees', employeeRoutes);
 router.use("/partners", partnerRoutes);
 router.use('/satellite-schedules', satelliteScheduleRoutes);
+router.use('/show-hosts', showHostRoutes);
 
 export default router;
