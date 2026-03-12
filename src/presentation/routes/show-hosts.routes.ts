@@ -14,6 +14,8 @@ import { validateQuery } from '../validators/validate-query';
 import { createShowHostDto } from '../dtos/requests/show-host/create-show-host.dto';
 import { updateShowHostDto } from '../dtos/requests/show-host/update-show-host.dto';
 import { fetchAllShowHostsDto } from '../dtos/requests/show-host/fetch-all-show-hosts.dto';
+import { assignManyHostsToShowDto } from '../dtos/requests/show-host/assign-many-hosts.dto';
+import { assignManyHostsToShow } from '../controllers/show-host.controller';
 
 const router = Router();
 
@@ -30,7 +32,15 @@ router
     requirePermission(PERMISSIONS.MANAGE_SHOWS),
     validateBody(createShowHostDto),
     createShowHost,
-  );
+);
+  
+
+router.post('/assign-many',
+  authMiddleware,
+  requirePermission(PERMISSIONS.MANAGE_SHOWS),
+  validateBody(assignManyHostsToShowDto),
+  assignManyHostsToShow,
+);  
 
 router
   .route('/:id')

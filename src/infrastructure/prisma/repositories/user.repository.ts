@@ -3,6 +3,7 @@ import { PrismaBaseRepository } from "./base.repository";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 import { UserEntity } from "../../../domain/entities/user.entity";
 import { QueryOptions } from "../../../domain/interfaces/query-options.interface";
+import { UserFilters } from "../../../domain/interfaces/user-filters.interface";
 import { modelToEntity, entityToModel } from "../model_entity_mappers/user";
 import { buildWhereClauseForUser } from "../where_clauses/user";
 import { hashPassword } from "../../../shared/utils/password";
@@ -49,8 +50,8 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
     });
   }
 
-  async findMany(query: QueryOptions<UserEntity>): Promise<UserEntity[]> {
-    const where = buildWhereClauseForUser(query.filters ?? {});
+  async findMany(query: QueryOptions<UserEntity, UserFilters>): Promise<UserEntity[]> {
+    const where = buildWhereClauseForUser((query.filters ?? {}) as UserFilters);
     const users = await this.prisma.user.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
     return users.map(modelToEntity);
   }
@@ -86,7 +87,7 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
   }
 
   async count(filters?: Partial<UserEntity>): Promise<number> {
-    return this.prisma.user.count({ where: buildWhereClauseForUser(filters ?? {}) });
+    return this.prisma.user.count({ where: buildWhereClauseForUser((filters ?? {}) as UserFilters) });
   }
 
   async updatePassword(userId: string, passwordHash: string): Promise<UserEntity | null> {

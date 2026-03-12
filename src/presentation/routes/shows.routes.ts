@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createShow, deleteShow, getShowById, listShows, updateShow } from '../controllers/show.controller';
+import { createShow, createShowWithHosts, deleteShow, getShowById, listShows, updateShow } from '../controllers/show.controller';
 import { validateBody } from '../validators/validate-body';
 import { createShowDto } from '../dtos/requests/show/create-show.dto';
 import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
@@ -8,6 +8,7 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { fetchAllShowsDto } from '../dtos/requests/show/fetch-all-shows.dto';
 import { validateQuery } from '../validators/validate-query';
 import { updateShowDto } from '../dtos/requests/show/update-show.dto';
+import { createShowWithHostsDto } from '../dtos/requests/show/create-show-with-hosts.dto';
 
 const router = Router();
 
@@ -24,6 +25,14 @@ router.route('/')
   requirePermission(PERMISSIONS.MANAGE_SHOWS),
   validateBody(createShowDto),
   createShow
+);
+
+
+router.post("/with-hosts",
+  authMiddleware,
+  requirePermission(PERMISSIONS.MANAGE_SHOWS),
+  validateBody(createShowWithHostsDto),
+  createShowWithHosts
 );
 
 

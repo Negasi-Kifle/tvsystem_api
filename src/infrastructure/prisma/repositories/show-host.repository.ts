@@ -62,5 +62,11 @@ export class ShowHostRepository extends PrismaBaseRepository implements IShowHos
     const count = await this.prisma.showHost.count({ where });
     return count;
   }
+
+  async createMany(entities: Omit<ShowHostEntity, 'id'>[]): Promise<ShowHostEntity[]> {
+    const models = entities.map(entity => entityToModel(entity));
+     const saved = await this.prisma.showHost.createManyAndReturn({ data: models });
+     return saved.map(modelToEntity);
+  }
 }
 

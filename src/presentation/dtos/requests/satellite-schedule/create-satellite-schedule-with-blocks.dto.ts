@@ -10,7 +10,7 @@ export const createSatelliteScheduleWithBlocksDto = z.object({
   effectiveTo: z.coerce.date(),
   scheduleType: z.enum(SatelliteScheduleType, "Schedule type is required and must be one of : " + Object.values(SatelliteScheduleType).join(', ')),
   status: z.enum(SatelliteScheduleStatus).optional(),
-  blocks: z.array(createScheduleBlockDto),
+  blocks: z.array(createScheduleBlockDto).optional(),
 }).refine((data) => data.effectiveTo > data.effectiveFrom, {
     message: 'effectiveTo must be after effectiveFrom',
     path: ['effectiveTo'],

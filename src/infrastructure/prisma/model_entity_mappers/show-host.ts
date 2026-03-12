@@ -32,7 +32,7 @@ export function modelToEntity(showHost: ShowHostLike): ShowHostEntity {
 
 export function entityToModel(showHost: ShowHostEntity): ShowHost {
   return {
-    id: showHost.id ?? '',
+    id: showHost.id!,
     showId: showHost.showId,
     userId: showHost.userId,
     revenueShareType: showHost.revenueShareType ?? null,

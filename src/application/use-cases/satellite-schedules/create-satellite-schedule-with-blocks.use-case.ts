@@ -13,7 +13,7 @@ export type CreateSatelliteScheduleWithBlocksInput = {
   effectiveFrom: Date;
   effectiveTo: Date;
   scheduleType: SatelliteScheduleType;
-  blocks: BatchBlockInput[];
+  blocks?: BatchBlockInput[];
   status?: SatelliteScheduleStatus;
   effectiveFromEth?: Date;
   effectiveToEth?: Date;
@@ -57,9 +57,12 @@ export class CreateSatelliteScheduleWithBlocksUseCase {
           
         // Create the schedule and blocks here
         const schedule = await this.scheduleRepo.create(entity);
-        scheduleId = schedule.id;
-        const count =await this.createWithBlocksHandler.onScheduleCreatedWithBlocks(schedule.id!, payload.blocks);
-        return {schedule, count};
+      scheduleId = schedule.id;
+      let count = 0;
+      if (payload.blocks && payload.blocks.length > 0) { 
+        count = await this.createWithBlocksHandler.onScheduleCreatedWithBlocks(schedule.id!, payload.blocks);
+      }
+      return {schedule, count};
     } catch (error) {
       // Note: Deleting the schedule will cascade delete the blocks. This is to prevent orphaned blocks.
       // The reason i don't use transaction is beacuse i need to utilize all the validation benefits from "onScheduleCreatedWithBlocks".

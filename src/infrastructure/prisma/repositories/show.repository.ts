@@ -6,6 +6,9 @@ import { ShowType } from '../../../domain/enums/show-type.enum';
 import { entityToModel, modelToEntity } from '../model_entity_mappers/show';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { buildWhereClauseForShow } from '../where_clauses/show';
+import { ShowHostEntity } from '../../../domain/entities/show-host.entity';
+import {entityToModel as entityToModelShowHost} from '../model_entity_mappers/show-host';
+import { Prisma } from '../generated/client';
 
 export class ShowRepository extends PrismaBaseRepository implements IShowRepository {
 
@@ -54,6 +57,19 @@ export class ShowRepository extends PrismaBaseRepository implements IShowReposit
     return this.prisma.show.count({ where: buildWhereClauseForShow(filters ?? {}) });
   }
 
-
+async createWithHosts(show: ShowEntity, hosts: ShowHostEntity[]): Promise<ShowEntity> {
+  return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+    const savedShow = await tx.show.create({ data: entityToModel(show) });
+    
+    await tx.showHost.createMany({
+      data: hosts.map(host => ({
+        ...entityToModelShowHost(host),
+        showId: savedShow.id,
+      }))
+    });
+    
+    return modelToEntity(savedShow);
+  });
+}
 
 }

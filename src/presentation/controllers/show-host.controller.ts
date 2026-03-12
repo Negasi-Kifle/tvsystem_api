@@ -12,6 +12,8 @@ import { CreateShowHostDto } from '../dtos/requests/show-host/create-show-host.d
 import { FetchAllShowHostsDto } from '../dtos/requests/show-host/fetch-all-show-hosts.dto';
 import { UpdateShowHostDto } from '../dtos/requests/show-host/update-show-host.dto';
 import { mapFetchAllShowHostsDtoToQueryOptions } from '../mappers/show-host-to-query-options.mapper';
+import { AssignManyHostsToShowDto } from '../dtos/requests/show-host/assign-many-hosts.dto';
+import { AssignManyHostsToShowUseCase } from '../../application/use-cases/show-hosts/assign-many-hosts.use-case';
 
 const repo = new ShowHostRepository();
 const showRepo = new ShowRepository();
@@ -23,6 +25,7 @@ const countUseCase = new CountShowHostsUseCase(repo);
 const getByIdUseCase = new GetShowHostByIdUseCase(repo);
 const updateUseCase = new UpdateShowHostUseCase(repo);
 const deleteUseCase = new DeleteShowHostUseCase(repo);
+const assignManyHostsToShowUseCase = new AssignManyHostsToShowUseCase(repo, showRepo, userRepo);
 
 export async function createShowHost(req: Request, res: Response, next: NextFunction) {
   try {
@@ -32,6 +35,22 @@ export async function createShowHost(req: Request, res: Response, next: NextFunc
       status: 'SUCCESS',
       message: 'Show host created successfully',
       data: { showHost },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+export async function assignManyHostsToShow(req: Request, res: Response, next: NextFunction) {
+  try {
+    const payload = req.body as AssignManyHostsToShowDto;
+    const showHosts = await assignManyHostsToShowUseCase.execute(payload);
+    
+    res.status(200).json({
+      status: 'SUCCESS',
+      message: `${payload.hosts.length} hosts assigned to show successfully`,
+      data: { showHosts },
     });
   } catch (error) {
     next(error);

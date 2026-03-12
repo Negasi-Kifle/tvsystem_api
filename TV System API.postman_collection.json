@@ -8357,7 +8357,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
+              "raw": "{\n  \"title\": \"Seifu Show on fan\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8496,6 +8496,409 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Show With Hosts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Seifu Show on fana\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0,\n  \"hosts\": [\n    {\n        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n        \"revenueShareType\": \"Fixed\",\n        \"revenueShareValue\": 16000,\n        \"isPrimary\": true\n    },\n    {\n        \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n        \"revenueShareType\": \"Percentage\",\n        \"revenueShareValue\": 35,\n        \"isPrimary\": false\n    },\n    {\n        \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n        \"revenueShareType\": \"Percentage\",\n        \"revenueShareValue\": 50,\n        \"isPrimary\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shows/with-hosts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shows",
+                "with-hosts"
+              ]
+            },
+            "description": "Create a new show. Requires MANAGE_SHOWS permission. Show type can be 'InHouse' or 'Outsourced'."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/shows",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "shows"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "411"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19b-F2VNxo+KwTKec9RFPSj5/Gg+AD4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 14:40:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+            },
+            {
+              "name": "Success - With Multiple Hosts",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0,\n  \"hosts\": [\n    {\n        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n        \"revenueShareType\": \"Fixed\",\n        \"revenueShareValue\": 16000,\n        \"isPrimary\": true\n    },\n    {\n        \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n        \"revenueShareType\": \"Percentage\",\n        \"revenueShareValue\": 35,\n        \"isPrimary\": false\n    },\n    {\n        \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n        \"revenueShareType\": \"Percentage\",\n        \"revenueShareValue\": 50,\n        \"isPrimary\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/shows/with-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "shows",
+                    "with-hosts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1314"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"522-UyauT+//NTezlwtvqAlkLDJAOrQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Mar 2026 07:44:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A new show with hosts created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-12T07:44:42.262Z\",\n            \"updatedAt\": \"2026-03-12T07:44:42.262Z\",\n            \"id\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n            \"status\": \"Draft\"\n        },\n        \"hosts\": [\n            {\n                \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"revenueShareType\": \"Fixed\",\n                \"revenueShareValue\": 16000,\n                \"isPrimary\": true,\n                \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                \"id\": \"e48d2250-ab90-4806-af41-1efd2537a031\"\n            },\n            {\n                \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 35,\n                \"isPrimary\": false,\n                \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                \"id\": \"19081b41-2a7e-4257-9dfe-1854b34fd47e\"\n            },\n            {\n                \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 50,\n                \"isPrimary\": false,\n                \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                \"id\": \"3279f388-18eb-4f3a-9039-2702662c8de5\"\n            }\n        ]\n    }\n}"
+            },
+            {
+              "name": "Success - Without Hosts",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Seifu Show on Abbay\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n//   \"hosts\": [\n//     {\n//         \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n//         \"revenueShareType\": \"Fixed\",\n//         \"revenueShareValue\": 16000,\n//         \"isPrimary\": true\n//     },\n//     {\n//         \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n//         \"revenueShareType\": \"Percentage\",\n//         \"revenueShareValue\": 35,\n//         \"isPrimary\": false\n//     },\n//     {\n//         \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n//         \"revenueShareType\": \"Percentage\",\n//         \"revenueShareValue\": 50,\n//         \"isPrimary\": false\n//     }\n//   ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/shows/with-hosts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "shows",
+                    "with-hosts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "443"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1bb-8VQotHkdXl7HgeOsB6brtnm5Lfc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Mar 2026 12:37:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A new show with hosts created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on Abbay\",\n            \"titleSlug\": \"seifu-show-on-abbay\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-12T12:37:41.746Z\",\n            \"updatedAt\": \"2026-03-12T12:37:41.746Z\",\n            \"id\": \"8db59405-20a6-4c1e-b890-658828309ea8\",\n            \"status\": \"Draft\"\n        },\n        \"hosts\": []\n    }\n}"
             }
           ]
         },
@@ -8711,14 +9114,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
+              "raw": "{{baseURL}}/api/shows/8db59405-20a6-4c1e-b890-658828309ea8",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "bd011097-e79f-4eb5-9671-c21cd245c9b9"
+                "8db59405-20a6-4c1e-b890-658828309ea8"
               ]
             }
           },
@@ -9213,7 +9616,7 @@
       "name": "Show Hosts",
       "item": [
         {
-          "name": "Assign Show Host",
+          "name": "Assign One Host",
           "request": {
             "auth": {
               "type": "bearer",
@@ -9240,7 +9643,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
+              "raw": "{\n  \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n  \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"revenueShareType\": \"Percentage\",\n  \"revenueShareValue\": 50,\n  \"isPrimary\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -9619,6 +10022,155 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Host already assigned to this show\",\n    \"errorStack\": \"EntityAlreadyExistsError: Host already assigned to this show\\n    at CreateShowHostUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/show-hosts/create-show-host.use-case.ts:34:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async createShowHost (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/show-host.controller.ts:30:22)\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Assign Many Hosts",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n  \"hosts\": [\n    {\n    \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": true\n    },\n    {\n    \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": false\n    },\n    {\n    \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/show-hosts/assign-many",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "show-hosts",
+                "assign-many"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n  \"hosts\": [\n    {\n    \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": true\n    },\n    {\n    \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": false\n    },\n    {\n    \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n    \"revenueShareType\": \"Percentage\",\n    \"revenueShareValue\": 50,\n    \"isPrimary\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-hosts/assign-many",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-hosts",
+                    "assign-many"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "971"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3cb-iRYTK1TNLrFss5pwUdGTgtPleCU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Mar 2026 13:51:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"3 hosts assigned to show successfully\",\n    \"data\": {\n        \"showHosts\": [\n            {\n                \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 50,\n                \"isPrimary\": true,\n                \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                \"id\": \"cf4597c2-eaea-476f-bb7e-ab0e0a5a6004\"\n            },\n            {\n                \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 50,\n                \"isPrimary\": false,\n                \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                \"id\": \"2d237273-7172-4d23-89b5-2a2dba76b723\"\n            },\n            {\n                \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                \"revenueShareType\": \"Percentage\",\n                \"revenueShareValue\": 50,\n                \"isPrimary\": false,\n                \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                \"id\": \"c16b0c64-66a7-4218-932f-425480f494cd\"\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -10394,7 +10946,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"2018 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"name\": \"2018 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -10523,6 +11075,116 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A satellite schedule with 4 schedule blocks created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2018 New Year Regular Schedule\",\n            \"nameSlug\": \"2018-new-year-regular-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"32ad1e5c-8fe0-4265-9f9c-f8d0d440c10e\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-10T21:44:17.670Z\",\n            \"updatedAt\": \"2026-03-10T21:44:17.670Z\"\n        },\n        \"scheduleBlocksCount\": 4\n    }\n}"
+                },
+                {
+                  "name": "Success - Without Blocks",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"2018 Neww Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n//   \"blocks\": [\n//     {\n//       \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n//       \"dayOfWeek\": \"MONDAY\",\n//       \"hour\": 12,\n//       \"minute\": 0,\n//       \"dayPart\": \"ጠዋት\",\n//       \"broadcastType\": \"Fresh_Content\",\n//       \"label\": \"Mon New\"\n//     },\n//     {\n//       \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n//       \"dayOfWeek\": \"MONDAY\",\n//       \"hour\": 9,\n//       \"minute\": 0,\n//       \"dayPart\": \"ከሰአት\",\n//       \"broadcastType\": \"First_Rerun\",\n//       \"label\": \"Mon R1\"\n//     },\n//     {\n//       \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n//       \"dayOfWeek\": \"MONDAY\",\n//       \"hour\": 2,\n//       \"minute\": 30,\n//       \"dayPart\": \"ጠዋት\",\n//       \"broadcastType\": \"Fresh_Content\",\n//       \"label\": \"Mon New\"\n//     },\n//     {\n//       \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n//       \"dayOfWeek\": \"MONDAY\",\n//       \"hour\": 1,\n//       \"minute\": 30,\n//       \"dayPart\": \"ማታ\",\n//       \"broadcastType\": \"First_Rerun\",\n//       \"label\": \"Mon R1\"\n//     }\n//   ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/with-blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        "with-blocks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "567"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"237-Eiac/PeYfS7tioTH6CgyZ/gCFFE\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Thu, 12 Mar 2026 12:40:51 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A satellite schedule with 0 schedule blocks created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2018 Neww Year Regular Schedule\",\n            \"nameSlug\": \"2018-neww-year-regular-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"44ede05c-a8b1-45b7-9d3f-363fbb3925b6\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-12T12:40:51.348Z\",\n            \"updatedAt\": \"2026-03-12T12:40:51.348Z\"\n        },\n        \"scheduleBlocksCount\": 0\n    }\n}"
                 }
               ]
             },
@@ -11225,7 +11887,7 @@
           ]
         },
         {
-          "name": "Schedule Block",
+          "name": "Schedule Blocks",
           "item": [
             {
               "name": "Create Schedule Block",

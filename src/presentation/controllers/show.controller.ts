@@ -10,6 +10,14 @@ import { GetShowByIdUseCase } from '../../application/use-cases/shows/get-by-id.
 import { UpdateShowUseCase } from '../../application/use-cases/shows/update.use-case';
 import { UpdateShowDto } from '../dtos/requests/show/update-show.dto';
 import { DeleteShowUseCase } from '../../application/use-cases/shows/delete.use-case';
+import {CreateShowWithHostsDto} from '../dtos/requests/show/create-show-with-hosts.dto';
+import {CreateShowWithHostsUseCase} from '../../application/use-cases/shows/create-show-with-hosts.use-case';
+import {ShowHostRepository} from '../../infrastructure/prisma/repositories/show-host.repository';
+import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
+
+const showHostRepo = new ShowHostRepository();
+const showRepo = new ShowRepository();
+const userRepo = new UserRepository();
 
 const createShowUseCase = new CreateShowUseCase(new ShowRepository());
 const fetchAllShowsUseCase = new FetchAllShowsUseCase(new ShowRepository());
@@ -17,6 +25,7 @@ const countShowsUseCase = new CountShowsUseCase(new ShowRepository());
 const getShowByIdUseCase = new GetShowByIdUseCase(new ShowRepository());
 const updateShowUseCase = new UpdateShowUseCase(new ShowRepository());
 const deleteShowUseCase = new DeleteShowUseCase(new ShowRepository());
+const createShowWithHostsUseCase = new CreateShowWithHostsUseCase(showRepo, userRepo, showHostRepo);
 
 export async function createShow(req: Request, res: Response) {
   const payload = req.body as CreateShowDto;
@@ -27,6 +36,18 @@ export async function createShow(req: Request, res: Response) {
     status: 'SUCCESS',
     message: 'Show created successfully',
     data: { show }
+  });
+}
+
+
+export async function createShowWithHosts(req: Request, res: Response) {
+  const payload = req.body as CreateShowWithHostsDto;
+
+  const showWithHosts = await createShowWithHostsUseCase.execute(payload);
+  res.status(201).json({
+    status: 'SUCCESS',
+    message: 'A new show with hosts created successfully',
+    data: { show: showWithHosts.show, hosts: showWithHosts.hosts }
   });
 }
 
