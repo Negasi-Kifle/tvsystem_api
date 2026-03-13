@@ -10792,7 +10792,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"2019 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
+                  "raw": "{\n  \"name\": \"2020 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -10946,7 +10946,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"2018 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"name\": \"2200 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 18,\n      \"hourEth\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 21,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 23,\n      \"hourEth\": 5,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 5,\n      \"hourEth\": 11,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -11185,6 +11185,116 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A satellite schedule with 0 schedule blocks created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2018 Neww Year Regular Schedule\",\n            \"nameSlug\": \"2018-neww-year-regular-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"44ede05c-a8b1-45b7-9d3f-363fbb3925b6\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-12T12:40:51.348Z\",\n            \"updatedAt\": \"2026-03-12T12:40:51.348Z\"\n        },\n        \"scheduleBlocksCount\": 0\n    }\n}"
+                },
+                {
+                  "name": "Success - Gregorian and Ethiopian Time",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"2200 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 18,\n      \"hourEth\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 21,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 23,\n      \"hourEth\": 5,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 5,\n      \"hourEth\": 11,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/with-blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        "with-blocks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "569"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"239-kXrhELCC3QNUxiOQ6GNKcEux3QI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 13 Mar 2026 23:51:57 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"A satellite schedule with 4 schedule blocks created successfully\",\n    \"data\": {\n        \"schedule\": {\n            \"name\": \"2200 Neww Year Regularr Schedule\",\n            \"nameSlug\": \"2200-neww-year-regularr-schedule\",\n            \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n            \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n            \"status\": \"DRAFT\",\n            \"scheduleType\": \"Regular\",\n            \"id\": \"adaca815-e164-4b15-a00e-6a9ec59f5b64\",\n            \"effectiveFromEth\": \"2018-04-23T03:00:00.000Z\",\n            \"effectiveToEth\": \"2019-04-22T03:00:00.000Z\",\n            \"createdAt\": \"2026-03-13T23:51:57.310Z\",\n            \"updatedAt\": \"2026-03-13T23:51:57.310Z\"\n        },\n        \"scheduleBlocksCount\": 4\n    }\n}"
                 }
               ]
             },
@@ -11912,7 +12022,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 4,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
+                  "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 7,\n    //   \"hourEth\": 10,\n      \"minute\": 0,\n    //   \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -11933,7 +12043,7 @@
                   "variable": [
                     {
                       "key": "scheduleId",
-                      "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                      "value": "079216c5-f295-4f44-854f-8128224891c4"
                     }
                   ]
                 },
@@ -12185,6 +12295,252 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Overlaps with existing block Mon New (10:00–12:00)\",\n    \"errorStack\": \"ValidationError: Overlaps with existing block Mon New (10:00–12:00)\\n    at CreateScheduleBlockUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/satellite-schedule-blocks/create-schedule-block.use-case.ts:56:15)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async createScheduleBlock (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/schedule-block.controller.ts:34:19)\"\n}"
+                },
+                {
+                  "name": "Success - Gregorian and Ethiopian Time",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 4,\n      \"hourEth\": 10,\n      \"minute\": 0,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "079216c5-f295-4f44-854f-8128224891c4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "534"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"216-uSWWj+SN/npZ524VY+13EjGCEk0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 13 Mar 2026 23:18:59 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule block created successfully\",\n    \"data\": {\n        \"block\": {\n            \"id\": \"ac7b2ec5-574c-45d5-bd75-313e66634c3f\",\n            \"scheduleId\": \"079216c5-f295-4f44-854f-8128224891c4\",\n            \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n            \"dayOfWeek\": \"TUESDAY\",\n            \"broadcastType\": \"Fresh_Content\",\n            \"label\": \"Mon New\",\n            \"startTimeMinutes\": 240,\n            \"durationMinutes\": 150,\n            \"gregorian\": {\n                \"start\": \"04:00\",\n                \"end\": \"06:30\"\n            },\n            \"ethiopian\": {\n                \"start\": \"10:00 ሌሊት\",\n                \"end\": \"12:30 ጠዋት\"\n            },\n            \"createdAt\": \"2026-03-13T23:18:59.511Z\",\n            \"updatedAt\": \"2026-03-13T23:18:59.511Z\"\n        }\n    }\n}"
+                },
+                {
+                  "name": "Success - Gregorian Time",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 7,\n    //   \"hourEth\": 10,\n      \"minute\": 0,\n    //   \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "079216c5-f295-4f44-854f-8128224891c4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "532"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"214-5waG5Mxii0z8alnTMrWwaFL7Xd0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 13 Mar 2026 23:19:56 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule block created successfully\",\n    \"data\": {\n        \"block\": {\n            \"id\": \"7d439a8c-9d65-4d4f-a088-f872f8be65af\",\n            \"scheduleId\": \"079216c5-f295-4f44-854f-8128224891c4\",\n            \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n            \"dayOfWeek\": \"TUESDAY\",\n            \"broadcastType\": \"Fresh_Content\",\n            \"label\": \"Mon New\",\n            \"startTimeMinutes\": 420,\n            \"durationMinutes\": 150,\n            \"gregorian\": {\n                \"start\": \"07:00\",\n                \"end\": \"09:30\"\n            },\n            \"ethiopian\": {\n                \"start\": \"1:00 ጠዋት\",\n                \"end\": \"3:30 ጠዋት\"\n            },\n            \"createdAt\": \"2026-03-13T23:19:56.956Z\",\n            \"updatedAt\": \"2026-03-13T23:19:56.956Z\"\n        }\n    }\n}"
                 }
               ]
             },
@@ -12211,7 +12567,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"minute\": 30,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 1,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"hourEth\": 6,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"hourEth\": 8,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 16,\n      \"hourEth\": 10,\n      \"minute\": 30,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -12233,7 +12589,7 @@
                   "variable": [
                     {
                       "key": "scheduleId",
-                      "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                      "value": "079216c5-f295-4f44-854f-8128224891c4"
                     }
                   ]
                 },
@@ -12487,6 +12843,130 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Overlap detected on MONDAY: block at 06:00 overlaps with 06:00\",\n    \"errorStack\": \"ValidationError: Overlap detected on MONDAY: block at 06:00 overlaps with 06:00\\n    at CreateBatchScheduleBlocksUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/satellite-schedule-blocks/create-batch-schedule-blocks.use-case.ts:75:17)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async createBatchScheduleBlocks (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/schedule-block.controller.ts:49:20)\"\n}"
+                },
+                {
+                  "name": "Success - Gregorian and Ethiopian Times",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 12,\n      \"hourEth\": 6,\n      \"minute\": 0,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 9,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ጠዋት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 2,\n      \"hourEth\": 8,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 16,\n      \"hourEth\": 10,\n      \"minute\": 30,\n      \"dayPart\": \"ከሰአት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks",
+                        "batch"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "079216c5-f295-4f44-854f-8128224891c4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "90"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"5a-83Y89cmyxLuijCLvXnN+6UPPass\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Fri, 13 Mar 2026 23:35:56 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"4 schedule blocks created successfully\",\n    \"data\": {\n        \"count\": 4\n    }\n}"
                 }
               ]
             },

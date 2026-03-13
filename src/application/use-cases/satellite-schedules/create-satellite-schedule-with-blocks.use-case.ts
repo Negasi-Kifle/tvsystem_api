@@ -2,10 +2,27 @@ import { SatelliteScheduleEntity } from '../../../domain/entities/satellite-sche
 import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-type.enum';
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
 import { ISatelliteScheduleRepository } from '../../../domain/repositories/satellite-schedule.repository.interface';
-import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
+import { EntityAlreadyExistsError, ValidationError } from '../../../domain/errors';
 import { ICalendarService } from '../../../domain/services/calendar.service';
 import { BatchBlockInput } from '../satellite-schedule-blocks/create-batch-schedule-blocks.use-case';
 import { ISatelliteScheduleCreateWithBlocksHandler } from '../../../domain/services/create-satellite-schedule-with-blocks.handler';
+
+function validateBlockTimeRules(block: BatchBlockInput, index: number): void {
+  const hasHour = block.hour !== undefined;
+  const hasHourEth = block.hourEth !== undefined;
+  const hasDayPart = block.dayPart !== undefined;
+
+  if (!hasHour && !(hasHourEth && hasDayPart)) {
+    throw new ValidationError(
+      `Block at index ${index}: Either gregorian time (hour) or ethiopian time (hourEth + dayPart) must be provided; both cannot be empty.`,
+    );
+  }
+  if (hasHourEth !== hasDayPart) {
+    throw new ValidationError(
+      `Block at index ${index}: hourEth and dayPart must be provided together; if one is set, the other is required.`,
+    );
+  }
+}
 
 export type CreateSatelliteScheduleWithBlocksInput = {
   name: string;
@@ -54,7 +71,11 @@ export class CreateSatelliteScheduleWithBlocksUseCase {
             'SatelliteSchedule',
           );
         }
-          
+
+        if (payload.blocks && payload.blocks.length > 0) {
+          payload.blocks.forEach((block, index) => validateBlockTimeRules(block, index));
+        }
+
         // Create the schedule and blocks here
         const schedule = await this.scheduleRepo.create(entity);
       scheduleId = schedule.id;

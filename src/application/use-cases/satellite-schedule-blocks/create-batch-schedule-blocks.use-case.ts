@@ -10,12 +10,62 @@ import { ISatelliteScheduleCreateWithBlocksHandler } from '../../../domain/servi
 export type BatchBlockInput = {
   showId: string;
   dayOfWeek: DayOfWeek;
-  hour: number;
+  hour?: number;
+  hourEth?: number;
   minute: number;
-  dayPart: EthiopianDayPart;
+  dayPart?: EthiopianDayPart;
   broadcastType: BroadcastType;
   label?: string;
 };
+
+export type ScheduleBlockTimeInput = {
+  hour?: number;
+  hourEth?: number;
+  minute: number;
+  dayPart?: EthiopianDayPart;
+};
+
+export function computeStartTimeMinutes(input: ScheduleBlockTimeInput): number {
+  const minute = input.minute ?? 0;
+  if (input.hourEth !== undefined && input.dayPart !== undefined) {
+
+    const startTimeMinutesEthiopian = EthiopianTime.toGregorianMinutes(input.hourEth, minute, input.dayPart);
+    
+    // If hour is provided, it must match the ethiopian time
+    if (input.hour !== undefined) {
+      const startTimeMinutesGregorian = input.hour * 60 + minute;
+      if(startTimeMinutesEthiopian !== startTimeMinutesGregorian) {
+        throw new ValidationError(
+          'The gregorian and Ethiopian times do not match. Please provide either gregorian time (hour) or ethiopian time (hourEth + dayPart).',
+        );
+      }
+    }
+
+    return startTimeMinutesEthiopian;
+  }
+
+  if (input.hour !== undefined) {
+    // Gregorian: totalMinutes from midnight (hour in 24h format 0–23)
+    const startTimeMinutes = input.hour * 60 + minute;
+    
+    // If hourEth is provided, it must match the gregorian time
+    if(input.hourEth !== undefined && input.dayPart !== undefined) {
+      const startTimeMinutesEthiopian = EthiopianTime.toGregorianMinutes(input.hourEth, minute, input.dayPart);
+      if(startTimeMinutesEthiopian !== startTimeMinutes) {
+        throw new ValidationError(
+          'The gregorian and Ethiopian times do not match. Please provide either gregorian time (hour) or ethiopian time (hourEth + dayPart) and vice versa.',
+        );
+      }
+    }
+
+    return startTimeMinutes;
+  }
+
+  // If both hour and hourEth are provided, throw validation error
+  throw new ValidationError(
+    'Either gregorian time (hour) or ethiopian time (hourEth + dayPart) must be provided.',
+  );
+}
 
 export class CreateBatchScheduleBlocksUseCase implements ISatelliteScheduleCreateWithBlocksHandler {
   constructor(
@@ -40,7 +90,7 @@ export class CreateBatchScheduleBlocksUseCase implements ISatelliteScheduleCreat
         throw new EntityNotFoundError('Show not found', 'Show', input.showId);
       }
 
-      const startTimeMinutes = EthiopianTime.toGregorianMinutes(input.hour, input.minute, input.dayPart);
+      const startTimeMinutes = computeStartTimeMinutes(input);
 
       entities.push(
         ScheduleBlockEntity.createInstance(

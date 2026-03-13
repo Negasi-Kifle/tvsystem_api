@@ -4,15 +4,17 @@ import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IScheduleBlockRepository } from '../../../domain/repositories/schedule-block.repository.interface';
 import { ISatelliteScheduleRepository } from '../../../domain/repositories/satellite-schedule.repository.interface';
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
-import { EthiopianTime, EthiopianDayPart } from '../../../domain/value-objects/ethiopian-time.value-objects';
+import { EthiopianDayPart } from '../../../domain/value-objects/ethiopian-time.value-objects';
+import { computeStartTimeMinutes } from './create-batch-schedule-blocks.use-case';
 
 export type CreateScheduleBlockInput = {
   scheduleId: string;
   showId: string;
   dayOfWeek: DayOfWeek;
-  hour: number;
+  hour?: number;
+  hourEth?: number;
   minute: number;
-  dayPart: EthiopianDayPart;
+  dayPart?: EthiopianDayPart;
   broadcastType: BroadcastType;
   label?: string;
 };
@@ -38,7 +40,7 @@ export class CreateScheduleBlockUseCase {
       throw new EntityNotFoundError('Show not found', 'Show', input.showId);
     }
 
-    const startTimeMinutes = EthiopianTime.toGregorianMinutes(input.hour, input.minute, input.dayPart);
+    const startTimeMinutes = computeStartTimeMinutes(input);
 
     const entity = ScheduleBlockEntity.createInstance(
       input.showId,
