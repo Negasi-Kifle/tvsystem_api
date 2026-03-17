@@ -9,6 +9,8 @@ import permissionRoutes from './permissions.routes';
 import userPermissionRoutes from './user-permissions.routes';
 import employeeRoutes from './employee.route';
 import partnerRoutes from './partner.route';
+import mediaPackRoutes from './media-pack.route';
+import advertPackageRoutes from './advert-package.route';
 import satelliteScheduleRoutes from './satellite-schedules.routes';
 import showHostRoutes from './show-hosts.routes';
 
@@ -24,6 +26,8 @@ router.use('/permissions', permissionRoutes);
 router.use('/user-permissions', userPermissionRoutes);
 router.use('/employees', employeeRoutes);
 router.use("/partners", partnerRoutes);
+router.use('/media-packs', mediaPackRoutes);
+router.use('/advert-packages', advertPackageRoutes);
 router.use('/satellite-schedules', satelliteScheduleRoutes);
 router.use('/show-hosts', showHostRoutes);
 

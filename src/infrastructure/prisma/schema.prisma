@@ -75,6 +75,9 @@ model Show {
 
   showHosts          ShowHost[]
 
+  // Relations
+  advertPackageLinks AdvertPackageShow[]
+
   @@map("shows")
 }
 
@@ -315,14 +318,69 @@ model SatelliteLog {
 // MEDIA PACK - Advertising packages with versioning
 // ============================================
 model MediaPack {
-  id          String   @id @default(uuid())
-  name        String
-  description String?
-  versions    Json     @default("[]") // Array of { version: number, notes?, createdAt }
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id             String          @id @default(uuid())
+  version        String
+  versionSlug    String          @unique @map("version_slug")
+  description    String?
+  isActive       Boolean         @default(true) @map("is_active")
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+
+  advertPackages AdvertPackage[]
 
   @@map("media_packs")
+}
+
+// ============================================
+// ADVERT PACKAGE - Package tied to a media pack
+// ============================================
+model AdvertPackage {
+  id                      String   @id @default(uuid())
+  name                    String
+  nameSlug                String   @map("name_slug")
+  mediaPackId             String   @map("media_pack_id")
+  showIds                 String[] @map("show_ids")
+  advertisementsCount     Int      @map("advertisements_count")
+  announcementsCount      Int      @map("announcements_count")
+  popUpsCount             Int      @map("pop_ups_count")
+  bonusesCount            Int      @map("bonuses_count")
+  priceBeforeVAT         Float    @map("price_before_vat")
+  otherTaxes              Float    @map("other_taxes")
+  finalPrice              Float    @map("final_price")
+  isActive                Boolean  @default(true) @map("is_active")
+  advertisementsRerunCount Int     @default(0) @map("advertisements_rerun_count")
+  announcementsRerunCount  Int     @default(0) @map("announcements_rerun_count")
+  popUpsRerunCount        Int       @default(0) @map("pop_ups_rerun_count")
+  bonusesRerunCount      Int       @default(0) @map("bonuses_rerun_count")
+  description             String?
+  createdAt               DateTime  @default(now()) @map("created_at")
+  updatedAt               DateTime  @updatedAt @map("updated_at")
+
+  mediaPack               MediaPack  @relation(fields: [mediaPackId], references: [id], onDelete: Restrict)
+
+  // Relations
+  showLinks               AdvertPackageShow[]
+
+  @@unique([mediaPackId, nameSlug])
+  @@index([mediaPackId])
+  @@index([isActive])
+  @@map("advert_packages")
+}
+
+// ============================================
+// ADVERT PACKAGE SHOW - Junction between AdvertPackage and Show
+// ============================================
+model AdvertPackageShow {
+  id              String        @id @default(uuid())
+  advertPackageId String        @map("advert_package_id")
+  showId          String        @map("show_id")
+
+  advertPackage   AdvertPackage @relation(fields: [advertPackageId], references: [id], onDelete: Cascade)
+  show            Show          @relation(fields: [showId], references: [id], onDelete: Cascade)
+
+  @@unique([advertPackageId, showId])
+  @@index([showId])
+  @@map("advert_package_shows")
 }
 
 // ============================================

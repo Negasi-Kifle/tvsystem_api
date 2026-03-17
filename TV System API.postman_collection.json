@@ -7488,7 +7488,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"userId\": \"504204bd-ff09-4b46-92d5-43c79e3bacc3\",\n    \"permissionIds\": [\"460d8b1f-70ae-41e1-9247-fc7c95901ce9\", \"568ee84b-f001-4bb3-892e-e84fe5ae7714\"]\n}",
+              "raw": "{\n    \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n    \"permissionIds\": [\"f912e236-9db6-406f-ba10-0ca999f1fd56\"]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -15314,6 +15314,1850 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "Media Pack",
+      "item": [
+        {
+          "name": "Create Media Pack",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"version\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"version\": \"v1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "259"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"103-fLNrz/SqgEAxh5O6ePJi7EJIGXY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 15 Mar 2026 20:10:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media pack created successfully\",\n    \"data\": {\n        \"mediaPack\": {\n            \"version\": \"v1\",\n            \"versionSlug\": \"v1\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-03-15T20:10:08.357Z\",\n            \"updatedAt\": \"2026-03-15T20:10:08.357Z\",\n            \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Media Pack - With Advert Packages",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n     \"version\": \"v 223\",\n     \"versionSlug\": \"v-223\",           \n     \"isActive\": true,\n     \"description\": \"The v-223 media pack\",\n     \"advertPackages\": [\n        {\n            \"name\": \"test pack\",\n            \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2\n        }\n     ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs/with-ad-packages",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs",
+                "with-ad-packages"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n     \"version\": \"v 223\",\n     \"versionSlug\": \"v-223\",           \n     \"isActive\": true,\n     \"description\": \"The v-223 media pack\",\n     \"advertPackages\": [\n        {\n            \"name\": \"test pack\",\n            \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2\n        }\n     ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/with-ad-packages",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "with-ad-packages"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "882"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"372-u/YzMwEAFt4nts2MMQj0CslE6Xg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Mar 2026 19:36:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media pack with ad packages created successfully\",\n    \"data\": {\n        \"mediaPack\": {\n            \"mediaPack\": {\n                \"version\": \"v 223\",\n                \"versionSlug\": \"v-223\",\n                \"description\": \"The v-223 media pack\",\n                \"isActive\": true,\n                \"createdAt\": \"2026-03-17T19:36:33.790Z\",\n                \"updatedAt\": \"2026-03-17T19:36:33.790Z\",\n                \"id\": \"de55b6a5-5324-4b47-b297-531fac906914\"\n            },\n            \"advertPackages\": [\n                {\n                    \"name\": \"test pack\",\n                    \"nameSlug\": \"test-pack\",\n                    \"mediaPackId\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"createdAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"updatedAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"id\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                    \"shows\": []\n                }\n            ]\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2726"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"aa6-KqD9ucqQxV5JNq0owkEtsl1kyyg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Mar 2026 19:51:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"mediaPacks\": [\n            {\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\",\n                \"isActive\": true,\n                \"createdAt\": \"2026-03-15T20:10:08.357Z\",\n                \"updatedAt\": \"2026-03-15T20:15:44.118Z\",\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"advertPackages\": [\n                    {\n                        \"name\": \"Agelgil 22\",\n                        \"nameSlug\": \"agelgil-22\",\n                        \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                        \"showIds\": [\n                            \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                            \"8db59405-20a6-4c1e-b890-658828309ea8\"\n                        ],\n                        \"advertisementsCount\": 1,\n                        \"announcementsCount\": 1,\n                        \"popUpsCount\": 1,\n                        \"bonusesCount\": 0,\n                        \"priceBeforeVAT\": 3000,\n                        \"otherTaxes\": 4,\n                        \"finalPrice\": 3570,\n                        \"isActive\": true,\n                        \"advertisementsRerunCount\": 0,\n                        \"announcementsRerunCount\": 0,\n                        \"popUpsRerunCount\": 0,\n                        \"bonusesRerunCount\": 0,\n                        \"createdAt\": \"2026-03-16T21:15:50.116Z\",\n                        \"updatedAt\": \"2026-03-16T21:16:58.038Z\",\n                        \"id\": \"927a1d30-da61-4637-9896-b98a09c28219\",\n                        \"shows\": [\n                            {\n                                \"title\": \"Seifu Show on EBS\",\n                                \"titleSlug\": \"seifu-show-on-ebs\",\n                                \"type\": \"InHouse\",\n                                \"durationMinutes\": 120,\n                                \"maxAdLengthMinutes\": 30,\n                                \"totalDurationMinutes\": 150,\n                                \"partsCount\": 4,\n                                \"rerunsCount\": 4,\n                                \"bonusCount\": 0\n                            },\n                            {\n                                \"title\": \"Seifu Show on Abbay\",\n                                \"titleSlug\": \"seifu-show-on-abbay\",\n                                \"type\": \"InHouse\",\n                                \"durationMinutes\": 120,\n                                \"maxAdLengthMinutes\": 30,\n                                \"totalDurationMinutes\": 150,\n                                \"partsCount\": 4,\n                                \"rerunsCount\": 4,\n                                \"bonusCount\": 0\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                \"version\": \"v 22\",\n                \"versionSlug\": \"v-22\",\n                \"isActive\": true,\n                \"createdAt\": \"2026-03-17T19:28:35.662Z\",\n                \"updatedAt\": \"2026-03-17T19:28:35.662Z\",\n                \"id\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n                \"advertPackages\": [\n                    {\n                        \"name\": \"test pack\",\n                        \"nameSlug\": \"test-pack\",\n                        \"mediaPackId\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n                        \"showIds\": [\n                            \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                        ],\n                        \"advertisementsCount\": 1,\n                        \"announcementsCount\": 1,\n                        \"popUpsCount\": 1,\n                        \"bonusesCount\": 0,\n                        \"priceBeforeVAT\": 100,\n                        \"otherTaxes\": 2,\n                        \"finalPrice\": 117,\n                        \"isActive\": true,\n                        \"advertisementsRerunCount\": 0,\n                        \"announcementsRerunCount\": 0,\n                        \"popUpsRerunCount\": 0,\n                        \"bonusesRerunCount\": 0,\n                        \"createdAt\": \"2026-03-17T19:28:35.667Z\",\n                        \"updatedAt\": \"2026-03-17T19:28:35.667Z\",\n                        \"id\": \"\",\n                        \"shows\": []\n                    }\n                ]\n            },\n            {\n                \"version\": \"v 223\",\n                \"versionSlug\": \"v-223\",\n                \"description\": \"The v-223 media pack\",\n                \"isActive\": true,\n                \"createdAt\": \"2026-03-17T19:36:33.790Z\",\n                \"updatedAt\": \"2026-03-17T19:36:33.790Z\",\n                \"id\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                \"advertPackages\": [\n                    {\n                        \"name\": \"test pack\",\n                        \"nameSlug\": \"test-pack\",\n                        \"mediaPackId\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                        \"showIds\": [\n                            \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                        ],\n                        \"advertisementsCount\": 1,\n                        \"announcementsCount\": 1,\n                        \"popUpsCount\": 1,\n                        \"bonusesCount\": 0,\n                        \"priceBeforeVAT\": 100,\n                        \"otherTaxes\": 2,\n                        \"finalPrice\": 117,\n                        \"isActive\": true,\n                        \"advertisementsRerunCount\": 0,\n                        \"announcementsRerunCount\": 0,\n                        \"popUpsRerunCount\": 0,\n                        \"bonusesRerunCount\": 0,\n                        \"createdAt\": \"2026-03-17T19:36:33.792Z\",\n                        \"updatedAt\": \"2026-03-17T19:36:33.792Z\",\n                        \"id\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                        \"shows\": []\n                    }\n                ]\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs/de55b6a5-5324-4b47-b297-531fac906914",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs",
+                "de55b6a5-5324-4b47-b297-531fac906914"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Error - Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/438f821f-290d-43e0-9a3d-26ed7fc88f4b",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "438f821f-290d-43e0-9a3d-26ed7fc88f4b"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "519"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"207-ouZUs9wWbzhNx+kegK4ROPHsD2w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 15 Mar 2026 20:13:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Media pack not found\",\n    \"errorStack\": \"EntityNotFoundError: Media pack not found\\n    at GetMediaPackByIdUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/media-pack/get-media-pack-by-id.use-case.ts:11:19)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async getMediaPackById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/media-pack.controller.ts:74:27)\"\n}"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/de55b6a5-5324-4b47-b297-531fac906914",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "de55b6a5-5324-4b47-b297-531fac906914"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "807"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"327-oYSJ9oqD3KUoa2n9pKJNWqmctgQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Mar 2026 20:33:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"mediaPack\": {\n            \"version\": \"v 223\",\n            \"versionSlug\": \"v-223\",\n            \"description\": \"The v-223 media pack\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-03-17T19:36:33.790Z\",\n            \"updatedAt\": \"2026-03-17T19:36:33.790Z\",\n            \"id\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n            \"advertPackages\": [\n                {\n                    \"name\": \"test pack\",\n                    \"nameSlug\": \"test-pack\",\n                    \"mediaPackId\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"createdAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"updatedAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"id\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                    \"shows\": []\n                }\n            ]\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"version\": \"v2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a73",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs",
+                "58fcf744-af0d-4b6b-93ea-162fcf5d6a73"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"version\": \"v2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/438f821f-290d-43e0-9a3d-26ed7fc88f5b",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "438f821f-290d-43e0-9a3d-26ed7fc88f5b"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "259"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"103-WusLZP8o/wwiXjL16iw+rM1eUyE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 15 Mar 2026 20:14:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media pack updated successfully\",\n    \"data\": {\n        \"mediaPack\": {\n            \"version\": \"v2\",\n            \"versionSlug\": \"v2\",\n            \"isActive\": true,\n            \"createdAt\": \"2026-03-15T20:10:08.357Z\",\n            \"updatedAt\": \"2026-03-15T20:14:42.782Z\",\n            \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete By ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a73",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "media-packs",
+                "58fcf744-af0d-4b6b-93ea-162fcf5d6a73"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Error - Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a71",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "58fcf744-af0d-4b6b-93ea-162fcf5d6a71"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "514"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"202-AGcQJQQGHSrKCIgTXhfoMeob3U8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 15 Mar 2026 20:19:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Media pack not found\",\n    \"errorStack\": \"EntityNotFoundError: Media pack not found\\n    at DeleteMediaPackUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/media-pack/delete-media-pack.use-case.ts:11:19)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async deleteMediaPack (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/media-pack.controller.ts:109:9)\"\n}"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a73",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "58fcf744-af0d-4b6b-93ea-162fcf5d6a73"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "64"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"40-Xlc9Oa41vQKXFFE+oR3AUoC18qQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 15 Mar 2026 20:20:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media pack deleted successfully\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Advert Packages",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Agelgil 22\",\n    // \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/advert-packages",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "advert-packages"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Agelgil\",\n    \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "908"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38c-Ypb1LTf9GJE76Zd/qJVzld15jdM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 20:56:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package created successfully\",\n    \"data\": {\n        \"advertPackage\": {\n            \"name\": \"Agelgil\",\n            \"nameSlug\": \"agelgil\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n            ],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2,\n            \"finalPrice\": 117,\n            \"isActive\": true,\n            \"advertisementsRerunCount\": 0,\n            \"announcementsRerunCount\": 0,\n            \"popUpsRerunCount\": 0,\n            \"bonusesRerunCount\": 0,\n            \"createdAt\": \"2026-03-16T20:56:09.068Z\",\n            \"updatedAt\": \"2026-03-16T20:56:09.068Z\",\n            \"id\": \"4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd\",\n            \"mediaPack\": {\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\"\n            },\n            \"shows\": [\n                {\n                    \"title\": \"Seifu Show on EBS\",\n                    \"titleSlug\": \"seifu-show-on-ebs\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                }\n            ]\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/advert-packages",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "advert-packages"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1172"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"494-gxmlPydvfK39//p4JiBRN/8Xhc4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 21:17:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"advertPackages\": [\n            {\n                \"name\": \"Agelgil 22\",\n                \"nameSlug\": \"agelgil-22\",\n                \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                    \"8db59405-20a6-4c1e-b890-658828309ea8\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 3000,\n                \"otherTaxes\": 4,\n                \"finalPrice\": 3570,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"createdAt\": \"2026-03-16T21:15:50.116Z\",\n                \"updatedAt\": \"2026-03-16T21:16:58.038Z\",\n                \"id\": \"927a1d30-da61-4637-9896-b98a09c28219\",\n                \"mediaPack\": {\n                    \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                    \"version\": \"v1\",\n                    \"versionSlug\": \"v1\"\n                },\n                \"shows\": [\n                    {\n                        \"title\": \"Seifu Show on EBS\",\n                        \"titleSlug\": \"seifu-show-on-ebs\",\n                        \"type\": \"InHouse\",\n                        \"durationMinutes\": 120,\n                        \"maxAdLengthMinutes\": 30,\n                        \"totalDurationMinutes\": 150,\n                        \"partsCount\": 4,\n                        \"rerunsCount\": 4,\n                        \"bonusCount\": 0\n                    },\n                    {\n                        \"title\": \"Seifu Show on Abbay\",\n                        \"titleSlug\": \"seifu-show-on-abbay\",\n                        \"type\": \"InHouse\",\n                        \"durationMinutes\": 120,\n                        \"maxAdLengthMinutes\": 30,\n                        \"totalDurationMinutes\": 150,\n                        \"partsCount\": 4,\n                        \"rerunsCount\": 4,\n                        \"bonusCount\": 0\n                    }\n                ]\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/advert-packages/4c10f9ce-4bde-4eb3-920c-cd2ad166f6dw",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "advert-packages",
+                "4c10f9ce-4bde-4eb3-920c-cd2ad166f6dw"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages/4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages",
+                    "4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "860"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"35c-OiRV4pFFvO4b8bIGqwAmbSrwGTg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 20:57:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"advertPackage\": {\n            \"name\": \"Agelgil\",\n            \"nameSlug\": \"agelgil\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n            ],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2,\n            \"finalPrice\": 117,\n            \"isActive\": true,\n            \"advertisementsRerunCount\": 0,\n            \"announcementsRerunCount\": 0,\n            \"popUpsRerunCount\": 0,\n            \"bonusesRerunCount\": 0,\n            \"createdAt\": \"2026-03-16T20:56:09.068Z\",\n            \"updatedAt\": \"2026-03-16T20:56:09.068Z\",\n            \"id\": \"4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd\",\n            \"mediaPack\": {\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\"\n            },\n            \"shows\": [\n                {\n                    \"title\": \"Seifu Show on EBS\",\n                    \"titleSlug\": \"seifu-show-on-ebs\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "Erro - Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages/4c10f9ce-4bde-4eb3-920c-cd2ad166f6dw",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages",
+                    "4c10f9ce-4bde-4eb3-920c-cd2ad166f6dw"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "548"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"224-JGAH1O9Z6UYwYA++dg73ShHP9f8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 20:57:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Advert package not found\",\n    \"errorStack\": \"EntityNotFoundError: Advert package not found\\n    at GetAdvertPackageByIdUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/advert-package/get-advert-package-by-id.use-case.ts:11:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async getAdvertPackageById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/advert-package.controller.ts:101:27)\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n     \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"8db59405-20a6-4c1e-b890-658828309ea8\"\n            ],\n    \"priceBeforeVAT\": 3000,\n    \"otherTaxes\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/advert-packages/927a1d30-da61-4637-9896-b98a09c28219",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "advert-packages",
+                "927a1d30-da61-4637-9896-b98a09c28219"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n     \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"8db59405-20a6-4c1e-b890-658828309ea8\"\n            ],\n    \"priceBeforeVAT\": 3000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages/927a1d30-da61-4637-9896-b98a09c28219",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages",
+                    "927a1d30-da61-4637-9896-b98a09c28219"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1157"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"485-9k4w3/724z4dbZs8/TcUv8cNtXg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 21:16:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package updated successfully\",\n    \"data\": {\n        \"advertPackage\": {\n            \"name\": \"Agelgil 22\",\n            \"nameSlug\": \"agelgil-22\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"8db59405-20a6-4c1e-b890-658828309ea8\"\n            ],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 3000,\n            \"otherTaxes\": 2,\n            \"finalPrice\": 3510,\n            \"isActive\": true,\n            \"advertisementsRerunCount\": 0,\n            \"announcementsRerunCount\": 0,\n            \"popUpsRerunCount\": 0,\n            \"bonusesRerunCount\": 0,\n            \"createdAt\": \"2026-03-16T21:15:50.116Z\",\n            \"updatedAt\": \"2026-03-16T21:16:29.080Z\",\n            \"id\": \"927a1d30-da61-4637-9896-b98a09c28219\",\n            \"mediaPack\": {\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\"\n            },\n            \"shows\": [\n                {\n                    \"title\": \"Seifu Show on EBS\",\n                    \"titleSlug\": \"seifu-show-on-ebs\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                },\n                {\n                    \"title\": \"Seifu Show on Abbay\",\n                    \"titleSlug\": \"seifu-show-on-abbay\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                }\n            ]\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/advert-packages/8fbdc584-e303-4295-9eb2-34b38dfabe52",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "advert-packages",
+                "8fbdc584-e303-4295-9eb2-34b38dfabe52"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/advert-packages/4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-packages",
+                    "4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "68"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"44-QU9eajN/Ogif9NhLOBbd4vca498\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 21:11:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package deleted successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
         }
       ]
     },

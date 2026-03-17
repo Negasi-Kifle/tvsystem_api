@@ -7,6 +7,8 @@ export const PERMISSIONS = {
   VIEW_SCHEDULES: 'view_schedules',
   MANAGE_MEDIA_PACKS: 'manage_media_packs',
   VIEW_MEDIA_PACKS: 'view_media_packs',
+  MANAGE_ADVERT_PACKAGES: 'manage_advert_packages',
+  VIEW_ADVERT_PACKAGES: 'view_advert_packages',
   MANAGE_EMPLOYEES: 'manage_employees',
   VIEW_EMPLOYEES: 'view_employees',
   MANAGE_PARTNERS: 'manage_partners',

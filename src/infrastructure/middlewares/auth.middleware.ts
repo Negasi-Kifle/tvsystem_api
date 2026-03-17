@@ -6,6 +6,8 @@ import { Exception } from '../../shared/utils/error-constructor';
 import { Code } from '../../shared/utils/http_code';
 import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
 import { GetByIdUseCase } from '../../application/use-cases/users/get-by-id.use-case';
+import { FetchAllUserPermissionsUseCase } from '../../application/use-cases/user-permissions/fetch-all.use-case';
+import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository"
 
 declare global {
   namespace Express {
@@ -28,7 +30,11 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
 
     // Check user exists
     const getByIdUseCase = new GetByIdUseCase(new UserRepository());
-    const user = await getByIdUseCase.execute(payload.userId);
+    const getUserPermissions = new FetchAllUserPermissionsUseCase(new UserPermissionsRepository())
+    const [user, userPermissions] = await Promise.all([
+      getByIdUseCase.execute(payload.userId),
+      getUserPermissions.execute({ filters: { userId: payload.userId }, take: 10000 }),
+    ]);
     
     if (!user) {
       throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: 'User not found' });
@@ -40,7 +46,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
 
     req.user = {
       id: payload.userId,
-      permissions: payload.permissions ?? [],
+      permissions: userPermissions.map((permission) => permission.permission?.nameSlug ?? ''),
     };
     next();
   } catch (error) {
