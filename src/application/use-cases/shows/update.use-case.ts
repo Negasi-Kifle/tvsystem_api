@@ -16,6 +16,7 @@ export type UpdateShowPayload = {
     partsCount?: number;
     rerunsCount?: number;
     bonusCount?: number;
+    colorForScheduleBlock?: string;
     status?: Status;
 };
 
@@ -43,6 +44,7 @@ export class UpdateShowUseCase {
             payload.partsCount,
             payload.rerunsCount,
             payload.bonusCount,
+            payload.colorForScheduleBlock,
             payload.status
         );
 

@@ -22,13 +22,19 @@ export class ShowRepository extends PrismaBaseRepository implements IShowReposit
   }
 
   async findById(id: string): Promise<ShowEntity | null> {
-    const show = await this.prisma.show.findUnique({ where: { id } });
+    const show = await this.prisma.show.findUnique({ where: { id }, include: {showHosts: true} });
     return show ? modelToEntity(show) : null;
   }
 
   async findMany(query: QueryOptions<ShowEntity>): Promise<ShowEntity[]> {
     const where = buildWhereClauseForShow(query.filters ?? {});
-    const shows = await this.prisma.show.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
+    const shows = await this.prisma.show.findMany(
+      {
+        where,
+        skip: query.skip ?? 0,
+        take: query.take ?? 10,
+        include: {showHosts: true}
+      });
     return shows.map(modelToEntity);
   }
 

@@ -3,6 +3,7 @@ import { ShowType } from '../../../domain/enums/show-type.enum';
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
 import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
 import { Status } from '../../../domain/enums/status';
+import { ValidationError } from '../../../domain/errors/validation.error';
 
 export type CreateShowInput = {
   title: string;
@@ -13,6 +14,7 @@ export type CreateShowInput = {
   partsCount: number;
   rerunsCount: number;
   bonusCount: number;
+  colorForScheduleBlock?: string;
   status?: Status;
 };
 
@@ -29,8 +31,14 @@ export class CreateShowUseCase {
       payload.partsCount,
       payload.rerunsCount,
       payload.bonusCount,
+      payload.colorForScheduleBlock,
       payload.status
     );
+
+    // Check color for schedule block is a valid hex color
+    if(payload.colorForScheduleBlock !== undefined && !ShowEntity.isValidHexColor(payload.colorForScheduleBlock)) {
+      throw new ValidationError('Color for schedule block must be a valid hex color. Example: #000000');
+    }
 
     //  Check for duplicate title slug
     const duplicateShow = await this.showRepo.findByTitleSlug(showEntity.titleSlug);

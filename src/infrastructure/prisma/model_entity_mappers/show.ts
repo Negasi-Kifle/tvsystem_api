@@ -1,9 +1,14 @@
-import { Show } from '../generated/client';
+import { Show, ShowHost } from '../generated/client';
 import { ShowEntity } from "../../../domain/entities/show.entity";
 import { ShowType } from "../../../domain/enums/show-type.enum";
 import { Status } from "../../../domain/enums/status";
+import { modelToEntity as mapShowHostToEntity } from "./show-host";
 
-export function modelToEntity(show: Show): ShowEntity {
+export type ShowWithRelations = Show & {
+    showHosts?: ShowHost[] | null;
+};
+
+export function modelToEntity(show: ShowWithRelations): ShowEntity {
     return ShowEntity.createInstance(
         show.title,
         show.titleSlug,
@@ -13,10 +18,12 @@ export function modelToEntity(show: Show): ShowEntity {
         show.partsCount,
         show.rerunsCount,
         show.bonusCount,
+        show.colorForScheduleBlock ?? undefined,
         show.status as Status,
         show.createdAt,
         show.updatedAt,
         show.id,
+        show.showHosts ? show.showHosts.map(mapShowHostToEntity) : undefined,
     );
 }
 
@@ -32,6 +39,7 @@ export function entityToModel(show: ShowEntity): Show {
         partsCount: show.partsCount,
         rerunsCount: show.rerunsCount,
         bonusCount: show.bonusCount,
+        colorForScheduleBlock: show.colorForScheduleBlock ?? null,
         status: show.status,
         createdAt: show.createdAt ?? new Date(),
         updatedAt: show.updatedAt ?? new Date(),

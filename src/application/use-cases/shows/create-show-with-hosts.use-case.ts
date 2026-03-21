@@ -19,6 +19,7 @@ export type CreateShowWithHostsInput = {
   partsCount: number;
   rerunsCount: number;
   bonusCount: number;
+  colorForScheduleBlock?: string;
   status?: Status;
   hosts?: {
     userId: string;
@@ -74,6 +75,7 @@ export class CreateShowWithHostsUseCase {
         showWithHosts.partsCount,
         showWithHosts.rerunsCount,
         showWithHosts.bonusCount,
+        showWithHosts.colorForScheduleBlock,
         showWithHosts.status
       );
 

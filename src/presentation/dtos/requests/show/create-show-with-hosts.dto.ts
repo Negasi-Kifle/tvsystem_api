@@ -12,7 +12,8 @@ export const createShowWithHostsDto = z.object({
   partsCount: z.number("Parts count must be a positive number").min(1, "Parts count must be a positive number"),
   rerunsCount: z.number("Reruns count must be a positive number").min(0, "Reruns count must be a positive number"),
   bonusCount: z.number("Bonus count must be a positive number").min(0, "Bonus count must be a positive number"),
-    status: z.enum(Status, "Status must be one of the following: " + Object.values(Status).join(', ')).optional(),
+  colorForScheduleBlock: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color for schedule block must be a valid hex color. Example: #000000").optional(),
+  status: z.enum(Status, "Status must be one of the following: " + Object.values(Status).join(', ')).optional(),
   hosts: z
     .array(createShowHostDto.omit({ showId: true }))
     .refine(

@@ -12,6 +12,7 @@ export const updateShowDto = z.object({
   partsCount: z.number().int().min(1).optional(),
   rerunsCount: z.number().int().min(0).optional(),
   bonusCount: z.number().int().min(0).optional(),
+  colorForScheduleBlock: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color for schedule block must be a valid hex color. Example: #000000").optional(),
   status: z.enum(Status, "Status must be one of the following: " + Object.values(Status).join(', ')).optional(),
 }).strict();
 

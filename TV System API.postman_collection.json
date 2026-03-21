@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "21486d4e-6cb3-4573-8aaa-5cd792270df7",
-    "name": "TV System API",
+    "_postman_id": "229c0d35-4d43-4d42-9b4f-f8e74d3f70e6",
+    "name": "TV System API Copy",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-21486d4e-6cb3-4573-8aaa-5cd792270df7?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-229c0d35-4d43-4d42-9b4f-f8e74d3f70e6?source=collection_link"
   },
   "item": [
     {
@@ -645,7 +645,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -805,7 +805,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -956,7 +956,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1116,7 +1116,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1341,7 +1341,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1501,7 +1501,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1645,7 +1645,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1752,7 +1752,7 @@
                   },
                   "status": "Not Found",
                   "code": 404,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1926,7 +1926,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2091,7 +2091,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2237,7 +2237,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2374,7 +2374,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2534,7 +2534,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10477,7 +10477,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Seifu Show on fan\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
+              "raw": "{\n  \"title\": \"Fasika Show on fan\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0,\n  \"colorForScheduleBlock\": \"#FF0000\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -10515,7 +10515,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"title\": \"Seifu Show on EBS\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0\n}",
+                  "raw": "{\n  \"title\": \"Fasika Show on fan\",\n  \"type\": \"InHouse\",\n  \"durationMinutes\": 120,\n  \"maxAdLengthMinutes\": 30,\n  \"partsCount\": 4,\n  \"rerunsCount\": 4,\n  \"bonusCount\": 0,\n  \"colorForScheduleBlock\": \"#FF0000\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -10535,7 +10535,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10595,15 +10595,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "411"
+                  "value": "447"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"19b-F2VNxo+KwTKec9RFPSj5/Gg+AD4\""
+                  "value": "W/\"1bf-Fk6PXIyvCXlcygnnY1hcbnRlV4c\""
                 },
                 {
                   "key": "Date",
-                  "value": "Wed, 11 Mar 2026 14:40:42 GMT"
+                  "value": "Sat, 21 Mar 2026 22:27:32 GMT"
                 },
                 {
                   "key": "Connection",
@@ -10615,7 +10615,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Show created successfully\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Fasika Show on fan\",\n            \"titleSlug\": \"fasika-show-on-fan\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"colorForScheduleBlock\": \"#FF0000\",\n            \"createdAt\": \"2026-03-21T22:27:32.633Z\",\n            \"updatedAt\": \"2026-03-21T22:27:32.633Z\",\n            \"id\": \"e74ce97f-c786-4c9d-8d95-d75a2a4d3c8c\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
             }
           ]
         },
@@ -11034,7 +11034,7 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/shows",
+              "raw": "{{baseUrl}}/api/shows?limit=2000",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -11072,6 +11072,11 @@
                   "key": "titleSlug",
                   "value": "alebe-show",
                   "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "2000",
+                  "type": "text"
                 }
               ]
             },
@@ -11079,7 +11084,7 @@
           },
           "response": [
             {
-              "name": "Succes",
+              "name": "Success",
               "originalRequest": {
                 "method": "GET",
                 "header": [
@@ -11090,7 +11095,7 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/api/shows",
+                  "raw": "{{baseUrl}}/api/shows?limit=2000",
                   "host": [
                     "{{baseUrl}}"
                   ],
@@ -11128,13 +11133,17 @@
                       "key": "titleSlug",
                       "value": "alebe-show",
                       "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
                     }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -11194,15 +11203,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "745"
+                  "value": "10574"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2e9-3FzRFQg5t2xR4a57mVP2Wko9rW8\""
+                  "value": "W/\"294e-zT4vqDE9cT76UDQWOvErnMNyd1o\""
                 },
                 {
                   "key": "Date",
-                  "value": "Wed, 11 Mar 2026 14:06:24 GMT"
+                  "value": "Sat, 21 Mar 2026 22:23:01 GMT"
                 },
                 {
                   "key": "Connection",
@@ -11214,7 +11223,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"shows\": [\n            {\n                \"title\": \"Seifu Show\",\n                \"titleSlug\": \"seifu-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"status\": \"Draft\"\n            },\n            {\n                \"title\": \"Alebe Show\",\n                \"titleSlug\": \"alebe-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 3,\n                \"rerunsCount\": 2,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:03:39.750Z\",\n                \"updatedAt\": \"2026-03-10T12:03:39.750Z\",\n                \"id\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"status\": \"Draft\"\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 2000,\n        \"total\": 22,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"shows\": [\n            {\n                \"title\": \"Mesenko\",\n                \"titleSlug\": \"mesenko\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.666Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.666Z\",\n                \"id\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Washu Ende\",\n                \"titleSlug\": \"washu-ende\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.659Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.659Z\",\n                \"id\": \"1f8283c0-6ccb-4296-83dd-e1a12d76eb8d\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Metenfesha (Solomon Bogale)\",\n                \"titleSlug\": \"metenfesha-solomon-bogale\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.657Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.657Z\",\n                \"id\": \"363bacbe-baac-4717-a98d-a5622f38614c\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"ሃሰሳ የፌደል ጨዋታ\",\n                \"titleSlug\": \"--\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.674Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.674Z\",\n                \"id\": \"3c4d4bd2-7b01-4e8a-923c-259901774844\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Feta Show\",\n                \"titleSlug\": \"feta-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.651Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.651Z\",\n                \"id\": \"5dc5a755-62e9-452b-8aca-44d01567321b\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Sekela Talk Show\",\n                \"titleSlug\": \"sekela-talk-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.672Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.672Z\",\n                \"id\": \"5fbf668f-575a-4dfd-841e-2a52b0ea1bb5\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Mese Show\",\n                \"titleSlug\": \"mese-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.652Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.652Z\",\n                \"id\": \"81c312b7-8962-4865-99f6-364c8b2b0587\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Foto ena Chewata\",\n                \"titleSlug\": \"foto-ena-chewata\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.658Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.658Z\",\n                \"id\": \"81decef0-9b18-4c4e-9b88-b84045cf735d\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Dinknesh Africa\",\n                \"titleSlug\": \"dinknesh-africa\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.653Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.653Z\",\n                \"id\": \"83ee61f0-31df-4a6d-9b6c-ac4de70046c0\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Seifu Show on EBS\",\n                \"titleSlug\": \"seifu-show-on-ebs\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-12T07:44:42.262Z\",\n                \"updatedAt\": \"2026-03-12T07:44:42.262Z\",\n                \"id\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"status\": \"Draft\",\n                \"showHosts\": [\n                    {\n                        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                        \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                        \"revenueShareType\": \"Fixed\",\n                        \"revenueShareValue\": 16000,\n                        \"isPrimary\": true,\n                        \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"id\": \"e48d2250-ab90-4806-af41-1efd2537a031\"\n                    },\n                    {\n                        \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 35,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"id\": \"19081b41-2a7e-4257-9dfe-1854b34fd47e\"\n                    },\n                    {\n                        \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                        \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"updatedAt\": \"2026-03-12T07:44:42.266Z\",\n                        \"id\": \"3279f388-18eb-4f3a-9039-2702662c8de5\"\n                    }\n                ]\n            },\n            {\n                \"title\": \"Seifu Show on Abbay\",\n                \"titleSlug\": \"seifu-show-on-abbay\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-12T12:37:41.746Z\",\n                \"updatedAt\": \"2026-03-12T12:37:41.746Z\",\n                \"id\": \"8db59405-20a6-4c1e-b890-658828309ea8\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Chef Z\",\n                \"titleSlug\": \"chef-z\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.649Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.649Z\",\n                \"id\": \"94e568f3-abe4-4b2f-966b-82b51a4c174b\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Seifu Show\",\n                \"titleSlug\": \"seifu-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:06:28.599Z\",\n                \"updatedAt\": \"2026-03-10T12:06:28.599Z\",\n                \"id\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"status\": \"Draft\",\n                \"showHosts\": [\n                    {\n                        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                        \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": true,\n                        \"createdAt\": \"2026-03-11T14:29:28.292Z\",\n                        \"updatedAt\": \"2026-03-11T14:29:28.292Z\",\n                        \"id\": \"62598843-4147-45e5-a228-0ad82c484a72\"\n                    }\n                ]\n            },\n            {\n                \"title\": \"Seifu Show on fana\",\n                \"titleSlug\": \"seifu-show-on-fana\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-12T13:20:28.602Z\",\n                \"updatedAt\": \"2026-03-12T13:20:28.602Z\",\n                \"id\": \"9c873a2b-9a2b-4e01-b918-0a2f2c1d3910\",\n                \"status\": \"Draft\",\n                \"showHosts\": [\n                    {\n                        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                        \"showId\": \"9c873a2b-9a2b-4e01-b918-0a2f2c1d3910\",\n                        \"revenueShareType\": \"Fixed\",\n                        \"revenueShareValue\": 16000,\n                        \"isPrimary\": true,\n                        \"createdAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"updatedAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"id\": \"8ba4961e-a82f-49fc-a1a9-a52f5b7f2765\"\n                    },\n                    {\n                        \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"showId\": \"9c873a2b-9a2b-4e01-b918-0a2f2c1d3910\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 35,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"updatedAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"id\": \"70df19e0-fb4a-4caf-8ce5-ca9e1e6e3b42\"\n                    },\n                    {\n                        \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                        \"showId\": \"9c873a2b-9a2b-4e01-b918-0a2f2c1d3910\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"updatedAt\": \"2026-03-12T13:20:28.604Z\",\n                        \"id\": \"c61758e5-e051-4176-b967-9fcb8dae7379\"\n                    }\n                ]\n            },\n            {\n                \"title\": \"Hello Abbay\",\n                \"titleSlug\": \"hello-abbay\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.655Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.655Z\",\n                \"id\": \"b01070f2-0c7c-42b2-bbd3-198f7740ac37\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Seifu Show on fan\",\n                \"titleSlug\": \"seifu-show-on-fan\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-12T13:50:50.410Z\",\n                \"updatedAt\": \"2026-03-12T13:50:50.410Z\",\n                \"id\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                \"status\": \"Draft\",\n                \"showHosts\": [\n                    {\n                        \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                        \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": true,\n                        \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"id\": \"cf4597c2-eaea-476f-bb7e-ab0e0a5a6004\"\n                    },\n                    {\n                        \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"id\": \"2d237273-7172-4d23-89b5-2a2dba76b723\"\n                    },\n                    {\n                        \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                        \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                        \"revenueShareType\": \"Percentage\",\n                        \"revenueShareValue\": 50,\n                        \"isPrimary\": false,\n                        \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                        \"id\": \"c16b0c64-66a7-4218-932f-425480f494cd\"\n                    }\n                ]\n            },\n            {\n                \"title\": \"Seifu Show on etv\",\n                \"titleSlug\": \"seifu-show-on-etv\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 4,\n                \"rerunsCount\": 4,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-12T13:20:10.315Z\",\n                \"updatedAt\": \"2026-03-12T13:20:10.315Z\",\n                \"id\": \"bc21344d-9e73-4afb-928a-8b34f7668dea\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Guramayle\",\n                \"titleSlug\": \"guramayle\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.669Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.669Z\",\n                \"id\": \"bd0bf4ea-79fd-42b0-b8aa-f7361b70b72e\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Man Yikenes\",\n                \"titleSlug\": \"man-yikenes\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.671Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.671Z\",\n                \"id\": \"c54db013-ac53-4f30-8e2b-a84cb3b14901\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"ሰለሜ ሰለሜ\",\n                \"titleSlug\": \"-\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.644Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.644Z\",\n                \"id\": \"db3b3e5f-9859-4b0e-a6ec-594dad45fc68\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"KINGS OF ABBAY\",\n                \"titleSlug\": \"kings-of-abbay\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 60,\n                \"maxAdLengthMinutes\": 15,\n                \"totalDurationMinutes\": 75,\n                \"partsCount\": 1,\n                \"rerunsCount\": 0,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-17T21:47:12.678Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.678Z\",\n                \"id\": \"de8716fd-d773-41bd-8d12-34e28f01620e\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            },\n            {\n                \"title\": \"Alebe Show\",\n                \"titleSlug\": \"alebe-show\",\n                \"type\": \"InHouse\",\n                \"durationMinutes\": 120,\n                \"maxAdLengthMinutes\": 30,\n                \"totalDurationMinutes\": 150,\n                \"partsCount\": 3,\n                \"rerunsCount\": 2,\n                \"bonusCount\": 0,\n                \"createdAt\": \"2026-03-10T12:03:39.750Z\",\n                \"updatedAt\": \"2026-03-10T12:03:39.750Z\",\n                \"id\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n                \"status\": \"Draft\",\n                \"showHosts\": []\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -11234,14 +11243,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/shows/8db59405-20a6-4c1e-b890-658828309ea8",
+              "raw": "{{baseURL}}/api/shows/b751cbe1-d52f-40ed-acb8-6f1808e0f9d7",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "8db59405-20a6-4c1e-b890-658828309ea8"
+                "b751cbe1-d52f-40ed-acb8-6f1808e0f9d7"
               ]
             }
           },
@@ -11252,20 +11261,20 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
+                  "raw": "{{baseURL}}/api/shows/b751cbe1-d52f-40ed-acb8-6f1808e0f9d7",
                   "host": [
                     "{{baseURL}}"
                   ],
                   "path": [
                     "api",
                     "shows",
-                    "bd011097-e79f-4eb5-9671-c21cd245c9b9"
+                    "b751cbe1-d52f-40ed-acb8-6f1808e0f9d7"
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -11325,15 +11334,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "373"
+                  "value": "1265"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"175-LvYuwlf0GOiL/NKj9yB5Jnocs+Y\""
+                  "value": "W/\"4f1-yPyjIqC2jl/UI7MsDXw9koh2vWA\""
                 },
                 {
                   "key": "Date",
-                  "value": "Wed, 11 Mar 2026 14:41:18 GMT"
+                  "value": "Sat, 21 Mar 2026 22:30:33 GMT"
                 },
                 {
                   "key": "Connection",
@@ -11345,7 +11354,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on EBS\",\n            \"titleSlug\": \"seifu-show-on-ebs\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-11T14:40:42.504Z\",\n            \"updatedAt\": \"2026-03-11T14:40:42.504Z\",\n            \"id\": \"bd011097-e79f-4eb5-9671-c21cd245c9b9\",\n            \"status\": \"Draft\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"show\": {\n            \"title\": \"Seifu Show on fan\",\n            \"titleSlug\": \"seifu-show-on-fan\",\n            \"type\": \"InHouse\",\n            \"durationMinutes\": 120,\n            \"maxAdLengthMinutes\": 30,\n            \"totalDurationMinutes\": 150,\n            \"partsCount\": 4,\n            \"rerunsCount\": 4,\n            \"bonusCount\": 0,\n            \"createdAt\": \"2026-03-12T13:50:50.410Z\",\n            \"updatedAt\": \"2026-03-12T13:50:50.410Z\",\n            \"id\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n            \"status\": \"Draft\",\n            \"showHosts\": [\n                {\n                    \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                    \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                    \"revenueShareType\": \"Percentage\",\n                    \"revenueShareValue\": 50,\n                    \"isPrimary\": true,\n                    \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"id\": \"cf4597c2-eaea-476f-bb7e-ab0e0a5a6004\"\n                },\n                {\n                    \"userId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                    \"revenueShareType\": \"Percentage\",\n                    \"revenueShareValue\": 50,\n                    \"isPrimary\": false,\n                    \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"id\": \"2d237273-7172-4d23-89b5-2a2dba76b723\"\n                },\n                {\n                    \"userId\": \"4548e4a6-6c1b-4572-801c-52f1ccf2a903\",\n                    \"showId\": \"b751cbe1-d52f-40ed-acb8-6f1808e0f9d7\",\n                    \"revenueShareType\": \"Percentage\",\n                    \"revenueShareValue\": 50,\n                    \"isPrimary\": false,\n                    \"createdAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"updatedAt\": \"2026-03-12T13:51:03.201Z\",\n                    \"id\": \"c16b0c64-66a7-4218-932f-425480f494cd\"\n                }\n            ]\n        }\n    }\n}"
             }
           ]
         },
@@ -18491,7 +18500,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"Agelgil 22\",\n    // \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+              "raw": "{\n    \"name\": \"Agelgil 22\",\n    // \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
               "options": {
                 "raw": {
                   "language": "json"

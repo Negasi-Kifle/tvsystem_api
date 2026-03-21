@@ -65,6 +65,7 @@ model Show {
   partsCount         Int      @map("parts_count")
   rerunsCount        Int      @default(0) @map("reruns_count")
   bonusCount         Int      @default(0) @map("bonus_count")
+  colorForScheduleBlock String? @map("color_for_schedule_block")
   status             String   @default("Draft") // Status enum: 'Draft' | 'Active' | 'Archived' | 'InActive'
   createdAt          DateTime @default(now()) @map("created_at")
   updatedAt          DateTime @updatedAt @map("updated_at")

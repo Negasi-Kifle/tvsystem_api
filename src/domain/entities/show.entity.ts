@@ -1,7 +1,8 @@
-import { DayOfWeek } from '../enums/day-of-week.enum';
 import { ShowType } from '../enums/show-type.enum';
 import { Status } from '../enums/status';
 import { ValidationError } from '../errors/validation.error';
+import { UserSummary } from '../interfaces/user-summary.interface';
+import { ShowHostEntity } from './show-host.entity';
 
 export class ShowEntity {
   constructor(
@@ -14,15 +15,22 @@ export class ShowEntity {
     public partsCount: number,           // Number of segments/parts (= "Parts" column)
     public rerunsCount: number,         // = "Re-run" column (0 or 1)
     public bonusCount: number,         // = "Bonus" column (0 or 1)
+    public colorForScheduleBlock?: string, // Hex code of the color used to represent the show in a schedule block
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
-    public status: Status = Status.Draft
-    
+    public status: Status = Status.Draft,
+    public showHosts?: ShowHostEntity[]
   ) { }
 
   get totalShowDurationMinutes(): number {
     return this.durationMinutes + this.maxAdLengthMinutes;
+  }
+
+  public static isValidHexColor(color: string): boolean {
+    // Allow optional '#' and either 3 or 6 hex characters
+    const hexPattern = /^#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
+    return hexPattern.test(color);
   }
 
   
@@ -35,10 +43,12 @@ export class ShowEntity {
     partsCount: number,
     rerunsCount: number,
     bonusCount: number,
+    colorForScheduleBlock?: string,
     status: Status = Status.Draft,
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
+    showHosts?: ShowHostEntity[]
   ): ShowEntity {
 
     if (!title) {
@@ -66,7 +76,7 @@ export class ShowEntity {
       throw new ValidationError('Parts count is required and must be greater than 0');
     }
 
-    if(!rerunsCount || rerunsCount < 0) {
+    if(rerunsCount === undefined || rerunsCount < 0) {
       throw new ValidationError('Reruns count is required and must be greater than 0');
     }
 
@@ -87,10 +97,12 @@ export class ShowEntity {
       partsCount,
       rerunsCount,
       bonusCount,
+      colorForScheduleBlock,
       createdAt,
       updatedAt,
       id,
-      status);
+      status,
+      showHosts);
   }
 
   public updateInstance(
@@ -102,6 +114,7 @@ export class ShowEntity {
     partsCount?: number,
     rerunsCount?: number,
     bonusCount?: number,
+    colorForScheduleBlock?: string,
     status?: Status
   ): ShowEntity {
     if (title !== undefined) {
@@ -120,6 +133,12 @@ export class ShowEntity {
       const maxAdLength = maxAdLengthMinutes ?? this.maxAdLengthMinutes;
       this.totalDurationMinutes = duration + maxAdLength;
     }
+    
+    if (colorForScheduleBlock !== undefined && !ShowEntity.isValidHexColor(colorForScheduleBlock)) {
+      throw new ValidationError('Color for schedule block must be a valid hex color');
+    }
+
+    if (colorForScheduleBlock !== undefined) this.colorForScheduleBlock = colorForScheduleBlock;
 
     this.updatedAt = new Date();
     return this

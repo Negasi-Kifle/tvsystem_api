@@ -44,6 +44,7 @@ export async function createShowWithHosts(req: Request, res: Response) {
   const payload = req.body as CreateShowWithHostsDto;
 
   const showWithHosts = await createShowWithHostsUseCase.execute(payload);
+  
   res.status(201).json({
     status: 'SUCCESS',
     message: 'A new show with hosts created successfully',
