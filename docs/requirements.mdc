@@ -128,7 +128,7 @@ CEO creates and manages satellite broadcast schedules for both regular days and 
 
 **4.3. Sales Follow-Up**
 - Sales reps record potential customers/companies for easy retrieval and future engagement.
-- Sales reps encode the full history of communications between them and customers.
+- Sales reps encode the full history of communications between them and customers. Note: communication log cannot be updated - it is a write only.
 - Sales manager and CEO monitor communication log
 - Sales assistants monitor and record potential advertisers placing ads on competitor media but not on Abbay TV.
 - Sales assistants identify and log suitable companies for each show.

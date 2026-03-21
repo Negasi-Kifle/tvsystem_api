@@ -1,4 +1,5 @@
 import { EntityNotFoundError, EntityAlreadyExistsError, ValidationError } from "../../domain/errors";
+import { CommunicationLogWriteOnlyError } from "../../domain/errors/communication-log-write-only.error";
 import { Request, Response, NextFunction } from "express";
 import { Exception } from "./error-constructor";
 import { Code } from "./http_code";
@@ -26,6 +27,10 @@ function toHttpPayload(err: unknown): { statusCode: number; message: string; sta
   
   if(err instanceof ValidationError) {
     return { statusCode: Code.ENTITY_VALIDATION_ERROR.code, message: err.message };
+  }
+
+  if (err instanceof CommunicationLogWriteOnlyError) {
+    return { statusCode: Code.BAD_REQUEST_ERROR.code, message: err.message };
   }
 
   if (isPrismaKnownRequestError(err)) {

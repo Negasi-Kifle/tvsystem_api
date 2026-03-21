@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "00a5588a-c586-4b91-b93a-3812fd7525fb",
+    "_postman_id": "21486d4e-6cb3-4573-8aaa-5cd792270df7",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-00a5588a-c586-4b91-b93a-3812fd7525fb?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-21486d4e-6cb3-4573-8aaa-5cd792270df7?source=collection_link"
   },
   "item": [
     {
@@ -588,6 +588,2126 @@
               ],
               "cookie": [],
               "body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZmRhOTQ5Mi03MjQxLTQxOWYtYjExNC04ZjFlNjU3NDgzNzYiLCJyb2xlcyI6WyJDRU8iXSwicGVybWlzc2lvbnMiOlsibWFuYWdlX3VzZXJzIiwibWFuYWdlX3Nob3dzIiwibWFuYWdlX3NjaGVkdWxlcyIsIm1hbmFnZV9tZWRpYV9wYWNrcyIsIm1hbmFnZV9lbXBsb3llZXMiLCJtYW5hZ2VfcGFydG5lcnMiLCJtYW5hZ2VfYWR2ZXJ0cyIsIm1hbmFnZV9maW5hbmNlIiwidmlld19hbmFseXRpY3MiXSwiaWF0IjoxNzY4NzY3NzE4LCJleHAiOjE3Njg3Njg2MTh9.Q7aSkpi7RJwd_kgUgdiHyOmZ7ie7AijRxt61Hk7mPCk\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sales Follow-Up",
+      "item": [
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "List Categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories"
+                  ]
+                },
+                "description": "All categories (sales lookup). Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "362"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"16a-IRmbXFdPn/mVj2nb1BrgH12eC0o\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:08:53 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"categories\": [\n            {\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\"\n            },\n            {\n                \"name\": \"Finance\",\n                \"nameSlug\": \"finance\",\n                \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.570Z\",\n                \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Create Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Agriculture\",\n  \"nameSlug\": \"agriculture\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories"
+                  ]
+                },
+                "description": "nameSlug optional. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Agriculture\",\n  \"nameSlug\": \"agriculture\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "252"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"fc-YyTztgOD5QSSFx3QSSfUgVcrTrQ\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:26:49 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Agriculture\",\n            \"nameSlug\": \"agriculture\",\n            \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n            \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n            \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\"\n        }\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sub-Categories",
+          "item": [
+            {
+              "name": "List Sub-Categories By Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/sub-categories/category/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sub-categories",
+                    "category",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "categoryId",
+                      "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                    }
+                  ]
+                },
+                "description": "Sub-categories for a category UUID. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sub-categories/category/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sub-categories",
+                        "category",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId",
+                          "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "744"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"2e8-KvTs7xLjfwPmY8Ar3Jf/RlAOaL4\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:11:57 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"subCategories\": [\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"isCustom\": false,\n                \"createdAt\": \"2026-03-17T21:47:12.640Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.640Z\",\n                \"id\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\"\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Bank\",\n                \"nameSlug\": \"bank\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n                \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n                \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Department Store\",\n                \"nameSlug\": \"department-store\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:34.326Z\",\n                \"updatedAt\": \"2026-03-21T08:09:34.326Z\",\n                \"id\": \"ec8639f2-6436-42fa-bf92-1067a05ca66c\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Create Sub-Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"name\": \"Bank\",\n  \"nameSlug\": \"bank\",\n  \"isCustom\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/sub-categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sub-categories"
+                  ]
+                },
+                "description": "Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"name\": \"Bank\",\n  \"nameSlug\": \"bank\",\n  \"isCustom\": true\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sub-categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sub-categories"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "313"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"139-3p5hFtEVnMf5sNugb0kQzf+4+ZQ\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:09:57 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Sub-category created successfully\",\n    \"data\": {\n        \"subCategory\": {\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"name\": \"Bank\",\n            \"nameSlug\": \"bank\",\n            \"isCustom\": true,\n            \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n            \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n            \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n        }\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Customers",
+          "item": [
+            {
+              "name": "List Customers",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "businessRef",
+                      "value": "CR0002",
+                      "disabled": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "subCategoryId",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "salesAgentId",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "Cold Progress",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sourceFromMediaMonitoring",
+                      "value": "false",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Paginated list with optional filters. Requires VIEW_SALES. Updating customer status later syncs linked media monitoring records."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers?page=1&limit=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "businessRef",
+                          "value": "CR0002",
+                          "disabled": true
+                        },
+                        {
+                          "key": "name",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "categoryId",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "subCategoryId",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "salesAgentId",
+                          "value": "",
+                          "disabled": true
+                        },
+                        {
+                          "key": "status",
+                          "value": "Cold Progress",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sourceFromMediaMonitoring",
+                          "value": "false",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "946"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"3b2-QFCz/RMAjQOzY59bNyRbP/4JmFI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:23:40 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"customers\": [\n            {\n                \"businessRef\": \"CR0002\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n                \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n                \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Create Customer",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessRef\": \"CR0003\",\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"Cold Progress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"Not Visited Studio\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n  \"mediaMonitoringRecordIds\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers"
+                  ]
+                },
+                "description": "Create sales follow-up customer. Set sourceFromMediaMonitoring and mediaMonitoringRecordIds when linking from media monitoring. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"businessRef\": \"CR0002\",\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"Cold Progress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"Not Visited Studio\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n  \"mediaMonitoringRecordIds\": []\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "925"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"39d-eS/yAA9eck8OdNUEdvb2u5m4qFc\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:12:30 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Cold Progress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Customer By ID",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52292"
+                    }
+                  ]
+                },
+                "description": "Get one customer by UUID. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "883"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"373-lhQ58Cq49yzh1dfRG+JJuFg5dF8\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:24:44 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Cold Progress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
+                },
+                {
+                  "name": "Error - Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52292"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "508"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"1fc-5j05QCMopdtfy5URUg7I6TiCxtM\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:25:00 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Customer not found\",\n    \"errorStack\": \"EntityNotFoundError: Customer not found\\n    at GetCustomerByIdUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/customers/get-customer-by-id.use-case.ts:11:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async getCustomerById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/customer.controller.ts:92:22)\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update Customer",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Hot Progress\",\n  \"holidayStatus\": \"Not Interested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                    }
+                  ]
+                },
+                "description": "Partial update. Changing status or holidayStatus updates statusWithAbbay on linked MediaMonitoringRecord rows. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"Hot Progress\",\n  \"holidayStatus\": \"Not Interested\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "928"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"3a0-Nj3f0QnF9IXCJriPcIJY6YxcDkc\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:25:36 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer updated successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Hot Progress\",\n            \"holidayStatus\": \"Not Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:25:36.191Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Communication Logs",
+          "item": [
+            {
+              "name": "Add Communication Log",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n  \"logDate\": \"2026-03-21T12:00:00.000Z\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"notes\": \"Called customer; will send proposal next week.\",\n  \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/communication-logs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "communication-logs"
+                  ]
+                },
+                "description": "Append-only log entry (no update/delete API). Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n  \"logDate\": \"2026-03-21T12:00:00.000Z\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"notes\": \"Called customer; will send proposal next week.\",\n  \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/communication-logs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "communication-logs"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "375"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"177-NgDsueSj5j3/2AcBSjQdfmidWuA\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:44:21 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Communication log entry added successfully\",\n    \"data\": {\n        \"log\": {\n            \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n            \"logDate\": \"2026-03-21T12:00:00.000Z\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"notes\": \"Called customer; will send proposal next week.\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"createdAt\": \"2026-03-21T08:44:21.821Z\",\n            \"id\": \"daca2c18-8c01-4a30-a1ea-9b2745beb18b\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "List Communication Logs By Customer",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/communication-logs/customer/:customerId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "communication-logs",
+                    "customer",
+                    ":customerId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                    }
+                  ]
+                },
+                "description": "Chronological history for one customer. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/communication-logs/customer/:customerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "communication-logs",
+                        "customer",
+                        ":customerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "323"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"143-OX2BF2zUQSZCt4Aw0hrug4stTJ0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 08:59:03 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"logs\": [\n            {\n                \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n                \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"notes\": \"Called customer; will send proposal next week.\",\n                \"createdAt\": \"2026-03-21T08:44:21.821Z\",\n                \"id\": \"daca2c18-8c01-4a30-a1ea-9b2745beb18b\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Media Monitoring",
+          "item": [
+            {
+              "name": "List Unlinked Media Monitoring Records",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring/unlinked",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring",
+                    "unlinked"
+                  ]
+                },
+                "description": "Records with no customer yet — use when creating a customer from monitoring. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring/unlinked",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring",
+                        "unlinked"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "679"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"2a7-u1bykHvZr6MzPsq9sTh+lAje1TI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 09:02:13 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"records\": [\n            {\n                \"channel\": \"EBS\",\n                \"sponsorName\": \"Ambo Water\",\n                \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n                \"showName\": \"Seifu Show\",\n                \"timeSlot\": \"6:00-7:00\",\n                \"statusWithAbbay\": \"Cold Progress\",\n                \"contactInfo\": \"0911000000\",\n                \"createdAt\": \"2026-03-21T09:01:13.578Z\",\n                \"updatedAt\": \"2026-03-21T09:01:13.578Z\",\n                \"id\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\"\n            },\n            {\n                \"channel\": \"EBS\",\n                \"sponsorName\": \"Ambo Water\",\n                \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n                \"showName\": \"Seifu Show\",\n                \"timeSlot\": \"6:00-7:00\",\n                \"statusWithAbbay\": \"Cold Progress\",\n                \"contactInfo\": \"0911000000\",\n                \"createdAt\": \"2026-03-21T09:01:34.427Z\",\n                \"updatedAt\": \"2026-03-21T09:01:34.427Z\",\n                \"id\": \"77c7c856-5366-4d43-8efb-58cbbd79a9c8\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Create Media Monitoring Record",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithAbbay\": \"Cold Progress\",\n  \"contactInfo\": \"0911000000\"\n//   \"programName\": \"Morning block\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring"
+                  ]
+                },
+                "description": "channel: EBS | FANA | Arts | Kana | Radio. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithAbbay\": \"Cold Progress\",\n  \"contactInfo\": \"0911000000\"\n//   \"programName\": \"Morning block\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "414"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"19e-aIFY4sA3uC2gzGz/Lue4YAAiWog\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 09:01:13 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media monitoring record created successfully\",\n    \"data\": {\n        \"record\": {\n            \"channel\": \"EBS\",\n            \"sponsorName\": \"Ambo Water\",\n            \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n            \"showName\": \"Seifu Show\",\n            \"timeSlot\": \"6:00-7:00\",\n            \"statusWithAbbay\": \"Cold Progress\",\n            \"contactInfo\": \"0911000000\",\n            \"createdAt\": \"2026-03-21T09:01:13.578Z\",\n            \"updatedAt\": \"2026-03-21T09:01:13.578Z\",\n            \"id\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\"\n        }\n    }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Segment Industries",
+          "item": [
+            {
+              "name": "List Show Segment Slots By Show",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/show-segment-slots/show/:showId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "show-segment-slots",
+                    "show",
+                    ":showId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "showId",
+                      "value": "00000000-0000-0000-0000-000000000004"
+                    }
+                  ]
+                },
+                "description": "Segment-industry slots for a show (seeded from segment CSV). Requires VIEW_SALES."
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Customer Show Suitability",
+          "item": [
+            {
+              "name": "Link Customer To Show Segment Slot",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"00000000-0000-0000-0000-000000000001\",\n  \"showSegmentSlotId\": \"00000000-0000-0000-0000-000000000040\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/customer-show-suitability",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customer-show-suitability"
+                  ]
+                },
+                "description": "Associates a customer with a segment slot. Requires MANAGE_SALES."
+              },
+              "response": []
             }
           ]
         }
@@ -1640,7 +3760,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1769,7 +3889,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -1900,7 +4020,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8415,7 +10535,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8576,7 +10696,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8697,7 +10817,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -8818,7 +10938,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9014,7 +11134,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9145,7 +11265,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9294,7 +11414,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9701,7 +11821,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9821,7 +11941,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -9941,7 +12061,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10090,7 +12210,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10266,7 +12386,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10397,7 +12517,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10546,7 +12666,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -10677,7 +12797,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -11104,7 +13224,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11214,7 +13334,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12337,7 +14457,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12460,7 +14580,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12886,7 +15006,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -13320,15 +15440,6 @@
                   "originalRequest": {
                     "method": "GET",
                     "header": [],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
                     "url": {
                       "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks",
                       "host": [
@@ -13377,7 +15488,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -13646,7 +15757,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -14731,7 +16842,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -14887,7 +16998,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -15383,7 +17494,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -15532,7 +17643,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -15661,7 +17772,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -15792,7 +17903,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -15893,7 +18004,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16042,7 +18153,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16173,7 +18284,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16274,7 +18385,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16426,7 +18537,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16555,7 +18666,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16686,7 +18797,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16787,7 +18898,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -16936,7 +19047,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -17067,7 +19178,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -17155,7 +19266,10 @@
           "name": "New Request",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": ""
+            }
           },
           "response": []
         }

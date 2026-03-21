@@ -13,6 +13,13 @@ import mediaPackRoutes from './media-pack.route';
 import advertPackageRoutes from './advert-package.route';
 import satelliteScheduleRoutes from './satellite-schedules.routes';
 import showHostRoutes from './show-hosts.routes';
+import customerRoutes from './customers.routes';
+import communicationLogRoutes from './communication-logs.routes';
+import mediaMonitoringRoutes from './media-monitoring.routes';
+import categoryRoutes from './categories.routes';
+import subCategoryRoutes from './sub-categories.routes';
+import showSegmentSlotRoutes from './show-segment-slots.routes';
+import customerShowSuitabilityRoutes from './customer-show-suitability.routes';
 
 const router = Router();
 
@@ -30,5 +37,12 @@ router.use('/media-packs', mediaPackRoutes);
 router.use('/advert-packages', advertPackageRoutes);
 router.use('/satellite-schedules', satelliteScheduleRoutes);
 router.use('/show-hosts', showHostRoutes);
+router.use('/customers', customerRoutes);
+router.use('/communication-logs', communicationLogRoutes);
+router.use('/media-monitoring', mediaMonitoringRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/sub-categories', subCategoryRoutes);
+router.use('/show-segment-slots', showSegmentSlotRoutes);
+router.use('/customer-show-suitability', customerShowSuitabilityRoutes);
 
 export default router;

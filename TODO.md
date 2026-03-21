@@ -20,11 +20,11 @@
 
 ### Missing Features from Requirements
 
-- 🟨 Customer entity CRUD operations and endpoints
+- ✅ Customer entity CRUD operations and endpoints (Sales Follow-up)
 - 🟨 Partner entity CRUD operations and endpoints
 - 🟨 MediaPack entity CRUD operations and endpoints
 - 🟨 SatelliteLog upload and verification workflow
-- 🟨 Sales follow-up / communication logging functionality
+- ✅ Sales follow-up / communication logging functionality
 - 🟨 Revenue share calculation and distribution
 - 🟨 Commission calculation for sales reps
 - ✅ Ethiopian calendar date conversion service (CalendarService.formatEthiopianDate)
@@ -58,6 +58,23 @@
 - 🟨 Add environment setup guide
 
 ## ✅ Completed Tasks
+
+### 03/21/2026
+
+- ✅ Moved optional `mediaPackId` from Customer to CommunicationLog (per-send media pack on each log entry); migration `20260321120000_move_media_pack_to_communication_log`
+- TODO: Run `npx prisma migrate deploy` (or `migrate dev`) against your database so `communication_logs.media_pack_id` exists and `customers.media_pack_id` is dropped
+
+### 03/18/2026
+
+- ✅ Sales Follow-Up implementation (Section 4.3 of requirements)
+  - Customer and CommunicationLog as separate entities (write-only log)
+  - Category and SubCategory with hybrid management (predefined + custom)
+  - MediaMonitoringRecord with link to Customer; status sync on customer update
+  - ShowSegmentSlot and CustomerShowSuitability for segment industries
+  - API: /customers, /communication-logs, /media-monitoring, /categories, /sub-categories, /show-segment-slots, /customer-show-suitability
+  - Seed: categories (Finance/BANK, Food/Food), show segment slots from Segment Industries CSV
+- TODO: Grant MANAGE_SALES and VIEW_SALES permissions to Sales Rep, Sales Assistant, Sales Manager, CEO roles via user management
+- TODO: If media monitoring channels expand beyond EBS, FANA, Arts, Kana, Radio, update create-media-monitoring-record.dto.ts enum
 
 ### 03/10/2026
 

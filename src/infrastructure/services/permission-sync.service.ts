@@ -10,7 +10,8 @@ export class PermissionSyncService {
 
   async syncPermissions(): Promise<void> {
     const count = await this.syncPermissionsUseCase.execute();
-    // eslint-disable-next-line no-console
+    
+    // TODO: Sync "firstTimeAlert" permission
     console.log(`Synced ${count} permissions`);
   }
 }

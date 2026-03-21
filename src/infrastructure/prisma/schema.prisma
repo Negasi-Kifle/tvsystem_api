@@ -43,6 +43,8 @@ model User {
   userPermissions          UserPermission[]  @relation("UserPermissions")
   permissionsGranted       UserPermission[]  @relation("PermissionGranter")
   showHosts                ShowHost[]
+  communicationLogs        CommunicationLog[] @relation("CommunicationLogSalesAgent")
+  customersAsSalesAgent     Customer[]         @relation("CustomerSalesAgent")
 
   @@index([email])
   @@index([refModel])
@@ -77,6 +79,7 @@ model Show {
 
   // Relations
   advertPackageLinks AdvertPackageShow[]
+  showSegmentSlots   ShowSegmentSlot[]
 
   @@map("shows")
 }
@@ -105,20 +108,170 @@ model ShowHost {
 }
 
 // ============================================
-// CUSTOMER - Advertiser companies
+// CATEGORY - Customer/company category (e.g., Finance, Food)
 // ============================================
-model Customer {
+model Category {
   id        String   @id @default(uuid())
   name      String
-  industry  String?
-  contacts  Json     @default("[]") // Array of { name, email?, phone? }
+  nameSlug  String   @unique @map("name_slug")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   // Relations
-  adverts Advert[]
+  subCategories SubCategory[]
+  customers     Customer[]
 
+  @@map("categories")
+}
+
+// ============================================
+// SUB CATEGORY - Sub-category under a category (e.g., BANK under Finance)
+// ============================================
+model SubCategory {
+  id         String   @id @default(uuid())
+  categoryId String   @map("category_id")
+  name       String
+  nameSlug   String   @map("name_slug")
+  isCustom   Boolean  @default(false) @map("is_custom")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  category  Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  customers Customer[]
+
+  @@unique([categoryId, nameSlug])
+  @@index([categoryId])
+  @@map("sub_categories")
+}
+
+// ============================================
+// CUSTOMER - Advertiser companies (Sales Follow-up)
+// ============================================
+model Customer {
+  id                        String    @id @default(uuid())
+  businessRef               String    @unique @map("business_ref")
+  name                      String
+  industry                  String?
+  contacts                  Json      @default("[]") // Array of { name, email?, phone?, position?, mobile?, officeTel? }
+  categoryId                String?   @map("category_id")
+  subCategoryId             String?   @map("sub_category_id")
+  location                  String?
+  salesAgentId              String?   @map("sales_agent_id")
+  nextReviewDate            DateTime? @map("next_review_date")
+  status                    String?   // Cold Progress, Hot Progress, Partner, etc.
+  holidayStatus             String?   @map("holiday_status") // Interested, Not Interested, etc.
+  studioVisit               String?   @map("studio_visit") // Visited Studio, Not Visited Studio
+  otherMediaCampaign        String?   @map("other_media_campaign")
+  sourceFromMediaMonitoring Boolean @default(false) @map("source_from_media_monitoring")
+  inPersonUpdate            DateTime? @map("in_person_update")
+  createdAt                 DateTime  @default(now()) @map("created_at")
+  updatedAt                 DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  category           Category?           @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  subCategory        SubCategory?        @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
+  salesAgent         User?               @relation("CustomerSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
+  adverts            Advert[]
+  communicationLogs  CommunicationLog[]
+  mediaMonitoringRecords MediaMonitoringRecord[]
+  showSuitabilities   CustomerShowSuitability[]
+
+  @@index([businessRef])
+  @@index([categoryId])
+  @@index([subCategoryId])
+  @@index([salesAgentId])
+  @@index([status])
   @@map("customers")
+}
+
+// ============================================
+// COMMUNICATION LOG - Write-only customer communication history
+// ============================================
+model CommunicationLog {
+  id           String   @id @default(uuid())
+  customerId   String   @map("customer_id")
+  logDate      DateTime @map("log_date")
+  salesAgentId String   @map("sales_agent_id")
+  notes        String
+  mediaPackId  String?  @map("media_pack_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  // Relations
+  customer   Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  salesAgent User      @relation("CommunicationLogSalesAgent", fields: [salesAgentId], references: [id], onDelete: Restrict)
+  mediaPack  MediaPack? @relation(fields: [mediaPackId], references: [id], onDelete: SetNull)
+
+  @@index([customerId])
+  @@index([salesAgentId])
+  @@index([logDate])
+  @@index([mediaPackId])
+  @@map("communication_logs")
+}
+
+// ============================================
+// MEDIA MONITORING RECORD - Competitor advertiser tracking
+// ============================================
+model MediaMonitoringRecord {
+  id               String   @id @default(uuid())
+  channel          String   // EBS, FANA, Arts, Kana, Radio
+  sponsorName      String   @map("sponsor_name")
+  showName         String?  @map("show_name")
+  timeSlot         String?  @map("time_slot")
+  monitoringDate   DateTime @map("monitoring_date")
+  statusWithAbbay  String?  @map("status_with_abbay") // Cold progress, Partner, NEW, etc.
+  contactInfo      String?  @map("contact_info") // For Radio: phone number
+  programName      String?  @map("program_name") // For Radio: program name
+  customerId       String?  @map("customer_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  @@index([channel])
+  @@index([customerId])
+  @@index([sponsorName])
+  @@map("media_monitoring_records")
+}
+
+// ============================================
+// SHOW SEGMENT SLOT - Segment industries slot per show
+// ============================================
+model ShowSegmentSlot {
+  id          String   @id @default(uuid())
+  showId      String   @map("show_id")
+  businessRef String   @map("business_ref") // e.g., SS-0001, MS-001
+  keyIndustry String   @map("key_industry")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  show              Show                   @relation(fields: [showId], references: [id], onDelete: Cascade)
+  customerSuitabilities CustomerShowSuitability[]
+
+  @@unique([showId, businessRef])
+  @@index([showId])
+  @@map("show_segment_slots")
+}
+
+// ============================================
+// CUSTOMER SHOW SUITABILITY - Customer linked to show slot when identified as suitable
+// ============================================
+model CustomerShowSuitability {
+  id                 String   @id @default(uuid())
+  customerId         String   @map("customer_id")
+  showSegmentSlotId  String   @map("show_segment_slot_id")
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  // Relations
+  customer        Customer        @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  showSegmentSlot ShowSegmentSlot @relation(fields: [showSegmentSlotId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, showSegmentSlotId])
+  @@index([customerId])
+  @@index([showSegmentSlotId])
+  @@map("customer_show_suitabilities")
 }
 
 // ============================================
@@ -326,7 +479,8 @@ model MediaPack {
   createdAt      DateTime        @default(now()) @map("created_at")
   updatedAt      DateTime        @updatedAt @map("updated_at")
 
-  advertPackages AdvertPackage[]
+  advertPackages    AdvertPackage[]
+  communicationLogs CommunicationLog[]
 
   @@map("media_packs")
 }
