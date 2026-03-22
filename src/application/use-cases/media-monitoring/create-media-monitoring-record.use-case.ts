@@ -1,5 +1,6 @@
 import { MediaMonitoringRecordEntity } from '../../../domain/entities/media-monitoring-record.entity';
 import { IMediaMonitoringRecordRepository } from '../../../domain/repositories/media-monitoring-record.repository.interface';
+import { CustomerStatusWithUs } from '../../../domain/enums/customer-status.enum';
 
 export type CreateMediaMonitoringRecordInput = {
   channel: string;
@@ -7,9 +8,8 @@ export type CreateMediaMonitoringRecordInput = {
   monitoringDate: Date;
   showName?: string;
   timeSlot?: string;
-  statusWithAbbay?: string;
+  statusWithUs?: CustomerStatusWithUs;
   contactInfo?: string;
-  programName?: string;
 };
 
 export class CreateMediaMonitoringRecordUseCase {
@@ -22,9 +22,8 @@ export class CreateMediaMonitoringRecordUseCase {
       payload.monitoringDate,
       payload.showName,
       payload.timeSlot,
-      payload.statusWithAbbay,
+      payload.statusWithUs,
       payload.contactInfo,
-      payload.programName,
     );
 
     return this.mediaMonitoringRepo.create(record);

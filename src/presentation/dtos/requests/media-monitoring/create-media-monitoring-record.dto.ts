@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CustomerStatusWithUs } from '../../../../domain/enums/customer-status.enum';
 
 export const createMediaMonitoringRecordDto = z
   .object({
@@ -7,9 +8,8 @@ export const createMediaMonitoringRecordDto = z
     monitoringDate: z.coerce.date(),
     showName: z.string().optional(),
     timeSlot: z.string().optional(),
-    statusWithAbbay: z.string().optional(),
+    statusWithUs: z.enum(CustomerStatusWithUs, "Status with Us must be one of the following: " + Object.values(CustomerStatusWithUs).join(', ')).optional(),
     contactInfo: z.string().optional(),
-    programName: z.string().optional(),
   })
   .strict();
 

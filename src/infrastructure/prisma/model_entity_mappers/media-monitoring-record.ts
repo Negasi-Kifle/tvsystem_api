@@ -1,5 +1,6 @@
 import { MediaMonitoringRecord } from '../generated/client';
 import { MediaMonitoringRecordEntity } from '../../../domain/entities/media-monitoring-record.entity';
+import { CustomerStatusWithUs } from '../../../domain/enums/customer-status.enum';
 
 export function modelToEntity(model: MediaMonitoringRecord): MediaMonitoringRecordEntity {
   return MediaMonitoringRecordEntity.createInstance(
@@ -8,9 +9,8 @@ export function modelToEntity(model: MediaMonitoringRecord): MediaMonitoringReco
     model.monitoringDate,
     model.showName ?? undefined,
     model.timeSlot ?? undefined,
-    model.statusWithAbbay ?? undefined,
+    model.statusWithUs as CustomerStatusWithUs ?? undefined,
     model.contactInfo ?? undefined,
-    model.programName ?? undefined,
     model.customerId ?? undefined,
     model.createdAt,
     model.updatedAt,
@@ -26,9 +26,8 @@ export function entityToModel(entity: MediaMonitoringRecordEntity) {
     showName: entity.showName ?? null,
     timeSlot: entity.timeSlot ?? null,
     monitoringDate: entity.monitoringDate,
-    statusWithAbbay: entity.statusWithAbbay ?? null,
+    statusWithUs: entity.statusWithUs ?? null,
     contactInfo: entity.contactInfo ?? null,
-    programName: entity.programName ?? null,
     customerId: entity.customerId ?? null,
     createdAt: entity.createdAt ?? new Date(),
     updatedAt: entity.updatedAt ?? new Date(),

@@ -220,9 +220,8 @@ model MediaMonitoringRecord {
   showName         String?  @map("show_name")
   timeSlot         String?  @map("time_slot")
   monitoringDate   DateTime @map("monitoring_date")
-  statusWithAbbay  String?  @map("status_with_abbay") // Cold progress, Partner, NEW, etc.
+  statusWithUs  String?  @map("status_with_abbay") // Cold progress, Partner, NEW, etc.
   contactInfo      String?  @map("contact_info") // For Radio: phone number
-  programName      String?  @map("program_name") // For Radio: program name
   customerId       String?  @map("customer_id")
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")

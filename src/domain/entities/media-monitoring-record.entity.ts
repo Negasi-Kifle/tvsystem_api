@@ -1,3 +1,6 @@
+import { CustomerStatusWithUs } from '../enums/customer-status.enum';
+
+
 export class MediaMonitoringRecordEntity {
   constructor(
     public channel: string,
@@ -5,9 +8,8 @@ export class MediaMonitoringRecordEntity {
     public monitoringDate: Date,
     public showName?: string,
     public timeSlot?: string,
-    public statusWithAbbay?: string,
+    public statusWithUs: CustomerStatusWithUs = CustomerStatusWithUs.COLD_PROGRESS,
     public contactInfo?: string,
-    public programName?: string,
     public customerId?: string,
     public createdAt?: Date,
     public updatedAt?: Date,
@@ -20,9 +22,8 @@ export class MediaMonitoringRecordEntity {
     monitoringDate: Date,
     showName?: string,
     timeSlot?: string,
-    statusWithAbbay?: string,
+    statusWithUs: CustomerStatusWithUs = CustomerStatusWithUs.COLD_PROGRESS,
     contactInfo?: string,
-    programName?: string,
     customerId?: string,
     createdAt?: Date,
     updatedAt?: Date,
@@ -34,9 +35,8 @@ export class MediaMonitoringRecordEntity {
       monitoringDate,
       showName,
       timeSlot,
-      statusWithAbbay,
+      statusWithUs,
       contactInfo,
-      programName,
       customerId,
       createdAt,
       updatedAt,
@@ -45,10 +45,10 @@ export class MediaMonitoringRecordEntity {
   }
 
   public updateInstance(
-    statusWithAbbay?: string,
+    statusWithUs?: CustomerStatusWithUs,
     customerId?: string,
   ): MediaMonitoringRecordEntity {
-    if (statusWithAbbay !== undefined) this.statusWithAbbay = statusWithAbbay;
+    if (statusWithUs !== undefined) this.statusWithUs = statusWithUs;
     if (customerId !== undefined) this.customerId = customerId;
     this.updatedAt = new Date();
     return this;

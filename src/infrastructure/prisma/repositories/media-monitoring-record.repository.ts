@@ -22,10 +22,10 @@ export class MediaMonitoringRecordRepository
     return records.map(modelToEntity);
   }
 
-  async updateStatusByCustomerId(customerId: string, statusWithAbbay: string): Promise<number> {
+  async updateStatusByCustomerId(customerId: string, statusWithUs: string): Promise<number> {
     const result = await this.prisma.mediaMonitoringRecord.updateMany({
       where: { customerId },
-      data: { statusWithAbbay },
+      data: { statusWithUs },
     });
     return result.count;
   }

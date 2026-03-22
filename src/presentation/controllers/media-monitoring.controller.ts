@@ -31,9 +31,8 @@ export async function createMediaMonitoringRecord(req: Request, res: Response, n
       monitoringDate: payload.monitoringDate,
       showName: payload.showName,
       timeSlot: payload.timeSlot,
-      statusWithAbbay: payload.statusWithAbbay,
+      statusWithUs: payload.statusWithUs,
       contactInfo: payload.contactInfo,
-      programName: payload.programName,
     });
 
     res.status(201).json({
