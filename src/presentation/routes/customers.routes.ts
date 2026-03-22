@@ -13,6 +13,7 @@ import {
   updateCustomer,
   getCustomerById,
   fetchAllCustomers,
+  deleteCustomerById,
 } from '../controllers/customer.controller';
 
 const router = Router();
@@ -25,6 +26,7 @@ router
 router
   .route('/:id')
   .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getCustomerById)
-  .patch(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), validateBody(updateCustomerDto), updateCustomer);
+  .patch(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), validateBody(updateCustomerDto), updateCustomer)
+  .delete(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), deleteCustomerById);
 
 export default router;

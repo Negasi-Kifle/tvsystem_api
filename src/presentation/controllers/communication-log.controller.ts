@@ -5,6 +5,10 @@ import { MediaPackRepository } from '../../infrastructure/prisma/repositories/me
 import { AddCommunicationLogUseCase } from '../../application/use-cases/communication-logs/add-communication-log.use-case';
 import { FetchCommunicationLogsByCustomerUseCase } from '../../application/use-cases/communication-logs/fetch-communication-logs-by-customer.use-case';
 import { AddCommunicationLogDto } from '../dtos/requests/communication-log/add-communication-log.dto';
+import { FetchAllCommunicationLogsUseCase } from '../../application/use-cases/communication-logs/fetch-all-communication-logs.use-case';
+import { mapFetchAllCommunicationLogsDtoToQueryOptions } from '../mappers/comm-logs-query-options.mapper';
+import { FetchAllCommunicationLogsDto } from '../dtos/requests/communication-log/fetch-all-comm-logs.dto';
+import { CountAllCommunicationLogsUseCase } from '../../application/use-cases/communication-logs/count-comm-logs.use-case';
 
 const communicationLogRepo = new CommunicationLogRepository();
 const customerRepo = new CustomerRepository();
@@ -16,6 +20,8 @@ const addCommunicationLogUseCase = new AddCommunicationLogUseCase(
   mediaPackRepo,
 );
 const fetchCommunicationLogsByCustomerUseCase = new FetchCommunicationLogsByCustomerUseCase(communicationLogRepo);
+const fetchAllCommunicationLogsUseCase = new FetchAllCommunicationLogsUseCase(communicationLogRepo);
+const countAllCommunicationLogsUseCase = new CountAllCommunicationLogsUseCase(communicationLogRepo)
 
 export async function addCommunicationLog(req: Request, res: Response, next: NextFunction) {
   try {
@@ -46,6 +52,35 @@ export async function fetchCommunicationLogsByCustomer(req: Request, res: Respon
 
     res.status(200).json({
       status: 'SUCCESS',
+      data: { logs },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+export async function fetchAllCommunicationLogs(req: Request, res: Response, next: NextFunction) {
+  try {
+    const dto = res.locals.query as FetchAllCommunicationLogsDto;
+    const queryOptions = mapFetchAllCommunicationLogsDtoToQueryOptions(dto);
+    
+    const page = dto.page ?? 1;
+    const limit = dto.limit ?? 10;
+
+    const [logs, total] = await Promise.all([
+      fetchAllCommunicationLogsUseCase.execute(queryOptions),
+      countAllCommunicationLogsUseCase.execute(queryOptions)
+    ]);
+
+    res.status(200).json({
+      status: 'SUCCESS',
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit)
+      },
       data: { logs },
     });
   } catch (error) {

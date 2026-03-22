@@ -9,7 +9,7 @@ export class CustomerRepository extends PrismaBaseRepository implements ICustome
   async findById(id: string): Promise<CustomerEntity | null> {
     const customer = await this.prisma.customer.findUnique({
       where: { id },
-      include: { category: true, subCategory: true, salesAgent: true },
+      include: { category: true, subCategory: true, salesAgent: true, communicationLogs: true },
     });
     return customer ? modelToEntity(customer) : null;
   }
@@ -17,7 +17,7 @@ export class CustomerRepository extends PrismaBaseRepository implements ICustome
   async findByBusinessRef(businessRef: string): Promise<CustomerEntity | null> {
     const customer = await this.prisma.customer.findUnique({
       where: { businessRef },
-      include: { category: true, subCategory: true, salesAgent: true },
+      include: { category: true, subCategory: true, salesAgent: true, communicationLogs: true },
     });
     return customer ? modelToEntity(customer) : null;
   }
@@ -28,7 +28,7 @@ export class CustomerRepository extends PrismaBaseRepository implements ICustome
       where,
       skip: query.skip ?? 0,
       take: query.take ?? 10,
-      include: { category: true, subCategory: true, salesAgent: true },
+      include: { category: true, subCategory: true, salesAgent: true, communicationLogs: true },
     });
     return list.map(modelToEntity);
   }

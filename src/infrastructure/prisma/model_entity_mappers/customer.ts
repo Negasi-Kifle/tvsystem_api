@@ -1,6 +1,7 @@
-import { Customer } from '../generated/client';
+import { CommunicationLog, Customer } from '../generated/client';
 import { CustomerEntity, CustomerContact } from '../../../domain/entities/customer.entity.js';
 import { CustomerHolidayStatus, CustomerStatusWithUs, CustomerStudioVisit } from '../../../domain/enums/customer-status.enum.js';
+import { modelToEntity as mapCommunicationLogToEntity } from './communication-log';
 
 function parseContacts(contacts: unknown): CustomerContact[] {
   if (!contacts || !Array.isArray(contacts)) return [];
@@ -17,7 +18,11 @@ function parseContacts(contacts: unknown): CustomerContact[] {
   });
 }
 
-export function modelToEntity(model: Customer): CustomerEntity {
+export type CustomerWithRelations = Customer & {
+  communicationLogs?: CommunicationLog[] | null;
+};
+
+export function modelToEntity(model: CustomerWithRelations): CustomerEntity {
   return CustomerEntity.createInstance(
     model.businessRef,
     model.name,
@@ -37,6 +42,7 @@ export function modelToEntity(model: Customer): CustomerEntity {
     model.createdAt,
     model.updatedAt,
     model.id,
+    model.communicationLogs ? model.communicationLogs.map(mapCommunicationLogToEntity) : undefined,
   );
 }
 

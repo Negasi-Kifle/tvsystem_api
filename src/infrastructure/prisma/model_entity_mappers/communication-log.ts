@@ -1,7 +1,21 @@
-import { CommunicationLog } from '../generated/client';
+import { CommunicationLog, MediaPack } from '../generated/client';
 import { CommunicationLogEntity } from '../../../domain/entities/communication-log.entity.js';
+import { MediaPackSummary } from '../../../domain/interfaces/media-pack-summary.interface';
 
-export function modelToEntity(model: CommunicationLog): CommunicationLogEntity {
+export type CommunicationLogWithRelations = CommunicationLog & {
+  salesAgent?: unknown;
+  mediaPack?: MediaPack | null;
+};
+
+function mediaPackToSummary(mediaPack: MediaPack): MediaPackSummary {
+  return {
+    id: mediaPack.id,
+    version: mediaPack.version,
+    versionSlug: mediaPack.versionSlug,
+  };
+}
+
+export function modelToEntity(model: CommunicationLogWithRelations): CommunicationLogEntity {
   return CommunicationLogEntity.createInstance(
     model.customerId,
     model.logDate,
@@ -10,6 +24,7 @@ export function modelToEntity(model: CommunicationLog): CommunicationLogEntity {
     model.mediaPackId ?? undefined,
     model.createdAt,
     model.id,
+    model.mediaPack ? mediaPackToSummary(model.mediaPack) : undefined,
   );
 }
 

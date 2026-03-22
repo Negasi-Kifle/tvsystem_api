@@ -1,5 +1,6 @@
 import { ValidationError } from '../errors/validation.error';
 import {CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit} from '../enums/customer-status.enum';
+import { CommunicationLogEntity } from './communication-log.entity';
 
 export type CustomerContact = {
   name?: string;
@@ -30,6 +31,7 @@ export class CustomerEntity {
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
+    public communicationLogs?: CommunicationLogEntity[]
   ) {}
 
   public static createInstance(
@@ -51,6 +53,7 @@ export class CustomerEntity {
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
+    communicationLogs?: CommunicationLogEntity[]
   ): CustomerEntity {
     if (!businessRef?.trim()) {
       throw new ValidationError('Business reference is required');
@@ -77,6 +80,7 @@ export class CustomerEntity {
       createdAt,
       updatedAt,
       id,
+      communicationLogs,
     );
   }
 

@@ -1,19 +1,19 @@
 export enum CustomerStatusWithUs {
-    COLD_PROGRESS = 'cold_progress',
-    HOT_PROGRESS = 'hot_progress',
-    PARTNER = 'partner',
-    LEAD = 'lead',
-    CUSTOMER = 'customer',
+    COLD_PROGRESS = 'ColdProgress',
+    HOT_PROGRESS = 'HotProgress',
+    PARTNER = 'Partner',
+    LEAD = 'Lead',
+    CUSTOMER = 'Customer',
 }
 
 export enum CustomerStudioVisit {
-    VISITED = 'visited',
-    NOT_VISITED = 'not_visited',
+    VISITED = 'Visited',
+    NOT_VISITED = 'NotVisited',
 }
 
 export enum CustomerHolidayStatus {
-    INTERESTED = 'interested',
-    NOT_INTERESTED = 'not_interested',
-    NO_RESPONSE = 'no_response',
-    UNKNOWN = 'unknown',
+    INTERESTED = 'Interested',
+    NOT_INTERESTED = 'NotInterested',
+    NO_RESPONSE = 'NoResponse',
+    UNKNOWN = 'Unknown',
 }

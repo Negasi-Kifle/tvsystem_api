@@ -10,7 +10,7 @@ export class CommunicationLogRepository extends PrismaBaseRepository implements 
   async findById(id: string): Promise<CommunicationLogEntity | null> {
     const log = await this.prisma.communicationLog.findUnique({
       where: { id },
-      include: { salesAgent: true },
+      include: { salesAgent: true, mediaPack: true },
     });
     return log ? modelToEntity(log) : null;
   }
@@ -20,7 +20,7 @@ export class CommunicationLogRepository extends PrismaBaseRepository implements 
       where: { customerId },
       orderBy: { logDate: 'desc' },
       take: limit,
-      include: { salesAgent: true },
+      include: { salesAgent: true, mediaPack: true },
     });
     return logs.map(modelToEntity);
   }
@@ -32,7 +32,7 @@ export class CommunicationLogRepository extends PrismaBaseRepository implements 
       skip: query.skip ?? 0,
       take: query.take ?? 10,
       orderBy: { logDate: 'desc' },
-      include: { salesAgent: true },
+      include: { salesAgent: true, mediaPack: true },
     });
     return list.map(modelToEntity);
   }

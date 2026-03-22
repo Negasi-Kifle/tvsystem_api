@@ -1,3 +1,5 @@
+import { MediaPackSummary } from "../interfaces/media-pack-summary.interface";
+
 export class CommunicationLogEntity {
   constructor(
     public customerId: string,
@@ -7,6 +9,7 @@ export class CommunicationLogEntity {
     public mediaPackId?: string,
     public createdAt?: Date,
     public id?: string,
+    public mediaPack?: MediaPackSummary
   ) {}
 
   public static createInstance(
@@ -17,6 +20,7 @@ export class CommunicationLogEntity {
     mediaPackId?: string,
     createdAt?: Date,
     id?: string,
+    mediaPack?: MediaPackSummary
   ): CommunicationLogEntity {
     return new CommunicationLogEntity(
       customerId,
@@ -26,6 +30,7 @@ export class CommunicationLogEntity {
       mediaPackId,
       createdAt,
       id,
+      mediaPack,
     );
   }
 }

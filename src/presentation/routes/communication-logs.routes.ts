@@ -6,18 +6,22 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { addCommunicationLogDto } from '../dtos/requests/communication-log/add-communication-log.dto';
 import {
   addCommunicationLog,
+  fetchAllCommunicationLogs,
   fetchCommunicationLogsByCustomer,
 } from '../controllers/communication-log.controller';
+import { fetchAllCommunicationLogsDto } from '../dtos/requests/communication-log/fetch-all-comm-logs.dto';
+import { validateQuery } from '../validators/validate-query';
 
 const router = Router();
 
-router.post(
-  '/',
+router.route('/')
+  .post(
   authMiddleware,
   requirePermission(PERMISSIONS.MANAGE_SALES),
   validateBody(addCommunicationLogDto),
   addCommunicationLog,
-);
+)
+.get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), validateQuery(fetchAllCommunicationLogsDto), fetchAllCommunicationLogs)
 
 router.get(
   '/customer/:customerId',

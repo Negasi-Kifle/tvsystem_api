@@ -2,9 +2,9 @@ import { CustomerEntity, CustomerContact } from '../../../domain/entities/custom
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
 import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
 import { CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit} from '../../../domain/enums/customer-status.enum';
+import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
 
 export type CreateCustomerInput = {
-  businessRef: string;
   name: string;
   contacts?: CustomerContact[];
   industry?: string;
@@ -24,20 +24,14 @@ export type CreateCustomerInput = {
 export class CreateCustomerUseCase {
   constructor(
     private readonly customerRepo: ICustomerRepository,
+    private readonly generateBusinessRefService: IGenerateBusinessRefService,
   ) {}
 
   async execute(payload: CreateCustomerInput): Promise<CustomerEntity> {
-    const existing = await this.customerRepo.findByBusinessRef(payload.businessRef);
-    if (existing) {
-      throw new EntityAlreadyExistsError(
-        `Customer with business ref ${payload.businessRef} already exists`,
-        'Customer',
-        payload.businessRef,
-      );
-    }
+    const businessRef = await this.generateBusinessRefService.generateBusinessRef();
 
     const customer = CustomerEntity.createInstance(
-      payload.businessRef,
+      businessRef,
       payload.name,
       payload.contacts ?? [],
       payload.industry,

@@ -10,21 +10,25 @@ import { mapFetchAllCustomersDtoToQueryOptions } from '../mappers/customer-to-qu
 import { CreateCustomerDto } from '../dtos/requests/customer/create-customer.dto';
 import { UpdateCustomerDto } from '../dtos/requests/customer/update-customer.dto';
 import { FetchAllCustomersDto } from '../dtos/requests/customer/fetch-all-customers.dto';
+import { GenerateBusinessRefService } from '../../infrastructure/services/generate-business-ref.service';
+import { DeleteByIdUseCase } from '../../application/use-cases/customers/delete-by-id.use-case';
 
 const customerRepo = new CustomerRepository();
 const mediaMonitoringRepo = new MediaMonitoringRecordRepository();
+const generateBusinessRefService = new GenerateBusinessRefService();
 
-const createCustomerUseCase = new CreateCustomerUseCase(customerRepo);
+const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService);
 const updateCustomerUseCase = new UpdateCustomerUseCase(customerRepo, mediaMonitoringRepo);
 const getCustomerByIdUseCase = new GetCustomerByIdUseCase(customerRepo);
 const fetchAllCustomersUseCase = new FetchAllCustomersUseCase(customerRepo);
 const countCustomersUseCase = new CountCustomersUseCase(customerRepo);
+const deleteCustomerByIdUseCase = new DeleteByIdUseCase(customerRepo);
+
 
 export async function createCustomer(req: Request, res: Response, next: NextFunction) {
   try {
     const payload = req.body as CreateCustomerDto;
     const customer = await createCustomerUseCase.execute({
-      businessRef: payload.businessRef,
       name: payload.name,
       contacts: payload.contacts,
       industry: payload.industry,
@@ -119,6 +123,21 @@ export async function fetchAllCustomers(req: Request, res: Response, next: NextF
         totalPages: Math.ceil(total / limit),
       },
       data: { customers },
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+export async function deleteCustomerById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id } = req.params as { id: string };
+    await deleteCustomerByIdUseCase.execute(id);
+
+    res.status(200).json({
+      status: 'SUCCESS',
+      message: 'Customer deleted successfully',
     });
   } catch (error) {
     next(error);

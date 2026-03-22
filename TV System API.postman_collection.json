@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "229c0d35-4d43-4d42-9b4f-f8e74d3f70e6",
-    "name": "TV System API Copy",
+    "_postman_id": "a76af6ad-6c96-4872-8394-b5d025bbdccb",
+    "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-229c0d35-4d43-4d42-9b4f-f8e74d3f70e6?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-a76af6ad-6c96-4872-8394-b5d025bbdccb?source=collection_link"
   },
   "item": [
     {
@@ -1341,7 +1341,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1401,15 +1401,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "946"
+                      "value": "1253"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"3b2-QFCz/RMAjQOzY59bNyRbP/4JmFI\""
+                      "value": "W/\"4e5-9pgCIrlOzSYigwhlY3yC2n9je1U\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:23:40 GMT"
+                      "value": "Sun, 22 Mar 2026 00:04:15 GMT"
                     },
                     {
                       "key": "Connection",
@@ -1421,7 +1421,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"customers\": [\n            {\n                \"businessRef\": \"CR0002\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n                \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n                \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n            }\n        ]\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"customers\": [\n            {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"communicationLogs\": [\n                    {\n                        \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                        \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                        \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"notes\": \"Called customer; will send proposal next week.\",\n                        \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                        \"createdAt\": \"2026-03-21T23:41:18.534Z\",\n                        \"id\": \"16d96210-c6f2-47b6-a452-ebf3f99b1c8a\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
                 }
               ]
             },
@@ -1448,7 +1448,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"businessRef\": \"CR0003\",\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"Cold Progress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"Not Visited Studio\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n  \"mediaMonitoringRecordIds\": []\n}",
+                  "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1481,7 +1481,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"businessRef\": \"CR0002\",\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"Cold Progress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"Not Visited Studio\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n  \"mediaMonitoringRecordIds\": []\n}",
+                      "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1501,7 +1501,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1561,15 +1561,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "925"
+                      "value": "867"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"39d-eS/yAA9eck8OdNUEdvb2u5m4qFc\""
+                      "value": "W/\"363-QuHA58d45IYHpo4TDKmUoDPGlrM\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:12:30 GMT"
+                      "value": "Sat, 21 Mar 2026 23:22:56 GMT"
                     },
                     {
                       "key": "Connection",
@@ -1581,7 +1581,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Cold Progress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"BNO7C0TQJG\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T23:22:56.706Z\",\n            \"updatedAt\": \"2026-03-21T23:22:56.706Z\",\n            \"id\": \"b9e92a86-c1ef-403e-9c5e-ee819bed954a\"\n        }\n    }\n}"
                 }
               ]
             },
@@ -1613,120 +1613,13 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52292"
+                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
                     }
                   ]
                 },
                 "description": "Get one customer by UUID. Requires VIEW_SALES."
               },
               "response": [
-                {
-                  "name": "Success",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/customers/:id",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "customers",
-                        ":id"
-                      ],
-                      "variable": [
-                        {
-                          "key": "id",
-                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "Text",
-                  "header": [
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Content-Security-Policy",
-                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                    },
-                    {
-                      "key": "Cross-Origin-Opener-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Cross-Origin-Resource-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Origin-Agent-Cluster",
-                      "value": "?1"
-                    },
-                    {
-                      "key": "Referrer-Policy",
-                      "value": "no-referrer"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    },
-                    {
-                      "key": "X-Content-Type-Options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "off"
-                    },
-                    {
-                      "key": "X-Download-Options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "X-Frame-Options",
-                      "value": "SAMEORIGIN"
-                    },
-                    {
-                      "key": "X-Permitted-Cross-Domain-Policies",
-                      "value": "none"
-                    },
-                    {
-                      "key": "X-XSS-Protection",
-                      "value": "0"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "883"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"373-lhQ58Cq49yzh1dfRG+JJuFg5dF8\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:24:44 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Cold Progress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:12:30.072Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
-                },
                 {
                   "name": "Error - Not Found",
                   "originalRequest": {
@@ -1833,79 +1726,12 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Customer not found\",\n    \"errorStack\": \"EntityNotFoundError: Customer not found\\n    at GetCustomerByIdUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/customers/get-customer-by-id.use-case.ts:11:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async getCustomerById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/customer.controller.ts:92:22)\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Update Customer",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{accessToken}}",
-                      "type": "string"
-                    }
-                  ]
                 },
-                "method": "PATCH",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"Hot Progress\",\n  \"holidayStatus\": \"Not Interested\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/customers/:id",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "customers",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
-                    }
-                  ]
-                },
-                "description": "Partial update. Changing status or holidayStatus updates statusWithAbbay on linked MediaMonitoringRecord rows. Requires MANAGE_SALES."
-              },
-              "response": [
                 {
                   "name": "Success",
                   "originalRequest": {
-                    "method": "PATCH",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"status\": \"Hot Progress\",\n  \"holidayStatus\": \"Not Interested\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
+                    "method": "GET",
+                    "header": [],
                     "url": {
                       "raw": "{{baseUrl}}/api/customers/:id",
                       "host": [
@@ -1919,14 +1745,14 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                          "value": "b9e92a86-c1ef-403e-9c5e-ee819bed954a"
                         }
                       ]
                     }
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -1986,15 +1812,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "928"
+                      "value": "825"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"3a0-Nj3f0QnF9IXCJriPcIJY6YxcDkc\""
+                      "value": "W/\"339-tSOxbjW10eJw09CPx1Mceqgjbx8\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:25:36 GMT"
+                      "value": "Sat, 21 Mar 2026 23:24:53 GMT"
                     },
                     {
                       "key": "Connection",
@@ -2006,7 +1832,324 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer updated successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0002\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"Hot Progress\",\n            \"holidayStatus\": \"Not Interested\",\n            \"studioVisit\": \"Not Visited Studio\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T08:12:30.072Z\",\n            \"updatedAt\": \"2026-03-21T08:25:36.191Z\",\n            \"id\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"BNO7C0TQJG\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T23:22:56.706Z\",\n            \"updatedAt\": \"2026-03-21T23:22:56.706Z\",\n            \"id\": \"b9e92a86-c1ef-403e-9c5e-ee819bed954a\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update Customer",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"HotProgress\",\n  \"holidayStatus\": \"NotInterested\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "b9e92a86-c1ef-403e-9c5e-ee819bed954a"
+                    }
+                  ]
+                },
+                "description": "Partial update. Changing status or holidayStatus updates statusWithAbbay on linked MediaMonitoringRecord rows. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"HotProgress\",\n  \"holidayStatus\": \"NotInterested\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "b9e92a86-c1ef-403e-9c5e-ee819bed954a"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "869"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"365-Z08bh1URpMAJBjBzIoje1b0rUUk\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 23:26:04 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer updated successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"BNO7C0TQJG\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"HotProgress\",\n            \"holidayStatus\": \"NotInterested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T23:22:56.706Z\",\n            \"updatedAt\": \"2026-03-21T23:26:04.046Z\",\n            \"id\": \"b9e92a86-c1ef-403e-9c5e-ee819bed954a\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete By Id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "b9e92a86-c1ef-403e-9c5e-ee819bed954a"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "62"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"3e-lLdDgNR0mku3VHQMXrUMOOLE3s8\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 21 Mar 2026 23:32:37 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer deleted successfully\"\n}"
                 }
               ]
             }
@@ -2038,7 +2181,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n  \"logDate\": \"2026-03-21T12:00:00.000Z\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"notes\": \"Called customer; will send proposal next week.\",\n  \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n}",
+                  "raw": "{\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n  \"logDate\": \"2026-03-21T12:00:00.000Z\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"notes\": \"Called customer; will send proposal next week.\",\n  \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2091,7 +2234,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2151,15 +2294,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "375"
+                      "value": "428"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"177-NgDsueSj5j3/2AcBSjQdfmidWuA\""
+                      "value": "W/\"1ac-H6qiG+6IKo2s0VYnhimhbK1QEt8\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:44:21 GMT"
+                      "value": "Sat, 21 Mar 2026 23:33:40 GMT"
                     },
                     {
                       "key": "Connection",
@@ -2171,7 +2314,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Communication log entry added successfully\",\n    \"data\": {\n        \"log\": {\n            \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n            \"logDate\": \"2026-03-21T12:00:00.000Z\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"notes\": \"Called customer; will send proposal next week.\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"createdAt\": \"2026-03-21T08:44:21.821Z\",\n            \"id\": \"daca2c18-8c01-4a30-a1ea-9b2745beb18b\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Communication log entry added successfully\",\n    \"data\": {\n        \"log\": {\n            \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n            \"logDate\": \"2026-03-21T12:00:00.000Z\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"notes\": \"Called customer; will send proposal next week.\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"createdAt\": \"2026-03-21T23:33:40.687Z\",\n            \"id\": \"4d150926-1c15-405e-967d-84a6fdda3a33\"\n        }\n    }\n}"
                 }
               ]
             },
@@ -2204,7 +2347,7 @@
                   "variable": [
                     {
                       "key": "customerId",
-                      "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                      "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67"
                     }
                   ]
                 },
@@ -2230,14 +2373,14 @@
                       "variable": [
                         {
                           "key": "customerId",
-                          "value": "fcc237d5-dcb5-491b-9a67-f213e3b52296"
+                          "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67"
                         }
                       ]
                     }
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -2297,15 +2440,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "323"
+                      "value": "468"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"143-OX2BF2zUQSZCt4Aw0hrug4stTJ0\""
+                      "value": "W/\"1d4-VvUGTEv8SdADyuRgrQJbjrxD/Ys\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:59:03 GMT"
+                      "value": "Sun, 22 Mar 2026 00:02:16 GMT"
                     },
                     {
                       "key": "Connection",
@@ -2317,7 +2460,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"logs\": [\n            {\n                \"customerId\": \"fcc237d5-dcb5-491b-9a67-f213e3b52296\",\n                \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"notes\": \"Called customer; will send proposal next week.\",\n                \"createdAt\": \"2026-03-21T08:44:21.821Z\",\n                \"id\": \"daca2c18-8c01-4a30-a1ea-9b2745beb18b\"\n            }\n        ]\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"logs\": [\n            {\n                \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"notes\": \"Called customer; will send proposal next week.\",\n                \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"createdAt\": \"2026-03-21T23:41:18.534Z\",\n                \"id\": \"16d96210-c6f2-47b6-a452-ebf3f99b1c8a\",\n                \"mediaPack\": {\n                    \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                    \"version\": \"v1\",\n                    \"versionSlug\": \"v1\"\n                }\n            }\n        ]\n    }\n}"
                 }
               ]
             }
@@ -10535,7 +10678,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -11143,7 +11286,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -11274,7 +11417,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
