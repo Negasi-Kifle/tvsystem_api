@@ -1,5 +1,5 @@
 import { AdvertPackageEntity } from '../../../domain/entities/advert-package.entity';
-import { EntityAlreadyExistsError, EntityNotFoundError } from '../../../domain/errors';
+import { EntityAlreadyExistsError, EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IAdvertPackageRepository } from '../../../domain/repositories/advert-package.repository.interface';
 import { IMediaPackRepository } from '../../../domain/repositories/media-pack.repository.interface';
 
@@ -21,6 +21,8 @@ export type CreateAdvertPackageInput = {
   popUpsRerunCount?: number;
   bonusesRerunCount?: number;
   description?: string;
+  /** Required when creating via POST /advert-packages (validated in execute). */
+  imageUrl?: string;
 };
 
 export class CreateAdvertPackageUseCase {
@@ -30,6 +32,10 @@ export class CreateAdvertPackageUseCase {
   ) {}
 
   async execute(payload: CreateAdvertPackageInput): Promise<AdvertPackageEntity> {
+    if (payload.imageUrl === undefined || payload.imageUrl.trim() === '') {
+      throw new ValidationError('Advert package image is required');
+    }
+
     const nameSlug = payload.nameSlug !== undefined ? payload.nameSlug : payload.name.toLowerCase().replace(/ /g, '-');
     const mediaPack = await this.mediaPackRepository.findById(payload.mediaPackId);
     if (!mediaPack) {
@@ -67,6 +73,7 @@ export class CreateAdvertPackageUseCase {
       payload.popUpsRerunCount ?? 0,
       payload.bonusesRerunCount ?? 0,
       payload.description,
+      payload.imageUrl,
     );
     return this.advertPackageRepository.create(entity);
   }

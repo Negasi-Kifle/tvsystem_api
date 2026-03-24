@@ -11,8 +11,8 @@
     "start": "node --import tsx dist/index.js",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,json,md}\"",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --runInBand",
-    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --runInBand --config jest.config.mjs",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch --config jest.config.mjs"
   },
   "keywords": [],
   "author": "",

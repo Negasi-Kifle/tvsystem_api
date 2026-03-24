@@ -20,6 +20,7 @@ export class AdvertPackageEntity {
         public popUpsRerunCount: number = 0,
         public bonusesRerunCount: number = 0,
         public description?: string,
+        public imageUrl: string | null = null,
         public createdAt?: Date,
         public updatedAt?: Date,
         public id?: string,
@@ -45,6 +46,7 @@ export class AdvertPackageEntity {
         popUpsRerunCount: number = 0,
         bonusesRerunCount: number = 0,
         description?: string,
+        imageUrl?: string | null,
         createdAt?: Date,
         updatedAt?: Date,
         id?: string,
@@ -69,6 +71,7 @@ export class AdvertPackageEntity {
             popUpsRerunCount,
             bonusesRerunCount,
             description,
+            imageUrl ?? null,
             createdAt,
             updatedAt,
             id,
@@ -95,6 +98,7 @@ export class AdvertPackageEntity {
         popUpsRerunCount?: number,
         bonusesRerunCount?: number,
         description?: string,
+        imageUrl?: string | null,
     ): AdvertPackageEntity {
         if (name !== undefined) this.name = name;
         if (nameSlug !== undefined) this.nameSlug = nameSlug;
@@ -113,6 +117,7 @@ export class AdvertPackageEntity {
         if (popUpsRerunCount !== undefined) this.popUpsRerunCount = popUpsRerunCount;
         if (bonusesRerunCount !== undefined) this.bonusesRerunCount = bonusesRerunCount;
         if (description !== undefined) this.description = description;
+        if (imageUrl !== undefined) this.imageUrl = imageUrl;
 
         this.updatedAt = new Date();
         return this;

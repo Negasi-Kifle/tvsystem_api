@@ -60,6 +60,7 @@ export class CreateMediaPackWithAdPackagesUseCase {
                     advertPackage.popUpsRerunCount,
                     advertPackage.bonusesRerunCount,
                     advertPackage.description,
+                    advertPackage.imageUrl,
                 );
             });
     

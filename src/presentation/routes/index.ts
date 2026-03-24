@@ -10,7 +10,7 @@ import userPermissionRoutes from './user-permissions.routes';
 import employeeRoutes from './employee.route';
 import partnerRoutes from './partner.route';
 import mediaPackRoutes from './media-pack.route';
-import advertPackageRoutes from './advert-package.route';
+import { createAdvertPackageRouter } from './advert-package.route';
 import satelliteScheduleRoutes from './satellite-schedules.routes';
 import showHostRoutes from './show-hosts.routes';
 import customerRoutes from './customers.routes';
@@ -20,29 +20,34 @@ import categoryRoutes from './categories.routes';
 import subCategoryRoutes from './sub-categories.routes';
 import showSegmentSlotRoutes from './show-segment-slots.routes';
 import customerShowSuitabilityRoutes from './customer-show-suitability.routes';
+import type { AdvertPackageHandlerDeps } from '../controllers/advert-package.controller';
 
-const router = Router();
+export type ApiRouterDeps = AdvertPackageHandlerDeps;
 
-router.get('/health', health);
-router.use('/auth', authRoutes);
-router.use('/users', userRoutes);
-router.use('/shows', showRoutes);
-router.use('/telegram-groups', telegramGroupRoutes);
-router.use('/telegram-group-members', telegramGroupMemberRoutes);
-router.use('/permissions', permissionRoutes);
-router.use('/user-permissions', userPermissionRoutes);
-router.use('/employees', employeeRoutes);
-router.use("/partners", partnerRoutes);
-router.use('/media-packs', mediaPackRoutes);
-router.use('/advert-packages', advertPackageRoutes);
-router.use('/satellite-schedules', satelliteScheduleRoutes);
-router.use('/show-hosts', showHostRoutes);
-router.use('/customers', customerRoutes);
-router.use('/communication-logs', communicationLogRoutes);
-router.use('/media-monitoring', mediaMonitoringRoutes);
-router.use('/categories', categoryRoutes);
-router.use('/sub-categories', subCategoryRoutes);
-router.use('/show-segment-slots', showSegmentSlotRoutes);
-router.use('/customer-show-suitability', customerShowSuitabilityRoutes);
+export function createApiRouter(deps: ApiRouterDeps): Router {
+  const router = Router();
 
-export default router;
+  router.get('/health', health);
+  router.use('/auth', authRoutes);
+  router.use('/users', userRoutes);
+  router.use('/shows', showRoutes);
+  router.use('/telegram-groups', telegramGroupRoutes);
+  router.use('/telegram-group-members', telegramGroupMemberRoutes);
+  router.use('/permissions', permissionRoutes);
+  router.use('/user-permissions', userPermissionRoutes);
+  router.use('/employees', employeeRoutes);
+  router.use('/partners', partnerRoutes);
+  router.use('/media-packs', mediaPackRoutes);
+  router.use('/advert-packages', createAdvertPackageRouter(deps));
+  router.use('/satellite-schedules', satelliteScheduleRoutes);
+  router.use('/show-hosts', showHostRoutes);
+  router.use('/customers', customerRoutes);
+  router.use('/communication-logs', communicationLogRoutes);
+  router.use('/media-monitoring', mediaMonitoringRoutes);
+  router.use('/categories', categoryRoutes);
+  router.use('/sub-categories', subCategoryRoutes);
+  router.use('/show-segment-slots', showSegmentSlotRoutes);
+  router.use('/customer-show-suitability', customerShowSuitabilityRoutes);
+
+  return router;
+}

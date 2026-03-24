@@ -59,6 +59,13 @@
 
 ## ✅ Completed Tasks
 
+### 03/22/2026
+
+- ✅ Pluggable file storage (`IStorageService`, local disk + S3 stub), multer image upload for POST/PATCH `/api/advert-packages` (`multipart/form-data`: JSON field `payload` + file field `image`), `AdvertPackage.imageUrl`, static `/uploads` when not using S3 stub; migration `20260322130000_advert_package_image_url`
+- TODO: Run `npx prisma migrate deploy` (or `migrate dev`) so `advert_packages.image_url` exists
+- TODO: Set `BASE_URL` in `.env` for public image URLs when using local storage; set `STORAGE_TYPE=s3` to use the CDN mock stub (`CDN_MOCK_BASE_URL` optional)
+- TODO: Update Postman collection for multipart create/update advert packages (JSON in `payload` + binary `image`)
+
 ### 03/21/2026
 
 - ✅ Moved optional `mediaPackId` from Customer to CommunicationLog (per-send media pack on each log entry); migration `20260321120000_move_media_pack_to_communication_log`

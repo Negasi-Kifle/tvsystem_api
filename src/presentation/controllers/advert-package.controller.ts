@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { AdvertPackageRepository } from '../../infrastructure/prisma/repositories/advert-package.repository';
 import { MediaPackRepository } from '../../infrastructure/prisma/repositories/media-pack.repository';
+import type { IStorageService } from '../../domain/services/storage.service';
+import { toStorageUploadFile } from '../mappers/multer-to-storage-upload.mapper';
 import { CreateAdvertPackageUseCase } from '../../application/use-cases/advert-package/create-advert-package.use-case';
 import { GetAdvertPackageByIdUseCase } from '../../application/use-cases/advert-package/get-advert-package-by-id.use-case';
 import { FetchAllAdvertPackagesUseCase } from '../../application/use-cases/advert-package/fetch-all-advert-packages.use-case';
@@ -27,131 +29,185 @@ const updateAdvertPackageUseCase = new UpdateAdvertPackageUseCase(
 );
 const deleteAdvertPackageUseCase = new DeleteAdvertPackageUseCase(advertPackageRepository);
 
-export async function createAdvertPackage(req: Request, res: Response, next: NextFunction) {
-  try {
-    const payload = req.body as CreateAdvertPackageDto;
-    // TODO: Configure OTHER_TAXES_RATE in environment as a numeric percentage (e.g. "5" for 5%)
-    const otherTaxesRateEnv = process.env.OTHER_TAXES_RATE ?? '0';
-    const otherTaxesRate = Number(otherTaxesRateEnv) || 0;
-    const otherTaxes = (payload.otherTaxes ?? 0) + otherTaxesRate;
-    const allTaxes = otherTaxes + Number(process.env.VAT_RATE ?? '0');
-    const finalPrice = payload.priceBeforeVAT * (1 + (allTaxes / 100));
-    
-    const advertPackage = await createAdvertPackageUseCase.execute({
-      name: payload.name,
-      nameSlug: payload.nameSlug,
-      mediaPackId: payload.mediaPackId,
-      showIds: payload.showIds,
-      advertisementsCount: payload.advertisementsCount,
-      announcementsCount: payload.announcementsCount,
-      popUpsCount: payload.popUpsCount,
-      bonusesCount: payload.bonusesCount,
-      priceBeforeVAT: payload.priceBeforeVAT,
-      otherTaxes,
-      finalPrice,
-      isActive: payload.isActive,
-      advertisementsRerunCount: payload.advertisementsRerunCount,
-      announcementsRerunCount: payload.announcementsRerunCount,
-      popUpsRerunCount: payload.popUpsRerunCount,
-      bonusesRerunCount: payload.bonusesRerunCount,
-      description: payload.description,
-    });
+export type AdvertPackageHandlerDeps = {
+  storageService: IStorageService;
+};
 
-    res.status(201).json({
-      status: 'SUCCESS',
-      message: 'Advert package created successfully',
-      data: { advertPackage },
-    });
-  } catch (error: unknown) {
-    next(error);
+export function createAdvertPackageHandlers(deps: AdvertPackageHandlerDeps) {
+  const { storageService } = deps;
+
+  async function removeOrphanUpload(fileUrl: string): Promise<void> {
+    try {
+      await storageService.delete(fileUrl);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn('[AdvertPackage] Failed to delete orphaned upload:', fileUrl, err);
+    }
   }
-}
 
-export async function fetchAllAdvertPackages(req: Request, res: Response, next: NextFunction) {
-  try {
-    const dto = res.locals.query as FetchAllAdvertPackagesDto;
-    const queryOptions = mapFetchAllAdvertPackagesDtoToQueryOptions(dto);
+  async function createAdvertPackage(req: Request, res: Response, next: NextFunction) {
+    let stagedImageUrl: string | undefined;
+    let persistSucceeded = false;
+    try {
+      const payload = req.body as CreateAdvertPackageDto;
+      // TODO: Configure OTHER_TAXES_RATE in environment as a numeric percentage (e.g. "5" for 5%)
+      const otherTaxesRateEnv = process.env.OTHER_TAXES_RATE ?? '0';
+      const otherTaxesRate = Number(otherTaxesRateEnv) || 0;
+      const otherTaxes = (payload.otherTaxes ?? 0) + otherTaxesRate;
+      const allTaxes = otherTaxes + Number(process.env.VAT_RATE ?? '0');
+      const finalPrice = payload.priceBeforeVAT * (1 + (allTaxes / 100));
 
-    const page = dto.page ?? 1;
-    const limit = dto.limit ?? 10;
+      stagedImageUrl = await storageService.upload(toStorageUploadFile(req.file!), {
+        folder: 'advert-packages',
+      });
 
-    const [advertPackages, total] = await Promise.all([
-      fetchAllAdvertPackagesUseCase.execute(queryOptions),
-      countAdvertPackagesUseCase.execute(queryOptions),
-    ]);
+      const advertPackage = await createAdvertPackageUseCase.execute({
+        name: payload.name,
+        nameSlug: payload.nameSlug,
+        mediaPackId: payload.mediaPackId,
+        showIds: payload.showIds,
+        advertisementsCount: payload.advertisementsCount,
+        announcementsCount: payload.announcementsCount,
+        popUpsCount: payload.popUpsCount,
+        bonusesCount: payload.bonusesCount,
+        priceBeforeVAT: payload.priceBeforeVAT,
+        otherTaxes,
+        finalPrice,
+        isActive: payload.isActive,
+        advertisementsRerunCount: payload.advertisementsRerunCount,
+        announcementsRerunCount: payload.announcementsRerunCount,
+        popUpsRerunCount: payload.popUpsRerunCount,
+        bonusesRerunCount: payload.bonusesRerunCount,
+        description: payload.description,
+        imageUrl: stagedImageUrl,
+      });
 
-    res.status(200).json({
-      status: 'SUCCESS',
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit),
-      },
-      data: { advertPackages },
-    });
-  } catch (error: unknown) {
-    next(error);
+      persistSucceeded = true;
+
+      res.status(201).json({
+        status: 'SUCCESS',
+        message: 'Advert package created successfully',
+        data: { advertPackage },
+      });
+    } catch (error: unknown) {
+      if (stagedImageUrl && !persistSucceeded) {
+        await removeOrphanUpload(stagedImageUrl);
+      }
+      next(error);
+    }
   }
-}
 
-export async function getAdvertPackageById(req: Request, res: Response, next: NextFunction) {
-  try {
-    const { id } = req.params as { id: string };
-    const advertPackage = await getAdvertPackageByIdUseCase.execute(id);
+  async function fetchAllAdvertPackages(req: Request, res: Response, next: NextFunction) {
+    try {
+      const dto = res.locals.query as FetchAllAdvertPackagesDto;
+      const queryOptions = mapFetchAllAdvertPackagesDtoToQueryOptions(dto);
 
-    res.status(200).json({
-      status: 'SUCCESS',
-      data: { advertPackage },
-    });
-  } catch (error: unknown) {
-    next(error);
+      const page = dto.page ?? 1;
+      const limit = dto.limit ?? 10;
+
+      const [advertPackages, total] = await Promise.all([
+        fetchAllAdvertPackagesUseCase.execute(queryOptions),
+        countAdvertPackagesUseCase.execute(queryOptions),
+      ]);
+
+      res.status(200).json({
+        status: 'SUCCESS',
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+        data: { advertPackages },
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
   }
-}
 
-export async function updateAdvertPackage(req: Request, res: Response, next: NextFunction) {
-  try {
-    const { id } = req.params as { id: string };
-    const payload = req.body as UpdateAdvertPackageDto;
-    const advertPackage = await updateAdvertPackageUseCase.execute(id, {
-      name: payload.name,
-      nameSlug: payload.nameSlug,
-      mediaPackId: payload.mediaPackId,
-      showIds: payload.showIds,
-      advertisementsCount: payload.advertisementsCount,
-      announcementsCount: payload.announcementsCount,
-      popUpsCount: payload.popUpsCount,
-      bonusesCount: payload.bonusesCount,
-      priceBeforeVAT: payload.priceBeforeVAT,
-      otherTaxes: payload.otherTaxes,
-      isActive: payload.isActive,
-      advertisementsRerunCount: payload.advertisementsRerunCount,
-      announcementsRerunCount: payload.announcementsRerunCount,
-      popUpsRerunCount: payload.popUpsRerunCount,
-      bonusesRerunCount: payload.bonusesRerunCount,
-      description: payload.description ?? undefined,
-    });
+  async function getAdvertPackageById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params as { id: string };
+      const advertPackage = await getAdvertPackageByIdUseCase.execute(id);
 
-    res.status(200).json({
-      status: 'SUCCESS',
-      message: 'Advert package updated successfully',
-      data: { advertPackage },
-    });
-  } catch (error: unknown) {
-    next(error);
+      res.status(200).json({
+        status: 'SUCCESS',
+        data: { advertPackage },
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
   }
-}
 
-export async function deleteAdvertPackage(req: Request, res: Response, next: NextFunction) {
-  try {
-    const { id } = req.params as { id: string };
-    await deleteAdvertPackageUseCase.execute(id);
+  async function updateAdvertPackage(req: Request, res: Response, next: NextFunction) {
+    let stagedNewImageUrl: string | undefined;
+    let persistSucceeded = false;
+    try {
+      const { id } = req.params as { id: string };
+      const payload = req.body as UpdateAdvertPackageDto;
 
-    res.status(200).json({
-      status: 'SUCCESS',
-      message: 'Advert package deleted successfully',
-    });
-  } catch (error: unknown) {
-    next(error);
+      let imageUrl: string | undefined;
+      if (req.file) {
+        stagedNewImageUrl = await storageService.upload(toStorageUploadFile(req.file), {
+          folder: 'advert-packages',
+        });
+        imageUrl = stagedNewImageUrl;
+      }
+
+      const advertPackage = await updateAdvertPackageUseCase.execute(id, {
+        name: payload.name,
+        nameSlug: payload.nameSlug,
+        mediaPackId: payload.mediaPackId,
+        showIds: payload.showIds,
+        advertisementsCount: payload.advertisementsCount,
+        announcementsCount: payload.announcementsCount,
+        popUpsCount: payload.popUpsCount,
+        bonusesCount: payload.bonusesCount,
+        priceBeforeVAT: payload.priceBeforeVAT,
+        otherTaxes: payload.otherTaxes,
+        isActive: payload.isActive,
+        advertisementsRerunCount: payload.advertisementsRerunCount,
+        announcementsRerunCount: payload.announcementsRerunCount,
+        popUpsRerunCount: payload.popUpsRerunCount,
+        bonusesRerunCount: payload.bonusesRerunCount,
+        description: payload.description ?? undefined,
+        imageUrl,
+      });
+
+      persistSucceeded = true;
+
+      res.status(200).json({
+        status: 'SUCCESS',
+        message: 'Advert package updated successfully',
+        data: { advertPackage },
+      });
+    } catch (error: unknown) {
+      if (stagedNewImageUrl && !persistSucceeded) {
+        await removeOrphanUpload(stagedNewImageUrl);
+      }
+      next(error);
+    }
   }
+
+  async function deleteAdvertPackage(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params as { id: string };
+      await deleteAdvertPackageUseCase.execute(id);
+
+      res.status(200).json({
+        status: 'SUCCESS',
+        message: 'Advert package deleted successfully',
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
+  }
+
+  return {
+    createAdvertPackage,
+    fetchAllAdvertPackages,
+    getAdvertPackageById,
+    updateAdvertPackage,
+    deleteAdvertPackage,
+  };
 }

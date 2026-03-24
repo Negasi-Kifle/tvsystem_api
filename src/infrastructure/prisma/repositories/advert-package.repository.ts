@@ -84,6 +84,7 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
         popUpsRerunCount: model.popUpsRerunCount,
         bonusesRerunCount: model.bonusesRerunCount,
         description: model.description,
+        imageUrl: model.imageUrl,
         showLinks: {
           deleteMany: {},
           create: (entity.showIds ?? []).map((showId) => ({ showId })),
@@ -143,13 +144,35 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
       advertPackage.popUpsRerunCount,
       advertPackage.bonusesRerunCount,
       advertPackage.description,
+      advertPackage.imageUrl ?? null,
     );
     const created = await this.create(pkgEntity);
     return { advertPackage: created, version: versionEntity };
   }
 
   async createMany(advertPackages: Omit<AdvertPackageEntity, 'id'>[]): Promise<AdvertPackageEntity[]> {
-    const entities = advertPackages.map(advertPackage => AdvertPackageEntity.createInstance(advertPackage.name, advertPackage.nameSlug, advertPackage.mediaPackId, advertPackage.showIds, advertPackage.advertisementsCount, advertPackage.announcementsCount, advertPackage.popUpsCount, advertPackage.bonusesCount, advertPackage.priceBeforeVAT, advertPackage.otherTaxes, advertPackage.finalPrice, advertPackage.isActive, advertPackage.advertisementsRerunCount, advertPackage.announcementsRerunCount, advertPackage.popUpsRerunCount, advertPackage.bonusesRerunCount, advertPackage.description));
+    const entities = advertPackages.map((advertPackage) =>
+      AdvertPackageEntity.createInstance(
+        advertPackage.name,
+        advertPackage.nameSlug,
+        advertPackage.mediaPackId,
+        advertPackage.showIds,
+        advertPackage.advertisementsCount,
+        advertPackage.announcementsCount,
+        advertPackage.popUpsCount,
+        advertPackage.bonusesCount,
+        advertPackage.priceBeforeVAT,
+        advertPackage.otherTaxes,
+        advertPackage.finalPrice,
+        advertPackage.isActive,
+        advertPackage.advertisementsRerunCount,
+        advertPackage.announcementsRerunCount,
+        advertPackage.popUpsRerunCount,
+        advertPackage.bonusesRerunCount,
+        advertPackage.description,
+        advertPackage.imageUrl ?? null,
+      ),
+    );
     const models = entities.map(entity => entityToModel(entity));
     const data = models.map(({ id: _omit, ...rest }) => rest);
 

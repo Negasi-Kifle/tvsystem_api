@@ -507,6 +507,7 @@ model AdvertPackage {
   popUpsRerunCount        Int       @default(0) @map("pop_ups_rerun_count")
   bonusesRerunCount      Int       @default(0) @map("bonuses_rerun_count")
   description             String?
+  imageUrl                String?   @map("image_url")
   createdAt               DateTime  @default(now()) @map("created_at")
   updatedAt               DateTime  @updatedAt @map("updated_at")
 

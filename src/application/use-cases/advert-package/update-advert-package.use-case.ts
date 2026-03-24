@@ -21,6 +21,7 @@ export type UpdateAdvertPackageInput = {
   popUpsRerunCount?: number;
   bonusesRerunCount?: number;
   description?: string;
+  imageUrl?: string;
 };
 
 export class UpdateAdvertPackageUseCase {
@@ -102,6 +103,7 @@ export class UpdateAdvertPackageUseCase {
       payload.popUpsRerunCount,
       payload.bonusesRerunCount,
       payload.description,
+      payload.imageUrl,
     );
     return this.advertPackageRepository.update(updated);
   }

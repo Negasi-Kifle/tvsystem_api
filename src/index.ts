@@ -1,5 +1,6 @@
 import 'dotenv/config';
-import app from './presentation/app';
+import { createApp } from './presentation/app';
+import { storageService } from './infrastructure/services/storage/storage.factory';
 import { SchedulerService } from './infrastructure/services/scheduler.service';
 import { PermissionSyncService } from './infrastructure/services/permission-sync.service';
 import { AlertService } from './application/services/alert.service';
@@ -23,6 +24,8 @@ async function bootstrap(): Promise<void> {
   const scheduler = new SchedulerService();
   const alertService = new AlertService();
   scheduler.scheduleDailySixAm(() => alertService.processOffAirAlerts());
+
+  const app = createApp({ storageService });
 
   const server = app.listen(port, () => {
     // eslint-disable-next-line no-console

@@ -18777,13 +18777,21 @@
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Agelgil 22\",\n    // \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "711b04db-5f12-4996-acc8-8779b28f4b1c",
+                  "src": "/Users/negasikiflom/Desktop/upwork.jpeg"
+                },
+                {
+                  "key": "payloads",
+                  "value": "{\n    \"name\": \"Agelgil\",\n    \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+                  "type": "text",
+                  "uuid": "9129da01-8722-4259-9a39-3288f40621ee"
                 }
-              }
+              ]
             },
             "url": {
               "raw": "{{baseURL}}/api/advert-packages",
@@ -18798,13 +18806,26 @@
           },
           "response": [
             {
-              "name": "Success",
+              "name": "Success - Form Data",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"name\": \"Agelgil\",\n    \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "711b04db-5f12-4996-acc8-8779b28f4b1c",
+                      "src": "/Users/negasikiflom/Desktop/upwork.jpeg"
+                    },
+                    {
+                      "key": "payloads",
+                      "value": "{\n    \"name\": \"Agelgil\",\n    \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n    \"showIds\": [\"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"],\n    \"advertisementsCount\": 1,\n    \"announcementsCount\": 1,\n    \"popUpsCount\": 1,\n    \"bonusesCount\": 0,\n    \"priceBeforeVAT\": 100,\n    \"otherTaxes\": 2\n}",
+                      "type": "text",
+                      "uuid": "9129da01-8722-4259-9a39-3288f40621ee"
+                    }
+                  ],
                   "options": {
                     "raw": {
                       "language": "json"
@@ -18824,7 +18845,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -18884,15 +18905,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "908"
+                  "value": "1016"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"38c-Ypb1LTf9GJE76Zd/qJVzld15jdM\""
+                  "value": "W/\"3f8-MJWyWMUNhIuy4RT6Ta24J0nzJcM\""
                 },
                 {
                   "key": "Date",
-                  "value": "Mon, 16 Mar 2026 20:56:09 GMT"
+                  "value": "Tue, 24 Mar 2026 10:28:08 GMT"
                 },
                 {
                   "key": "Connection",
@@ -18904,7 +18925,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package created successfully\",\n    \"data\": {\n        \"advertPackage\": {\n            \"name\": \"Agelgil\",\n            \"nameSlug\": \"agelgil\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n            ],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2,\n            \"finalPrice\": 117,\n            \"isActive\": true,\n            \"advertisementsRerunCount\": 0,\n            \"announcementsRerunCount\": 0,\n            \"popUpsRerunCount\": 0,\n            \"bonusesRerunCount\": 0,\n            \"createdAt\": \"2026-03-16T20:56:09.068Z\",\n            \"updatedAt\": \"2026-03-16T20:56:09.068Z\",\n            \"id\": \"4c10f9ce-4bde-4eb3-920c-cd2ad166f6dd\",\n            \"mediaPack\": {\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\"\n            },\n            \"shows\": [\n                {\n                    \"title\": \"Seifu Show on EBS\",\n                    \"titleSlug\": \"seifu-show-on-ebs\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                }\n            ]\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package created successfully\",\n    \"data\": {\n        \"advertPackage\": {\n            \"name\": \"Agelgil\",\n            \"nameSlug\": \"agelgil\",\n            \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n            \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n            ],\n            \"advertisementsCount\": 1,\n            \"announcementsCount\": 1,\n            \"popUpsCount\": 1,\n            \"bonusesCount\": 0,\n            \"priceBeforeVAT\": 100,\n            \"otherTaxes\": 2,\n            \"finalPrice\": 117,\n            \"isActive\": true,\n            \"advertisementsRerunCount\": 0,\n            \"announcementsRerunCount\": 0,\n            \"popUpsRerunCount\": 0,\n            \"bonusesRerunCount\": 0,\n            \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n            \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n            \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n            \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"mediaPack\": {\n                \"id\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                \"version\": \"v1\",\n                \"versionSlug\": \"v1\"\n            },\n            \"shows\": [\n                {\n                    \"title\": \"Seifu Show on EBS\",\n                    \"titleSlug\": \"seifu-show-on-ebs\",\n                    \"type\": \"InHouse\",\n                    \"durationMinutes\": 120,\n                    \"maxAdLengthMinutes\": 30,\n                    \"totalDurationMinutes\": 150,\n                    \"partsCount\": 4,\n                    \"rerunsCount\": 4,\n                    \"bonusCount\": 0\n                }\n            ]\n        }\n    }\n}"
             }
           ]
         },
