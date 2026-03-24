@@ -1,12 +1,12 @@
 import { BroadcastSlotEntity } from '../../domain/entities/broadcast-slot.entity';
 import { QueryOptions } from '../../domain/interfaces/query-options.interface';
-import { FetchBroadcastSlotsDto } from '../dtos/requests/broadcast-slot/fetch-broadcast-slots.dto';
+import { BroadcastSlotGroupBy, FetchBroadcastSlotsDto } from '../dtos/requests/broadcast-slot/fetch-broadcast-slots.dto';
 import type { BroadcastSlotFilters } from '../../domain/interfaces/broadcast-slot-filters.interface';
 
 export function mapFetchBroadcastSlotsDtoToQueryOptions(
   dto: FetchBroadcastSlotsDto,
   scheduleId: string,
-): QueryOptions<BroadcastSlotEntity, BroadcastSlotFilters> {
+): QueryOptions<BroadcastSlotEntity, BroadcastSlotFilters, BroadcastSlotGroupBy> {
   const page = dto.page ?? 1;
   const limit = dto.limit ?? 200;
 
@@ -24,5 +24,6 @@ export function mapFetchBroadcastSlotsDtoToQueryOptions(
     skip: (page - 1) * limit,
     take: limit,
     filters,
+    groupBy: dto.groupBy,
   };
 }

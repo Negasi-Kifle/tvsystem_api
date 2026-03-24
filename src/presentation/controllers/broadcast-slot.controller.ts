@@ -13,7 +13,7 @@ import { GenerateBroadcastSlotsDto } from '../dtos/requests/broadcast-slot/gener
 import { FetchBroadcastSlotsDto } from '../dtos/requests/broadcast-slot/fetch-broadcast-slots.dto';
 import { UpdateBroadcastSlotDto } from '../dtos/requests/broadcast-slot/update-broadcast-slot.dto';
 import { mapFetchBroadcastSlotsDtoToQueryOptions } from '../mappers/broadcast-slot-to-query-options.mapper';
-import type { BroadcastSlotEntity } from '../../domain/entities/broadcast-slot.entity';
+import { formatListBroadcastSlotsData, formatSlotResponse } from './broadcast-slot-response.formatter';
 
 const slotRepo = new BroadcastSlotRepository();
 const blockRepo = new ScheduleBlockRepository();
@@ -67,7 +67,7 @@ export async function listBroadcastSlots(req: Request, res: Response, next: Next
         total,
         totalPages: Math.ceil(total / limit),
       },
-      data: { slots: slots.map(formatSlotResponse) },
+      data: formatListBroadcastSlotsData(slots),
     });
   } catch (error) {
     next(error);
@@ -113,35 +113,4 @@ export async function deleteBroadcastSlot(req: Request, res: Response, next: Nex
   } catch (error) {
     next(error);
   }
-}
-
-function formatSlotResponse(slot: BroadcastSlotEntity) {
-  return {
-    id: slot.id,
-    scheduleBlockId: slot.scheduleBlockId,
-    scheduleId: slot.scheduleId,
-    showId: slot.showId,
-    date: slot.date,
-    dateEth: slot.dateEth,
-    dayOfWeek: slot.dayOfWeek,
-    broadcastType: slot.broadcastType,
-    status: slot.status,
-    label: slot.label,
-    overrideReason: slot.overrideReason,
-    startTimeMinutes: slot.startTimeMinutes,
-    durationMinutes: slot.durationMinutes,
-    gregorian: {
-      start: slot.startTimeGregorian,
-      end: slot.endTimeGregorian,
-    },
-    ethiopian: {
-      start: slot.startTimeEthiopian.toString(),
-      end: slot.endTimeEthiopian.toString(),
-    },
-    createdAt: slot.createdAt,
-    updatedAt: slot.updatedAt,
-    scheduleBlock: slot.scheduleBlock,
-    schedule: slot.schedule,
-    show: slot.show,
-  };
 }
