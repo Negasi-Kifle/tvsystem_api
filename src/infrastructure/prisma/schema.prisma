@@ -479,20 +479,19 @@ model MediaPack {
   createdAt      DateTime        @default(now()) @map("created_at")
   updatedAt      DateTime        @updatedAt @map("updated_at")
 
-  advertPackages    AdvertPackage[]
-  communicationLogs CommunicationLog[]
+  advertPackageMediaPackLinks    AdvertPackageMediaPack[]
+  communicationLogs            CommunicationLog[]
 
   @@map("media_packs")
 }
 
 // ============================================
-// ADVERT PACKAGE - Package tied to a media pack
+// ADVERT PACKAGE - Links to media packs via AdvertPackageMediaPack
 // ============================================
 model AdvertPackage {
   id                      String   @id @default(uuid())
   name                    String
-  nameSlug                String   @map("name_slug")
-  mediaPackId             String   @map("media_pack_id")
+  nameSlug                String   @unique @map("name_slug")
   showIds                 String[] @map("show_ids")
   advertisementsCount     Int      @map("advertisements_count")
   announcementsCount      Int      @map("announcements_count")
@@ -511,13 +510,10 @@ model AdvertPackage {
   createdAt               DateTime  @default(now()) @map("created_at")
   updatedAt               DateTime  @updatedAt @map("updated_at")
 
-  mediaPack               MediaPack  @relation(fields: [mediaPackId], references: [id], onDelete: Restrict)
-
   // Relations
   showLinks               AdvertPackageShow[]
+  mediaPackLinks          AdvertPackageMediaPack[]
 
-  @@unique([mediaPackId, nameSlug])
-  @@index([mediaPackId])
   @@index([isActive])
   @@map("advert_packages")
 }
@@ -536,6 +532,24 @@ model AdvertPackageShow {
   @@unique([advertPackageId, showId])
   @@index([showId])
   @@map("advert_package_shows")
+}
+
+// ============================================
+// ADVERT PACKAGE MEDIA PACK - Junction (package ↔ many media packs)
+// ============================================
+model AdvertPackageMediaPack {
+  id              String   @id @default(uuid())
+  advertPackageId String   @map("advert_package_id")
+  mediaPackId     String   @map("media_pack_id")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  advertPackage AdvertPackage @relation(fields: [advertPackageId], references: [id], onDelete: Cascade)
+  mediaPack     MediaPack     @relation(fields: [mediaPackId], references: [id], onDelete: Restrict)
+
+  @@unique([advertPackageId, mediaPackId])
+  @@index([mediaPackId])
+  @@map("advert_package_media_packs")
 }
 
 // ============================================

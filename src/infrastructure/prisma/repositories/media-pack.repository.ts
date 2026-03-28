@@ -5,14 +5,21 @@ import { MediaPackEntity } from "../../../domain/entities/media-pack.entity";
 import { QueryOptions } from "../../../domain/interfaces/query-options.interface";
 import { modelToEntity } from "../model_entity_mappers/media-pack";
 import { buildWhereClauseForMediaPack } from "../where_clauses/media-pack";
+import { advertPackageReadInclude } from '../model_entity_mappers/advert-package';
+
+const mediaPackWithAdvertPackagesInclude = {
+    advertPackageMediaPackLinks: {
+        include: {
+            advertPackage: { include: advertPackageReadInclude },
+        },
+    },
+} satisfies Prisma.MediaPackInclude;
 
 export class MediaPackRepository extends PrismaBaseRepository implements IMediaPackRepository {
 
     async findById(id: string): Promise<MediaPackEntity | null> {
         const mediaPack = await this.prisma.mediaPack.findUnique({
-            where: { id }, include: {
-                advertPackages: { include: { showLinks: { include: { show: true } } } },
-            },
+            where: { id }, include: mediaPackWithAdvertPackagesInclude,
         });
         return mediaPack ? modelToEntity(mediaPack) : null;
     }
@@ -23,13 +30,7 @@ export class MediaPackRepository extends PrismaBaseRepository implements IMediaP
             where,
             skip: query.skip ?? 0,
             take: query.take ?? 10,
-            include: {
-                advertPackages: {
-                    include: {
-                        showLinks: { include: { show: true } },
-                    },
-                },
-            },
+            include: mediaPackWithAdvertPackagesInclude,
         });
         return list.map(modelToEntity);
     }

@@ -1,5 +1,5 @@
 import { UserPermissionEntity } from "../../../domain/entities/user-permissions.entity";
-import { EntityAlreadyExistsError, EntityNotFoundError } from "../../../domain/errors";
+import { EntityNotFoundError } from "../../../domain/errors";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
 import { IUserPermissionsRepository } from "../../../domain/repositories/user-permissions.repo";
 import { IUserRepository } from "../../../domain/repositories/user.repo";

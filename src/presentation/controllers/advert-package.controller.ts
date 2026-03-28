@@ -23,10 +23,7 @@ const createAdvertPackageUseCase = new CreateAdvertPackageUseCase(
 const getAdvertPackageByIdUseCase = new GetAdvertPackageByIdUseCase(advertPackageRepository);
 const fetchAllAdvertPackagesUseCase = new FetchAllAdvertPackagesUseCase(advertPackageRepository);
 const countAdvertPackagesUseCase = new CountAdvertPackagesUseCase(advertPackageRepository);
-const updateAdvertPackageUseCase = new UpdateAdvertPackageUseCase(
-  advertPackageRepository,
-  mediaPackRepository,
-);
+const updateAdvertPackageUseCase = new UpdateAdvertPackageUseCase(advertPackageRepository);
 const deleteAdvertPackageUseCase = new DeleteAdvertPackageUseCase(advertPackageRepository);
 
 export type AdvertPackageHandlerDeps = {
@@ -157,7 +154,6 @@ export function createAdvertPackageHandlers(deps: AdvertPackageHandlerDeps) {
       const advertPackage = await updateAdvertPackageUseCase.execute(id, {
         name: payload.name,
         nameSlug: payload.nameSlug,
-        mediaPackId: payload.mediaPackId,
         showIds: payload.showIds,
         advertisementsCount: payload.advertisementsCount,
         announcementsCount: payload.announcementsCount,

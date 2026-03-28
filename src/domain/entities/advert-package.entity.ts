@@ -5,7 +5,6 @@ export class AdvertPackageEntity {
     constructor(
         public name: string,
         public nameSlug: string,
-        public mediaPackId: string,
         public showIds: string[],
         public advertisementsCount: number,
         public announcementsCount: number,
@@ -24,14 +23,13 @@ export class AdvertPackageEntity {
         public createdAt?: Date,
         public updatedAt?: Date,
         public id?: string,
-        public mediaPack?: MediaPackSummary,
+        public mediaPacks?: MediaPackSummary[],
         public shows?: ShowSummary[],
     ) { }
 
     public static createInstance(
         name: string,
         nameSlug: string,
-        mediaPackId: string,
         showIds: string[],
         advertisementsCount: number,
         announcementsCount: number,
@@ -50,13 +48,12 @@ export class AdvertPackageEntity {
         createdAt?: Date,
         updatedAt?: Date,
         id?: string,
-        mediaPack?: MediaPackSummary,
+        mediaPacks?: MediaPackSummary[],
         shows?: ShowSummary[],
     ): AdvertPackageEntity {
         return new AdvertPackageEntity(
             name,
             nameSlug,
-            mediaPackId,
             showIds,
             advertisementsCount,
             announcementsCount,
@@ -75,7 +72,7 @@ export class AdvertPackageEntity {
             createdAt,
             updatedAt,
             id,
-            mediaPack,
+            mediaPacks,
             shows,
         );
     }
@@ -83,7 +80,6 @@ export class AdvertPackageEntity {
     public updateInstance(
         name?: string,
         nameSlug?: string,
-        mediaPackId?: string,
         showIds?: string[],
         advertisementsCount?: number,
         announcementsCount?: number,
@@ -102,7 +98,6 @@ export class AdvertPackageEntity {
     ): AdvertPackageEntity {
         if (name !== undefined) this.name = name;
         if (nameSlug !== undefined) this.nameSlug = nameSlug;
-        if (mediaPackId !== undefined) this.mediaPackId = mediaPackId;
         if (showIds !== undefined) this.showIds = showIds;
         if (advertisementsCount !== undefined) this.advertisementsCount = advertisementsCount;
         if (announcementsCount !== undefined) this.announcementsCount = announcementsCount;

@@ -5,23 +5,27 @@ import { Prisma } from '../generated/client';
 import { ShowSummary } from '../../../domain/interfaces/show-summary.interface';
 import { ShowType } from '../../../domain/enums/show-type.enum';
 
+export const advertPackageReadInclude = {
+  mediaPackLinks: { include: { mediaPack: true } },
+  showLinks: { include: { show: true } },
+} as const;
+
 type AdvertPackageWithRelations = Prisma.AdvertPackageGetPayload<{
-  include: {
-    mediaPack: true;
-    showLinks: { include: { show: true } };
-  };
+  include: typeof advertPackageReadInclude;
 }>;
 
 type AdvertPackageLike = Prisma.AdvertPackageGetPayload<{}> & Partial<{
-  mediaPack: AdvertPackageWithRelations['mediaPack'];
+  mediaPackLinks: AdvertPackageWithRelations['mediaPackLinks'];
   showLinks: AdvertPackageWithRelations['showLinks'];
 }>;
 
-function mediaPackToSummary(mediaPack: AdvertPackageWithRelations['mediaPack']): MediaPackSummary {
+function mediaPackToSummary(
+  mediaPack: NonNullable<AdvertPackageWithRelations['mediaPackLinks'][number]['mediaPack']>,
+): MediaPackSummary {
   return {
-    id: mediaPack.id,
-    version: mediaPack.version,
-    versionSlug: mediaPack.versionSlug,
+    id: mediaPack.id ?? '',
+    version: mediaPack.version ?? '',
+    versionSlug: mediaPack.versionSlug ?? '',
   };
 }
 
@@ -40,10 +44,15 @@ function showToSummary(show: AdvertPackageWithRelations['showLinks'][number]['sh
 }
 
 export function modelToEntity(model: AdvertPackageLike): AdvertPackageEntity {
+  const mediaPacks =
+    model.mediaPackLinks
+      ?.map((link) => link.mediaPack)
+      .filter((mp): mp is NonNullable<typeof mp> => mp != null)
+      .map(mediaPackToSummary) ?? [];
+
   return AdvertPackageEntity.createInstance(
     model.name,
     model.nameSlug,
-    model.mediaPackId,
     model.showIds,
     model.advertisementsCount,
     model.announcementsCount,
@@ -62,17 +71,16 @@ export function modelToEntity(model: AdvertPackageLike): AdvertPackageEntity {
     model.createdAt,
     model.updatedAt,
     model.id,
-    model.mediaPack ? mediaPackToSummary(model.mediaPack) : undefined,
+    mediaPacks.length > 0 ? mediaPacks : undefined,
     model.showLinks?.map((link) => showToSummary(link.show)) ?? [],
   );
 }
 
-export function entityToModel(entity: AdvertPackageEntity): Omit<AdvertPackage, 'mediaPack'> {
+export function entityToModel(entity: AdvertPackageEntity): Omit<AdvertPackage, 'mediaPackLinks' | 'showLinks'> {
   return {
     id: entity.id ?? '',
     name: entity.name,
     nameSlug: entity.nameSlug,
-    mediaPackId: entity.mediaPackId,
     showIds: entity.showIds,
     advertisementsCount: entity.advertisementsCount,
     announcementsCount: entity.announcementsCount,

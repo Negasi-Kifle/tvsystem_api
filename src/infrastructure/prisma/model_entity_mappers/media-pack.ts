@@ -1,22 +1,30 @@
 import { Prisma, MediaPack } from '../generated/client';
 import { MediaPackEntity } from "../../../domain/entities/media-pack.entity";
-import { modelToEntity as advertPackageModelToEntity } from "./advert-package";
+import {
+    advertPackageReadInclude,
+    modelToEntity as advertPackageModelToEntity,
+} from "./advert-package";
 
 type MediaPackWithRelations = Prisma.MediaPackGetPayload<{
     include: {
-        advertPackages: {
+        advertPackageMediaPackLinks: {
             include: {
-                showLinks: { include: { show: true } },
-            },
-        },
-    },
+                advertPackage: { include: typeof advertPackageReadInclude };
+            };
+        };
+    };
 }>;
 
 type MediaPackLike = Prisma.MediaPackGetPayload<{}> & Partial<{
-    advertPackages: MediaPackWithRelations['advertPackages'];
+    advertPackageMediaPackLinks: MediaPackWithRelations['advertPackageMediaPackLinks'];
 }>;
 
 export function modelToEntity(model: MediaPackLike): MediaPackEntity {
+    const advertPackages = model.advertPackageMediaPackLinks
+        ?.map((link) => link.advertPackage)
+        .filter((pkg): pkg is NonNullable<typeof pkg> => pkg != null)
+        .map((pkg) => advertPackageModelToEntity(pkg));
+
     return MediaPackEntity.createInstance(
         model.version,
         model.versionSlug,
@@ -25,7 +33,7 @@ export function modelToEntity(model: MediaPackLike): MediaPackEntity {
         model.createdAt,
         model.updatedAt,
         model.id,
-        model.advertPackages?.map((pkg) => advertPackageModelToEntity(pkg)),
+        advertPackages,
     );
 }
 

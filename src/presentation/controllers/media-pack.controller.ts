@@ -13,9 +13,12 @@ import { FetchAllMediaPacksDto } from '../dtos/requests/media-pack/fetch-all.dto
 import { CreateMediaPackWithAdPackagesDto } from '../dtos/requests/media-pack/create-media-pack-with-ad-packages.dto';
 import { CreateMediaPackWithAdPackagesUseCase } from '../../application/use-cases/media-pack/create-with-ad-packages.use-case';
 import { AdvertPackageRepository } from '../../infrastructure/prisma/repositories/advert-package.repository';
+import { AdvertPackageMediaPackRepository } from '../../infrastructure/prisma/repositories/advert-package-media-pack.repository';
 
 const mediaPackRepository = new MediaPackRepository();
 const advertPackageRepository = new AdvertPackageRepository();
+const advertPackageMediaPackRepository = new AdvertPackageMediaPackRepository();
+
 
 const createMediaPackUseCase = new CreateMediaPackUseCase(mediaPackRepository);
 const getMediaPackByIdUseCase = new GetMediaPackByIdUseCase(mediaPackRepository);
@@ -23,7 +26,8 @@ const fetchAllMediaPacksUseCase = new FetchAllMediaPacksUseCase(mediaPackReposit
 const countMediaPacksUseCase = new CountMediaPacksUseCase(mediaPackRepository);
 const updateMediaPackUseCase = new UpdateMediaPackUseCase(mediaPackRepository);
 const deleteMediaPackUseCase = new DeleteMediaPackUseCase(mediaPackRepository);
-const createMediaPackWithAdPackagesUseCase = new CreateMediaPackWithAdPackagesUseCase(mediaPackRepository, advertPackageRepository);
+const createMediaPackWithAdPackagesUseCase = new CreateMediaPackWithAdPackagesUseCase(mediaPackRepository, advertPackageRepository, advertPackageMediaPackRepository);
+
 export async function createMediaPack(req: Request, res: Response, next: NextFunction) {
     try {
         const payload = req.body as CreateMediaPackDto;

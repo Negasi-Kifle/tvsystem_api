@@ -6,7 +6,6 @@ import { IMediaPackRepository } from '../../../domain/repositories/media-pack.re
 export type CreateAdvertPackageInput = {
   name: string;
   nameSlug?: string;
-  mediaPackId: string;
   showIds: string[];
   advertisementsCount: number;
   announcementsCount: number;
@@ -16,6 +15,7 @@ export type CreateAdvertPackageInput = {
   otherTaxes: number;
   finalPrice: number;
   isActive?: boolean;
+  mediaPackId?: string;
   advertisementsRerunCount?: number;
   announcementsRerunCount?: number;
   popUpsRerunCount?: number;
@@ -37,19 +37,19 @@ export class CreateAdvertPackageUseCase {
     }
 
     const nameSlug = payload.nameSlug !== undefined ? payload.nameSlug : payload.name.toLowerCase().replace(/ /g, '-');
-    const mediaPack = await this.mediaPackRepository.findById(payload.mediaPackId);
-    if (!mediaPack) {
-      throw new EntityNotFoundError('Media pack not found', 'MediaPack', payload.mediaPackId);
+    const mediaPack = payload.mediaPackId ? await this.mediaPackRepository.findById(payload.mediaPackId) : undefined;
+    if (payload.mediaPackId && !mediaPack) {
+      throw new EntityNotFoundError('Unknown media pack selected', 'MediaPack', payload.mediaPackId);
     }
 
     const existing = await this.advertPackageRepository.findMany({
-      filters: { mediaPackId: payload.mediaPackId, nameSlug: nameSlug },
+      filters: { nameSlug },
       skip: 0,
       take: 10,
     });
     if (existing.length > 0) {
       throw new EntityAlreadyExistsError(
-        'Advert package with this name slug already exists for this media pack',
+        'Advert package with this name slug already exists',
         'AdvertPackage',
         nameSlug,
       );
@@ -58,7 +58,6 @@ export class CreateAdvertPackageUseCase {
     const entity = AdvertPackageEntity.createInstance(
       payload.name,
       nameSlug,
-      payload.mediaPackId,
       payload.showIds,
       payload.advertisementsCount,
       payload.announcementsCount,
@@ -75,6 +74,6 @@ export class CreateAdvertPackageUseCase {
       payload.description,
       payload.imageUrl,
     );
-    return this.advertPackageRepository.create(entity);
+    return this.advertPackageRepository.create(entity, payload.mediaPackId);
   }
 }

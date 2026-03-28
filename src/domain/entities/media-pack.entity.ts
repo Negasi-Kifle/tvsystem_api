@@ -1,5 +1,4 @@
 import { AdvertPackageEntity } from "./advert-package.entity";
-import { AdvertPackageSummary } from "../interfaces/advert-package-summary.interface";
 
 export class MediaPackEntity {
     constructor(

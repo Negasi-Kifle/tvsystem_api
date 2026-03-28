@@ -20,6 +20,7 @@ import categoryRoutes from './categories.routes';
 import subCategoryRoutes from './sub-categories.routes';
 import showSegmentSlotRoutes from './show-segment-slots.routes';
 import customerShowSuitabilityRoutes from './customer-show-suitability.routes';
+import advertPackageMediaPackRoutes from './advert-package-media-packs.routes';
 import type { AdvertPackageHandlerDeps } from '../controllers/advert-package.controller';
 
 export type ApiRouterDeps = AdvertPackageHandlerDeps;
@@ -39,6 +40,7 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/partners', partnerRoutes);
   router.use('/media-packs', mediaPackRoutes);
   router.use('/advert-packages', createAdvertPackageRouter(deps));
+  router.use('/advert-package-media-packs', advertPackageMediaPackRoutes);
   router.use('/satellite-schedules', satelliteScheduleRoutes);
   router.use('/show-hosts', showHostRoutes);
   router.use('/customers', customerRoutes);

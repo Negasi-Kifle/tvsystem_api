@@ -4,7 +4,7 @@ import { AdvertPackageEntity } from '../../../domain/entities/advert-package.ent
 import { MediaPackEntity } from '../../../domain/entities/media-pack.entity';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { AdvertPackageFilters } from '../../../domain/interfaces/advert-package-filters.interface';
-import { entityToModel, modelToEntity } from '../model_entity_mappers/advert-package';
+import { advertPackageReadInclude, entityToModel, modelToEntity } from '../model_entity_mappers/advert-package';
 import { buildWhereClauseForAdvertPackage } from '../where_clauses/advert-package';
 import { modelToEntity as mediaPackModelToEntity } from '../model_entity_mappers/media-pack';
 
@@ -12,10 +12,7 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
   async findById(id: string): Promise<AdvertPackageEntity | null> {
     const record = await this.prisma.advertPackage.findUnique({
       where: { id },
-      include: {
-        mediaPack: true,
-        showLinks: { include: { show: true } },
-      },
+      include: advertPackageReadInclude,
     });
     return record ? modelToEntity(record) : null;
   }
@@ -24,15 +21,12 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
     query: QueryOptions<AdvertPackageEntity, AdvertPackageFilters>,
   ): Promise<AdvertPackageEntity[]> {
     const where = buildWhereClauseForAdvertPackage(query.filters ?? {});
-    
+
     const records = await this.prisma.advertPackage.findMany({
       where,
       skip: query.skip ?? 0,
       take: query.take ?? 10,
-      include: {
-        mediaPack: true,
-        showLinks: { include: { show: true } },
-      },
+      include: advertPackageReadInclude,
     });
     return records.map(modelToEntity);
   }
@@ -42,7 +36,10 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
     return this.prisma.advertPackage.count({ where });
   }
 
-  async create(data: Omit<AdvertPackageEntity, 'id'>): Promise<AdvertPackageEntity> {
+  async create(
+    data: Omit<AdvertPackageEntity, 'id'>,
+    linkMediaPackId?: string,
+  ): Promise<AdvertPackageEntity> {
     const entity = data as AdvertPackageEntity;
     const model = entityToModel(entity);
     const { id: _omit, ...createData } = model;
@@ -52,11 +49,15 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
         showLinks: {
           create: (entity.showIds ?? []).map((showId) => ({ showId })),
         },
+        ...(linkMediaPackId
+          ? {
+              mediaPackLinks: {
+                create: { mediaPackId: linkMediaPackId },
+              },
+            }
+          : {}),
       },
-      include: {
-        mediaPack: true,
-        showLinks: { include: { show: true } },
-      },
+      include: advertPackageReadInclude,
     });
     return modelToEntity(saved);
   }
@@ -69,7 +70,6 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
       data: {
         name: model.name,
         nameSlug: model.nameSlug,
-        mediaPackId: model.mediaPackId,
         showIds: model.showIds,
         advertisementsCount: model.advertisementsCount,
         announcementsCount: model.announcementsCount,
@@ -90,10 +90,7 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
           create: (entity.showIds ?? []).map((showId) => ({ showId })),
         },
       },
-      include: {
-        mediaPack: true,
-        showLinks: { include: { show: true } },
-      },
+      include: advertPackageReadInclude,
     });
     return modelToEntity(updated);
   }
@@ -102,10 +99,7 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
     try {
       const deleted = await this.prisma.advertPackage.delete({
         where: { id },
-        include: {
-          mediaPack: true,
-          showLinks: { include: { show: true } },
-        },
+        include: advertPackageReadInclude,
       });
       return modelToEntity(deleted);
     } catch {
@@ -129,7 +123,6 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
     const pkgEntity = AdvertPackageEntity.createInstance(
       advertPackage.name,
       advertPackage.nameSlug,
-      mediaPack.id,
       advertPackage.showIds,
       advertPackage.advertisementsCount,
       advertPackage.announcementsCount,
@@ -146,16 +139,18 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
       advertPackage.description,
       advertPackage.imageUrl ?? null,
     );
-    const created = await this.create(pkgEntity);
+    const created = await this.create(pkgEntity, mediaPack.id);
     return { advertPackage: created, version: versionEntity };
   }
 
-  async createMany(advertPackages: Omit<AdvertPackageEntity, 'id'>[]): Promise<AdvertPackageEntity[]> {
+  async createMany(
+    advertPackages: Omit<AdvertPackageEntity, 'id'>[],
+    linkAllToMediaPackId?: string,
+  ): Promise<AdvertPackageEntity[]> {
     const entities = advertPackages.map((advertPackage) =>
       AdvertPackageEntity.createInstance(
         advertPackage.name,
         advertPackage.nameSlug,
-        advertPackage.mediaPackId,
         advertPackage.showIds,
         advertPackage.advertisementsCount,
         advertPackage.announcementsCount,
@@ -173,10 +168,27 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
         advertPackage.imageUrl ?? null,
       ),
     );
-    const models = entities.map(entity => entityToModel(entity));
+    const models = entities.map((entity) => entityToModel(entity));
     const data = models.map(({ id: _omit, ...rest }) => rest);
 
-    const saved = await this.prisma.advertPackage.createManyAndReturn({ data });
-    return saved.map(model => modelToEntity(model));
+    const rowIds = await this.prisma.$transaction(async (tx) => {
+      const rows = await tx.advertPackage.createManyAndReturn({ data });
+      if (linkAllToMediaPackId) {
+        await tx.advertPackageMediaPack.createMany({
+          data: rows.map((r) => ({
+            advertPackageId: r.id,
+            mediaPackId: linkAllToMediaPackId,
+          })),
+        });
+      }
+      return rows.map((r) => r.id);
+    });
+
+    const full = await this.prisma.advertPackage.findMany({
+      where: { id: { in: rowIds } },
+      include: advertPackageReadInclude,
+      orderBy: { createdAt: 'asc' },
+    });
+    return full.map(modelToEntity);
   }
 }

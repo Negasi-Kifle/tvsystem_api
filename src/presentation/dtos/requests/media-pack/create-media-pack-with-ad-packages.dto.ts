@@ -7,9 +7,9 @@ export const createMediaPackWithAdPackagesDto = z.object({
     versionSlug: z.string().min(1, "Version slug cannot be empty").optional(),
     description: z.string().optional(),
     isActive: z.boolean().optional(),
-    advertPackages: z.array(
-        createAdvertPackageDto.omit({ mediaPackId: true }),
-        { message: "Please provide at least one advert package" })
+    advertPackageIds: z.array(
+        z.uuid("Invalid advert package id (must be a valid UUID)"),
+        "Please provide at least one advert package")
         .min(1, "Advert packages cannot be empty"),
 });
 

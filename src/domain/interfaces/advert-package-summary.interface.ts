@@ -1,10 +1,8 @@
 
-
 export interface AdvertPackageSummary {
     id: string;
     name: string;
     nameSlug: string;
-    mediaPackId: string;
     showIds: string[];
     advertisementsCount: number;
     announcementsCount: number;
