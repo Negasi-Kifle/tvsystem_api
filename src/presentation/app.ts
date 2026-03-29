@@ -3,7 +3,8 @@ import path from 'node:path';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { createApiRouter, type ApiRouterDeps } from './routes';
+import { createApiRouter } from './routes';
+import type { ApiRouterDeps } from './api-router-deps';
 import { sendErrorResponse } from '../shared/utils/error-handler';
 import globalErrorHandler from '../shared/utils/global-error-handler';
 

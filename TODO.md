@@ -10,8 +10,8 @@
 
 - 🟨 Implement show/ad expiry detection and notification delivery (`application/services/alert.service.ts`)
 - 🟨 Implement password reset token generation and email delivery (`presentation/controllers/user.controller.ts`)
-- 🟨 Send compensation proposal email with actionable link (`application/use-cases/adverts/process-compensation.use-case.ts`)
-- 🟨 Send formatted payment request email with invoice details (`application/use-cases/finance/generate-payment-request.use-case.ts`)
+- 🟨 Send compensation proposal email with actionable link (implement with the future compensation module; advert CRUD lives under `application/use-cases/adverts/`)
+- 🟨 Send formatted payment request email with invoice details (implement with the future advert finance / payment module; there is no `application/use-cases/finance/` tree today)
 
 ### Email Templates
 
@@ -21,8 +21,8 @@
 ### Missing Features from Requirements
 
 - ✅ Customer entity CRUD operations and endpoints (Sales Follow-up)
-- 🟨 Partner entity CRUD operations and endpoints
-- 🟨 MediaPack entity CRUD operations and endpoints
+- ✅ Partner entity CRUD operations and endpoints (`/api/partners`, `partners.routes.ts`)
+- ✅ MediaPack and AdvertPackage catalog CRUD (`/api/media-packs`, `/api/advert-packages`, `POST .../with-ad-packages`, `/api/advert-package-media-packs`; see `PROJECT_INDEX_AUTO.md`)
 - 🟨 SatelliteLog upload and verification workflow
 - ✅ Sales follow-up / communication logging functionality
 - 🟨 Revenue share calculation and distribution
@@ -41,7 +41,7 @@
 - 🟨 Add request logging with correlation IDs
 - 🟨 Setup health check for database connectivity
 - 🟨 Environment-specific configuration validation
-- 🟨 Remove MongoDB dependencies once PostgreSQL is fully tested
+- ✅ Removed legacy `mongoose` / `database.config.ts` (PostgreSQL + Prisma only)
 
 ### Testing
 
@@ -58,6 +58,13 @@
 - 🟨 Add environment setup guide
 
 ## ✅ Completed Tasks
+
+### 03/29/2026
+
+- ✅ Clean Architecture wiring: `buildAppContainer`, `ApiRouterDeps` (storage, multipart upload, `createAuthMiddleware`), factory routers/controllers; Jest default `DATABASE_URL` + `.js` `moduleNameMapper`; `Money` currency guard on arithmetic
+- ✅ Advert placement slice: `AdvertEntity`, `IAdvertRepository`, Prisma repo + mappers, optional `broadcast_slot_id` migration `20260329120000_advert_broadcast_slot`, use-cases, `/api/adverts` CRUD
+- ✅ Phase E churn: `delete-user.use-case.ts`; plural route files (`employees.routes.ts`, `partners.routes.ts`, `media-packs.routes.ts`, `advert-packages.routes.ts`); removed `mongoose` and legacy `database.config.ts`
+- TODO: Run `npx prisma migrate deploy` (or `migrate dev`) so `adverts.broadcast_slot_id` exists
 
 ### 03/22/2026
 

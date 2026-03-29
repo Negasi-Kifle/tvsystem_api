@@ -1,4 +1,7 @@
 import request from 'supertest';
+import { buildAppContainerForTests } from '../../composition/app-container';
+import { createAuthMiddleware } from '../../infrastructure/middlewares/auth.middleware';
+import { createAdvertPackageImageUploadMiddleware } from '../../infrastructure/middlewares/advert-package-upload.middleware';
 import { createApp } from '../../presentation/app';
 import type { IStorageService } from '../../domain/services/storage.service';
 
@@ -11,7 +14,16 @@ const testStorageService: IStorageService = {
   },
 };
 
-const app = createApp({ storageService: testStorageService });
+const container = buildAppContainerForTests();
+const app = createApp({
+  ...container,
+  storageService: testStorageService,
+  advertPackageImageUpload: createAdvertPackageImageUploadMiddleware(),
+  authMiddleware: createAuthMiddleware({
+    userRepository: container.userRepository,
+    userPermissionsRepository: container.userPermissionsRepository,
+  }),
+});
 
 describe('Health', () => {
   it('responds with ok', async () => {

@@ -1,9 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
-import { PartnerRepository } from '../../infrastructure/prisma/repositories/partner.repository';
-import { EmployeeRepository } from '../../infrastructure/prisma/repositories/employee.repository';
-import { UserPermissionsRepository } from '../../infrastructure/prisma/repositories/user-permissions.repository';
-import { PermissionRepository } from '../../infrastructure/prisma/repositories/permission.repository';
 import { comparePassword } from '../../shared/utils/password';
 import { AuthService, TokenPayload } from '../../application/services/auth.service';
 import { LoginDto } from '../dtos/requests/auth/login.dto';
@@ -16,122 +11,134 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { CreateUserPermissionUseCase } from '../../application/use-cases/user-permissions/create.use-case';
 import { FindPermissionsBySlugsUseCase } from '../../application/use-cases/permissions/find-by-slugs';
 import { FindSlugsByUserIdUseCase } from '../../application/use-cases/user-permissions/find-slugs-by-user-id.use-case';
-
+import type { ApiRouterDeps } from '../api-router-deps';
 
 const authService = new AuthService();
-const userRepository = new UserRepository();
-const partnerRepository = new PartnerRepository();
-const employeeRepository = new EmployeeRepository();
-const userPermissionsRepository = new UserPermissionsRepository();
-const permissionRepository = new PermissionRepository();
-const createUserUseCase = new CreateUserUseCase(
-  userRepository,
-  partnerRepository,
-  employeeRepository,
-  permissionRepository,
-);
-const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(userRepository);
-const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
-const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);
-const findSlugsByUserIdUseCase = new FindSlugsByUserIdUseCase(userPermissionsRepository);
 
-export async function login(req: Request, res: Response, next: NextFunction) {
-  try {
+export function createAuthHandlers(
+  deps: Pick<
+    ApiRouterDeps,
+    | 'userRepository'
+    | 'partnerRepository'
+    | 'employeeRepository'
+    | 'userPermissionsRepository'
+    | 'permissionRepository'
+  >,
+) {
+  const {
+    userRepository,
+    partnerRepository,
+    employeeRepository,
+    permissionRepository,
+    userPermissionsRepository,
+  } = deps;
 
-    const { email, password } = req.body as LoginDto;
-    const user = await getByEmailOrPhoneUseCase.execute(email);
+  const createUserUseCase = new CreateUserUseCase(
+    userRepository,
+    partnerRepository,
+    employeeRepository,
+    permissionRepository,
+  );
+  const getByEmailOrPhoneUseCase = new GetByEmailOrPhoneUseCase(userRepository);
+  const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
+  const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);
+  const findSlugsByUserIdUseCase = new FindSlugsByUserIdUseCase(userPermissionsRepository);
 
-    if (!user || !user.isActive) {
-      const error = new Error('Invalid credentials');
-      return sendErrorResponse(res, 401, 'Invalid credentials', error);
-    }
+  async function login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, password } = req.body as LoginDto;
+      const user = await getByEmailOrPhoneUseCase.execute(email);
 
-
-    const validPswd = await comparePassword(password, user.passwordHash);
-    if (!validPswd) {
-      const error = new Error('Invalid credentials');
-      return sendErrorResponse(res, 401, 'Invalid credentials', error);
-    }
-
-    const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
-    const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
-
-    const accessToken = authService.generateAccessToken(tokenPayload);
-    const refreshToken = authService.generateRefreshToken({ userId: user.id! });
-
-    res.json({
-      status: 'SUCCESS',
-      message: 'Successfully logged in',
-      data: {
-        user: user,
-        accessToken: accessToken,
-        refreshToken: refreshToken
+      if (!user || !user.isActive) {
+        const error = new Error('Invalid credentials');
+        return sendErrorResponse(res, 401, 'Invalid credentials', error);
       }
-    });
-  } catch (error) {
-    next(error)
-  }
-}
 
-export async function register(req: Request, res: Response, next: NextFunction) {
-  try {
-    const payload = req.body as RegisterDto;
+      const validPswd = await comparePassword(password, user.passwordHash);
+      if (!validPswd) {
+        const error = new Error('Invalid credentials');
+        return sendErrorResponse(res, 401, 'Invalid credentials', error);
+      }
 
-    payload.isFirstTimeAccount = true;
-    const user = await createUserUseCase.execute(payload);
+      const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
+      const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
 
-    // Assign all permissions to first-time user
-    const permissions = await findPermissionsBySlugsUseCase.execute(Object.values(PERMISSIONS));
-    for (const permission of permissions) {
-      await createUserPermissionUseCase.execute({
-        userId: user.id!,
-        permissionId: permission.id!,
-        grantedBy: user.id!
+      const accessToken = authService.generateAccessToken(tokenPayload);
+      const refreshToken = authService.generateRefreshToken({ userId: user.id! });
+
+      res.json({
+        status: 'SUCCESS',
+        message: 'Successfully logged in',
+        data: {
+          user: user,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        },
       });
+    } catch (error) {
+      next(error);
     }
-
-    const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
-    const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
-
-    const accessToken = authService.generateAccessToken(tokenPayload);
-    const refreshToken = authService.generateRefreshToken({ userId: user.id! });
-
-    res.status(201).json({
-      "status": "SUCCESS",
-      "message": "Successfully registered",
-      "data": {
-        "user": user,
-        "accessToken": accessToken,
-        "refreshToken": refreshToken
-      }
-    });
-  } catch (error) {
-    next(error)
   }
 
-}
+  async function register(req: Request, res: Response, next: NextFunction) {
+    try {
+      const payload = req.body as RegisterDto;
 
-export async function refreshToken(req: Request, res: Response, next: NextFunction) {
+      payload.isFirstTimeAccount = true;
+      const user = await createUserUseCase.execute(payload);
 
-  const { refreshToken } = req.body as RefreshTokenDto;
-  try {
-    const payload = authService.verify(refreshToken);
-    const userId = payload.userId;
-
-    const permissions = await findSlugsByUserIdUseCase.execute(userId);
-    const accessToken = authService.generateAccessToken({
-      userId,
-      permissions,
-    });
-
-    res.json({
-      status: 'SUCCESS',
-      message: 'Successfully refreshed token',
-      data: {
-        accessToken: accessToken
+      const permissions = await findPermissionsBySlugsUseCase.execute(Object.values(PERMISSIONS));
+      for (const permission of permissions) {
+        await createUserPermissionUseCase.execute({
+          userId: user.id!,
+          permissionId: permission.id!,
+          grantedBy: user.id!,
+        });
       }
-    });
-  } catch (error) {
-    next(error)
+
+      const permissionSlugs = await findSlugsByUserIdUseCase.execute(user.id!);
+      const tokenPayload: TokenPayload = { userId: user.id!, permissions: permissionSlugs };
+
+      const accessToken = authService.generateAccessToken(tokenPayload);
+      const refreshToken = authService.generateRefreshToken({ userId: user.id! });
+
+      res.status(201).json({
+        status: 'SUCCESS',
+        message: 'Successfully registered',
+        data: {
+          user: user,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
   }
+
+  async function refreshToken(req: Request, res: Response, next: NextFunction) {
+    const { refreshToken: bodyRefresh } = req.body as RefreshTokenDto;
+    try {
+      const payload = authService.verify(bodyRefresh);
+      const userId = payload.userId;
+
+      const permissions = await findSlugsByUserIdUseCase.execute(userId);
+      const accessToken = authService.generateAccessToken({
+        userId,
+        permissions,
+      });
+
+      res.json({
+        status: 'SUCCESS',
+        message: 'Successfully refreshed token',
+        data: {
+          accessToken: accessToken,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  return { login, register, refreshToken };
 }

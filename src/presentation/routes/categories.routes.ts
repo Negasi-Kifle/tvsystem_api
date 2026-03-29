@@ -1,21 +1,25 @@
 import { Router } from 'express';
 import { validateBody } from '../validators/validate-body';
-import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
-import { requirePermission } from '../../infrastructure/middlewares/permission.middleware';
+import { requirePermission } from '../../composition/http-middlewares';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { createCategoryDto } from '../dtos/requests/category/create-category.dto';
-import { fetchAllCategories, createCategory } from '../controllers/category.controller';
+import { createCategoryHandlers } from '../controllers/category.controller';
+import type { ApiRouterDeps } from '../api-router-deps';
 
-const router = Router();
+export function createCategoriesRouter(deps: ApiRouterDeps): Router {
+  const router = Router();
+  const { authMiddleware } = deps;
+  const { fetchAllCategories, createCategory } = createCategoryHandlers(deps);
 
-router
-  .route('/')
-  .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), fetchAllCategories)
-  .post(
-    authMiddleware,
-    requirePermission(PERMISSIONS.MANAGE_SALES),
-    validateBody(createCategoryDto),
-    createCategory,
-  );
+  router
+    .route('/')
+    .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), fetchAllCategories)
+    .post(
+      authMiddleware,
+      requirePermission(PERMISSIONS.MANAGE_SALES),
+      validateBody(createCategoryDto),
+      createCategory,
+    );
 
-export default router;
+  return router;
+}

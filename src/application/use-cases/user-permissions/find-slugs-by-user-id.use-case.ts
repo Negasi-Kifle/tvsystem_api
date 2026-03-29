@@ -1,7 +1,7 @@
-import { UserPermissionsRepository } from "../../../infrastructure/prisma/repositories/user-permissions.repository";
+import type { IUserPermissionsRepository } from '../../../domain/repositories/user-permissions.repo';
 
 export class FindSlugsByUserIdUseCase {
-    constructor(private readonly userPermissionsRepository: UserPermissionsRepository) { }
+    constructor(private readonly userPermissionsRepository: IUserPermissionsRepository) { }
 
     async execute(userId: string): Promise<string[]> {
         return await this.userPermissionsRepository.findPermissionSlugsByUserId(userId);

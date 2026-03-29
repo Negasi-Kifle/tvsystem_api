@@ -1,46 +1,59 @@
 import { Request, Response, NextFunction } from 'express';
-import { MediaMonitoringRecordRepository } from '../../infrastructure/prisma/repositories/media-monitoring-record.repository';
 import { FetchUnlinkedMediaMonitoringUseCase } from '../../application/use-cases/media-monitoring/fetch-unlinked-media-monitoring.use-case';
 import { CreateMediaMonitoringRecordUseCase } from '../../application/use-cases/media-monitoring/create-media-monitoring-record.use-case';
 import { CreateMediaMonitoringRecordDto } from '../dtos/requests/media-monitoring/create-media-monitoring-record.dto';
+import type { ApiRouterDeps } from '../api-router-deps';
 
-const mediaMonitoringRepo = new MediaMonitoringRecordRepository();
+export function createMediaMonitoringHandlers(
+  deps: Pick<ApiRouterDeps, 'mediaMonitoringRecordRepository'>,
+) {
+  const { mediaMonitoringRecordRepository } = deps;
 
-const fetchUnlinkedMediaMonitoringUseCase = new FetchUnlinkedMediaMonitoringUseCase(mediaMonitoringRepo);
-const createMediaMonitoringRecordUseCase = new CreateMediaMonitoringRecordUseCase(mediaMonitoringRepo);
+  const fetchUnlinkedMediaMonitoringUseCase = new FetchUnlinkedMediaMonitoringUseCase(
+    mediaMonitoringRecordRepository,
+  );
+  const createMediaMonitoringRecordUseCase = new CreateMediaMonitoringRecordUseCase(
+    mediaMonitoringRecordRepository,
+  );
 
-export async function fetchUnlinkedMediaMonitoring(_req: Request, res: Response, next: NextFunction) {
-  try {
-    const records = await fetchUnlinkedMediaMonitoringUseCase.execute();
+  async function fetchUnlinkedMediaMonitoring(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const records = await fetchUnlinkedMediaMonitoringUseCase.execute();
 
-    res.status(200).json({
-      status: 'SUCCESS',
-      data: { records },
-    });
-  } catch (error) {
-    next(error);
+      res.status(200).json({
+        status: 'SUCCESS',
+        data: { records },
+      });
+    } catch (error) {
+      next(error);
+    }
   }
-}
 
-export async function createMediaMonitoringRecord(req: Request, res: Response, next: NextFunction) {
-  try {
-    const payload = req.body as CreateMediaMonitoringRecordDto;
-    const record = await createMediaMonitoringRecordUseCase.execute({
-      channel: payload.channel,
-      sponsorName: payload.sponsorName,
-      monitoringDate: payload.monitoringDate,
-      showName: payload.showName,
-      timeSlot: payload.timeSlot,
-      statusWithUs: payload.statusWithUs,
-      contactInfo: payload.contactInfo,
-    });
+  async function createMediaMonitoringRecord(req: Request, res: Response, next: NextFunction) {
+    try {
+      const payload = req.body as CreateMediaMonitoringRecordDto;
+      const record = await createMediaMonitoringRecordUseCase.execute({
+        channel: payload.channel,
+        sponsorName: payload.sponsorName,
+        monitoringDate: payload.monitoringDate,
+        showName: payload.showName,
+        timeSlot: payload.timeSlot,
+        statusWithUs: payload.statusWithUs,
+        contactInfo: payload.contactInfo,
+      });
 
-    res.status(201).json({
-      status: 'SUCCESS',
-      message: 'Media monitoring record created successfully',
-      data: { record },
-    });
-  } catch (error) {
-    next(error);
+      res.status(201).json({
+        status: 'SUCCESS',
+        message: 'Media monitoring record created successfully',
+        data: { record },
+      });
+    } catch (error) {
+      next(error);
+    }
   }
+
+  return {
+    fetchUnlinkedMediaMonitoring,
+    createMediaMonitoringRecord,
+  };
 }

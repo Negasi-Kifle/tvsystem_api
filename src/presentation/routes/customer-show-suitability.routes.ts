@@ -1,19 +1,23 @@
 import { Router } from 'express';
 import { validateBody } from '../validators/validate-body';
-import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
-import { requirePermission } from '../../infrastructure/middlewares/permission.middleware';
+import { requirePermission } from '../../composition/http-middlewares';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { linkCustomerToShowSlotDto } from '../dtos/requests/customer-show-suitability/link-customer-to-show-slot.dto';
-import { linkCustomerToShowSlot } from '../controllers/customer-show-suitability.controller';
+import { createCustomerShowSuitabilityHandlers } from '../controllers/customer-show-suitability.controller';
+import type { ApiRouterDeps } from '../api-router-deps';
 
-const router = Router();
+export function createCustomerShowSuitabilityRouter(deps: ApiRouterDeps): Router {
+  const router = Router();
+  const { authMiddleware } = deps;
+  const { linkCustomerToShowSlot } = createCustomerShowSuitabilityHandlers(deps);
 
-router.post(
-  '/',
-  authMiddleware,
-  requirePermission(PERMISSIONS.MANAGE_SALES),
-  validateBody(linkCustomerToShowSlotDto),
-  linkCustomerToShowSlot,
-);
+  router.post(
+    '/',
+    authMiddleware,
+    requirePermission(PERMISSIONS.MANAGE_SALES),
+    validateBody(linkCustomerToShowSlotDto),
+    linkCustomerToShowSlot,
+  );
 
-export default router;
+  return router;
+}

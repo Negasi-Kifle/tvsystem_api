@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { jwtConfig } from '../config/jwt.config';
-import { sendErrorResponse } from '../../shared/utils/error-handler';
 import { Exception } from '../../shared/utils/error-constructor';
 import { Code } from '../../shared/utils/http_code';
-import { UserRepository } from '../../infrastructure/prisma/repositories/user.repository';
 import { GetByIdUseCase } from '../../application/use-cases/users/get-by-id.use-case';
 import { FetchAllUserPermissionsUseCase } from '../../application/use-cases/user-permissions/fetch-all.use-case';
-import { UserPermissionsRepository } from "../../infrastructure/prisma/repositories/user-permissions.repository"
+import type { IUserRepository } from '../../domain/repositories/user.repo';
+import type { IUserPermissionsRepository } from '../../domain/repositories/user-permissions.repo';
 
 declare global {
   namespace Express {
@@ -17,39 +16,49 @@ declare global {
   }
 }
 
-export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
-  const authHeader = req.headers.authorization;
+export type AuthMiddlewareDeps = {
+  userRepository: IUserRepository;
+  userPermissionsRepository: IUserPermissionsRepository;
+};
 
-  if (!authHeader?.startsWith('Bearer ')) {
-    throw Exception.new<unknown>({ code: Code.MISSING_AUTHORIZATION_HEADER });
-  }
+export function createAuthMiddleware(deps: AuthMiddlewareDeps) {
+  const getByIdUseCase = new GetByIdUseCase(deps.userRepository);
+  const fetchAllUserPermissions = new FetchAllUserPermissionsUseCase(deps.userPermissionsRepository);
 
-  const token = authHeader.substring('Bearer '.length);
-  try {
-    const payload = jwt.verify(token, jwtConfig.secret) as { userId: string; permissions?: string[] };
+  return async function authMiddleware(req: Request, res: Response, next: NextFunction) {
+    const authHeader = req.headers.authorization;
 
-    // Check user exists
-    const getByIdUseCase = new GetByIdUseCase(new UserRepository());
-    const getUserPermissions = new FetchAllUserPermissionsUseCase(new UserPermissionsRepository())
-    const [user, userPermissions] = await Promise.all([
-      getByIdUseCase.execute(payload.userId),
-      getUserPermissions.execute({ filters: { userId: payload.userId }, take: 10000 }),
-    ]);
-    
-    if (!user) {
-      throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: 'User not found' });
+    if (!authHeader?.startsWith('Bearer ')) {
+      throw Exception.new<unknown>({ code: Code.MISSING_AUTHORIZATION_HEADER });
     }
 
-    if(!user.isActive) {
-      throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: 'User is not active' });
-    }
+    const token = authHeader.substring('Bearer '.length);
+    try {
+      const payload = jwt.verify(token, jwtConfig.secret) as {
+        userId: string;
+        permissions?: string[];
+      };
 
-    req.user = {
-      id: payload.userId,
-      permissions: userPermissions.map((permission) => permission.permission?.nameSlug ?? ''),
-    };
-    next();
-  } catch (error) {
-    throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: error });
-  }
+      const [user, userPermissions] = await Promise.all([
+        getByIdUseCase.execute(payload.userId),
+        fetchAllUserPermissions.execute({ filters: { userId: payload.userId }, take: 10000 }),
+      ]);
+
+      if (!user) {
+        throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: 'User not found' });
+      }
+
+      if (!user.isActive) {
+        throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: 'User is not active' });
+      }
+
+      req.user = {
+        id: payload.userId,
+        permissions: userPermissions.map((permission) => permission.permission?.nameSlug ?? ''),
+      };
+      next();
+    } catch (error) {
+      throw Exception.new<unknown>({ code: Code.INVALID_TOKEN, data: error });
+    }
+  };
 }

@@ -1,6 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { AdvertPackageRepository } from '../../infrastructure/prisma/repositories/advert-package.repository';
-import { MediaPackRepository } from '../../infrastructure/prisma/repositories/media-pack.repository';
 import type { IStorageService } from '../../domain/services/storage.service';
 import { toStorageUploadFile } from '../mappers/multer-to-storage-upload.mapper';
 import { CreateAdvertPackageUseCase } from '../../application/use-cases/advert-package/create-advert-package.use-case';
@@ -13,25 +11,25 @@ import { mapFetchAllAdvertPackagesDtoToQueryOptions } from '../mappers/advert-pa
 import { CreateAdvertPackageDto } from '../dtos/requests/advert-package/create.dto';
 import { UpdateAdvertPackageDto } from '../dtos/requests/advert-package/update.dto';
 import { FetchAllAdvertPackagesDto } from '../dtos/requests/advert-package/fetch-all.dto';
+import type { ApiRouterDeps } from '../api-router-deps';
 
-const advertPackageRepository = new AdvertPackageRepository();
-const mediaPackRepository = new MediaPackRepository();
-const createAdvertPackageUseCase = new CreateAdvertPackageUseCase(
-  advertPackageRepository,
-  mediaPackRepository,
-);
-const getAdvertPackageByIdUseCase = new GetAdvertPackageByIdUseCase(advertPackageRepository);
-const fetchAllAdvertPackagesUseCase = new FetchAllAdvertPackagesUseCase(advertPackageRepository);
-const countAdvertPackagesUseCase = new CountAdvertPackagesUseCase(advertPackageRepository);
-const updateAdvertPackageUseCase = new UpdateAdvertPackageUseCase(advertPackageRepository);
-const deleteAdvertPackageUseCase = new DeleteAdvertPackageUseCase(advertPackageRepository);
-
-export type AdvertPackageHandlerDeps = {
-  storageService: IStorageService;
-};
+export type AdvertPackageHandlerDeps = Pick<
+  ApiRouterDeps,
+  'storageService' | 'advertPackageRepository' | 'mediaPackRepository'
+>;
 
 export function createAdvertPackageHandlers(deps: AdvertPackageHandlerDeps) {
-  const { storageService } = deps;
+  const { storageService, advertPackageRepository, mediaPackRepository } = deps;
+
+  const createAdvertPackageUseCase = new CreateAdvertPackageUseCase(
+    advertPackageRepository,
+    mediaPackRepository,
+  );
+  const getAdvertPackageByIdUseCase = new GetAdvertPackageByIdUseCase(advertPackageRepository);
+  const fetchAllAdvertPackagesUseCase = new FetchAllAdvertPackagesUseCase(advertPackageRepository);
+  const countAdvertPackagesUseCase = new CountAdvertPackagesUseCase(advertPackageRepository);
+  const updateAdvertPackageUseCase = new UpdateAdvertPackageUseCase(advertPackageRepository);
+  const deleteAdvertPackageUseCase = new DeleteAdvertPackageUseCase(advertPackageRepository);
 
   async function removeOrphanUpload(fileUrl: string): Promise<void> {
     try {
@@ -52,7 +50,7 @@ export function createAdvertPackageHandlers(deps: AdvertPackageHandlerDeps) {
       const otherTaxesRate = Number(otherTaxesRateEnv) || 0;
       const otherTaxes = (payload.otherTaxes ?? 0) + otherTaxesRate;
       const allTaxes = otherTaxes + Number(process.env.VAT_RATE ?? '0');
-      const finalPrice = payload.priceBeforeVAT * (1 + (allTaxes / 100));
+      const finalPrice = payload.priceBeforeVAT * (1 + allTaxes / 100);
 
       stagedImageUrl = await storageService.upload(toStorageUploadFile(req.file!), {
         folder: 'advert-packages',

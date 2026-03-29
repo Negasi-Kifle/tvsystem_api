@@ -2,31 +2,50 @@
 import { Router } from 'express';
 import { validateBody } from '../validators/validate-body';
 import { validateQuery } from '../validators/validate-query';
-import { authMiddleware } from '../../infrastructure/middlewares/auth.middleware';
-import { requirePermission } from '../../infrastructure/middlewares/permission.middleware';
+import { requirePermission } from '../../composition/http-middlewares';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { createCustomerDto } from '../dtos/requests/customer/create-customer.dto';
 import { updateCustomerDto } from '../dtos/requests/customer/update-customer.dto';
 import { fetchAllCustomersDto } from '../dtos/requests/customer/fetch-all-customers.dto';
-import {
-  createCustomer,
-  updateCustomer,
-  getCustomerById,
-  fetchAllCustomers,
-  deleteCustomerById,
-} from '../controllers/customer.controller';
+import { createCustomerHandlers } from '../controllers/customer.controller';
+import type { ApiRouterDeps } from '../api-router-deps';
 
-const router = Router();
+export function createCustomersRouter(deps: ApiRouterDeps): Router {
+  const router = Router();
+  const { authMiddleware } = deps;
+  const {
+    createCustomer,
+    updateCustomer,
+    getCustomerById,
+    fetchAllCustomers,
+    deleteCustomerById,
+  } = createCustomerHandlers(deps);
 
-router
-  .route('/')
-  .post(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), validateBody(createCustomerDto), createCustomer)
-  .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), validateQuery(fetchAllCustomersDto), fetchAllCustomers);
+  router
+    .route('/')
+    .post(
+      authMiddleware,
+      requirePermission(PERMISSIONS.MANAGE_SALES),
+      validateBody(createCustomerDto),
+      createCustomer,
+    )
+    .get(
+      authMiddleware,
+      requirePermission(PERMISSIONS.VIEW_SALES),
+      validateQuery(fetchAllCustomersDto),
+      fetchAllCustomers,
+    );
 
-router
-  .route('/:id')
-  .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getCustomerById)
-  .patch(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), validateBody(updateCustomerDto), updateCustomer)
-  .delete(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), deleteCustomerById);
+  router
+    .route('/:id')
+    .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getCustomerById)
+    .patch(
+      authMiddleware,
+      requirePermission(PERMISSIONS.MANAGE_SALES),
+      validateBody(updateCustomerDto),
+      updateCustomer,
+    )
+    .delete(authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), deleteCustomerById);
 
-export default router;
+  return router;
+}

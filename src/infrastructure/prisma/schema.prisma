@@ -278,23 +278,26 @@ model CustomerShowSuitability {
 // ADVERT - Advertisement campaigns
 // ============================================
 model Advert {
-  id              String   @id @default(uuid())
-  showId          String   @map("show_id")
-  customerId      String   @map("customer_id")
-  status          String // AdvertStatus enum: Draft, Scheduled, Active, Completed, Failed
-  slot            Json?    // { start: DateTime, end: DateTime }
-  contractDetails String?  @map("contract_details")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
+  id                String   @id @default(uuid())
+  showId            String   @map("show_id")
+  customerId        String   @map("customer_id")
+  broadcastSlotId   String?  @map("broadcast_slot_id")
+  status            String // AdvertStatus enum: Draft, Scheduled, Active, Completed, Failed
+  slot              Json?    // { start: DateTime, end: DateTime }
+  contractDetails   String?  @map("contract_details")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   // Relations
-  show          Show           @relation(fields: [showId], references: [id], onDelete: Cascade)
-  customer      Customer       @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  payments      Payment[]
-  compensations Compensation[]
+  show           Show            @relation(fields: [showId], references: [id], onDelete: Cascade)
+  customer       Customer        @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  broadcastSlot  BroadcastSlot?  @relation(fields: [broadcastSlotId], references: [id], onDelete: SetNull)
+  payments       Payment[]
+  compensations  Compensation[]
 
   @@index([showId])
   @@index([customerId])
+  @@index([broadcastSlotId])
   @@index([status])
   @@map("adverts")
 }
@@ -440,6 +443,7 @@ model BroadcastSlot {
   scheduleBlock SatelliteScheduleBlock @relation(fields: [scheduleBlockId], references: [id], onDelete: Cascade)
   schedule      SatelliteSchedule      @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   show          Show                   @relation(fields: [showId], references: [id], onDelete: Cascade)
+  adverts       Advert[]
 
   @@unique([scheduleBlockId, date])
   @@index([scheduleId])
