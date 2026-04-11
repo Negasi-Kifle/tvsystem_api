@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { UserRole } from '../../../../domain/enums/user-role.enum';
 import { UserRefModel } from '../../../../domain/enums/user-ref-model.enum';
 import { SexTypes } from '../../../../domain/enums/sex-types.enum';
+import { SalesCommissionType } from '../../../../domain/enums/sales-commission-type.enum';
 
 const userRefModelValues = [UserRefModel.Partner, UserRefModel.Employee, UserRefModel.Internal] as const;
 
@@ -20,6 +21,8 @@ export const createUserDto = z
     partnerId: z.uuid("Partner must be a valid UUID if refModel is Partner").optional(),
     employeeId: z.uuid("Employee must be a valid UUID if refModel is Employee").optional(),
     permissionIds: z.array(z.uuid("Each permission ID must be a valid UUID")).default([]),
+    salesCommissionType: z.enum(SalesCommissionType, "Sales commission type must be one of: " + Object.values(SalesCommissionType).join(", ")).optional(),
+    salesCommissionAmount: z.coerce.number().min(0, "Sales commission amount must be greater than 0").optional(),
   })
   .strict()
   .refine(

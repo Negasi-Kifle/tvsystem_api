@@ -7,6 +7,7 @@ import { SexTypes } from '../../../domain/enums/sex-types.enum';
 import { UserRole } from '../../../domain/enums/user-role.enum';
 import { UserRefModel } from '../../../domain/enums/user-ref-model.enum';
 import { ValidationError } from '../../../domain/errors';
+import { SalesCommissionType } from '../../../domain/enums/sales-commission-type.enum';
 
 /** Data-only input for creating a user (no class methods). */
 export type CreateUserInput = {
@@ -26,6 +27,8 @@ export type CreateUserInput = {
   grantedBy?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  salesCommissionType?: SalesCommissionType;
+  salesCommissionAmount?: number;
 };
 
 export class CreateUserUseCase {
@@ -106,10 +109,10 @@ export class CreateUserUseCase {
       payload.telegramUsername,
       payload.partnerId,
       payload.employeeId,
-      undefined,
-      undefined,
+      payload.salesCommissionType,
+      payload.salesCommissionAmount,
       payload.createdAt,
-      payload.updatedAt
+      payload.updatedAt,
     );
 
     if (permissionIds.length > 0) {
