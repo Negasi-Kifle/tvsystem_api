@@ -11,7 +11,7 @@ import { createEmployeeRouter } from './employees.routes';
 import { createPartnerRouter } from './partners.routes';
 import { createMediaPackRouter } from './media-packs.routes';
 import { createAdvertPackageRouter } from './advert-packages.routes';
-import { createAdvertsRouter } from './adverts.routes';
+import { createAdvertPlacementsRouter } from './advert-placements.routes';
 import { createSatelliteSchedulesRouter } from './satellite-schedules.routes';
 import { createShowHostsRouter } from './show-hosts.routes';
 import { createCustomersRouter } from './customers.routes';
@@ -22,6 +22,12 @@ import { createSubCategoriesRouter } from './sub-categories.routes';
 import { createShowSegmentSlotsRouter } from './show-segment-slots.routes';
 import { createCustomerShowSuitabilityRouter } from './customer-show-suitability.routes';
 import { createAdvertPackageMediaPacksRouter } from './advert-package-media-packs.routes';
+import { createAdvertSalesRouter } from './advert-sales.routes';
+import { createSatelliteLogsRouter, createSatelliteLogEntriesRouter } from './satellite-logs.routes';
+import { createCompensationsRouter } from './compensations.routes';
+import { createPaymentsRouter } from './payments.routes';
+import { createRevenueSharesRouter } from './revenue-shares.routes';
+import { createAgentCommissionsRouter } from './agent-commissions.routes';
 import type { ApiRouterDeps } from '../api-router-deps';
 
 export type { ApiRouterDeps } from '../api-router-deps';
@@ -41,9 +47,10 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/employees', createEmployeeRouter(deps));
   router.use('/partners', createPartnerRouter(deps));
   router.use('/media-packs', createMediaPackRouter(deps));
-  router.use('/adverts', createAdvertsRouter(deps));
+  router.use('/advert-placements', createAdvertPlacementsRouter(deps));
   router.use('/advert-packages', createAdvertPackageRouter(deps));
   router.use('/advert-package-media-packs', createAdvertPackageMediaPacksRouter(deps));
+  router.use('/advert-sales', createAdvertSalesRouter(deps));
   router.use('/satellite-schedules', createSatelliteSchedulesRouter(deps));
   router.use('/show-hosts', createShowHostsRouter(deps));
   router.use('/customers', createCustomersRouter(deps));
@@ -53,6 +60,12 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/sub-categories', createSubCategoriesRouter(deps));
   router.use('/show-segment-slots', createShowSegmentSlotsRouter(deps));
   router.use('/customer-show-suitability', createCustomerShowSuitabilityRouter(deps));
+  router.use('/satellite-logs', createSatelliteLogsRouter(deps));
+  router.use('/satellite-log-entries', createSatelliteLogEntriesRouter(deps));
+  router.use('/compensations', createCompensationsRouter(deps));
+  router.use('/payments', createPaymentsRouter(deps));
+  router.use('/revenue-shares', createRevenueSharesRouter(deps));
+  router.use('/agent-commissions', createAgentCommissionsRouter(deps));
 
   return router;
 }

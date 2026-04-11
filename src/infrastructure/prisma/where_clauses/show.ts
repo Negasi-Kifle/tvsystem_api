@@ -41,6 +41,7 @@ export function buildWhereClauseForShow(filters: ShowFilters): Prisma.ShowWhereI
     const totalDurationWhere = totalDurationMinutesWhere(filters);
 
     return {
+        ...(filters.id !== undefined && (Array.isArray(filters.id) ? { id: { in: filters.id } } : { id: filters.id })),
         ...(filters.title && { title: { contains: filters.title, mode: 'insensitive' as Prisma.QueryMode } }),
         ...(filters.titleSlug && { titleSlug: { contains: filters.titleSlug, mode: 'insensitive' as Prisma.QueryMode } }),
         ...(filters.type && { type: filters.type as ShowType }),

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { SexTypes, UserRole } from "../../../../domain/enums";
+import { SalesCommissionType } from "../../../../domain/enums/sales-commission-type.enum";
 
 export const createEmployeeDto = z.object({
 fullName: z.string("Full name is required and must be at least 2 characters long").min(2),
@@ -13,6 +14,8 @@ isFirstTimeAccount: z.boolean("Is first time account must be a boolean").default
 telegramUsername: z.string("Telegram username is required and must be a valid telegram username").optional(),
 employeeNumber: z.string().optional(),
 department: z.string().optional(),
+salesCommissionType: z.enum(SalesCommissionType, "Sales commission type must be one of: " + Object.values(SalesCommissionType).join(", ")).optional(),
+salesCommissionAmount: z.coerce.number().min(0, "Sales commission amount must be greater than 0").optional(),
 permissionIds: z.array(z.uuid("Each permission ID must be a valid UUID")).default([]),
 })
     .strict();

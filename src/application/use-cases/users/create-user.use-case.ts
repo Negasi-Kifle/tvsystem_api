@@ -106,6 +106,8 @@ export class CreateUserUseCase {
       payload.telegramUsername,
       payload.partnerId,
       payload.employeeId,
+      undefined,
+      undefined,
       payload.createdAt,
       payload.updatedAt
     );

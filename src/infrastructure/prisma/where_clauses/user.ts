@@ -19,5 +19,7 @@ export function buildWhereClauseForUser(filters: UserFilters): Prisma.UserWhereI
         ...(filters.refModel !== undefined && { refModel: filters.refModel }),
         ...(filters.partnerId !== undefined && { partnerId: filters.partnerId }),
         ...(filters.employeeId !== undefined && { employeeId: filters.employeeId }),
+        ...(filters.salesCommissionType !== undefined && { salesCommissionType: filters.salesCommissionType }),
+        ...(filters.salesCommissionAmount !== undefined && { salesCommissionAmount: filters.salesCommissionAmount }),
     };
 }

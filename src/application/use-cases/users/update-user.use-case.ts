@@ -3,6 +3,7 @@ import { UserEntity } from '../../../domain/entities/user.entity';
 import { SexTypes } from '../../../domain/enums/sex-types.enum';
 import { UserRole } from '../../../domain/enums/user-role.enum';
 import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
+import { SalesCommissionType } from '../../../domain/enums/sales-commission-type.enum';
 
 
 export type UpdateUserInput = {
@@ -14,6 +15,8 @@ export type UpdateUserInput = {
     roles?: UserRole[];
     isFirstTimeAccount?: boolean;
     telegramUsername?: string;
+    salesCommissionType?: SalesCommissionType;
+    salesCommissionAmount?: number;
 }
 
 
@@ -42,7 +45,12 @@ export class UpdateUserUseCase {
             payload.roles ?? user.roles,
             user.isActive,
             payload.isFirstTimeAccount ?? user.isFirstTimeAccount,
-            payload.telegramUsername ?? user.telegramUsername);
+            payload.telegramUsername ?? user.telegramUsername,
+            undefined,
+            undefined,
+            payload.salesCommissionType ?? user.salesCommissionType,
+            payload.salesCommissionAmount ?? user.salesCommissionAmount,
+        );
 
         return this.userRepo.update(updatedUser);
     }

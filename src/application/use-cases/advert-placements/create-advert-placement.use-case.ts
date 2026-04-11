@@ -1,0 +1,71 @@
+import { AdvertPlacementEntity } from '../../../domain/entities/advert-placement.entity';
+import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
+import { AdvertPlacementStatus } from '../../../domain/enums/advert-placement-status.enum';
+import { AdvertPosition } from '../../../domain/enums/advert-position.enum';
+import { IAdvertPlacementRepository } from '../../../domain/repositories/advert-placement.repository.interface';
+import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
+import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
+import { IBroadcastSlotRepository } from '../../../domain/repositories/broadcast-slot.repository.interface';
+
+export type CreateAdvertPlacementInput = {
+  advertSalesId: string;
+  showId: string;
+  date: Date;
+  dateEth: string;
+  position: AdvertPosition;
+  durationSeconds: number;
+  status?: AdvertPlacementStatus;
+  broadcastSlotId?: string;
+  spotIndex?: number;
+  broadcastCode?: string;
+  plannedTimeMinutes?: number;
+};
+
+export class CreateAdvertPlacementUseCase {
+  constructor(
+    private readonly placementRepo: IAdvertPlacementRepository,
+    private readonly advertSalesRepo: IAdvertSalesRepository,
+    private readonly showRepo: IShowRepository,
+    private readonly broadcastSlotRepo: IBroadcastSlotRepository,
+  ) {}
+
+  async execute(input: CreateAdvertPlacementInput): Promise<AdvertPlacementEntity> {
+    const sale = await this.advertSalesRepo.findById(input.advertSalesId);
+    if (!sale) {
+      throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', input.advertSalesId);
+    }
+
+    const show = await this.showRepo.findById(input.showId);
+    if (!show) {
+      throw new EntityNotFoundError('Show not found', 'Show', input.showId);
+    }
+
+    if (input.broadcastSlotId) {
+      const slot = await this.broadcastSlotRepo.findById(input.broadcastSlotId);
+      if (!slot) {
+        throw new EntityNotFoundError('Broadcast slot not found', 'BroadcastSlot', input.broadcastSlotId);
+      }
+    }
+
+    const placementDate = new Date(input.date);
+    if (placementDate < sale.adStartDate || placementDate > sale.adEndDate) {
+      throw new ValidationError('Placement date must be within the advert sale date range');
+    }
+
+    const entity = AdvertPlacementEntity.createInstance(
+      input.advertSalesId,
+      input.showId,
+      input.date,
+      input.dateEth,
+      input.position,
+      input.durationSeconds,
+      input.status ?? AdvertPlacementStatus.Scheduled,
+      input.broadcastSlotId,
+      input.spotIndex ?? 1,
+      input.broadcastCode,
+      input.plannedTimeMinutes,
+    );
+
+    return this.placementRepo.create(entity);
+  }
+}

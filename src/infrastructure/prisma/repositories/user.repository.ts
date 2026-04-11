@@ -52,13 +52,13 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
 
   async findMany(query: QueryOptions<UserEntity, UserFilters>): Promise<UserEntity[]> {
     const where = buildWhereClauseForUser((query.filters ?? {}) as UserFilters);
-    const users = await this.prisma.user.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10 });
+    const users = await this.prisma.user.findMany({ where, skip: query.skip ?? 0, take: query.take ?? 10, include: { employee: true, partner: true } });
     return users.map(modelToEntity);
   }
 
 
   async findById(id: string): Promise<UserEntity | null> {
-    const user = await this.prisma.user.findUnique({ where: { id } });
+    const user = await this.prisma.user.findUnique({ where: { id }, include: { employee: true, partner: true } });
     return user ? modelToEntity(user) : null;
   }
 
@@ -70,6 +70,7 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
           { phoneNumber: emailOrPhoneNumber },
         ],
       },
+      include: { employee: true, partner: true },
     });
     return user ? modelToEntity(user) : null;
   }

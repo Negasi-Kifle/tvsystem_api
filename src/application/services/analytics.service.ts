@@ -2,7 +2,7 @@ import { prisma } from '../../infrastructure/prisma';
 
 export class AnalyticsService {
   async salesByShow() {
-    const result = await prisma.advert.groupBy({
+    const result = await prisma.advertPlacement.groupBy({
       by: ['showId'],
       _count: { id: true }
     });
@@ -15,7 +15,7 @@ export class AnalyticsService {
   }
 
   async salesByStatus() {
-    const result = await prisma.advert.groupBy({
+    const result = await prisma.advertPlacement.groupBy({
       by: ['status'],
       _count: { id: true }
     });
@@ -27,7 +27,7 @@ export class AnalyticsService {
   }
 
   async totalAdverts() {
-    return prisma.advert.count();
+    return prisma.advertPlacement.count();
   }
 
   async totalCustomers() {

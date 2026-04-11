@@ -2,7 +2,7 @@ import { ISatelliteScheduleRepository } from '../../../domain/repositories/satel
 import { SatelliteScheduleEntity } from '../../../domain/entities/satellite-schedule.entity';
 import { SatelliteScheduleType } from '../../../domain/enums/satellite-schedule-type.enum';
 import { SatelliteScheduleStatus } from '../../../domain/enums/satellite-schedule-status.enum';
-import { EntityNotFoundError } from '../../../domain/errors';
+import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { EntityAlreadyExistsError } from '../../../domain/errors';
 import { ICalendarService } from '../../../domain/services/calendar.service';
 import { IScheduleActivationHandler } from '../../../domain/services/schedule-activation.handler';
@@ -44,6 +44,12 @@ export class UpdateSatelliteScheduleUseCase {
           'SatelliteSchedule',
           payload.nameSlug,
         );
+      }
+    }
+    if(payload.status === SatelliteScheduleStatus.Active) {
+    const active = await this.scheduleRepo.findMany({ filters: { status: SatelliteScheduleStatus.Active, scheduleType: schedule.scheduleType }, take: 1 });
+      if(active.length > 0 && active[0]?.id !== id) {
+        throw new ValidationError('There is already an active satellite schedule');
       }
     }
 

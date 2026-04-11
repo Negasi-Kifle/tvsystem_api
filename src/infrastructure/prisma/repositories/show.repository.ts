@@ -28,6 +28,7 @@ export class ShowRepository extends PrismaBaseRepository implements IShowReposit
 
   async findMany(query: QueryOptions<ShowEntity>): Promise<ShowEntity[]> {
     const where = buildWhereClauseForShow(query.filters ?? {});
+    console.log("WHERE: ", where);
     const shows = await this.prisma.show.findMany(
       {
         where,

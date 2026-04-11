@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { UserRole } from "../../../../domain/enums/user-role.enum";
 import { SexTypes } from "../../../../domain/enums/sex-types.enum";
+import { SalesCommissionType } from "../../../../domain/enums/sales-commission-type.enum";
 
 export const updateUserDto = z.object({
     email: z.string("Email is required and must be a valid email address").email().optional(),
@@ -10,6 +11,8 @@ export const updateUserDto = z.object({
     roles: z.array(z.enum(UserRole, "Roles must be a valid user role")).optional(),
     isFirstTimeAccount: z.boolean("Is first time account must be a boolean").optional(),
     telegramUsername: z.string("Telegram username is required and must be a valid telegram username").optional(),
+    salesCommissionType: z.enum(SalesCommissionType, "Sales commission type must be one of: " + Object.values(SalesCommissionType).join(", ")).optional(),
+    salesCommissionAmount: z.coerce.number().min(0, "Sales commission amount must be greater than 0").optional(),
 }).strict();
 
 export type UpdateUserDto = z.infer<typeof updateUserDto>;

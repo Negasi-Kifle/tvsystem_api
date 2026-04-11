@@ -1,4 +1,5 @@
-import type { IAdvertRepository } from '../domain/repositories/advert.repository.interface';
+import type { IAdvertPlacementRepository } from '../domain/repositories/advert-placement.repository.interface';
+import type { IAdvertSalesRepository } from '../domain/repositories/adver-sales.repository.interface';
 import type { IAdvertPackageMediaPackRepository } from '../domain/repositories/advert-package-media-pack.repository.interface';
 import type { IAdvertPackageRepository } from '../domain/repositories/advert-package.repository.interface';
 import type { IBroadcastSlotRepository } from '../domain/repositories/broadcast-slot.repository.interface';
@@ -24,7 +25,15 @@ import type { IUserRepository } from '../domain/repositories/user.repo';
 import type { IHashService } from '../domain/services/hash-service.service';
 import type { ICalendarService } from '../domain/services/calendar.service';
 import type { IGenerateBusinessRefService } from '../domain/services/generate-business-ref.service';
-import { AdvertRepository } from '../infrastructure/prisma/repositories/advert.repository';
+import type { IEmailService } from '../domain/services/email.service';
+import type { ISatelliteLogUploadRepository } from '../domain/repositories/satellite-log-upload.repository.interface';
+import type { ISatelliteLogEntryRepository } from '../domain/repositories/satellite-log-entry.repository.interface';
+import type { ICompensationRepository } from '../domain/repositories/compensation.repository.interface';
+import type { IPaymentRepository } from '../domain/repositories/payment.repository.interface';
+import type { IRevenueShareRepository } from '../domain/repositories/revenue-share.repository.interface';
+import type { IAgentCommissionRepository } from '../domain/repositories/agent-commission.repository.interface';
+import { AdvertPlacementRepository } from '../infrastructure/prisma/repositories/advert-placement.repository';
+import { AdvertSalesRepository } from '../infrastructure/prisma/repositories/advert-sales.repository';
 import { AdvertPackageMediaPackRepository } from '../infrastructure/prisma/repositories/advert-package-media-pack.repository';
 import { AdvertPackageRepository } from '../infrastructure/prisma/repositories/advert-package.repository';
 import { BroadcastSlotRepository } from '../infrastructure/prisma/repositories/broadcast-slot.repository';
@@ -50,6 +59,13 @@ import { UserRepository } from '../infrastructure/prisma/repositories/user.repos
 import { HashService } from '../infrastructure/services/hash.service';
 import { CalendarService } from '../infrastructure/services/calendar.service';
 import { GenerateBusinessRefService } from '../infrastructure/services/generate-business-ref.service';
+import { EmailService } from '../infrastructure/external/email/email.service';
+import { SatelliteLogUploadRepository } from '../infrastructure/prisma/repositories/satellite-log-upload.repository';
+import { SatelliteLogEntryRepository } from '../infrastructure/prisma/repositories/satellite-log-entry.repository';
+import { CompensationRepository } from '../infrastructure/prisma/repositories/compensation.repository';
+import { PaymentRepository } from '../infrastructure/prisma/repositories/payment.repository';
+import { RevenueShareRepository } from '../infrastructure/prisma/repositories/revenue-share.repository';
+import { AgentCommissionRepository } from '../infrastructure/prisma/repositories/agent-commission.repository';
 
 export interface AppContainer {
   userRepository: IUserRepository;
@@ -61,7 +77,8 @@ export interface AppContainer {
   broadcastSlotRepository: IBroadcastSlotRepository;
   showHostRepository: IShowHostRepository;
   mediaPackRepository: IMediaPackRepository;
-  advertRepository: IAdvertRepository;
+  advertPlacementRepository: IAdvertPlacementRepository;
+  advertSalesRepository: IAdvertSalesRepository;
   advertPackageRepository: IAdvertPackageRepository;
   advertPackageMediaPackRepository: IAdvertPackageMediaPackRepository;
   mediaMonitoringRecordRepository: IMediaMonitoringRecordRepository;
@@ -75,9 +92,16 @@ export interface AppContainer {
   telegramGroupMemberRepository: ITelegramGroupMembersRepository;
   satelliteScheduleRepository: ISatelliteScheduleRepository;
   permissionRepository: IPermissionRepository;
+  satelliteLogUploadRepository: ISatelliteLogUploadRepository;
+  satelliteLogEntryRepository: ISatelliteLogEntryRepository;
+  compensationRepository: ICompensationRepository;
+  paymentRepository: IPaymentRepository;
+  revenueShareRepository: IRevenueShareRepository;
+  agentCommissionRepository: IAgentCommissionRepository;
   hashService: IHashService;
   calendarService: ICalendarService;
   generateBusinessRefService: IGenerateBusinessRefService;
+  emailService: IEmailService;
 }
 
 export function buildAppContainer(): AppContainer {
@@ -91,7 +115,8 @@ export function buildAppContainer(): AppContainer {
     broadcastSlotRepository: new BroadcastSlotRepository(),
     showHostRepository: new ShowHostRepository(),
     mediaPackRepository: new MediaPackRepository(),
-    advertRepository: new AdvertRepository(),
+    advertPlacementRepository: new AdvertPlacementRepository(),
+    advertSalesRepository: new AdvertSalesRepository(),
     advertPackageRepository: new AdvertPackageRepository(),
     advertPackageMediaPackRepository: new AdvertPackageMediaPackRepository(),
     mediaMonitoringRecordRepository: new MediaMonitoringRecordRepository(),
@@ -107,7 +132,14 @@ export function buildAppContainer(): AppContainer {
     permissionRepository: new PermissionRepository(),
     hashService: new HashService(),
     calendarService: new CalendarService(),
+    satelliteLogUploadRepository: new SatelliteLogUploadRepository(),
+    satelliteLogEntryRepository: new SatelliteLogEntryRepository(),
+    compensationRepository: new CompensationRepository(),
+    paymentRepository: new PaymentRepository(),
+    revenueShareRepository: new RevenueShareRepository(),
+    agentCommissionRepository: new AgentCommissionRepository(),
     generateBusinessRefService: new GenerateBusinessRefService(),
+    emailService: new EmailService(),
   };
 }
 

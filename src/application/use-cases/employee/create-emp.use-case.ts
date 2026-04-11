@@ -1,6 +1,7 @@
 import { IEmployeeRepository } from "../../../domain/repositories/employee.repo";
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
 import { SexTypes, UserRole } from "../../../domain/enums";
+import { SalesCommissionType } from "../../../domain/enums/sales-commission-type.enum";
 import { ValidationError } from "../../../domain/errors";
 import { IUserRepository } from "../../../domain/repositories/user.repo";
 import { UserEntity } from "../../../domain/entities/user.entity";
@@ -18,6 +19,8 @@ export type CreateEmployeeInput = {
     telegramUsername?: string;
     employeeNumber?: string;
     department?: string;
+    salesCommissionType?: SalesCommissionType;
+    salesCommissionAmount?: number;
     permissionIds?: string[];
     grantedBy?: string;
 }
@@ -79,6 +82,10 @@ export class CreateEmployeeAndUserUseCase {
             payload.isFirstTimeAccount ?? false,
             undefined, // refModel is set to "Employee" in the repository implementation (infra layer)
             payload.telegramUsername,
+            undefined,
+            undefined,
+            payload.salesCommissionType,
+            payload.salesCommissionAmount,
         );
 
         return this.employeeRepository.createEmployeeUserAndPermissions(

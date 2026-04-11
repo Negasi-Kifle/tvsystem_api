@@ -32,13 +32,7 @@ export function createPartnerHandlers(
       const payload = req.body as CreatePartnerDto;
 
       const { partner, user } = await createPartnerAndUserUseCase.execute({
-        fullName: payload.fullName,
-        email: payload.email,
-        passwordHash: payload.passwordHash,
-        phoneNumber: payload.phoneNumber,
-        sex: payload.sex,
-        roles: payload.roles,
-        permissionIds: payload.permissionIds,
+        ...payload,
         grantedBy: req.user?.id,
       });
 

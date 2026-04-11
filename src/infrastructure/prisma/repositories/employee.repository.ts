@@ -55,12 +55,9 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
   }
 
   async create(data: Omit<EmployeeEntity, 'id'>): Promise<EmployeeEntity> {
-    const createData = {
-      employeeNumber: data.employeeNumber ?? null,
-      department: data.department ?? null,
-      isActive: data.isActive ?? true,
-    };
-    const saved = await this.prisma.employee.create({ data: createData });
+    const createData = entityToModel({ ...data, id: undefined } as EmployeeEntity);
+    const { id: _id, ...rest } = createData;
+    const saved = await this.prisma.employee.create({ data: rest });
     return modelToEntity(saved);
   }
 

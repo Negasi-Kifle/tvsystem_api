@@ -36,7 +36,6 @@ public updateInstance(employeeNumber?: string, department?: string, isActive?: b
   if (employeeNumber !== undefined) this.employeeNumber = employeeNumber;
   if (department !== undefined) this.department = department;
   if (isActive !== undefined) this.isActive = isActive;
-  
   this.updatedAt = new Date();
   return this;
 }

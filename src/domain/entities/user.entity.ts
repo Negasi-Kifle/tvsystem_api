@@ -1,5 +1,8 @@
 import { UserRole, SexTypes, UserRefModel } from '../enums';
+import { SalesCommissionType } from '../enums/sales-commission-type.enum';
 import { ValidationError } from '../errors/validation.error';
+import { EmployeeEntity } from './employee.entity';
+import { PartnerEntity } from './partner.entity';
 
 
 export class UserEntity {
@@ -16,9 +19,13 @@ export class UserEntity {
     public telegramUsername?: string,
     public partnerId?: string,
     public employeeId?: string,
+    public salesCommissionType?: SalesCommissionType,
+    public salesCommissionAmount?: number,
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
+    public employee?: EmployeeEntity,
+    public partner?: PartnerEntity,
   ) { }
 
 
@@ -35,9 +42,14 @@ export class UserEntity {
     telegramUsername?: string,
     partnerId?: string,
     employeeId?: string,
+    salesCommissionType?: SalesCommissionType,
+    salesCommissionAmount?: number,
     createdAt?: Date,
     updatedAt?: Date,
-    id?: string): UserEntity {
+    id?: string,
+    employee?: EmployeeEntity,
+    partner?: PartnerEntity,
+  ): UserEntity {
 
     if (!email.includes('@')) {
       throw new ValidationError('Email must be a valid email address');
@@ -81,9 +93,13 @@ export class UserEntity {
       telegramUsername,
       partnerId,
       employeeId,
+      salesCommissionType,
+      salesCommissionAmount,
       createdAt,
       updatedAt,
-      id);
+      id,
+      employee,
+      partner);
   }
 
   public updateInstance(
@@ -98,6 +114,8 @@ export class UserEntity {
     telegramUsername?: string,
     partnerId?: string,
     employeeId?: string,
+    salesCommissionType?: SalesCommissionType,
+    salesCommissionAmount?: number,
 ): UserEntity {
     if (fullName !== undefined) this.fullName = fullName;
     if (email !== undefined) this.email = email;
@@ -110,6 +128,8 @@ export class UserEntity {
     if (telegramUsername !== undefined) this.telegramUsername = telegramUsername;
     if (partnerId !== undefined) this.partnerId = partnerId;
     if (employeeId !== undefined) this.employeeId = employeeId;
+    if (salesCommissionType !== undefined) this.salesCommissionType = salesCommissionType;
+    if (salesCommissionAmount !== undefined) this.salesCommissionAmount = salesCommissionAmount;
     
     this.updatedAt = new Date();
     return this;

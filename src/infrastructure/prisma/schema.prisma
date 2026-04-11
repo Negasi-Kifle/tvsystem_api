@@ -16,6 +16,11 @@ enum UserRefModel {
   Internal
 }
 
+enum SalesCommissionType {
+  Percentage
+  Fixed
+}
+
 // ============================================
 // USER - System users with roles and permissions
 // ============================================
@@ -33,6 +38,8 @@ model User {
   refModel              UserRefModel @default(Internal) @map("ref_model")
   partnerId             String?      @unique @map("partner_id")
   employeeId            String?      @unique @map("employee_id")
+  salesCommissionType   SalesCommissionType? @map("sales_commission_type")
+  salesCommissionAmount Float?       @map("sales_commission_amount")
   createdAt             DateTime     @default(now()) @map("created_at")
   updatedAt             DateTime     @updatedAt @map("updated_at")
 
@@ -45,6 +52,10 @@ model User {
   showHosts                ShowHost[]
   communicationLogs        CommunicationLog[] @relation("CommunicationLogSalesAgent")
   customersAsSalesAgent     Customer[]         @relation("CustomerSalesAgent")
+  advertSalesAsAgent        AdvertSales[]      @relation("AdvertSalesSalesAgent")
+  compensationsProposed     Compensation[]     @relation("CompensationProposedBy")
+  satelliteLogUploads       SatelliteLogUpload[] @relation("SatelliteLogUploader")
+  agentCommissions          AgentCommission[]    @relation("AgentCommissions")
 
   @@index([email])
   @@index([refModel])
@@ -71,8 +82,7 @@ model Show {
   updatedAt          DateTime @updatedAt @map("updated_at")
 
   // Relations
-  adverts            Advert[]
-  satelliteLogs      SatelliteLog[]
+  advertPlacements   AdvertPlacement[]
   scheduleBlocks     SatelliteScheduleBlock[]
   broadcastSlots     BroadcastSlot[]
 
@@ -173,10 +183,10 @@ model Customer {
   category           Category?           @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   subCategory        SubCategory?        @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   salesAgent         User?               @relation("CustomerSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
-  adverts            Advert[]
   communicationLogs  CommunicationLog[]
   mediaMonitoringRecords MediaMonitoringRecord[]
   showSuitabilities   CustomerShowSuitability[]
+  advertSales         AdvertSales[]
 
   @@index([businessRef])
   @@index([categoryId])
@@ -275,31 +285,38 @@ model CustomerShowSuitability {
 }
 
 // ============================================
-// ADVERT - Advertisement campaigns
+// ADVERT PLACEMENT - Individual scheduled ad spots linked to a sale
 // ============================================
-model Advert {
-  id                String   @id @default(uuid())
-  showId            String   @map("show_id")
-  customerId        String   @map("customer_id")
-  broadcastSlotId   String?  @map("broadcast_slot_id")
-  status            String // AdvertStatus enum: Draft, Scheduled, Active, Completed, Failed
-  slot              Json?    // { start: DateTime, end: DateTime }
-  contractDetails   String?  @map("contract_details")
-  createdAt         DateTime @default(now()) @map("created_at")
-  updatedAt         DateTime @updatedAt @map("updated_at")
+model AdvertPlacement {
+  id                 String    @id @default(uuid())
+  advertSalesId      String    @map("advert_sales_id")
+  showId             String    @map("show_id")
+  broadcastSlotId    String?   @map("broadcast_slot_id")
+  date               DateTime
+  dateEth            String    @map("date_eth")
+  position           String    // Beginning | Middle | End
+  spotIndex          Int       @default(1) @map("spot_index")
+  broadcastCode      String?   @map("broadcast_code")
+  plannedTimeMinutes Int?      @map("planned_time_minutes")
+  actualAirTime      DateTime? @map("actual_air_time")
+  durationSeconds    Int       @map("duration_seconds")
+  status             String    @default("SCHEDULED") // SCHEDULED, AIRED, MISSED, COMPENSATED, CANCELLED
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
 
   // Relations
-  show           Show            @relation(fields: [showId], references: [id], onDelete: Cascade)
-  customer       Customer        @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  broadcastSlot  BroadcastSlot?  @relation(fields: [broadcastSlotId], references: [id], onDelete: SetNull)
-  payments       Payment[]
-  compensations  Compensation[]
+  advertSales         AdvertSales       @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
+  show                Show              @relation(fields: [showId], references: [id], onDelete: Cascade)
+  broadcastSlot       BroadcastSlot?    @relation(fields: [broadcastSlotId], references: [id], onDelete: SetNull)
+  compensations       Compensation[]
+  satelliteLogEntries SatelliteLogEntry[]
 
+  @@index([advertSalesId])
   @@index([showId])
-  @@index([customerId])
   @@index([broadcastSlotId])
+  @@index([date])
   @@index([status])
-  @@map("adverts")
+  @@map("advert_placements")
 }
 
 // ============================================
@@ -311,7 +328,8 @@ model Partner {
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
-  user User?
+  user          User?
+  revenueShares RevenueShare[]
   @@map("partners")
 }
 
@@ -319,54 +337,77 @@ model Partner {
 // EMPLOYEE - Internal staff (sales, managers)
 // ============================================
 model Employee {
-  id              String   @id @default(uuid())
-  employeeNumber  String?  @unique @map("employee_number")
-  department      String?
-  isActive        Boolean  @default(true) @map("is_active")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
+  id                    String                @id @default(uuid())
+  employeeNumber        String?               @unique @map("employee_number")
+  department            String?
+  isActive              Boolean               @default(true) @map("is_active")
+  createdAt             DateTime              @default(now()) @map("created_at")
+  updatedAt             DateTime              @updatedAt @map("updated_at")
 
   user User?
   @@map("employees")
 }
 
 // ============================================
-// PAYMENT - Financial transactions
+// PAYMENT - Financial transactions linked to an advert sale
 // ============================================
 model Payment {
-  id               String   @id @default(uuid())
-  advertId         String   @map("advert_id")
-  installmentLabel String?  @map("installment_label")
-  amount           Json     // { amount: number, currency: string } - Money value object
-  dueDate          DateTime @map("due_date")
-  status           String // PaymentStatus enum: Pending, Sent, Overdue, Paid, Failed
-  createdAt        DateTime @default(now()) @map("created_at")
-  updatedAt        DateTime @updatedAt @map("updated_at")
+  id                    String    @id @default(uuid())
+  advertSalesId         String    @map("advert_sales_id")
+  paymentRequestRef     String?   @unique @map("payment_request_ref")
+  installmentNumber     Int       @default(1) @map("installment_number")
+  installmentLabel      String?   @map("installment_label")
+  amountBeforeVat       Float     @default(0) @map("amount_before_vat")
+  vatAmount             Float     @default(0) @map("vat_amount")
+  withholdTax           Float     @default(0) @map("withhold_tax")
+  vatWithhold           Float     @default(0) @map("vat_withhold")
+  totalAmount           Float     @default(0) @map("total_amount")
+  bankDeposit           Float     @default(0) @map("bank_deposit")
+  balance               Float     @default(0)
+  dueDate               DateTime  @map("due_date")
+  paymentDate           DateTime? @map("payment_date")
+  paymentMethod         String?   @map("payment_method")
+  bankDepositDate       DateTime? @map("bank_deposit_date")
+  bankConfirmation      String?   @map("bank_confirmation")
+  fsNumber              String?   @map("fs_number")
+  requestSentDate       DateTime? @map("request_sent_date")
+  status                String    @default("Pending") // PaymentStatus: Pending, Sent, Overdue, Paid, Failed
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
 
   // Relations
-  advert Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+  advertSales AdvertSales @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
 
-  @@index([advertId])
+  @@index([advertSalesId])
   @@index([status])
   @@map("payments")
 }
 
 // ============================================
-// COMPENSATION - Missed ad compensation records
+// COMPENSATION - Missed ad compensation records linked to an advert sale
 // ============================================
 model Compensation {
-  id               String   @id @default(uuid())
-  advertId         String   @map("advert_id")
-  proposal         String
-  status           String // 'Proposed' | 'Accepted' | 'Rejected'
-  customerResponse String?  @map("customer_response")
-  createdAt        DateTime @default(now()) @map("created_at")
-  updatedAt        DateTime @updatedAt @map("updated_at")
+  id                  String    @id @default(uuid())
+  advertSalesId       String    @map("advert_sales_id")
+  advertPlacementId   String?   @map("advert_placement_id")
+  proposal            String
+  missedDate          DateTime? @map("missed_date")
+  compensationType    String?   @map("compensation_type") // ExtraSlot, Discount, Refund
+  compensationDetails Json?     @map("compensation_details")
+  proposedById        String?   @map("proposed_by_id")
+  status              String    // Proposed, Accepted, Rejected
+  customerResponse    String?   @map("customer_response")
+  respondedAt         DateTime? @map("responded_at")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
 
   // Relations
-  advert Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+  advertSales     AdvertSales     @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
+  advertPlacement AdvertPlacement? @relation(fields: [advertPlacementId], references: [id], onDelete: SetNull)
+  proposedBy      User?           @relation("CompensationProposedBy", fields: [proposedById], references: [id], onDelete: SetNull)
 
-  @@index([advertId])
+  @@index([advertSalesId])
+  @@index([advertPlacementId])
   @@map("compensations")
 }
 
@@ -443,7 +484,7 @@ model BroadcastSlot {
   scheduleBlock SatelliteScheduleBlock @relation(fields: [scheduleBlockId], references: [id], onDelete: Cascade)
   schedule      SatelliteSchedule      @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
   show          Show                   @relation(fields: [showId], references: [id], onDelete: Cascade)
-  adverts       Advert[]
+  advertPlacements AdvertPlacement[]
 
   @@unique([scheduleBlockId, date])
   @@index([scheduleId])
@@ -454,21 +495,46 @@ model BroadcastSlot {
 }
 
 // ============================================
-// SATELLITE LOG - Broadcast verification logs
+// SATELLITE LOG UPLOAD - Raw log file upload records
 // ============================================
-model SatelliteLog {
+model SatelliteLogUpload {
   id           String   @id @default(uuid())
-  showId       String   @map("show_id")
-  broadcastAt  DateTime @map("broadcast_at")
-  deliveredAds Json     @default("[]") // Array of { advertId, played: boolean }
+  logDate      DateTime @map("log_date")
+  uploadedById String   @map("uploaded_by_id")
+  fileName     String   @map("file_name")
+  status       String   @default("PENDING") // PENDING, PROCESSED, FAILED
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
-  // Relations
-  show Show @relation(fields: [showId], references: [id], onDelete: Cascade)
+  uploadedBy User                @relation("SatelliteLogUploader", fields: [uploadedById], references: [id], onDelete: Cascade)
+  entries    SatelliteLogEntry[]
 
-  @@index([showId])
-  @@map("satellite_logs")
+  @@index([logDate])
+  @@index([uploadedById])
+  @@map("satellite_log_uploads")
+}
+
+// ============================================
+// SATELLITE LOG ENTRY - Individual parsed log entries
+// ============================================
+model SatelliteLogEntry {
+  id                    String    @id @default(uuid())
+  satelliteLogUploadId  String    @map("satellite_log_upload_id")
+  broadcastDateTime     DateTime  @map("broadcast_date_time")
+  hexId                 String    @map("hex_id")
+  description           String
+  durationSeconds       Int       @map("duration_seconds")
+  matchedPlacementId    String?   @map("matched_placement_id")
+  matchType             String    @default("UNMATCHED") @map("match_type") // AUTO, MANUAL, UNMATCHED
+  createdAt             DateTime  @default(now()) @map("created_at")
+
+  upload           SatelliteLogUpload @relation(fields: [satelliteLogUploadId], references: [id], onDelete: Cascade)
+  matchedPlacement AdvertPlacement?   @relation(fields: [matchedPlacementId], references: [id], onDelete: SetNull)
+
+  @@index([satelliteLogUploadId])
+  @@index([matchedPlacementId])
+  @@index([broadcastDateTime])
+  @@map("satellite_log_entries")
 }
 
 // ============================================
@@ -517,9 +583,55 @@ model AdvertPackage {
   // Relations
   showLinks               AdvertPackageShow[]
   mediaPackLinks          AdvertPackageMediaPack[]
+  advertSales             AdvertSales[]
 
   @@index([isActive])
   @@map("advert_packages")
+}
+
+// ============================================
+// ADVERT SALES - Sold advert package contracts (sales follow-up)
+// ============================================
+model AdvertSales {
+  id                      String   @id @default(uuid())
+  referenceNumber         String   @unique @map("reference_number")
+  advertPackageId         String   @map("advert_package_id")
+  customerId              String   @map("customer_id")
+  status                  String   // AdvertSalesStatus
+  advertType              String   @default("Paid") @map("advert_type") // Paid, Barter, FreeInKind, Production
+  adStartDate             DateTime @map("ad_start_date")
+  adEndDate               DateTime @map("ad_end_date")
+  adLengthSeconds         Int      @map("ad_length_seconds")
+  numOfSlots              Int      @map("num_of_slots")
+  adPackagePrice          Float    @map("ad_package_price")
+  discountPercentage      Float    @default(0) @map("discount_percentage")
+  finalPrice              Float    @map("final_price")
+  campaignName            String   @map("campaign_name")
+  contractSignDate        DateTime @map("contract_sign_date")
+  salesAgentId            String?  @map("sales_agent_id")
+  agentCommissionPercentage Float  @default(0) @map("agent_commission_percentage")
+  industry                String?
+  festiveSeason           String?  @map("festive_season")
+  referralSource          String?  @map("referral_source")
+  advertAgency            String?  @map("advert_agency")
+  notes                   String?
+  createdAt               DateTime @default(now()) @map("created_at")
+  updatedAt               DateTime @updatedAt @map("updated_at")
+
+  advertPackage  AdvertPackage    @relation(fields: [advertPackageId], references: [id], onDelete: Restrict)
+  customer       Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  salesAgent     User?            @relation("AdvertSalesSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
+  placements       AdvertPlacement[]
+  payments         Payment[]
+  compensations    Compensation[]
+  revenueShares    RevenueShare[]
+  agentCommissions AgentCommission[]
+
+  @@index([advertPackageId])
+  @@index([customerId])
+  @@index([salesAgentId])
+  @@index([status])
+  @@map("advert_sales")
 }
 
 // ============================================
@@ -634,4 +746,51 @@ model UserPermission {
   @@index([permissionId])
   @@index([userId])
   @@map("user_permissions")
+}
+
+// ============================================
+// REVENUE SHARE - Revenue distribution to partners for outsourced shows
+// ============================================
+model RevenueShare {
+  id               String    @id @default(uuid())
+  advertSalesId    String    @map("advert_sales_id")
+  partnerId        String    @map("partner_id")
+  showHostId       String?   @map("show_host_id")
+  sharePercentage  Float     @map("share_percentage")
+  shareAmount      Float     @map("share_amount")
+  status           String    @default("PENDING") // PENDING, DISBURSED
+  disbursedDate    DateTime? @map("disbursed_date")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  advertSales AdvertSales @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
+  partner     Partner     @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+  @@index([advertSalesId])
+  @@index([partnerId])
+  @@map("revenue_shares")
+}
+
+// ============================================
+// AGENT COMMISSION - Sales agent commissions
+// ============================================
+model AgentCommission {
+  id                   String    @id @default(uuid())
+  advertSalesId        String    @map("advert_sales_id")
+  agentId              String    @map("agent_id")
+  commissionPercentage Float     @map("commission_percentage")
+  commissionAmount     Float     @map("commission_amount")
+  taxAmount            Float     @default(0) @map("tax_amount")
+  netAmount            Float     @default(0) @map("net_amount")
+  status               String    @default("PENDING") // PENDING, DISBURSED
+  disbursedDate        DateTime? @map("disbursed_date")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+
+  advertSales AdvertSales @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
+  agent       User        @relation("AgentCommissions", fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([advertSalesId])
+  @@index([agentId])
+  @@map("agent_commissions")
 }

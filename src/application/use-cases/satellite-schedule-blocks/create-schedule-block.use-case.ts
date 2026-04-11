@@ -56,7 +56,7 @@ export class CreateScheduleBlockUseCase {
     for (const block of existing) {
       if (entity.overlaps(block)) {
         throw new ValidationError(
-          `Overlaps with existing block ${block.label ?? block.id} (${block.startTimeGregorian}–${block.endTimeGregorian})`,
+          `Overlaps with existing block ${block.label} WITH ID= ${block.id} (${block.startTimeGregorian}–${block.endTimeGregorian})`,
         );
       }
     }

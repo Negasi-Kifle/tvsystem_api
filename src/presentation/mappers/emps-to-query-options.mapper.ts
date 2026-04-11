@@ -13,6 +13,7 @@ export function mapFetchAllEmployeesDtoToQueryOptions(dto: FetchAllEmployeesDto)
             ...(dto.employeeNumber != null && { employeeNumber: dto.employeeNumber }),
             ...(dto.department != null && { department: dto.department }),
             ...(dto.isActive != null && { isActive: dto.isActive }),
+            ...(dto.salesCommissionType != null && { salesCommissionType: dto.salesCommissionType }),
         },
     };
 }

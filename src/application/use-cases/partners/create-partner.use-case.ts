@@ -1,6 +1,6 @@
 import { PartnerEntity } from "../../../domain/entities/partner.entity";
 import { UserEntity } from "../../../domain/entities/user.entity";
-import { SexTypes, UserRole } from "../../../domain/enums";
+import { SalesCommissionType, SexTypes, UserRole } from "../../../domain/enums";
 import { ValidationError } from "../../../domain/errors/validation.error";
 import { IPartnerRepository,  } from "../../../domain/repositories/partner.repo";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository.repo";
@@ -21,6 +21,8 @@ export type CreatePartnerInput = {
     grantedBy?: string;
     createdAt?: Date;
     updatedAt?: Date;
+    salesCommissionType?: SalesCommissionType;
+    salesCommissionAmount?: number;
 }   
 
 export class CreatePartnerAndUserUseCase {
@@ -79,6 +81,10 @@ export class CreatePartnerAndUserUseCase {
             payload.isFirstTimeAccount ?? false,
             undefined, // refModel is set to "Partner" in the repository implementation (infra layer)
             payload.telegramUsername,
+            undefined,
+            undefined,
+            payload.salesCommissionType,
+            payload.salesCommissionAmount,
         );
 
         return this.partnerRepo.createPartnerAndUser(

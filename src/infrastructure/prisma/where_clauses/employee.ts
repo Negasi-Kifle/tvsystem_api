@@ -1,13 +1,30 @@
 import { EmployeeEntity } from "../../../domain/entities/employee.entity";
+import { SalesCommissionType } from "../../../domain/enums/sales-commission-type.enum";
 import { Prisma } from "../generated/client";
 
-export function buildWhereClauseForEmployee(filters: Partial<EmployeeEntity>): Prisma.EmployeeWhereInput {
+export type EmployeeWhereFilters = Partial<EmployeeEntity> & {
+    salesCommissionType?: SalesCommissionType;
+    salesCommissionAmount?: number;
+};
+
+export function buildWhereClauseForEmployee(filters: EmployeeWhereFilters): Prisma.EmployeeWhereInput {
     if (!filters) return {};
 
+    const { salesCommissionType, salesCommissionAmount, ...rest } = filters;
+
+    const userIs: Prisma.UserWhereInput = {};
+    if (salesCommissionType !== undefined) {
+        userIs.salesCommissionType = salesCommissionType;
+    }
+    if (salesCommissionAmount !== undefined) {
+        userIs.salesCommissionAmount = salesCommissionAmount;
+    }
+
     return {
-        ...(filters.id && { id: filters.id }),
-        ...(filters.employeeNumber !== undefined && { employeeNumber: filters.employeeNumber }),
-        ...(filters.department !== undefined && { department: filters.department }),
-        ...(filters.isActive !== undefined && { isActive: filters.isActive }),
+        ...(rest.id && { id: rest.id }),
+        ...(rest.employeeNumber !== undefined && { employeeNumber: rest.employeeNumber }),
+        ...(rest.department !== undefined && { department: rest.department }),
+        ...(rest.isActive !== undefined && { isActive: rest.isActive }),
+        ...(Object.keys(userIs).length > 0 && { user: { is: userIs } }),
     };
 }
