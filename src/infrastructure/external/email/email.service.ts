@@ -16,7 +16,7 @@ export class EmailService implements IEmailService {
 
   async send(to: string, subject: string, body: string): Promise<void> {
     await this.transporter.sendMail({
-      from: emailConfig.from,
+      from: `${emailConfig.name} <${emailConfig.from}>`,
       to,
       subject,
       html: body
