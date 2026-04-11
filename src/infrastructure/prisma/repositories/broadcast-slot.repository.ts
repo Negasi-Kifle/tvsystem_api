@@ -18,7 +18,7 @@ export class BroadcastSlotRepository
   }
 
   async findById(id: string): Promise<BroadcastSlotEntity | null> {
-    const slot = await this.prisma.broadcastSlot.findUnique({ where: { id }, include: { scheduleBlock: true, schedule: true, show: true } });
+    const slot = await this.prisma.broadcastSlot.findUnique({ where: { id }, include: { scheduleBlock: true, schedule: true, show: true, advertPlacements: true } });
     return slot ? modelToEntity(slot) : null;
   }
 
@@ -31,7 +31,7 @@ export class BroadcastSlotRepository
       skip: query.skip ?? 0,
       take: query.take ?? 200,
       orderBy: [{ date: 'asc' }, { startTimeMinutes: 'asc' }],
-      include: { scheduleBlock: true, schedule: true, show: true },
+      include: { scheduleBlock: true, schedule: true, show: true, advertPlacements: true },
     });
     return slots.map(modelToEntity);
   }
@@ -66,7 +66,7 @@ export class BroadcastSlotRepository
         date: { gte: from, lte: to },
       },
       orderBy: [{ date: 'asc' }, { startTimeMinutes: 'asc' }],
-      include: { scheduleBlock: true, schedule: true, show: true },
+      include: { scheduleBlock: true, schedule: true, show: true, advertPlacements: true },
     });
     return slots.map(modelToEntity);
   }

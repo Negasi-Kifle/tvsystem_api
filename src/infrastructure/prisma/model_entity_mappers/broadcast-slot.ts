@@ -7,9 +7,10 @@ import { Prisma } from '../generated/client';
 import { modelToEntity as mapScheduleBlockToEntity } from './schedule-block';
 import { modelToEntity as mapSatelliteScheduleToEntity } from './satellite-schedule';
 import { modelToEntity as mapShowToEntity } from './show';
+import { modelToEntity as mapAdvertPlacementToEntity } from './advert-placement';
 
 type BroadcastSlotWithRelations = Prisma.BroadcastSlotGetPayload<{
-  include: { scheduleBlock: true; schedule: true; show: true };
+  include: { scheduleBlock: true; schedule: true; show: true; advertPlacements: true };
 }>;
 
 type BroadcastSlotLike = Prisma.BroadcastSlotGetPayload<{}> | BroadcastSlotWithRelations;
@@ -34,6 +35,7 @@ export function modelToEntity(slot: BroadcastSlotLike): BroadcastSlotEntity {
     'scheduleBlock' in slot && slot.scheduleBlock ? mapScheduleBlockToEntity(slot.scheduleBlock) : undefined,
     'schedule' in slot && slot.schedule ? mapSatelliteScheduleToEntity(slot.schedule) : undefined,
     'show' in slot && slot.show ? mapShowToEntity(slot.show) : undefined,
+    'advertPlacements' in slot && slot.advertPlacements ? slot.advertPlacements.map(mapAdvertPlacementToEntity) : undefined,
   );
 }
 

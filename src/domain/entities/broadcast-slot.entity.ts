@@ -4,6 +4,7 @@ import { SatelliteScheduleSummary } from '../interfaces/satellite-schedule-summa
 import { ShowSummary } from '../interfaces/show-summary.interface';
 import { EthiopianTime } from '../value-objects/ethiopian-time.value-objects';
 import { ScheduleBlockEntity } from './satellite-schedule-block.entity';
+import { AdvertPlacementEntity } from './advert-placement.entity';
 
 const VALID_STATUS_TRANSITIONS: Record<BroadcastSlotStatus, BroadcastSlotStatus[]> = {
   [BroadcastSlotStatus.Scheduled]: [BroadcastSlotStatus.Aired, BroadcastSlotStatus.Missed, BroadcastSlotStatus.Preempted, BroadcastSlotStatus.Cancelled],
@@ -33,6 +34,7 @@ export class BroadcastSlotEntity {
     public scheduleBlock?: ScheduleBlockEntity,
     public schedule?: SatelliteScheduleSummary,
     public show?: ShowSummary,
+    public advertPlacements?: AdvertPlacementEntity[],
   ) {}
 
   static createInstance(
@@ -54,6 +56,7 @@ export class BroadcastSlotEntity {
     scheduleBlock?: ScheduleBlockEntity,
     schedule?: SatelliteScheduleSummary,
     show?: ShowSummary,
+    advertPlacements?: AdvertPlacementEntity[],
   ): BroadcastSlotEntity {
     if (!Object.values(DayOfWeek).includes(dayOfWeek)) {
       throw new ValidationError(`Invalid dayOfWeek: ${dayOfWeek}`);
@@ -90,6 +93,7 @@ export class BroadcastSlotEntity {
       scheduleBlock,
       schedule,
       show,
+      advertPlacements,
     );
   }
 
