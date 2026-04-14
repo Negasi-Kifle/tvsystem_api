@@ -62,24 +62,7 @@ export function createCustomerHandlers(
       const { id } = req.params as { id: string };
       const payload = req.body as UpdateCustomerDto;
 
-      const updatePayload: Parameters<UpdateCustomerUseCase['execute']>[1] = {};
-      if (payload.name !== undefined) updatePayload.name = payload.name;
-      if (payload.industry !== undefined) updatePayload.industry = payload.industry;
-      if (payload.categoryId !== undefined) updatePayload.categoryId = payload.categoryId ?? undefined;
-      if (payload.subCategoryId !== undefined)
-        updatePayload.subCategoryId = payload.subCategoryId ?? undefined;
-      if (payload.location !== undefined) updatePayload.location = payload.location;
-      if (payload.salesAgentId !== undefined) updatePayload.salesAgentId = payload.salesAgentId ?? undefined;
-      if (payload.nextReviewDate !== undefined)
-        updatePayload.nextReviewDate = payload.nextReviewDate ?? undefined;
-      if (payload.status !== undefined) updatePayload.status = payload.status;
-      if (payload.holidayStatus !== undefined) updatePayload.holidayStatus = payload.holidayStatus;
-      if (payload.studioVisit !== undefined) updatePayload.studioVisit = payload.studioVisit;
-      if (payload.otherMediaCampaign !== undefined) updatePayload.otherMediaCampaign = payload.otherMediaCampaign;
-      if (payload.inPersonUpdate !== undefined) updatePayload.inPersonUpdate = payload.inPersonUpdate ?? undefined;
-      if (payload.contacts !== undefined) updatePayload.contacts = payload.contacts;
-
-      const customer = await updateCustomerUseCase.execute(id, updatePayload);
+      const customer = await updateCustomerUseCase.execute(id, payload);
 
       res.status(200).json({
         status: 'SUCCESS',

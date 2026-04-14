@@ -18,6 +18,7 @@ export type UpdateCustomerInput = Partial<{
   otherMediaCampaign: string;
   inPersonUpdate: Date;
   contacts: { name?: string; email?: string; phone?: string; position?: string; mobile?: string; officeTel?: string }[];
+  sourceFromMediaMonitoring: boolean;
 }>;
 
 export class UpdateCustomerUseCase {
@@ -50,6 +51,7 @@ export class UpdateCustomerUseCase {
       payload.otherMediaCampaign,
       payload.inPersonUpdate,
       payload.contacts,
+      payload.sourceFromMediaMonitoring,
     );
 
     const updated = await this.customerRepo.update(existing);

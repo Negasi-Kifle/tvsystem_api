@@ -98,6 +98,7 @@ export class CustomerEntity {
     otherMediaCampaign?: string,
     inPersonUpdate?: Date,
     contacts?: CustomerContact[],
+    sourceFromMediaMonitoring?: boolean,
   ): CustomerEntity {
     if (name !== undefined) this.name = name;
     if (industry !== undefined) this.industry = industry;
@@ -112,6 +113,7 @@ export class CustomerEntity {
     if (otherMediaCampaign !== undefined) this.otherMediaCampaign = otherMediaCampaign;
     if (inPersonUpdate !== undefined) this.inPersonUpdate = inPersonUpdate;
     if (contacts !== undefined) this.contacts = contacts;
+    if (sourceFromMediaMonitoring !== undefined) this.sourceFromMediaMonitoring = sourceFromMediaMonitoring;
     this.updatedAt = new Date();
     return this;
   }
