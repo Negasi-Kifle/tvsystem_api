@@ -1,4 +1,4 @@
-import { AdvertSalesEntity } from '../../../domain/entities/adver-sales.entity';
+import { AdvertSalesEntity } from '../../../domain/entities/advert-sales.entity';
 import { EntityNotFoundError } from '../../../domain/errors/entity-not-found.error';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 

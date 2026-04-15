@@ -1,6 +1,6 @@
 import { Prisma } from '../generated/client';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
-import { AdvertSalesEntity } from '../../../domain/entities/adver-sales.entity';
+import { AdvertSalesEntity } from '../../../domain/entities/advert-sales.entity';
 import { PrismaBaseRepository } from './base.repository';
 import { advertSalesReadInclude, entityToModel, modelToEntity } from '../model_entity_mappers/advert-sales';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';

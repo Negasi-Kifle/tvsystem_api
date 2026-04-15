@@ -1,3 +1,4 @@
+import { Prisma } from '../generated/client';
 import { PrismaBaseRepository } from './base.repository';
 import { ICategoryRepository } from '../../../domain/repositories/category.repository.interface';
 import { CategoryEntity } from '../../../domain/entities/category.entity';
@@ -5,9 +6,16 @@ import { QueryOptions } from '../../../domain/interfaces/query-options.interface
 import { modelToEntity, entityToModel } from '../model_entity_mappers/category';
 import { buildWhereClauseForCategory } from '../where_clauses/category';
 
+const subCategoriesInclude = {
+  subCategories: { orderBy: { name: 'asc' as const } },
+} satisfies Prisma.CategoryInclude;
+
 export class CategoryRepository extends PrismaBaseRepository implements ICategoryRepository {
   async findById(id: string): Promise<CategoryEntity | null> {
-    const category = await this.prisma.category.findUnique({ where: { id } });
+    const category = await this.prisma.category.findUnique({
+      where: { id },
+      include: subCategoriesInclude,
+    });
     return category ? modelToEntity(category) : null;
   }
 
@@ -22,6 +30,8 @@ export class CategoryRepository extends PrismaBaseRepository implements ICategor
       where,
       skip: query.skip ?? 0,
       take: query.take ?? 10,
+      include: subCategoriesInclude,
+      orderBy: { name: 'asc' },
     });
     return list.map(modelToEntity);
   }
@@ -44,6 +54,7 @@ export class CategoryRepository extends PrismaBaseRepository implements ICategor
     const updated = await this.prisma.category.update({
       where: { id: entity.id },
       data: entityToModel(entity),
+      include: subCategoriesInclude,
     });
     return modelToEntity(updated);
   }
@@ -52,8 +63,11 @@ export class CategoryRepository extends PrismaBaseRepository implements ICategor
     try {
       const deleted = await this.prisma.category.delete({ where: { id } });
       return modelToEntity(deleted);
-    } catch {
-      return null;
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
+        return null;
+      }
+      throw e;
     }
   }
 }

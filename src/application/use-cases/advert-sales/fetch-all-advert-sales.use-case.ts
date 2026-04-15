@@ -1,4 +1,4 @@
-import { AdvertSalesEntity } from '../../../domain/entities/adver-sales.entity';
+import { AdvertSalesEntity } from '../../../domain/entities/advert-sales.entity';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 

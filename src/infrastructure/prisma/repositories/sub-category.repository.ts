@@ -1,3 +1,4 @@
+import { Prisma } from '../generated/client';
 import { PrismaBaseRepository } from './base.repository';
 import { ISubCategoryRepository } from '../../../domain/repositories/sub-category.repository.interface';
 import { SubCategoryEntity } from '../../../domain/entities/sub-category.entity';
@@ -5,9 +6,16 @@ import { QueryOptions } from '../../../domain/interfaces/query-options.interface
 import { modelToEntity, entityToModel } from '../model_entity_mappers/sub-category';
 import { buildWhereClauseForSubCategory } from '../where_clauses/sub-category';
 
+const categoryInclude = {
+  category: true,
+} satisfies Prisma.SubCategoryInclude;
+
 export class SubCategoryRepository extends PrismaBaseRepository implements ISubCategoryRepository {
   async findById(id: string): Promise<SubCategoryEntity | null> {
-    const subCategory = await this.prisma.subCategory.findUnique({ where: { id } });
+    const subCategory = await this.prisma.subCategory.findUnique({
+      where: { id },
+      include: categoryInclude,
+    });
     return subCategory ? modelToEntity(subCategory) : null;
   }
 
@@ -24,6 +32,8 @@ export class SubCategoryRepository extends PrismaBaseRepository implements ISubC
       where,
       skip: query.skip ?? 0,
       take: query.take ?? 10,
+      include: categoryInclude,
+      orderBy: { name: 'asc' },
     });
     return list.map(modelToEntity);
   }
@@ -37,7 +47,10 @@ export class SubCategoryRepository extends PrismaBaseRepository implements ISubC
     const entity = data as SubCategoryEntity;
     const createData = entityToModel(entity);
     const { id: _omit, ...rest } = createData;
-    const saved = await this.prisma.subCategory.create({ data: rest });
+    const saved = await this.prisma.subCategory.create({
+      data: rest,
+      include: categoryInclude,
+    });
     return modelToEntity(saved);
   }
 
@@ -46,6 +59,7 @@ export class SubCategoryRepository extends PrismaBaseRepository implements ISubC
     const updated = await this.prisma.subCategory.update({
       where: { id: entity.id },
       data: entityToModel(entity),
+      include: categoryInclude,
     });
     return modelToEntity(updated);
   }
@@ -54,8 +68,11 @@ export class SubCategoryRepository extends PrismaBaseRepository implements ISubC
     try {
       const deleted = await this.prisma.subCategory.delete({ where: { id } });
       return modelToEntity(deleted);
-    } catch {
-      return null;
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
+        return null;
+      }
+      throw e;
     }
   }
 }

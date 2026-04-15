@@ -1,4 +1,4 @@
-import { AdvertSalesEntity } from '../../../domain/entities/adver-sales.entity';
+import { AdvertSalesEntity } from '../../../domain/entities/advert-sales.entity';
 import { Prisma } from '../generated/client';
 
 export function buildWhereClauseForAdvertSales(

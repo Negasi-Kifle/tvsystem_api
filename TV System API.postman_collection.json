@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "40c435f4-f42b-4f30-99f4-cb61ce8446b2",
+    "_postman_id": "b47f411e-9760-4892-bd55-bf062b3b43b8",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-40c435f4-f42b-4f30-99f4-cb61ce8446b2?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-b47f411e-9760-4892-bd55-bf062b3b43b8?source=collection_link"
   },
   "item": [
     {
@@ -9633,136 +9633,6 @@
           "name": "Categories",
           "item": [
             {
-              "name": "List Categories",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{accessToken}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/api/categories",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "categories"
-                  ]
-                },
-                "description": "All categories (sales lookup). Requires VIEW_SALES."
-              },
-              "response": [
-                {
-                  "name": "Success",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "{{baseUrl}}/api/categories",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "categories"
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "Text",
-                  "header": [
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Content-Security-Policy",
-                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                    },
-                    {
-                      "key": "Cross-Origin-Opener-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Cross-Origin-Resource-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Origin-Agent-Cluster",
-                      "value": "?1"
-                    },
-                    {
-                      "key": "Referrer-Policy",
-                      "value": "no-referrer"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    },
-                    {
-                      "key": "X-Content-Type-Options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "off"
-                    },
-                    {
-                      "key": "X-Download-Options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "X-Frame-Options",
-                      "value": "SAMEORIGIN"
-                    },
-                    {
-                      "key": "X-Permitted-Cross-Domain-Policies",
-                      "value": "none"
-                    },
-                    {
-                      "key": "X-XSS-Protection",
-                      "value": "0"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "362"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"16a-IRmbXFdPn/mVj2nb1BrgH12eC0o\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:08:53 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"categories\": [\n            {\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\"\n            },\n            {\n                \"name\": \"Finance\",\n                \"nameSlug\": \"finance\",\n                \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.570Z\",\n                \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\"\n            }\n        ]\n    }\n}"
-                }
-              ]
-            },
-            {
               "name": "Create Category",
               "request": {
                 "auth": {
@@ -9918,7 +9788,599 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Agriculture\",\n            \"nameSlug\": \"agriculture\",\n            \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n            \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n            \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Agriculture\",\n            \"nameSlug\": \"agriculture\",\n            \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n            \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n            \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"subCategories\": []\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "List Categories",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories"
+                  ]
+                },
+                "description": "All categories with nested **subCategories** (sorted by name). Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1702"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"6a6-gBfhJnHnFuwovSRgfKPAF8/SaHI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:29:09 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"categories\": [\n            {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            {\n                \"name\": \"Finance\",\n                \"nameSlug\": \"finance\",\n                \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.570Z\",\n                \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                \"subCategories\": [\n                    {\n                        \"categoryId\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                        \"name\": \"BANK\",\n                        \"nameSlug\": \"bank\",\n                        \"isCustom\": false,\n                        \"createdAt\": \"2026-03-17T21:47:12.627Z\",\n                        \"updatedAt\": \"2026-03-17T21:47:12.627Z\",\n                        \"id\": \"773c7f70-2b33-4093-88d6-02cffcc96978\"\n                    }\n                ]\n            },\n            {\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategories\": [\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Bank\",\n                        \"nameSlug\": \"bank\",\n                        \"isCustom\": true,\n                        \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n                        \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n                        \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n                    },\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Department Store\",\n                        \"nameSlug\": \"department-store\",\n                        \"isCustom\": true,\n                        \"createdAt\": \"2026-03-21T08:09:34.326Z\",\n                        \"updatedAt\": \"2026-03-21T08:09:34.326Z\",\n                        \"id\": \"ec8639f2-6436-42fa-bf92-1067a05ca66c\"\n                    },\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Food\",\n                        \"nameSlug\": \"food\",\n                        \"isCustom\": false,\n                        \"createdAt\": \"2026-03-17T21:47:12.640Z\",\n                        \"updatedAt\": \"2026-03-17T21:47:12.640Z\",\n                        \"id\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\"\n                    }\n                ]\n            },\n            {\n                \"name\": \"Manufacturing\",\n                \"nameSlug\": \"manufacturing\",\n                \"createdAt\": \"2026-04-14T18:56:34.049Z\",\n                \"updatedAt\": \"2026-04-14T18:56:34.049Z\",\n                \"id\": \"7208132a-b851-4323-887a-9ea2a9991b72\",\n                \"subCategories\": []\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Category By Id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "categoryId",
+                      "value": "ba5396e3-6f95-4945-8f85-296cc1c81905"
+                    }
+                  ]
+                },
+                "description": "Single category with nested **subCategories**. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId",
+                          "value": "ba5396e3-6f95-4945-8f85-296cc1c81905"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "445"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"1bd-ZGcrCaKlff173sSbN/+brwnLX5Q\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:29:52 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Finance\",\n            \"nameSlug\": \"finance\",\n            \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n            \"updatedAt\": \"2026-03-17T21:47:12.570Z\",\n            \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n            \"subCategories\": [\n                {\n                    \"categoryId\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                    \"name\": \"BANK\",\n                    \"nameSlug\": \"bank\",\n                    \"isCustom\": false,\n                    \"createdAt\": \"2026-03-17T21:47:12.627Z\",\n                    \"updatedAt\": \"2026-03-17T21:47:12.627Z\",\n                    \"id\": \"773c7f70-2b33-4093-88d6-02cffcc96978\"\n                }\n            ]\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Food & Beverage\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "categoryId",
+                      "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                    }
+                  ]
+                },
+                "description": "At least one of **name** or **nameSlug**. Omitting **nameSlug** while sending **name** derives the slug from the new name. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Food & Beverage\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId",
+                          "value": "ba5396e3-6f95-4945-8f85-296cc1c81905"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "503"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"1f7-S4yentXLStot5u7t4vgz5qC5Qrg\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:30:13 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Category updated successfully\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Food & Beverage\",\n            \"nameSlug\": \"food-&-beverage\",\n            \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n            \"updatedAt\": \"2026-04-15T18:30:13.644Z\",\n            \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n            \"subCategories\": [\n                {\n                    \"categoryId\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                    \"name\": \"BANK\",\n                    \"nameSlug\": \"bank\",\n                    \"isCustom\": false,\n                    \"createdAt\": \"2026-03-17T21:47:12.627Z\",\n                    \"updatedAt\": \"2026-03-17T21:47:12.627Z\",\n                    \"id\": \"773c7f70-2b33-4093-88d6-02cffcc96978\"\n                }\n            ]\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/categories/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "categoryId",
+                      "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                    }
+                  ]
+                },
+                "description": "Fails with validation error if any **subCategories** still reference this category (remove them first). Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId",
+                          "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "Text",
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "62"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"3e-IiILwQmLHg18Sf1IEO0LWxJhik4\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:35:36 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Category deleted successfully\"\n}"
                 }
               ]
             }
@@ -9927,6 +10389,166 @@
         {
           "name": "Sub-Categories",
           "item": [
+            {
+              "name": "Create Sub-Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"name\": \"Poultry\",\n//   \"nameSlug\": \"Poultry\",\n  \"isCustom\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/sub-categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sub-categories"
+                  ]
+                },
+                "description": "Response includes parent **category**. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"name\": \"Poultry\",\n  \"nameSlug\": \"Poultry\",\n  \"isCustom\": true\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sub-categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sub-categories"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "519"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"207-1X8npleOarxkEHfWqOXPhF1KLJ4\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:53:27 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Sub-category created successfully\",\n    \"data\": {\n        \"subCategory\": {\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"name\": \"Poultry\",\n            \"nameSlug\": \"Poultry\",\n            \"isCustom\": true,\n            \"createdAt\": \"2026-04-15T18:53:27.612Z\",\n            \"updatedAt\": \"2026-04-15T18:53:27.612Z\",\n            \"id\": \"10f6eb3b-f21d-4041-b3b0-115b5a43666c\",\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            }\n        }\n    }\n}"
+                }
+              ]
+            },
             {
               "name": "List Sub-Categories By Category",
               "request": {
@@ -9960,7 +10582,7 @@
                     }
                   ]
                 },
-                "description": "Sub-categories for a category UUID. Requires VIEW_SALES."
+                "description": "Sub-categories for a category UUID; each row includes the parent **category** (no nested subCategories on parent). Sorted by name. Requires VIEW_SALES."
               },
               "response": [
                 {
@@ -10069,12 +10691,12 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"subCategories\": [\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"isCustom\": false,\n                \"createdAt\": \"2026-03-17T21:47:12.640Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.640Z\",\n                \"id\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\"\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Bank\",\n                \"nameSlug\": \"bank\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n                \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n                \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Department Store\",\n                \"nameSlug\": \"department-store\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:34.326Z\",\n                \"updatedAt\": \"2026-03-21T08:09:34.326Z\",\n                \"id\": \"ec8639f2-6436-42fa-bf92-1067a05ca66c\"\n            }\n        ]\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"subCategories\": [\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Bank\",\n                \"nameSlug\": \"bank\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n                \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n                \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"category\": {\n                    \"name\": \"Food\",\n                    \"nameSlug\": \"food\",\n                    \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                    \"subCategories\": []\n                }\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Department Store\",\n                \"nameSlug\": \"department-store\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-03-21T08:09:34.326Z\",\n                \"updatedAt\": \"2026-03-21T08:09:34.326Z\",\n                \"id\": \"ec8639f2-6436-42fa-bf92-1067a05ca66c\",\n                \"category\": {\n                    \"name\": \"Food\",\n                    \"nameSlug\": \"food\",\n                    \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                    \"subCategories\": []\n                }\n            },\n            {\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"isCustom\": false,\n                \"createdAt\": \"2026-03-17T21:47:12.640Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.640Z\",\n                \"id\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\",\n                \"category\": {\n                    \"name\": \"Food\",\n                    \"nameSlug\": \"food\",\n                    \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                    \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                    \"subCategories\": []\n                }\n            }\n        ]\n    }\n}"
                 }
               ]
             },
             {
-              "name": "Create Sub-Category",
+              "name": "Get Sub-Category By Id",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -10086,70 +10708,54 @@
                     }
                   ]
                 },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"name\": \"Bank\",\n  \"nameSlug\": \"bank\",\n  \"isCustom\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
+                "method": "GET",
+                "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/api/sub-categories",
+                  "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
                     "api",
-                    "sub-categories"
+                    "sub-categories",
+                    ":subCategoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "subCategoryId",
+                      "value": "10f6eb3b-f21d-4041-b3b0-115b5a43666c"
+                    }
                   ]
                 },
-                "description": "Requires MANAGE_SALES."
+                "description": "Single sub-category with parent **category**. Requires VIEW_SALES."
               },
               "response": [
                 {
                   "name": "Success",
                   "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"name\": \"Bank\",\n  \"nameSlug\": \"bank\",\n  \"isCustom\": true\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
+                    "method": "GET",
+                    "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/sub-categories",
+                      "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "api",
-                        "sub-categories"
+                        "sub-categories",
+                        ":subCategoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subCategoryId",
+                          "value": "10f6eb3b-f21d-4041-b3b0-115b5a43666c"
+                        }
                       ]
                     }
                   },
-                  "status": "Created",
-                  "code": 201,
-                  "_postman_previewlanguage": "Text",
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10209,15 +10815,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "313"
+                      "value": "473"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"139-3p5hFtEVnMf5sNugb0kQzf+4+ZQ\""
+                      "value": "W/\"1d9-r4gvyMLb4pVjT1/BIiBLiJybmy8\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 08:09:57 GMT"
+                      "value": "Wed, 15 Apr 2026 18:54:06 GMT"
                     },
                     {
                       "key": "Connection",
@@ -10229,7 +10835,325 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Sub-category created successfully\",\n    \"data\": {\n        \"subCategory\": {\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"name\": \"Bank\",\n            \"nameSlug\": \"bank\",\n            \"isCustom\": true,\n            \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n            \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n            \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"subCategory\": {\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"name\": \"Poultry\",\n            \"nameSlug\": \"Poultry\",\n            \"isCustom\": true,\n            \"createdAt\": \"2026-04-15T18:53:27.612Z\",\n            \"updatedAt\": \"2026-04-15T18:53:27.612Z\",\n            \"id\": \"10f6eb3b-f21d-4041-b3b0-115b5a43666c\",\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            }\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update Sub-Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n//   \"name\": \"Retail Bank\"\n\"nameSlug\": \"poultry\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sub-categories",
+                    ":subCategoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "subCategoryId",
+                      "value": "10f6eb3b-f21d-4041-b3b0-115b5a43666d"
+                    }
+                  ]
+                },
+                "description": "At least one of **name**, **nameSlug**, **isCustom**, **categoryId**. Optional move to another category. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n//   \"name\": \"Retail Bank\"\n\"nameSlug\": \"poultry\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sub-categories",
+                        ":subCategoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subCategoryId",
+                          "value": "10f6eb3b-f21d-4041-b3b0-115b5a43666c"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "519"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"207-tnDyXXycCDW5HLXURkBDo7H8Ltg\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:54:30 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Sub-category updated successfully\",\n    \"data\": {\n        \"subCategory\": {\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"name\": \"Poultry\",\n            \"nameSlug\": \"poultry\",\n            \"isCustom\": true,\n            \"createdAt\": \"2026-04-15T18:53:27.612Z\",\n            \"updatedAt\": \"2026-04-15T18:54:30.787Z\",\n            \"id\": \"10f6eb3b-f21d-4041-b3b0-115b5a43666c\",\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            }\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete Sub-Category",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sub-categories",
+                    ":subCategoryId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "subCategoryId",
+                      "value": "71ec7e29-a682-44d6-a1f1-5371e0b93fb7"
+                    }
+                  ]
+                },
+                "description": "Customers referencing this sub-category get **subCategoryId** set to null (SetNull). Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sub-categories/:subCategoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sub-categories",
+                        ":subCategoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subCategoryId",
+                          "value": "71ec7e29-a682-44d6-a1f1-5371e0b93fb7"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "66"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"42-J8Jftc5kjbhzGrvATyHPNpmQmzo\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 18:55:42 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Sub-category deleted successfully\"\n}"
                 }
               ]
             }
@@ -12054,7 +12978,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12200,7 +13124,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12374,7 +13298,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12518,7 +13442,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -17749,7 +18673,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -20837,14 +21761,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/media-packs/16bb7d32-f752-40a2-9055-2fc9b524b75e",
+              "raw": "{{baseURL}}/api/media-packs/438f821f-290d-43e0-9a3d-26ed7fc88f5b",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "media-packs",
-                "16bb7d32-f752-40a2-9055-2fc9b524b75e"
+                "438f821f-290d-43e0-9a3d-26ed7fc88f5b"
               ]
             }
           },
@@ -21078,14 +22002,14 @@
               }
             },
             "url": {
-              "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a73",
+              "raw": "{{baseURL}}/api/media-packs/438f821f-290d-43e0-9a3d-26ed7fc88f5b",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "media-packs",
-                "58fcf744-af0d-4b6b-93ea-162fcf5d6a73"
+                "438f821f-290d-43e0-9a3d-26ed7fc88f5b"
               ]
             }
           },
@@ -21218,14 +22142,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/media-packs/58fcf744-af0d-4b6b-93ea-162fcf5d6a73",
+              "raw": "{{baseURL}}/api/media-packs/438f821f-290d-43e0-9a3d-26ed7fc88f5b",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "media-packs",
-                "58fcf744-af0d-4b6b-93ea-162fcf5d6a73"
+                "438f821f-290d-43e0-9a3d-26ed7fc88f5b"
               ]
             }
           },
@@ -21431,6 +22355,107 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media pack deleted successfully\"\n}"
+            },
+            {
+              "name": "Error - Dependency",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/api/media-packs/1220b590-7bfe-449f-96c5-e6c9c79111d4",
+                  "host": [
+                    "{{baseURL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-packs",
+                    "1220b590-7bfe-449f-96c5-e6c9c79111d4"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1888"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"760-W+rfY+WjnNN6cg3OwdKPpFfheZs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 15 Apr 2026 13:30:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Cannot complete this operation: other records still depend on this row (foreign key). Remove or reassign the related records first. Field: package_media_packs_media_pack_id.\",\n    \"errorStack\": \"PrismaClientKnownRequestError: \\nInvalid `this.prisma.mediaPack.delete()` invocation in\\n/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/infrastructure/prisma/repositories/media-pack.repository.ts:73:57\\n\\n  70 \\n  71 async deleteById(id: string): Promise<MediaPackEntity | null> {\\n  72     try {\\n→ 73         const deleted = await this.prisma.mediaPack.delete(\\nForeign key constraint violated on the constraint: `advert_package_media_packs_media_pack_id_fkey`\\n    at zr.handleRequestError (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/node_modules/@prisma/client/src/runtime/RequestHandler.ts:237:13)\\n    at zr.handleAndLogRequestError (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/node_modules/@prisma/client/src/runtime/RequestHandler.ts:183:12)\\n    at zr.request (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/node_modules/@prisma/client/src/runtime/RequestHandler.ts:152:12)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async a (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:808:24)\\n    at async MediaPackRepository.deleteById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/infrastructure/prisma/repositories/media-pack.repository.ts:73:29)\\n    at async DeleteMediaPackUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/media-pack/delete-media-pack.use-case.ts:14:25)\\n    at async deleteMediaPack (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/media-pack.controller.ts:123:7)\"\n}"
             }
           ]
         }
@@ -21456,7 +22481,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"mediaPackId\": \"1220b590-7bfe-449f-96c5-e6c9c79111d4\",\n  \"advertPackageIds\": [\n    \"0241fe14-e982-436c-97ab-3472dc18a3fa\"\n  ]\n}",
+              "raw": "{\n  \"mediaPackId\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n  \"advertPackageIds\": [\n    \"0241fe14-e982-436c-97ab-3472dc18a3fa\"\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -21482,7 +22507,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"mediaPackId\": \"1220b590-7bfe-449f-96c5-e6c9c79111d4\",\n  \"advertPackageIds\": [\n    \"0241fe14-e982-436c-97ab-3472dc18a3fa\"\n  ]\n}",
+                  "raw": "{\n  \"mediaPackId\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n  \"advertPackageIds\": [\n    \"0241fe14-e982-436c-97ab-3472dc18a3fa\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -21562,15 +22587,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1285"
+                  "value": "1240"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"505-JcJbeeP1onCUccOXYyc5jPrL8j0\""
+                  "value": "W/\"4d8-Zly2fAo94OpIFE7l0Plb8u+K4ms\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 28 Mar 2026 20:00:11 GMT"
+                  "value": "Wed, 15 Apr 2026 14:48:25 GMT"
                 },
                 {
                   "key": "Connection",
@@ -21582,7 +22607,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package media pack links created successfully\",\n    \"data\": {\n        \"advertPackageMediaPacks\": [\n            {\n                \"advertPackageId\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                \"mediaPackId\": \"1220b590-7bfe-449f-96c5-e6c9c79111d4\",\n                \"createdAt\": \"2026-03-28T20:00:11.382Z\",\n                \"updatedAt\": \"2026-03-28T20:00:11.382Z\",\n                \"id\": \"4c995372-7fa7-492d-be4e-1d8fda87c911\",\n                \"advertPackage\": {\n                    \"name\": \"test pack\",\n                    \"nameSlug\": \"test-pack\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"imageUrl\": null,\n                    \"createdAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"updatedAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"id\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                    \"mediaPacks\": [\n                        {\n                            \"id\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                            \"version\": \"v 223\",\n                            \"versionSlug\": \"v-223\"\n                        },\n                        {\n                            \"id\": \"1220b590-7bfe-449f-96c5-e6c9c79111d4\",\n                            \"version\": \"v2 223\",\n                            \"versionSlug\": \"v2-223\"\n                        }\n                    ],\n                    \"shows\": []\n                },\n                \"mediaPack\": {\n                    \"version\": \"v2 223\",\n                    \"versionSlug\": \"v2-223\",\n                    \"description\": \"The v-223 media pack\",\n                    \"isActive\": true,\n                    \"createdAt\": \"2026-03-24T15:59:08.891Z\",\n                    \"updatedAt\": \"2026-03-24T15:59:08.891Z\",\n                    \"id\": \"1220b590-7bfe-449f-96c5-e6c9c79111d4\"\n                }\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert package media pack links created successfully\",\n    \"data\": {\n        \"advertPackageMediaPacks\": [\n            {\n                \"advertPackageId\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                \"mediaPackId\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n                \"createdAt\": \"2026-04-15T14:48:25.022Z\",\n                \"updatedAt\": \"2026-04-15T14:48:25.022Z\",\n                \"id\": \"641b08be-7d9a-45fd-a9cd-68982b911217\",\n                \"advertPackage\": {\n                    \"name\": \"test pack\",\n                    \"nameSlug\": \"test-pack\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"imageUrl\": null,\n                    \"createdAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"updatedAt\": \"2026-03-17T19:36:33.792Z\",\n                    \"id\": \"0241fe14-e982-436c-97ab-3472dc18a3fa\",\n                    \"mediaPacks\": [\n                        {\n                            \"id\": \"de55b6a5-5324-4b47-b297-531fac906914\",\n                            \"version\": \"v 223\",\n                            \"versionSlug\": \"v-223\"\n                        },\n                        {\n                            \"id\": \"d0f01446-d352-48c9-a7db-25cde68d947e\",\n                            \"version\": \"v 22\",\n                            \"versionSlug\": \"v-22\"\n                        }\n                    ],\n                    \"shows\": []\n                },\n                \"mediaPack\": {\n                    \"version\": \"v 22\",\n                    \"versionSlug\": \"v-22\",\n                    \"isActive\": true,\n                    \"createdAt\": \"2026-03-17T19:28:35.662Z\",\n                    \"updatedAt\": \"2026-03-17T19:28:35.662Z\",\n                    \"id\": \"d0f01446-d352-48c9-a7db-25cde68d947e\"\n                }\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -21602,7 +22627,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/advert-package-media-packs?page=1&limit=10&advertPackageId=f73c5f08-3b32-44e0-bde4-d2f58207c4db&mediaPackId=1220b590-7bfe-449f-96c5-e6c9c79111d4",
+              "raw": "{{baseURL}}/api/advert-package-media-packs?page=1&limit=10&advertPackageId=f73c5f08-3b32-44e0-bde4-d2f58207c4db",
               "host": [
                 "{{baseURL}}"
               ],
@@ -21625,7 +22650,8 @@
                 },
                 {
                   "key": "mediaPackId",
-                  "value": "1220b590-7bfe-449f-96c5-e6c9c79111d4"
+                  "value": "d0f01446-d352-48c9-a7db-25cde68d947e",
+                  "disabled": true
                 }
               ]
             }
@@ -21767,14 +22793,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/advert-package-media-packs/2c0dbe04-74ae-4928-bf9e-5d0952f1238c",
+              "raw": "{{baseURL}}/api/advert-package-media-packs/641b08be-7d9a-45fd-a9cd-68982b911217",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "advert-package-media-packs",
-                "2c0dbe04-74ae-4928-bf9e-5d0952f1238c"
+                "641b08be-7d9a-45fd-a9cd-68982b911217"
               ]
             }
           },
@@ -21907,14 +22933,14 @@
               }
             },
             "url": {
-              "raw": "{{baseURL}}/api/advert-package-media-packs/2c0dbe04-74ae-4928-bf9e-5d0952f1238c",
+              "raw": "{{baseURL}}/api/advert-package-media-packs/641b08be-7d9a-45fd-a9cd-68982b911217",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "advert-package-media-packs",
-                "2c0dbe04-74ae-4928-bf9e-5d0952f1238c"
+                "641b08be-7d9a-45fd-a9cd-68982b911217"
               ]
             }
           },
@@ -22047,14 +23073,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/advert-package-media-packs/2c0dbe04-74ae-4928-bf9e-5d0952f1238c",
+              "raw": "{{baseURL}}/api/advert-package-media-packs/641b08be-7d9a-45fd-a9cd-68982b911217",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "advert-package-media-packs",
-                "2c0dbe04-74ae-4928-bf9e-5d0952f1238c"
+                "641b08be-7d9a-45fd-a9cd-68982b911217"
               ]
             }
           },

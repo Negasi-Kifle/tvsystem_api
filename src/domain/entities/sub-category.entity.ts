@@ -1,3 +1,5 @@
+import type { CategoryEntity } from './category.entity';
+
 export class SubCategoryEntity {
   constructor(
     public categoryId: string,
@@ -7,6 +9,7 @@ export class SubCategoryEntity {
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
+    public category?: CategoryEntity,
   ) {}
 
   public static createInstance(
@@ -17,6 +20,7 @@ export class SubCategoryEntity {
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
+    category?: CategoryEntity,
   ): SubCategoryEntity {
     return new SubCategoryEntity(
       categoryId,
@@ -26,6 +30,24 @@ export class SubCategoryEntity {
       createdAt,
       updatedAt,
       id,
+      category,
     );
+  }
+
+  public updateInstance(
+    name?: string,
+    nameSlug?: string,
+    isCustom?: boolean,
+    categoryId?: string,
+  ): SubCategoryEntity {
+    if (name !== undefined) this.name = name;
+    if (nameSlug !== undefined) this.nameSlug = nameSlug;
+    if (isCustom !== undefined) this.isCustom = isCustom;
+    if (categoryId !== undefined) {
+      this.categoryId = categoryId;
+      this.category = undefined;
+    }
+    this.updatedAt = new Date();
+    return this;
   }
 }

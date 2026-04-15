@@ -1,8 +1,20 @@
-import { SubCategory } from '../generated/client';
+import { SubCategory, Category } from '../generated/client';
 import { SubCategoryEntity } from '../../../domain/entities/sub-category.entity.js';
+import { CategoryEntity } from '../../../domain/entities/category.entity.js';
 
-export function modelToEntity(model: SubCategory): SubCategoryEntity {
-  return SubCategoryEntity.createInstance(
+function mapCategoryParent(model: Category): CategoryEntity {
+  return CategoryEntity.createInstance(
+    model.name,
+    model.nameSlug,
+    model.createdAt,
+    model.updatedAt,
+    model.id,
+    [],
+  );
+}
+
+export function modelToEntity(model: SubCategory & { category?: Category }): SubCategoryEntity {
+  const entity = SubCategoryEntity.createInstance(
     model.categoryId,
     model.name,
     model.nameSlug,
@@ -10,7 +22,9 @@ export function modelToEntity(model: SubCategory): SubCategoryEntity {
     model.createdAt,
     model.updatedAt,
     model.id,
+    model.category ? mapCategoryParent(model.category) : undefined,
   );
+  return entity;
 }
 
 export function entityToModel(entity: SubCategoryEntity) {

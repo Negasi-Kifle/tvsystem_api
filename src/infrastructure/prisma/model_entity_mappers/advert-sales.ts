@@ -1,5 +1,5 @@
 import { Prisma } from '../generated/client';
-import { AdvertSalesEntity } from '../../../domain/entities/adver-sales.entity';
+import { AdvertSalesEntity } from '../../../domain/entities/advert-sales.entity';
 import { AdvertSalesStatus } from '../../../domain/enums/advert-sales.enum';
 import { AdvertType } from '../../../domain/enums/advert-type.enum';
 import { modelToEntity as advertPackageModelToEntity } from './advert-package';

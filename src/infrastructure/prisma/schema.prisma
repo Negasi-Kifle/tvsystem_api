@@ -148,7 +148,7 @@ model SubCategory {
   updatedAt  DateTime @updatedAt @map("updated_at")
 
   // Relations
-  category  Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  category  Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   customers Customer[]
 
   @@unique([categoryId, nameSlug])
