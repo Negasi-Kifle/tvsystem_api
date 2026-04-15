@@ -17,10 +17,13 @@ export function createCustomerHandlers(
     'customerRepository' | 'mediaMonitoringRecordRepository' | 'generateBusinessRefService'
   >,
 ) {
-  const { customerRepository: customerRepo, mediaMonitoringRecordRepository: mediaMonitoringRepo } = deps;
-  const { generateBusinessRefService } = deps;
+  const {
+    customerRepository: customerRepo,
+    mediaMonitoringRecordRepository: mediaMonitoringRepo,
+    generateBusinessRefService
+  } = deps;
 
-  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService);
+  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService, mediaMonitoringRepo);
   const updateCustomerUseCase = new UpdateCustomerUseCase(customerRepo, mediaMonitoringRepo);
   const getCustomerByIdUseCase = new GetCustomerByIdUseCase(customerRepo);
   const fetchAllCustomersUseCase = new FetchAllCustomersUseCase(customerRepo);
@@ -30,22 +33,7 @@ export function createCustomerHandlers(
   async function createCustomer(req: Request, res: Response, next: NextFunction) {
     try {
       const payload = req.body as CreateCustomerDto;
-      const customer = await createCustomerUseCase.execute({
-        name: payload.name,
-        contacts: payload.contacts,
-        industry: payload.industry,
-        categoryId: payload.categoryId,
-        subCategoryId: payload.subCategoryId,
-        location: payload.location,
-        salesAgentId: payload.salesAgentId,
-        nextReviewDate: payload.nextReviewDate,
-        status: payload.status,
-        holidayStatus: payload.holidayStatus,
-        studioVisit: payload.studioVisit,
-        otherMediaCampaign: payload.otherMediaCampaign,
-        sourceFromMediaMonitoring: payload.sourceFromMediaMonitoring,
-        inPersonUpdate: payload.inPersonUpdate,
-      });
+      const customer = await createCustomerUseCase.execute(payload);
 
       res.status(201).json({
         status: 'SUCCESS',

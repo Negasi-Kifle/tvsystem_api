@@ -9,18 +9,18 @@ export class ShowSegmentSlotRepository extends PrismaBaseRepository implements I
   async findById(id: string): Promise<ShowSegmentSlotEntity | null> {
     const slot = await this.prisma.showSegmentSlot.findUnique({
       where: { id },
-      include: { show: true },
+      include: { show: true, customer: true },
     });
     return slot ? modelToEntity(slot) : null;
   }
 
-  async findByShowId(showId: string): Promise<ShowSegmentSlotEntity[]> {
-    const slots = await this.prisma.showSegmentSlot.findMany({
-      where: { showId },
-      orderBy: { businessRef: 'asc' },
+  async findByShowAndCustomer(showId: string, customerId: string): Promise<ShowSegmentSlotEntity | null> {
+    const slot = await this.prisma.showSegmentSlot.findFirst({
+      where: { showId, customerId },
     });
-    return slots.map(modelToEntity);
+    return slot ? modelToEntity(slot) : null;
   }
+
 
   async findMany(query: QueryOptions<ShowSegmentSlotEntity>): Promise<ShowSegmentSlotEntity[]> {
     const where = buildWhereClauseForShowSegmentSlot(query.filters ?? {});
@@ -28,7 +28,7 @@ export class ShowSegmentSlotRepository extends PrismaBaseRepository implements I
       where,
       skip: query.skip ?? 0,
       take: query.take ?? 10,
-      include: { show: true },
+      include: { show: true, customer: true },
     });
     return list.map(modelToEntity);
   }

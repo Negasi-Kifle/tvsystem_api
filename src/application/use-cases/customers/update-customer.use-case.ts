@@ -3,6 +3,7 @@ import { ICustomerRepository } from '../../../domain/repositories/customer.repos
 import { IMediaMonitoringRecordRepository } from '../../../domain/repositories/media-monitoring-record.repository.interface';
 import { EntityNotFoundError } from '../../../domain/errors/entity-not-found.error';
 import { CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit } from '../../../domain/enums/customer-status.enum';
+import { ValidationError } from '../../../domain/errors/validation.error';
 
 export type UpdateCustomerInput = Partial<{
   name: string;
@@ -18,14 +19,15 @@ export type UpdateCustomerInput = Partial<{
   otherMediaCampaign: string;
   inPersonUpdate: Date;
   contacts: { name?: string; email?: string; phone?: string; position?: string; mobile?: string; officeTel?: string }[];
-  sourceFromMediaMonitoring: boolean;
+  sourceFromMediaMonitoring?: boolean;
+  mediaMonitoringId?: string
 }>;
 
 export class UpdateCustomerUseCase {
   constructor(
     private readonly customerRepo: ICustomerRepository,
     private readonly mediaMonitoringRepo: IMediaMonitoringRecordRepository,
-  ) {}
+  ) { }
 
   async execute(customerId: string, payload: UpdateCustomerInput): Promise<CustomerEntity> {
     const existing = await this.customerRepo.findById(customerId);
@@ -36,6 +38,18 @@ export class UpdateCustomerUseCase {
     const statusChanged = payload.status !== undefined && payload.status !== existing.status;
     const holidayStatusChanged =
       payload.holidayStatus !== undefined && payload.holidayStatus !== existing.holidayStatus;
+
+    // If customer is from media monitoring, Id of the media monitoring record should be provided
+    if (payload.sourceFromMediaMonitoring === true && !payload.mediaMonitoringId) {
+      throw new ValidationError('Media monitoring ID is required if customer is from media monitoring');
+    }
+
+    if (payload.mediaMonitoringId) {
+      const mediaMonitoring = await this.mediaMonitoringRepo.findById(payload.mediaMonitoringId);
+      if (!mediaMonitoring) {
+        throw new EntityNotFoundError('Media monitoring record not found', 'MediaMonitoringRecord', payload.mediaMonitoringId);
+      }
+    }
 
     existing.updateInstance(
       payload.name,
@@ -52,6 +66,7 @@ export class UpdateCustomerUseCase {
       payload.inPersonUpdate,
       payload.contacts,
       payload.sourceFromMediaMonitoring,
+      payload.mediaMonitoringId
     );
 
     const updated = await this.customerRepo.update(existing);

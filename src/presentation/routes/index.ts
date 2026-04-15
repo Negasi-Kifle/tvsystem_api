@@ -20,7 +20,6 @@ import { createMediaMonitoringRouter } from './media-monitoring.routes';
 import { createCategoriesRouter } from './categories.routes';
 import { createSubCategoriesRouter } from './sub-categories.routes';
 import { createShowSegmentSlotsRouter } from './show-segment-slots.routes';
-import { createCustomerShowSuitabilityRouter } from './customer-show-suitability.routes';
 import { createAdvertPackageMediaPacksRouter } from './advert-package-media-packs.routes';
 import { createAdvertSalesRouter } from './advert-sales.routes';
 import { createSatelliteLogsRouter, createSatelliteLogEntriesRouter } from './satellite-logs.routes';
@@ -59,7 +58,6 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/categories', createCategoriesRouter(deps));
   router.use('/sub-categories', createSubCategoriesRouter(deps));
   router.use('/show-segment-slots', createShowSegmentSlotsRouter(deps));
-  router.use('/customer-show-suitability', createCustomerShowSuitabilityRouter(deps));
   router.use('/satellite-logs', createSatelliteLogsRouter(deps));
   router.use('/satellite-log-entries', createSatelliteLogEntriesRouter(deps));
   router.use('/compensations', createCompensationsRouter(deps));

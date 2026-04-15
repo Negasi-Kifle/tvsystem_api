@@ -1,8 +1,10 @@
 import { CustomerEntity, CustomerContact } from '../../../domain/entities/customer.entity';
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
-import { EntityAlreadyExistsError } from '../../../domain/errors/entity-exists.error';
+import { ValidationError } from '../../../domain/errors/validation.error';
 import { CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit} from '../../../domain/enums/customer-status.enum';
 import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
+import { EntityNotFoundError } from '../../../domain/errors';
+import { IMediaMonitoringRecordRepository } from '../../../domain/repositories/media-monitoring-record.repository.interface';
 
 export type CreateCustomerInput = {
   name: string;
@@ -18,6 +20,7 @@ export type CreateCustomerInput = {
   studioVisit?: CustomerStudioVisit;
   otherMediaCampaign?: string;
   sourceFromMediaMonitoring?: boolean;
+  mediaMonitoringId?: string;
   inPersonUpdate?: Date;
 };
 
@@ -25,10 +28,23 @@ export class CreateCustomerUseCase {
   constructor(
     private readonly customerRepo: ICustomerRepository,
     private readonly generateBusinessRefService: IGenerateBusinessRefService,
+    private readonly mediaMonitoringRepo: IMediaMonitoringRecordRepository,
   ) {}
 
   async execute(payload: CreateCustomerInput): Promise<CustomerEntity> {
     const businessRef = await this.generateBusinessRefService.generateBusinessRef();
+
+    // If customer is from media monitoring, Id of the media monitoring record should be provided
+    if (payload.sourceFromMediaMonitoring === true && !payload.mediaMonitoringId) {
+      throw new ValidationError('Media monitoring ID is required if customer is from media monitoring');
+    }
+
+    if (payload.mediaMonitoringId) {
+      const mediaMonitoring = await this.mediaMonitoringRepo.findById(payload.mediaMonitoringId);
+      if (!mediaMonitoring) {
+        throw new EntityNotFoundError('Media monitoring record not found', 'MediaMonitoringRecord', payload.mediaMonitoringId);
+      }
+    }
 
     const customer = CustomerEntity.createInstance(
       businessRef,
@@ -45,6 +61,7 @@ export class CreateCustomerUseCase {
       payload.studioVisit,
       payload.otherMediaCampaign,
       payload.sourceFromMediaMonitoring ?? false,
+      payload.mediaMonitoringId,
       payload.inPersonUpdate,
     );
 

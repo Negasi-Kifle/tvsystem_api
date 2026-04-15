@@ -6,11 +6,12 @@ export const fetchAllCustomersDto = z
     limit: z.coerce.number().min(1).max(100).optional().default(10),
     businessRef: z.string().optional(),
     name: z.string().optional(),
-    categoryId: z.string().uuid().optional(),
-    subCategoryId: z.string().uuid().optional(),
-    salesAgentId: z.string().uuid().optional(),
+    categoryId: z.uuid().optional(),
+    subCategoryId: z.uuid().optional(),
+    salesAgentId: z.uuid().optional(),
     status: z.string().optional(),
     sourceFromMediaMonitoring: z.coerce.boolean().optional(),
+    mediaMonitoringId: z.uuid().optional(),
   })
   .strict();
 

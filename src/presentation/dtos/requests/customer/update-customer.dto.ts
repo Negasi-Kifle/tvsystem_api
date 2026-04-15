@@ -25,7 +25,8 @@ export const updateCustomerDto = z
     otherMediaCampaign: z.string().optional(),
     inPersonUpdate: z.coerce.date().optional(),
     contacts: z.array(contactSchema).optional(),
-    sourceFromMediaMonitoring: z.boolean().optional()
+    sourceFromMediaMonitoring: z.boolean().optional(),
+    mediaMonitoringId: z.uuid("Media monitoring ID must be a valid UUID.").optional(),
   })
   .strict();
 

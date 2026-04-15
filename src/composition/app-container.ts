@@ -6,7 +6,6 @@ import type { IBroadcastSlotRepository } from '../domain/repositories/broadcast-
 import type { ICategoryRepository } from '../domain/repositories/category.repository.interface';
 import type { ICommunicationLogRepository } from '../domain/repositories/communication-log.repository.interface';
 import type { ICustomerRepository } from '../domain/repositories/customer.repository.interface';
-import type { ICustomerShowSuitabilityRepository } from '../domain/repositories/customer-show-suitability.repository.interface';
 import type { IEmployeeRepository } from '../domain/repositories/employee.repo';
 import type { IMediaMonitoringRecordRepository } from '../domain/repositories/media-monitoring-record.repository.interface';
 import type { IMediaPackRepository } from '../domain/repositories/media-pack.repository.interface';
@@ -40,7 +39,6 @@ import { BroadcastSlotRepository } from '../infrastructure/prisma/repositories/b
 import { CategoryRepository } from '../infrastructure/prisma/repositories/category.repository';
 import { CommunicationLogRepository } from '../infrastructure/prisma/repositories/communication-log.repository';
 import { CustomerRepository } from '../infrastructure/prisma/repositories/customer.repository';
-import { CustomerShowSuitabilityRepository } from '../infrastructure/prisma/repositories/customer-show-suitability.repository';
 import { EmployeeRepository } from '../infrastructure/prisma/repositories/employee.repository';
 import { MediaMonitoringRecordRepository } from '../infrastructure/prisma/repositories/media-monitoring-record.repository';
 import { MediaPackRepository } from '../infrastructure/prisma/repositories/media-pack.repository';
@@ -87,7 +85,6 @@ export interface AppContainer {
   categoryRepository: ICategoryRepository;
   subCategoryRepository: ISubCategoryRepository;
   showSegmentSlotRepository: IShowSegmentSlotRepository;
-  customerShowSuitabilityRepository: ICustomerShowSuitabilityRepository;
   telegramGroupRepository: ITelegramGroupRepository;
   telegramGroupMemberRepository: ITelegramGroupMembersRepository;
   satelliteScheduleRepository: ISatelliteScheduleRepository;
@@ -125,7 +122,6 @@ export function buildAppContainer(): AppContainer {
     categoryRepository: new CategoryRepository(),
     subCategoryRepository: new SubCategoryRepository(),
     showSegmentSlotRepository: new ShowSegmentSlotRepository(),
-    customerShowSuitabilityRepository: new CustomerShowSuitabilityRepository(),
     telegramGroupRepository: new TelegramGroupRepository(),
     telegramGroupMemberRepository: new TelegramGroupMemberRepository(),
     satelliteScheduleRepository: new SatelliteScheduleRepository(),

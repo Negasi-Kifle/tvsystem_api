@@ -25,8 +25,24 @@ export const createCustomerDto = z
     studioVisit: z.enum(CustomerStudioVisit, "Studio visit must be one of the following: " + Object.values(CustomerStudioVisit).join(', ')).optional(),
     otherMediaCampaign: z.string().optional(),
     sourceFromMediaMonitoring: z.boolean().optional().default(false),
+    mediaMonitoringId: z.uuid("Media monitoring ID must be a valid UUID.").optional(),
     inPersonUpdate: z.coerce.date().optional(),
   })
-  .strict();
+  .strict()
+  .refine(
+    (data) => {
+      // If sourceFromMediaMonitoring is true, mediaMonitoringId must exist
+      if (data.sourceFromMediaMonitoring) {
+        return !!data.mediaMonitoringId;
+      }
+      // If sourceFromMediaMonitoring is false, mediaMonitoringId must NOT exist
+      return data.mediaMonitoringId === undefined;
+    },
+    {
+      message: "Media monitoring ID is required when source from media monitoring is true, and must be omitted when false",
+      path: ["mediaMonitoringId"],
+    }
+);
+  
 
 export type CreateCustomerDto = z.infer<typeof createCustomerDto>;

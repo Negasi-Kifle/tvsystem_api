@@ -59,6 +59,10 @@
 
 ## ✅ Completed Tasks
 
+### 04/14/2026
+
+- ✅ Show segment slots: model is `showId` + `customerId` (required); removed `CustomerShowSuitability` and `/customer-show-suitability`; full REST CRUD on `/show-segment-slots` (list with filters, create, get by id, patch, delete, list by show); migration `20260414120000_show_segment_slot_customer_id_drop_suitability`; seed uses seed customers `SEED-SS-001`–`003`; unit tests for query mapper and create use case
+
 ### 03/29/2026
 
 - ✅ Clean Architecture wiring: `buildAppContainer`, `ApiRouterDeps` (storage, multipart upload, `createAuthMiddleware`), factory routers/controllers; Jest default `DATABASE_URL` + `.js` `moduleNameMapper`; `Money` currency guard on arithmetic
@@ -84,8 +88,8 @@
   - Customer and CommunicationLog as separate entities (write-only log)
   - Category and SubCategory with hybrid management (predefined + custom)
   - MediaMonitoringRecord with link to Customer; status sync on customer update
-  - ShowSegmentSlot and CustomerShowSuitability for segment industries
-  - API: /customers, /communication-logs, /media-monitoring, /categories, /sub-categories, /show-segment-slots, /customer-show-suitability
+  - ShowSegmentSlot for segment industries (show + customer per row; see 04/14/2026 completed entry)
+  - API: /customers, /communication-logs, /media-monitoring, /categories, /sub-categories, /show-segment-slots
   - Seed: categories (Finance/BANK, Food/Food), show segment slots from Segment Industries CSV
 - TODO: Grant MANAGE_SALES and VIEW_SALES permissions to Sales Rep, Sales Assistant, Sales Manager, CEO roles via user management
 - TODO: If media monitoring channels expand beyond EBS, FANA, Arts, Kana, Radio, update create-media-monitoring-record.dto.ts enum

@@ -77,7 +77,7 @@ tvsystem_api/
 
 Core business types and contracts (approximate counts from current tree):
 
-- **Entities (`23`)**: user, employee, partner, permission, user-permissions, show, show-host, satellite-schedule, satellite-schedule-block, broadcast-slot, satellite-log, telegram-groups, telegram-group-member, customer, communication-log, category, sub-category, media-monitoring-record, show-segment-slot, customer-show-suitability, media-pack, advert-package, advert-package-media-pack.
+- **Entities (`22`)**: user, employee, partner, permission, user-permissions, show, show-host, satellite-schedule, satellite-schedule-block, broadcast-slot, satellite-log, telegram-groups, telegram-group-member, customer, communication-log, category, sub-category, media-monitoring-record, show-segment-slot, media-pack, advert-package, advert-package-media-pack.
 - **Repository contracts (`23` files under `domain/repositories/`)**: includes `*.repository.interface.ts`, `*.repo.ts`, `base.repository.interface.ts`, etc.
 - **Filter/summary interfaces**: under `domain/interfaces/` (e.g. broadcast-slot, customer, satellite-schedule, advert-package).
 - **Domain services (`IStorageService`, calendar, hash, email, schedule handlers, business-ref)** under `domain/services/`.
@@ -99,7 +99,7 @@ Core business types and contracts (approximate counts from current tree):
   - satellite-schedules, satellite-schedule-blocks, broadcast-slots
   - telegram-groups, telegram-group-members
   - customers, communication-logs, media-monitoring
-  - categories, sub-categories, show-segment-slots, customer-show-suitability
+  - categories, sub-categories, show-segment-slots
   - media-pack, advert-package, advert-package-media-pack  
   **No** `adverts/` or `finance/` use-case folders yet (campaign and payment flows not implemented).
 
@@ -118,7 +118,7 @@ Approx. **89** TypeScript files, notably:
 ### 4) Presentation Layer (`src/presentation`)
 
 - `app.ts`: Express wiring (JSON, CORS, Helmet, Morgan, `/api` router, static `/uploads` when not using S3 storage, 404 + global error handler).
-- **Route modules (`23` files + `routes/index.ts`)**: top-level mounts in [src/presentation/routes/index.ts](src/presentation/routes/index.ts); nested routers for schedule blocks and broadcast slots under `/satellite-schedules/:scheduleId/...`.
+- **Route modules (`22` files + `routes/index.ts`)**: top-level mounts in [src/presentation/routes/index.ts](src/presentation/routes/index.ts); nested routers for schedule blocks and broadcast slots under `/satellite-schedules/:scheduleId/...`.
 - **Controllers (`24` handler modules + `health.controller.ts`; plus `broadcast-slot-response.formatter.ts`)**.
 - **Request DTOs (`65` files)** with Zod.
 - **Query mappers (`18`)** under `presentation/mappers/`.
@@ -182,8 +182,7 @@ All top-level routes are mounted under `/api` via [src/presentation/routes/index
 | Media monitoring | `/media-monitoring` | `media-monitoring.routes.ts` | `media-monitoring.controller.ts` | Competitor tracking |
 | Categories | `/categories` | `categories.routes.ts` | `category.controller.ts` | |
 | Sub-categories | `/sub-categories` | `sub-categories.routes.ts` | `sub-category.controller.ts` | |
-| Show segment slots | `/show-segment-slots` | `show-segment-slots.routes.ts` | `show-segment-slot.controller.ts` | Segment industries |
-| Customer–show suitability | `/customer-show-suitability` | `customer-show-suitability.routes.ts` | `customer-show-suitability.controller.ts` | |
+| Show segment slots | `/show-segment-slots` | `show-segment-slots.routes.ts` | `show-segment-slot.controller.ts` | CRUD; `showId` + `customerId` per row |
 | Telegram groups | `/telegram-groups` | `telegram-groups.routes.ts` | `telegram-group.controller.ts` | |
 | Telegram group members | `/telegram-group-members` | `telegram-group-member.routes.ts` | `telegram-group-member.controller.ts` | |
 
@@ -206,7 +205,7 @@ Prisma CLI config: [prisma.config.ts](prisma.config.ts)
 - `Customer` (`customers`)
 - `CommunicationLog` (`communication_logs`)
 - `MediaMonitoringRecord` (`media_monitoring_records`)
-- `ShowSegmentSlot` / `CustomerShowSuitability`
+- `ShowSegmentSlot` (show + customer assignment per row; unique `(show_id, customer_id)`)
 - **`Advert` (`adverts`)** — schema only (campaign module not exposed)
 - `Partner` (`partners`)
 - `Employee` (`employees`)

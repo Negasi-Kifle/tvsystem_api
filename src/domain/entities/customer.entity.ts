@@ -27,6 +27,7 @@ export class CustomerEntity {
     public studioVisit: CustomerStudioVisit = CustomerStudioVisit.NOT_VISITED,
     public otherMediaCampaign?: string,
     public sourceFromMediaMonitoring: boolean = false,
+    public mediaMonitoringId?: string,
     public inPersonUpdate?: Date,
     public createdAt?: Date,
     public updatedAt?: Date,
@@ -49,6 +50,7 @@ export class CustomerEntity {
     studioVisit?: CustomerStudioVisit,
     otherMediaCampaign?: string,
     sourceFromMediaMonitoring: boolean = false,
+    mediaMonitoringId?: string,
     inPersonUpdate?: Date,
     createdAt?: Date,
     updatedAt?: Date,
@@ -76,6 +78,7 @@ export class CustomerEntity {
       studioVisit,
       otherMediaCampaign,
       sourceFromMediaMonitoring,
+      mediaMonitoringId,
       inPersonUpdate,
       createdAt,
       updatedAt,
@@ -99,6 +102,7 @@ export class CustomerEntity {
     inPersonUpdate?: Date,
     contacts?: CustomerContact[],
     sourceFromMediaMonitoring?: boolean,
+    mediaMonitoringId?: string
   ): CustomerEntity {
     if (name !== undefined) this.name = name;
     if (industry !== undefined) this.industry = industry;
@@ -114,6 +118,7 @@ export class CustomerEntity {
     if (inPersonUpdate !== undefined) this.inPersonUpdate = inPersonUpdate;
     if (contacts !== undefined) this.contacts = contacts;
     if (sourceFromMediaMonitoring !== undefined) this.sourceFromMediaMonitoring = sourceFromMediaMonitoring;
+    if (mediaMonitoringId !== undefined) this.mediaMonitoringId = mediaMonitoringId;
     this.updatedAt = new Date();
     return this;
   }

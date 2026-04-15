@@ -174,7 +174,8 @@ model Customer {
   holidayStatus             String?   @map("holiday_status") // Interested, Not Interested, etc.
   studioVisit               String?   @map("studio_visit") // Visited Studio, Not Visited Studio
   otherMediaCampaign        String?   @map("other_media_campaign")
-  sourceFromMediaMonitoring Boolean @default(false) @map("source_from_media_monitoring")
+  sourceFromMediaMonitoring Boolean   @default(false) @map("source_from_media_monitoring")
+  mediaMonitoringId         String?   @map("media_monitoring_id")
   inPersonUpdate            DateTime? @map("in_person_update")
   createdAt                 DateTime  @default(now()) @map("created_at")
   updatedAt                 DateTime  @updatedAt @map("updated_at")
@@ -185,7 +186,7 @@ model Customer {
   salesAgent         User?               @relation("CustomerSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
   communicationLogs  CommunicationLog[]
   mediaMonitoringRecords MediaMonitoringRecord[]
-  showSuitabilities   CustomerShowSuitability[]
+  showSegmentSlots    ShowSegmentSlot[]
   advertSales         AdvertSales[]
 
   @@index([businessRef])
@@ -246,42 +247,23 @@ model MediaMonitoringRecord {
 }
 
 // ============================================
-// SHOW SEGMENT SLOT - Segment industries slot per show
+// SHOW SEGMENT SLOT - Customer segment assignment per show
 // ============================================
 model ShowSegmentSlot {
-  id          String   @id @default(uuid())
-  showId      String   @map("show_id")
-  businessRef String   @map("business_ref") // e.g., SS-0001, MS-001
-  keyIndustry String   @map("key_industry")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id         String   @id @default(uuid())
+  showId     String   @map("show_id")
+  customerId String   @map("customer_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
   // Relations
-  show              Show                   @relation(fields: [showId], references: [id], onDelete: Cascade)
-  customerSuitabilities CustomerShowSuitability[]
+  show     Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 
-  @@unique([showId, businessRef])
+  @@unique([showId, customerId])
   @@index([showId])
-  @@map("show_segment_slots")
-}
-
-// ============================================
-// CUSTOMER SHOW SUITABILITY - Customer linked to show slot when identified as suitable
-// ============================================
-model CustomerShowSuitability {
-  id                 String   @id @default(uuid())
-  customerId         String   @map("customer_id")
-  showSegmentSlotId  String   @map("show_segment_slot_id")
-  createdAt          DateTime @default(now()) @map("created_at")
-
-  // Relations
-  customer        Customer        @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  showSegmentSlot ShowSegmentSlot @relation(fields: [showSegmentSlotId], references: [id], onDelete: Cascade)
-
-  @@unique([customerId, showSegmentSlotId])
   @@index([customerId])
-  @@index([showSegmentSlotId])
-  @@map("customer_show_suitabilities")
+  @@map("show_segment_slots")
 }
 
 // ============================================
