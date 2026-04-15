@@ -72,8 +72,12 @@ export class MediaPackRepository extends PrismaBaseRepository implements IMediaP
         try {
             const deleted = await this.prisma.mediaPack.delete({ where: { id } });
             return modelToEntity(deleted);
-        } catch {
-            return null;
+        } catch (e) {
+            // P2025: record already gone (e.g. race). Do not swallow FK errors — e.g. AdvertPackageMediaPack uses onDelete: Restrict.
+            if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025') {
+                return null;
+            }
+            throw e;
         }
     }
 

@@ -11,6 +11,10 @@ export class DeleteMediaPackUseCase {
             throw new EntityNotFoundError('Media pack not found', 'MediaPack', id);
         }
 
-        return await this.mediaPackRepository.deleteById(id);
+        const deleted = await this.mediaPackRepository.deleteById(id);
+        if (!deleted) {
+            throw new EntityNotFoundError('Media pack not found', 'MediaPack', id);
+        }
+        return deleted;
     }
 }

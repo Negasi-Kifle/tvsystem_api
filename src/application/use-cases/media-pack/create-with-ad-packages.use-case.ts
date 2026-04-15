@@ -49,7 +49,6 @@ export class CreateMediaPackWithAdPackagesUseCase {
                 AdvertPackageMediaPackEntity.createInstance(advertPackage.id!, version!.id!),
             );
 
-            console.log("AdPackMedPacks: ", advertPackageMediaPacks)
             // Create the advert-package-media-pack instances
             const createdAdvertPackageMediaPacks = await this.advertPackageMediaPackRepository.createMany(advertPackageMediaPacks);
 

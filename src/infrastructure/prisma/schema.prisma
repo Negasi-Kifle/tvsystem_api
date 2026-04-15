@@ -645,7 +645,7 @@ model AdvertPackageMediaPack {
   updatedAt       DateTime @updatedAt @map("updated_at")
 
   advertPackage AdvertPackage @relation(fields: [advertPackageId], references: [id], onDelete: Cascade)
-  mediaPack     MediaPack     @relation(fields: [mediaPackId], references: [id], onDelete: Restrict)
+  mediaPack     MediaPack     @relation(fields: [mediaPackId], references: [id], onDelete: Cascade)
 
   @@unique([advertPackageId, mediaPackId])
   @@index([mediaPackId])

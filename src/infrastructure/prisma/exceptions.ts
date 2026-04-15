@@ -61,6 +61,16 @@ function fieldHintFromPrismaEngineMessage(message: string): string | null {
  * Extract field/column name(s) from Prisma error meta (P2002: target; P2003: field_name;
  * Prisma 7 + driver adapter: driverAdapterError.cause.constraint).
  */
+/**
+ * When deleting/updating a parent row, Postgres raises a FK error if child rows still point to it
+ * (e.g. `onDelete: Restrict`). Prisma surfaces this as P2003 with a message like
+ * "Foreign key constraint violated on the constraint: `..._fkey`".
+ * That must not be confused with "the row you referenced does not exist" (invalid FK on insert).
+ */
+function isForeignKeyDependencyBlocksOperation(message: string): boolean {
+  return /Foreign key constraint violated on the constraint/i.test(message);
+}
+
 export function getPrismaErrorField(meta: unknown, engineMessage?: string): string | null {
   if (meta != null && typeof meta === "object") {
     const m = meta as Record<string, unknown>;
@@ -100,6 +110,12 @@ export function prismaErrorToHttpPayload(
         message: `A record with this value already exists.${fieldSuffix}`,
       };
     case "P2003":
+      if (isForeignKeyDependencyBlocksOperation(err.message)) {
+        return {
+          statusCode: Code.BAD_REQUEST_ERROR.code,
+          message: `Cannot complete this operation: other records still depend on this row (foreign key). Remove or reassign the related records first.${fieldSuffix}`,
+        };
+      }
       return {
         statusCode: Code.BAD_REQUEST_ERROR.code,
         message: `Referenced record does not exist. Check the related field.${fieldSuffix}`,
