@@ -14591,7 +14591,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"2020 New Year Regular Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\"\n}",
+                  "raw": "{\n  \"name\": \"2020 New Year Regular Schedule\",\n  \"nameSlug\": \"20200111 new year\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"ACTIVE\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -14745,7 +14745,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"2200 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 18,\n      \"hourEth\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 21,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 23,\n      \"hourEth\": 5,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 5,\n      \"hourEth\": 11,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"name\": \"2100 Neww Year Regularr Schedule\",\n//   \"nameSlug\": \"2019\",\n  \"effectiveFrom\": \"2026-01-01T00:00:00.000Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59.000Z\",\n  \"scheduleType\": \"Regular\",\n  \"status\": \"DRAFT\",\n  \"blocks\": [\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 18,\n      \"hourEth\": 12,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 21,\n      \"hourEth\": 3,\n      \"minute\": 0,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 23,\n      \"hourEth\": 5,\n      \"minute\": 30,\n      \"dayPart\": \"ማታ\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    },\n    {\n      \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n      \"dayOfWeek\": \"MONDAY\",\n      \"hour\": 5,\n      \"hourEth\": 11,\n      \"minute\": 30,\n      \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"First_Rerun\",\n      \"label\": \"Mon R1\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -15113,7 +15113,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/api/satellite-schedules",
+                  "raw": "{{baseUrl}}/api/satellite-schedules?status=ACTIVE",
                   "host": [
                     "{{baseUrl}}"
                   ],
@@ -15144,8 +15144,7 @@
                     },
                     {
                       "key": "status",
-                      "value": "DRAFT",
-                      "disabled": true
+                      "value": "ACTIVE"
                     },
                     {
                       "key": "scheduleType",
@@ -15359,7 +15358,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "ac03e52d-6f21-4342-80aa-49aa9aea6041"
+                      "value": "079216c5-f295-4f44-854f-8128224891c4"
                     }
                   ]
                 },
@@ -15498,7 +15497,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n//   \"name\": \"Updated Schedule Name\",\n//   \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n//   \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n//   \"scheduleType\": \"Holiday\",\n  \"status\": \"ACTIVE\"\n}",
+                  "raw": "{\n    //   \"name\": \"Updated Schedule Name\",\n    \"effectiveFrom\": \"2026-02-01T00:00:00.000Z\",\n    \"effectiveTo\": \"2026-11-30T23:59:59.000Z\",\n    \"effectiveFromEth\": \"2018-04-24T03:00:00.000Z\",\n    \"effectiveToEth\": \"2019-02-21T03:00:00.000Z\"\n    //   \"scheduleType\": \"Holiday\",\n    //   \"status\": \"ACTIVE\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -15518,7 +15517,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                      "value": "2a14ed34-39e4-4978-95c7-6751cd57e42b"
                     }
                   ]
                 },
@@ -15677,7 +15676,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "ab43ffec-e7ce-4f5a-8f21-1b0089e9f320"
+                      "value": "bbd90cdf-c458-4035-9f19-5870ac1b442f"
                     }
                   ]
                 },
@@ -15821,7 +15820,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 7,\n    //   \"hourEth\": 10,\n      \"minute\": 0,\n    //   \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
+                  "raw": "\n    {\n      \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n      \"dayOfWeek\": \"TUESDAY\",\n      \"hour\": 19,\n    //   \"hourEth\": 10,\n      \"minute\": 0,\n    //   \"dayPart\": \"ሌሊት\",\n      \"broadcastType\": \"Fresh_Content\",\n      \"label\": \"Mon New\"\n    }",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -17543,7 +17542,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"dayOfWeek\": \"TUESDAY\",\n  \"hour\": 3,\n  \"minute\": 0,\n  \"dayPart\": \"ማታ\",\n  \"broadcastType\": \"First_Rerun\",\n  \"label\": \"Tue R1\"\n}",
+                  "raw": "{\n  \"dayOfWeek\": \"TUESDAY\",\n  \"hour\": 21,\n  \"hourEth\": 3,\n  \"minute\": 15,\n  \"dayPart\": \"ማታ\",\n  \"broadcastType\": \"First_Rerun\",\n  \"label\": \"Tue R1\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -17569,141 +17568,13 @@
                     },
                     {
                       "key": "blockId",
-                      "value": "1e1d9fbb-b0c8-4073-9d74-01e8247faec1"
+                      "value": "9281a56a-fbd9-4ba5-8619-540546c157af"
                     }
                   ]
                 },
                 "description": "Update a schedule block. Requires MANAGE_SCHEDULES permission. All body fields optional. When updating time (hour, minute, dayPart must all be provided together). Validates no overlaps after update. Schedule must be in DRAFT status."
               },
               "response": [
-                {
-                  "name": "Success",
-                  "originalRequest": {
-                    "method": "PATCH",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"dayOfWeek\": \"TUESDAY\",\n  \"hour\": 3,\n  \"minute\": 0,\n  \"dayPart\": \"ማታ\",\n  \"broadcastType\": \"First_Rerun\",\n  \"label\": \"Tue R1\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/:blockId",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        "api",
-                        "satellite-schedules",
-                        ":scheduleId",
-                        "blocks",
-                        ":blockId"
-                      ],
-                      "variable": [
-                        {
-                          "key": "scheduleId",
-                          "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
-                        },
-                        {
-                          "key": "blockId",
-                          "value": "1e1d9fbb-b0c8-4073-9d74-01e8247faec1"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "Text",
-                  "header": [
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Content-Security-Policy",
-                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                    },
-                    {
-                      "key": "Cross-Origin-Opener-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Cross-Origin-Resource-Policy",
-                      "value": "same-origin"
-                    },
-                    {
-                      "key": "Origin-Agent-Cluster",
-                      "value": "?1"
-                    },
-                    {
-                      "key": "Referrer-Policy",
-                      "value": "no-referrer"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains"
-                    },
-                    {
-                      "key": "X-Content-Type-Options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "off"
-                    },
-                    {
-                      "key": "X-Download-Options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "X-Frame-Options",
-                      "value": "SAMEORIGIN"
-                    },
-                    {
-                      "key": "X-Permitted-Cross-Domain-Policies",
-                      "value": "none"
-                    },
-                    {
-                      "key": "X-XSS-Protection",
-                      "value": "0"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "524"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"20c-sB/YEUfcwYvG1/1yI2baC/1aVuk\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Tue, 10 Mar 2026 20:07:15 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule block updated successfully\",\n    \"data\": {\n        \"block\": {\n            \"id\": \"1e1d9fbb-b0c8-4073-9d74-01e8247faec1\",\n            \"scheduleId\": \"291aab8c-eda7-4c9e-a719-595e06ca7f4f\",\n            \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n            \"dayOfWeek\": \"TUESDAY\",\n            \"broadcastType\": \"First_Rerun\",\n            \"label\": \"Tue R1\",\n            \"startTimeMinutes\": 1260,\n            \"durationMinutes\": 120,\n            \"gregorian\": {\n                \"start\": \"21:00\",\n                \"end\": \"23:00\"\n            },\n            \"ethiopian\": {\n                \"start\": \"3:00 ማታ\",\n                \"end\": \"5:00 ማታ\"\n            },\n            \"createdAt\": \"2026-03-10T12:14:17.853Z\",\n            \"updatedAt\": \"2026-03-10T20:07:15.156Z\"\n        }\n    }\n}"
-                },
                 {
                   "name": "Error - Not Found",
                   "originalRequest": {
@@ -17831,6 +17702,134 @@
                   ],
                   "cookie": [],
                   "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Schedule block not found\",\n    \"errorStack\": \"EntityNotFoundError: Schedule block not found\\n    at UpdateScheduleBlockUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/satellite-schedule-blocks/update-schedule-block.use-case.ts:28:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async updateScheduleBlock (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/schedule-block.controller.ts:105:19)\"\n}"
+                },
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dayOfWeek\": \"TUESDAY\",\n  \"hour\": 21,\n  \"hourEth\": 3,\n  \"minute\": 15,\n  \"dayPart\": \"ማታ\",\n  \"broadcastType\": \"First_Rerun\",\n  \"label\": \"Tue R1\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/blocks/:blockId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "satellite-schedules",
+                        ":scheduleId",
+                        "blocks",
+                        ":blockId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId",
+                          "value": "291aab8c-eda7-4c9e-a719-595e06ca7f4f"
+                        },
+                        {
+                          "key": "blockId",
+                          "value": "9281a56a-fbd9-4ba5-8619-540546c157af"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "524"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"20c-EV9ejNP3Pdze6vgpflZPdgkE4SU\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 11:52:53 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule block updated successfully\",\n    \"data\": {\n        \"block\": {\n            \"id\": \"9281a56a-fbd9-4ba5-8619-540546c157af\",\n            \"scheduleId\": \"32ad1e5c-8fe0-4265-9f9c-f8d0d440c10e\",\n            \"showId\": \"ff035727-b1ad-4819-b1e3-bf2e9246c819\",\n            \"dayOfWeek\": \"TUESDAY\",\n            \"broadcastType\": \"First_Rerun\",\n            \"label\": \"Tue R1\",\n            \"startTimeMinutes\": 1275,\n            \"durationMinutes\": 150,\n            \"gregorian\": {\n                \"start\": \"21:15\",\n                \"end\": \"23:45\"\n            },\n            \"ethiopian\": {\n                \"start\": \"3:15 ማታ\",\n                \"end\": \"5:45 ማታ\"\n            },\n            \"createdAt\": \"2026-03-10T21:44:17.684Z\",\n            \"updatedAt\": \"2026-04-15T11:52:53.202Z\"\n        }\n    }\n}"
                 }
               ]
             },

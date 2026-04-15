@@ -4,10 +4,12 @@ import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IScheduleBlockRepository } from '../../../domain/repositories/schedule-block.repository.interface';
 import { ISatelliteScheduleRepository } from '../../../domain/repositories/satellite-schedule.repository.interface';
 import { EthiopianTime, EthiopianDayPart } from '../../../domain/value-objects/ethiopian-time.value-objects';
+import { computeStartTimeMinutes } from './create-batch-schedule-blocks.use-case';
 
 export type UpdateScheduleBlockInput = {
   dayOfWeek?: DayOfWeek;
   hour?: number;
+  hourEth?: number;
   minute?: number;
   dayPart?: EthiopianDayPart;
   durationMinutes?: number;
@@ -33,10 +35,12 @@ export class UpdateScheduleBlockUseCase {
       throw new ValidationError('Can only update blocks on a DRAFT schedule');
     }
 
-    let startTimeMinutes: number | undefined;
-    if (input.hour !== undefined && input.minute !== undefined && input.dayPart !== undefined) {
-      startTimeMinutes = EthiopianTime.toGregorianMinutes(input.hour, input.minute, input.dayPart);
-    }
+    const startTimeMinutes = computeStartTimeMinutes({
+      hour: input.hour,
+      hourEth: input.hourEth,
+      minute: input.minute ?? 0,
+      dayPart: input.dayPart,
+    });
 
     block.updateInstance(
       input.dayOfWeek,
