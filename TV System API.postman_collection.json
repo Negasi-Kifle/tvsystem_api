@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "2827cfca-ab75-4135-81af-c93ff966c0ea",
+    "_postman_id": "40c435f4-f42b-4f30-99f4-cb61ce8446b2",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-2827cfca-ab75-4135-81af-c93ff966c0ea?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-40c435f4-f42b-4f30-99f4-cb61ce8446b2?source=collection_link"
   },
   "item": [
     {
@@ -10236,7 +10236,7 @@
           ]
         },
         {
-          "name": "Customers",
+          "name": "Customer",
           "item": [
             {
               "name": "Create Customer",
@@ -10261,7 +10261,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": true,\n  \"mediaMonitoringId\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\",\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
+                  "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": true,\n  \"mediaMonitoringId\": \"35b9f57b-47e6-461b-a90f-317d31b52bb3\",\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -10278,7 +10278,7 @@
                     "customers"
                   ]
                 },
-                "description": "Create sales follow-up customer. Set sourceFromMediaMonitoring and mediaMonitoringRecordIds when linking from media monitoring. Requires MANAGE_SALES."
+                "description": "Create sales follow-up customer. Requires MANAGE_SALES.\n\n**Media monitoring birth link:** When `sourceFromMediaMonitoring` is `true`, you must send `mediaMonitoringId` (UUID of a **MediaMonitoringRecord**). That row must have no `customerId` yet. The API creates the customer and, in one transaction, sets that monitoring row's `customerId` to the new customer. Only one customer can use a given monitoring row as its birth source (`mediaMonitoringId` is unique).\n\nWhen `sourceFromMediaMonitoring` is `false`, omit `mediaMonitoringId`."
               },
               "response": [
                 {
@@ -10465,10 +10465,16 @@
                       "key": "sourceFromMediaMonitoring",
                       "value": "false",
                       "disabled": true
+                    },
+                    {
+                      "key": "mediaMonitoringId",
+                      "value": "",
+                      "description": "Filter by birth-source monitoring record UUID",
+                      "disabled": true
                     }
                   ]
                 },
-                "description": "Paginated list with optional filters. Requires VIEW_SALES. Updating customer status later syncs linked media monitoring records."
+                "description": "Paginated list with optional filters. Requires VIEW_SALES.\n\n**Filters:** `businessRef`, `name`, `categoryId`, `subCategoryId`, `salesAgentId`, `status`, `sourceFromMediaMonitoring`, `mediaMonitoringId` (customers whose birth source is that monitoring row). Updating customer status or holiday status later syncs `statusWithUs` on linked **MediaMonitoringRecord** rows for this customer."
               },
               "response": [
                 {
@@ -10527,6 +10533,12 @@
                         {
                           "key": "sourceFromMediaMonitoring",
                           "value": "false",
+                          "disabled": true
+                        },
+                        {
+                          "key": "mediaMonitoringId",
+                          "value": "",
+                          "description": "Filter by birth-source monitoring record UUID",
                           "disabled": true
                         }
                       ]
@@ -10646,11 +10658,11 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": "01459802-5064-4548-9923-876c0ba1420c"
+                      "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67"
                     }
                   ]
                 },
-                "description": "Get one customer by UUID. Requires VIEW_SALES."
+                "description": "Get one customer by UUID. Response includes `mediaMonitoringId` when this customer was created from (or linked to) a birth **MediaMonitoringRecord**. Requires VIEW_SALES."
               },
               "response": [
                 {
@@ -10892,7 +10904,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"name\": \"Ashu Trading\",\n    \"contacts\": [\n        {\n            \"name\": \"Ashu\",\n            \"email\": \"ashu@mmn.com\",\n            \"phone\": \"\",\n            \"position\": \"asdfsaddf\",\n            \"mobile\": \"01122334455\",\n            \"officeTel\": \"0112233445\"\n        },\n        {\n            \"name\": \"tesfa\",\n            \"email\": \"tesfa@jan.com\",\n            \"phone\": \"\",\n            \"position\": \"janitor\",\n            \"mobile\": \"0900000000\",\n            \"officeTel\": \"\"\n        }\n    ],\n    \"industry\": \"asdfasd\",\n    \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n    \"subCategoryId\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\",\n    \"location\": \"fasdfasddf\",\n    // \"salesAgentId\": \"7f99ea33-4938-4a97-87e6-f9008f21a6e5\",\n    \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n    \"status\": \"ColdProgress\",\n    \"holidayStatus\": \"Interested\",\n    \"studioVisit\": \"NotVisited\",\n    \"otherMediaCampaign\": \"\",\n    \"sourceFromMediaMonitoring\": true,\n    \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\"\n}",
+                  "raw": "{\n    \"name\": \"Ashu Trading\",\n    \"contacts\": [\n        {\n            \"name\": \"Ashu\",\n            \"email\": \"ashu@mmn.com\",\n            \"phone\": \"\",\n            \"position\": \"asdfsaddf\",\n            \"mobile\": \"01122334455\",\n            \"officeTel\": \"0112233445\"\n        },\n        {\n            \"name\": \"tesfa\",\n            \"email\": \"tesfa@jan.com\",\n            \"phone\": \"\",\n            \"position\": \"janitor\",\n            \"mobile\": \"0900000000\",\n            \"officeTel\": \"\"\n        }\n    ],\n    \"industry\": \"asdfasd\",\n    \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n    \"subCategoryId\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\",\n    \"location\": \"fasdfasddf\",\n    \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n    \"status\": \"ColdProgress\",\n    \"holidayStatus\": \"Interested\",\n    \"studioVisit\": \"NotVisited\",\n    \"otherMediaCampaign\": \"\",\n    \"sourceFromMediaMonitoring\": true,\n    \"mediaMonitoringId\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\",\n    \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -10916,7 +10928,7 @@
                     }
                   ]
                 },
-                "description": "Partial update. Changing status or holidayStatus updates statusWithAbbay on linked MediaMonitoringRecord rows. Requires MANAGE_SALES."
+                "description": "Partial update. Requires MANAGE_SALES.\n\n**Status sync:** Changing `status` or `holidayStatus` updates `statusWithUs` on **MediaMonitoringRecord** rows linked to this customer via `customerId`.\n\n**Media monitoring birth (`mediaMonitoringId`):** Optional. The target row must have no `customerId` or be linked to **this** customer. A given monitoring row can be the birth source for at most one customer.\n\n**`sourceFromMediaMonitoring`:** Set `false` to clear birth tracking (omit `mediaMonitoringId` in the same request). Do not send `mediaMonitoringId` when `sourceFromMediaMonitoring` is `false`."
               },
               "response": [
                 {
@@ -11663,7 +11675,7 @@
                     "unlinked"
                   ]
                 },
-                "description": "Records with no customer yet — use when creating a customer from monitoring. Requires VIEW_SALES."
+                "description": "Returns **MediaMonitoringRecord** rows where `customerId` is null (not yet linked to any customer). Use this list to pick a row UUID for **Create Customer** with `sourceFromMediaMonitoring: true` and `mediaMonitoringId`. Requires VIEW_SALES."
               },
               "response": [
                 {
@@ -11792,7 +11804,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithUs\": \"ColdProgress\",\n  \"contactInfo\": \"0911000000\"\n}",
+                  "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithUs\": \"ColdProgress\",\n  \"contactInfo\": \"0911000000\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -11809,7 +11821,7 @@
                     "media-monitoring"
                   ]
                 },
-                "description": "channel: EBS | FANA | Arts | Kana | Radio. Requires MANAGE_SALES."
+                "description": "**channel:** `EBS` | `FANA` | `Arts` | `Kana` | `Radio`. Requires MANAGE_SALES.\n\n**Optional `customerId`:** UUID of an existing customer to link this row immediately (many monitoring rows can share the same customer). Omit when recording an unlinked competitor row."
               },
               "response": [
                 {
@@ -11825,7 +11837,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithUs\": \"ColdProgress\",\n  \"contactInfo\": \"0911000000\"\n}",
+                      "raw": "{\n  \"channel\": \"EBS\",\n  \"sponsorName\": \"Ambo Water\",\n  \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"6:00-7:00\",\n  \"statusWithUs\": \"ColdProgress\",\n  \"contactInfo\": \"0911000000\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -11928,6 +11940,667 @@
                   "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media monitoring record created successfully\",\n    \"data\": {\n        \"record\": {\n            \"channel\": \"EBS\",\n            \"sponsorName\": \"Ambo Water\",\n            \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n            \"showName\": \"Seifu Show\",\n            \"timeSlot\": \"6:00-7:00\",\n            \"statusWithUs\": \"ColdProgress\",\n            \"contactInfo\": \"0911000000\",\n            \"createdAt\": \"2026-03-22T19:56:11.183Z\",\n            \"updatedAt\": \"2026-03-22T19:56:11.183Z\",\n            \"id\": \"cf0e5693-98fb-42ab-b8cc-309482c59db1\"\n        }\n    }\n}"
                 }
               ]
+            },
+            {
+              "name": "List Media Monitoring Records",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring?page=1&limit=10&customerId=fff64bb4-8c1e-4c87-84a7-d0701f1d3a67",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "channel",
+                      "value": "EBS",
+                      "description": "EBS | FANA | Arts | Kana | Radio",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sponsorName",
+                      "value": "Ambo",
+                      "description": "Case-insensitive contains",
+                      "disabled": true
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67",
+                      "description": "Filter by linked customer UUID"
+                    },
+                    {
+                      "key": "unlinkedOnly",
+                      "value": "true",
+                      "description": "Only rows with no customerId; do not use with customerId",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Paginated list of all media monitoring records. Optional query: `channel`, `sponsorName` (contains), `customerId`, `unlinkedOnly` (true = customerId is null). Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring?page=1&limit=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "channel",
+                          "value": "EBS",
+                          "description": "EBS | FANA | Arts | Kana | Radio",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sponsorName",
+                          "value": "Ambo",
+                          "description": "Case-insensitive contains",
+                          "disabled": true
+                        },
+                        {
+                          "key": "customerId",
+                          "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67",
+                          "description": "Filter by linked customer UUID",
+                          "disabled": true
+                        },
+                        {
+                          "key": "unlinkedOnly",
+                          "value": "true",
+                          "description": "Only rows with no customerId; do not use with customerId",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "1100"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"44c-eBeJrnW0xFsOg84VQ5Lu28RHCcU\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 09:23:53 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"records\": [\n            {\n                \"channel\": \"EBS\",\n                \"sponsorName\": \"Ambo Water\",\n                \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n                \"showName\": \"Seifu Show\",\n                \"timeSlot\": \"6:00-7:00\",\n                \"statusWithUs\": \"Cold Progress\",\n                \"contactInfo\": \"0911000000\",\n                \"createdAt\": \"2026-03-21T09:01:34.427Z\",\n                \"updatedAt\": \"2026-03-21T09:01:34.427Z\",\n                \"id\": \"77c7c856-5366-4d43-8efb-58cbbd79a9c8\"\n            },\n            {\n                \"channel\": \"EBS\",\n                \"sponsorName\": \"Ambo Water\",\n                \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n                \"showName\": \"Seifu Show\",\n                \"timeSlot\": \"6:00-7:00\",\n                \"statusWithUs\": \"ColdProgress\",\n                \"contactInfo\": \"0911000000\",\n                \"createdAt\": \"2026-03-22T19:56:11.183Z\",\n                \"updatedAt\": \"2026-03-22T19:56:11.183Z\",\n                \"id\": \"cf0e5693-98fb-42ab-b8cc-309482c59db1\"\n            },\n            {\n                \"channel\": \"EBS\",\n                \"sponsorName\": \"Ambo Water\",\n                \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n                \"showName\": \"Seifu Show\",\n                \"timeSlot\": \"6:00-7:00\",\n                \"statusWithUs\": \"Cold Progress\",\n                \"contactInfo\": \"0911000000\",\n                \"customerId\": \"9008a16e-52a0-4a9a-ae71-ec76605bfde1\",\n                \"createdAt\": \"2026-03-21T09:01:13.578Z\",\n                \"updatedAt\": \"2026-04-15T09:08:52.676Z\",\n                \"id\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\"\n            }\n        ]\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Get Media Monitoring Record By ID",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8",
+                      "description": "MediaMonitoringRecord UUID"
+                    }
+                  ]
+                },
+                "description": "Returns one record including `customerId` when linked. Requires VIEW_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8",
+                          "description": "MediaMonitoringRecord UUID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "354"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"162-dtJa20W8sV3b03jw4rkHuKQ5Zq0\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 09:24:15 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"record\": {\n            \"channel\": \"EBS\",\n            \"sponsorName\": \"Ambo Water\",\n            \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n            \"showName\": \"Seifu Show\",\n            \"timeSlot\": \"6:00-7:00\",\n            \"statusWithUs\": \"Cold Progress\",\n            \"contactInfo\": \"0911000000\",\n            \"createdAt\": \"2026-03-21T09:01:34.427Z\",\n            \"updatedAt\": \"2026-03-21T09:01:34.427Z\",\n            \"id\": \"77c7c856-5366-4d43-8efb-58cbbd79a9c8\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Update Media Monitoring Record",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sponsorName\": \"Ambo Water PLC\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"7:00-8:00\",\n  \"statusWithUs\": \"HotProgress\",\n  \"contactInfo\": \"0911000000\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8"
+                    }
+                  ]
+                },
+                "description": "Partial update. All body fields optional. Use `\"customerId\": null` to unlink from customer. Set `channel`, `sponsorName`, `monitoringDate`, `showName`, `timeSlot`, `statusWithUs`, `contactInfo` as needed. Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sponsorName\": \"Ambo Water PLC\",\n  \"showName\": \"Seifu Show\",\n  \"timeSlot\": \"7:00-8:00\",\n  \"statusWithUs\": \"HotProgress\",\n  \"contactInfo\": \"0911000000\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "465"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"1d1-+tCST/lzhbIBb55ta8ghrHIAS2Q\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 09:25:07 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media monitoring record updated successfully\",\n    \"data\": {\n        \"record\": {\n            \"channel\": \"EBS\",\n            \"sponsorName\": \"Ambo Water PLC\",\n            \"monitoringDate\": \"2026-03-21T00:00:00.000Z\",\n            \"showName\": \"Seifu Show\",\n            \"timeSlot\": \"7:00-8:00\",\n            \"statusWithUs\": \"HotProgress\",\n            \"contactInfo\": \"0911000000\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"createdAt\": \"2026-03-21T09:01:34.427Z\",\n            \"updatedAt\": \"2026-04-15T09:25:07.851Z\",\n            \"id\": \"77c7c856-5366-4d43-8efb-58cbbd79a9c8\"\n        }\n    }\n}"
+                }
+              ]
+            },
+            {
+              "name": "Delete Media Monitoring Record",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "media-monitoring",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8"
+                    }
+                  ]
+                },
+                "description": "Hard delete. If this row was a customer birth source, `customers.media_monitoring_id` is set null (FK). Requires MANAGE_SALES."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/media-monitoring/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "media-monitoring",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "77c7c856-5366-4d43-8efb-58cbbd79a9c8"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "77"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"4d-0lgX5WG6CWejacFijYeTgmBadFc\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Wed, 15 Apr 2026 09:25:21 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Media monitoring record deleted successfully\"\n}"
+                }
+              ]
             }
           ]
         },
@@ -12010,7 +12683,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12187,7 +12860,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12331,7 +13004,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12505,7 +13178,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -12649,7 +13322,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",

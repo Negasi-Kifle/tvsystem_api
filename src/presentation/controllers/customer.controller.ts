@@ -23,7 +23,7 @@ export function createCustomerHandlers(
     generateBusinessRefService
   } = deps;
 
-  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService, mediaMonitoringRepo);
+  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService);
   const updateCustomerUseCase = new UpdateCustomerUseCase(customerRepo, mediaMonitoringRepo);
   const getCustomerByIdUseCase = new GetCustomerByIdUseCase(customerRepo);
   const fetchAllCustomersUseCase = new FetchAllCustomersUseCase(customerRepo);

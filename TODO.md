@@ -59,6 +59,10 @@
 
 ## ✅ Completed Tasks
 
+### 04/15/2026
+
+- ✅ Customer `mediaMonitoringSourceId` birth link: Prisma relations `CustomerBirthSource` vs `CustomerLinkedMonitoringRecords`, `@unique` + FK migration `20260415120000_customer_media_monitoring_birth_fk_unique`, mapper uses `mediaMonitoringSourceId`, transactional `createWithBirthMonitoringLink`, update validation + P2002 mapping, optional `customerId` on create media monitoring record; unit tests for create/update media monitoring flows
+
 ### 04/14/2026
 
 - ✅ Show segment slots: model is `showId` + `customerId` (required); removed `CustomerShowSuitability` and `/customer-show-suitability`; full REST CRUD on `/show-segment-slots` (list with filters, create, get by id, patch, delete, list by show); migration `20260414120000_show_segment_slot_customer_id_drop_suitability`; seed uses seed customers `SEED-SS-001`–`003`; unit tests for query mapper and create use case

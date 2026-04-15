@@ -13,5 +13,8 @@ export function buildWhereClauseForCustomer(filters: Partial<CustomerEntity>): P
     ...(filters.sourceFromMediaMonitoring !== undefined && {
       sourceFromMediaMonitoring: filters.sourceFromMediaMonitoring,
     }),
+    ...(filters.mediaMonitoringId !== undefined && {
+      mediaMonitoringSourceId: filters.mediaMonitoringId,
+    }),
   };
 }

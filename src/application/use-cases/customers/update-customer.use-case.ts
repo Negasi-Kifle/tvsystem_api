@@ -39,17 +39,45 @@ export class UpdateCustomerUseCase {
     const holidayStatusChanged =
       payload.holidayStatus !== undefined && payload.holidayStatus !== existing.holidayStatus;
 
-    // If customer is from media monitoring, Id of the media monitoring record should be provided
-    if (payload.sourceFromMediaMonitoring === true && !payload.mediaMonitoringId) {
-      throw new ValidationError('Media monitoring ID is required if customer is from media monitoring');
-    }
+    const nextMediaMonitoringId: string | null | undefined =
+      payload.sourceFromMediaMonitoring === false
+        ? null
+        : payload.mediaMonitoringId !== undefined
+          ? payload.mediaMonitoringId
+          : undefined;
 
-    if (payload.mediaMonitoringId) {
-      const mediaMonitoring = await this.mediaMonitoringRepo.findById(payload.mediaMonitoringId);
-      if (!mediaMonitoring) {
-        throw new EntityNotFoundError('Media monitoring record not found', 'MediaMonitoringRecord', payload.mediaMonitoringId);
+    if (payload.sourceFromMediaMonitoring === true) {
+      const effectiveBirthId =
+        typeof nextMediaMonitoringId === 'string'
+          ? nextMediaMonitoringId
+          : existing.mediaMonitoringId;
+      if (!effectiveBirthId) {
+        throw new ValidationError('Media monitoring ID is required if customer is from media monitoring');
       }
     }
+
+    if (typeof nextMediaMonitoringId === 'string') {
+      const record = await this.mediaMonitoringRepo.findById(nextMediaMonitoringId);
+      if (!record) {
+        throw new EntityNotFoundError(
+          'Media monitoring record not found',
+          'MediaMonitoringRecord',
+          nextMediaMonitoringId,
+        );
+      }
+      if (record.customerId !== null && record.customerId !== customerId) {
+        throw new ValidationError(
+          'This media monitoring record is already linked to another customer',
+        );
+      }
+    }
+
+    const sourceToApply: boolean | undefined =
+      nextMediaMonitoringId === null
+        ? false
+        : payload.sourceFromMediaMonitoring !== undefined
+          ? payload.sourceFromMediaMonitoring
+          : undefined;
 
     existing.updateInstance(
       payload.name,
@@ -65,8 +93,8 @@ export class UpdateCustomerUseCase {
       payload.otherMediaCampaign,
       payload.inPersonUpdate,
       payload.contacts,
-      payload.sourceFromMediaMonitoring,
-      payload.mediaMonitoringId
+      sourceToApply,
+      nextMediaMonitoringId,
     );
 
     const updated = await this.customerRepo.update(existing);

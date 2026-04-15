@@ -3,9 +3,6 @@ import { ICustomerRepository } from '../../../domain/repositories/customer.repos
 import { ValidationError } from '../../../domain/errors/validation.error';
 import { CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit} from '../../../domain/enums/customer-status.enum';
 import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
-import { EntityNotFoundError } from '../../../domain/errors';
-import { IMediaMonitoringRecordRepository } from '../../../domain/repositories/media-monitoring-record.repository.interface';
-
 export type CreateCustomerInput = {
   name: string;
   contacts?: CustomerContact[];
@@ -28,7 +25,6 @@ export class CreateCustomerUseCase {
   constructor(
     private readonly customerRepo: ICustomerRepository,
     private readonly generateBusinessRefService: IGenerateBusinessRefService,
-    private readonly mediaMonitoringRepo: IMediaMonitoringRecordRepository,
   ) {}
 
   async execute(payload: CreateCustomerInput): Promise<CustomerEntity> {
@@ -37,13 +33,6 @@ export class CreateCustomerUseCase {
     // If customer is from media monitoring, Id of the media monitoring record should be provided
     if (payload.sourceFromMediaMonitoring === true && !payload.mediaMonitoringId) {
       throw new ValidationError('Media monitoring ID is required if customer is from media monitoring');
-    }
-
-    if (payload.mediaMonitoringId) {
-      const mediaMonitoring = await this.mediaMonitoringRepo.findById(payload.mediaMonitoringId);
-      if (!mediaMonitoring) {
-        throw new EntityNotFoundError('Media monitoring record not found', 'MediaMonitoringRecord', payload.mediaMonitoringId);
-      }
     }
 
     const customer = CustomerEntity.createInstance(
@@ -65,8 +54,10 @@ export class CreateCustomerUseCase {
       payload.inPersonUpdate,
     );
 
-    const created = await this.customerRepo.create(customer);
+    if (payload.sourceFromMediaMonitoring === true && payload.mediaMonitoringId) {
+      return this.customerRepo.createWithBirthMonitoringLink(customer, payload.mediaMonitoringId);
+    }
 
-    return created;
+    return this.customerRepo.create(customer);
   }
 }

@@ -28,6 +28,19 @@ export const updateCustomerDto = z
     sourceFromMediaMonitoring: z.boolean().optional(),
     mediaMonitoringId: z.uuid("Media monitoring ID must be a valid UUID.").optional(),
   })
-  .strict();
+  .strict()
+  .refine(
+    (data) => {
+      if (data.sourceFromMediaMonitoring === false && data.mediaMonitoringId !== undefined) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message:
+        'mediaMonitoringId must not be set when sourceFromMediaMonitoring is false',
+      path: ['mediaMonitoringId'],
+    },
+  );
 
 export type UpdateCustomerDto = z.infer<typeof updateCustomerDto>;

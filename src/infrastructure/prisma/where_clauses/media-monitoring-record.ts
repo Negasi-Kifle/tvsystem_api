@@ -1,8 +1,8 @@
 import { Prisma } from '../generated/client';
-import { MediaMonitoringRecordEntity } from '../../../domain/entities/media-monitoring-record.entity';
+import type { MediaMonitoringRecordFilters } from '../../../domain/types/media-monitoring-record-filters';
 
 export function buildWhereClauseForMediaMonitoringRecord(
-  filters: Partial<MediaMonitoringRecordEntity>
+  filters: MediaMonitoringRecordFilters | undefined,
 ): Prisma.MediaMonitoringRecordWhereInput {
   if (!filters) return {};
   return {
@@ -10,6 +10,10 @@ export function buildWhereClauseForMediaMonitoringRecord(
     ...(filters.sponsorName !== undefined && {
       sponsorName: { contains: filters.sponsorName, mode: 'insensitive' },
     }),
-    ...(filters.customerId !== undefined && { customerId: filters.customerId }),
+    ...(filters.unlinkedOnly === true
+      ? { customerId: null }
+      : filters.customerId !== undefined
+        ? { customerId: filters.customerId }
+        : {}),
   };
 }

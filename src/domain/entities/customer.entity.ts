@@ -102,7 +102,7 @@ export class CustomerEntity {
     inPersonUpdate?: Date,
     contacts?: CustomerContact[],
     sourceFromMediaMonitoring?: boolean,
-    mediaMonitoringId?: string
+    mediaMonitoringId?: string | null
   ): CustomerEntity {
     if (name !== undefined) this.name = name;
     if (industry !== undefined) this.industry = industry;
@@ -118,7 +118,9 @@ export class CustomerEntity {
     if (inPersonUpdate !== undefined) this.inPersonUpdate = inPersonUpdate;
     if (contacts !== undefined) this.contacts = contacts;
     if (sourceFromMediaMonitoring !== undefined) this.sourceFromMediaMonitoring = sourceFromMediaMonitoring;
-    if (mediaMonitoringId !== undefined) this.mediaMonitoringId = mediaMonitoringId;
+    if (mediaMonitoringId !== undefined) {
+      this.mediaMonitoringId = mediaMonitoringId ?? undefined;
+    }
     this.updatedAt = new Date();
     return this;
   }

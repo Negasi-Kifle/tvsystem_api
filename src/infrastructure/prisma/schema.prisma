@@ -175,7 +175,7 @@ model Customer {
   studioVisit               String?   @map("studio_visit") // Visited Studio, Not Visited Studio
   otherMediaCampaign        String?   @map("other_media_campaign")
   sourceFromMediaMonitoring Boolean   @default(false) @map("source_from_media_monitoring")
-  mediaMonitoringId         String?   @map("media_monitoring_id")
+  mediaMonitoringSourceId   String?   @unique @map("media_monitoring_id")
   inPersonUpdate            DateTime? @map("in_person_update")
   createdAt                 DateTime  @default(now()) @map("created_at")
   updatedAt                 DateTime  @updatedAt @map("updated_at")
@@ -184,8 +184,9 @@ model Customer {
   category           Category?           @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   subCategory        SubCategory?        @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   salesAgent         User?               @relation("CustomerSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
+  mediaMonitoringSource MediaMonitoringRecord? @relation("CustomerBirthSource", fields: [mediaMonitoringSourceId], references: [id], onDelete: SetNull)
   communicationLogs  CommunicationLog[]
-  mediaMonitoringRecords MediaMonitoringRecord[]
+  mediaMonitoringRecords MediaMonitoringRecord[] @relation("CustomerLinkedMonitoringRecords")
   showSegmentSlots    ShowSegmentSlot[]
   advertSales         AdvertSales[]
 
@@ -237,8 +238,9 @@ model MediaMonitoringRecord {
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @updatedAt @map("updated_at")
 
-  // Relations
-  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  // Relations: many records per customer (linked rows); optional reverse of birth FK on Customer
+  customer              Customer? @relation("CustomerLinkedMonitoringRecords", fields: [customerId], references: [id], onDelete: SetNull)
+  customerAsBirthSource Customer? @relation("CustomerBirthSource")
 
   @@index([channel])
   @@index([customerId])

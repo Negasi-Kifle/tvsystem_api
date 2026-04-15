@@ -10,6 +10,7 @@ export const createMediaMonitoringRecordDto = z
     timeSlot: z.string().optional(),
     statusWithUs: z.enum(CustomerStatusWithUs, "Status with Us must be one of the following: " + Object.values(CustomerStatusWithUs).join(', ')).optional(),
     contactInfo: z.string().optional(),
+    customerId: z.uuid('Customer ID must be a valid UUID.').optional(),
   })
   .strict();
 

@@ -1,6 +1,7 @@
 import { PrismaBaseRepository } from './base.repository';
 import { IMediaMonitoringRecordRepository } from '../../../domain/repositories/media-monitoring-record.repository.interface';
 import { MediaMonitoringRecordEntity } from '../../../domain/entities/media-monitoring-record.entity';
+import type { MediaMonitoringRecordFilters } from '../../../domain/types/media-monitoring-record-filters';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { modelToEntity, entityToModel } from '../model_entity_mappers/media-monitoring-record';
 import { buildWhereClauseForMediaMonitoringRecord } from '../where_clauses/media-monitoring-record';
@@ -30,7 +31,9 @@ export class MediaMonitoringRecordRepository
     return result.count;
   }
 
-  async findMany(query: QueryOptions<MediaMonitoringRecordEntity>): Promise<MediaMonitoringRecordEntity[]> {
+  async findMany(
+    query: QueryOptions<MediaMonitoringRecordEntity, MediaMonitoringRecordFilters>,
+  ): Promise<MediaMonitoringRecordEntity[]> {
     const where = buildWhereClauseForMediaMonitoringRecord(query.filters ?? {});
     const list = await this.prisma.mediaMonitoringRecord.findMany({
       where,
@@ -41,7 +44,7 @@ export class MediaMonitoringRecordRepository
     return list.map(modelToEntity);
   }
 
-  async count(filters?: Partial<MediaMonitoringRecordEntity>): Promise<number> {
+  async count(filters?: MediaMonitoringRecordFilters): Promise<number> {
     const where = buildWhereClauseForMediaMonitoringRecord(filters ?? {});
     return this.prisma.mediaMonitoringRecord.count({ where });
   }

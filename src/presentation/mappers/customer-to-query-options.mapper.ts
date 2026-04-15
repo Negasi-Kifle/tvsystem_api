@@ -20,6 +20,7 @@ export function mapFetchAllCustomersDtoToQueryOptions(dto: FetchAllCustomersDto)
       ...(dto.sourceFromMediaMonitoring != null && {
         sourceFromMediaMonitoring: dto.sourceFromMediaMonitoring,
       }),
+      ...(dto.mediaMonitoringId != null && { mediaMonitoringId: dto.mediaMonitoringId }),
     },
   };
 }
