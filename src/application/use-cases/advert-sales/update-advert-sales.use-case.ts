@@ -4,7 +4,11 @@ import { AdvertSalesStatus } from '../../../domain/enums/advert-sales.enum';
 import { AdvertType } from '../../../domain/enums/advert-type.enum';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { IAdvertPackageRepository } from '../../../domain/repositories/advert-package.repository.interface';
+import { ICategoryRepository } from '../../../domain/repositories/category.repository.interface';
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
+import { ISubCategoryRepository } from '../../../domain/repositories/sub-category.repository.interface';
+import { IUserRepository } from '../../../domain/repositories/user.repo';
+import { computeStoredAgentCommissionPercentage } from '../../../domain/services/sales-commission-storage';
 
 export type UpdateAdvertSalesInput = {
   adPackageId?: string;
@@ -18,14 +22,17 @@ export type UpdateAdvertSalesInput = {
   adPackagePrice?: number;
   discountPercentage?: number;
   finalPrice?: number;
+  installmentCount?: number;
   campaignName?: string;
   contractSignDate?: Date;
+  salesRepId?: string | null;
+  salesRepCommissionPercentage?: number;
+  categoryId?: string | null;
+  subCategoryId?: string | null;
   salesAgentId?: string | null;
-  agentCommissionPercentage?: number;
-  industry?: string | null;
+  salesAgentCommissionPercentage?: number;
   festiveSeason?: string | null;
   referralSource?: string | null;
-  advertAgency?: string | null;
   notes?: string | null;
 };
 
@@ -34,6 +41,9 @@ export class UpdateAdvertSalesUseCase {
     private readonly advertSalesRepo: IAdvertSalesRepository,
     private readonly advertPackageRepo: IAdvertPackageRepository,
     private readonly customerRepo: ICustomerRepository,
+    private readonly userRepository: IUserRepository,
+    private readonly categoryRepo: ICategoryRepository,
+    private readonly subCategoryRepo: ISubCategoryRepository,
   ) {}
 
   async execute(id: string, patch: UpdateAdvertSalesInput): Promise<AdvertSalesEntity | null> {
@@ -73,6 +83,94 @@ export class UpdateAdvertSalesUseCase {
     }
     const finalPrice = calculatedFinal;
 
+    const installmentCount =
+      patch.installmentCount !== undefined ? patch.installmentCount : existing.installmentCount;
+    if (!Number.isInteger(installmentCount) || installmentCount < 1) {
+      throw new ValidationError('Installment count must be an integer of at least 1');
+    }
+
+    const mergedCategoryId =
+      patch.categoryId !== undefined ? patch.categoryId : existing.categoryId;
+    const mergedSubCategoryId =
+      patch.subCategoryId !== undefined ? patch.subCategoryId : existing.subCategoryId;
+
+    const { categoryId, subCategoryId } = await this.resolveMergedCategoryPair(
+      mergedCategoryId,
+      mergedSubCategoryId,
+    );
+
+    const salesRepId = patch.salesRepId !== undefined ? patch.salesRepId : existing.salesRepId;
+    const salesAgentId =
+      patch.salesAgentId !== undefined ? patch.salesAgentId : existing.salesAgentId;
+
+    const finalPriceChanged = Math.abs(finalPrice - existing.finalPrice) > 0.01;
+
+    let salesRepCommissionPercentage =
+      patch.salesRepCommissionPercentage !== undefined
+        ? patch.salesRepCommissionPercentage
+        : existing.salesRepCommissionPercentage;
+
+    let salesAgentCommissionPercentage =
+      patch.salesAgentCommissionPercentage !== undefined
+        ? patch.salesAgentCommissionPercentage
+        : existing.salesAgentCommissionPercentage;
+
+    const recomputeRepPct =
+      patch.salesRepCommissionPercentage === undefined &&
+      (patch.salesRepId !== undefined || finalPriceChanged);
+
+    const recomputeAgentPct =
+      patch.salesAgentCommissionPercentage === undefined &&
+      (patch.salesAgentId !== undefined || finalPriceChanged);
+
+    if (recomputeRepPct) {
+      if (salesRepId) {
+        const repUser = await this.userRepository.findById(salesRepId);
+        if (!repUser) {
+          throw new EntityNotFoundError('Sales rep user not found', 'User', salesRepId);
+        }
+        if (
+          repUser.salesCommissionType === undefined ||
+          repUser.salesCommissionAmount === undefined
+        ) {
+          throw new ValidationError(
+            'The sales rep has not been assigned a sales commission type and amount. Please contact the administrator.',
+          );
+        }
+        salesRepCommissionPercentage = computeStoredAgentCommissionPercentage(
+          repUser.salesCommissionType,
+          repUser.salesCommissionAmount,
+          finalPrice,
+        );
+      } else {
+        salesRepCommissionPercentage = 0;
+      }
+    }
+
+    if (recomputeAgentPct) {
+      if (salesAgentId) {
+        const agentUser = await this.userRepository.findById(salesAgentId);
+        if (!agentUser) {
+          throw new EntityNotFoundError('Sales agent user not found', 'User', salesAgentId);
+        }
+        if (
+          agentUser.salesCommissionType === undefined ||
+          agentUser.salesCommissionAmount === undefined
+        ) {
+          throw new ValidationError(
+            'The sales agent has not been assigned a sales commission type and amount. Please contact the administrator.',
+          );
+        }
+        salesAgentCommissionPercentage = computeStoredAgentCommissionPercentage(
+          agentUser.salesCommissionType,
+          agentUser.salesCommissionAmount,
+          finalPrice,
+        );
+      } else {
+        salesAgentCommissionPercentage = 0;
+      }
+    }
+
     const updated = new AdvertSalesEntity(
       existing.referenceNumber,
       adPackageId,
@@ -86,20 +184,58 @@ export class UpdateAdvertSalesUseCase {
       adPackagePrice,
       patch.discountPercentage !== undefined ? patch.discountPercentage : existing.discountPercentage,
       finalPrice,
+      installmentCount,
       patch.campaignName ?? existing.campaignName,
       patch.contractSignDate ?? existing.contractSignDate,
-      patch.salesAgentId !== undefined ? patch.salesAgentId : existing.salesAgentId,
-      patch.agentCommissionPercentage !== undefined ? patch.agentCommissionPercentage : existing.agentCommissionPercentage,
-      patch.industry !== undefined ? patch.industry : existing.industry,
+      salesRepId,
+      salesRepCommissionPercentage,
+      categoryId,
+      subCategoryId,
+      salesAgentId,
+      salesAgentCommissionPercentage,
       patch.festiveSeason !== undefined ? patch.festiveSeason : existing.festiveSeason,
       patch.referralSource !== undefined ? patch.referralSource : existing.referralSource,
-      patch.advertAgency !== undefined ? patch.advertAgency : existing.advertAgency,
       patch.notes !== undefined ? patch.notes : existing.notes,
       existing.createdAt,
       existing.updatedAt,
       existing.id,
+      existing.adPackage,
+      existing.customer,
+      existing.salesRep,
+      existing.salesAgent,
+      existing.category,
+      existing.subCategory,
     );
 
     return this.advertSalesRepo.update(updated);
+  }
+
+  private async resolveMergedCategoryPair(
+    mergedCategoryId: string | null | undefined,
+    mergedSubCategoryId: string | null | undefined,
+  ): Promise<{ categoryId: string | null; subCategoryId: string | null }> {
+    if (mergedSubCategoryId) {
+      const sub = await this.subCategoryRepo.findById(mergedSubCategoryId);
+      if (!sub) {
+        throw new EntityNotFoundError('Sub-category not found', 'SubCategory', mergedSubCategoryId);
+      }
+      if (mergedCategoryId && sub.categoryId !== mergedCategoryId) {
+        throw new ValidationError('Sub-category does not belong to the given category');
+      }
+      return {
+        categoryId: (mergedCategoryId ?? sub.categoryId) ?? null,
+        subCategoryId: mergedSubCategoryId,
+      };
+    }
+
+    if (mergedCategoryId) {
+      const cat = await this.categoryRepo.findById(mergedCategoryId);
+      if (!cat) {
+        throw new EntityNotFoundError('Category not found', 'Category', mergedCategoryId);
+      }
+      return { categoryId: mergedCategoryId, subCategoryId: null };
+    }
+
+    return { categoryId: null, subCategoryId: null };
   }
 }

@@ -24,12 +24,14 @@ export const createAdvertSalesDto = z
     adLengthSeconds: z.coerce.number().int().nonnegative(),
     numOfSlots: z.coerce.number().int().nonnegative(),
     discountPercentage: z.coerce.number().min(0).max(100).optional().default(0),
+    installmentCount: z.coerce.number().int().min(1).optional().default(1),
     campaignName: z.string().min(1),
     contractSignDate: z.coerce.date(),
-    industry: z.string().min(1).optional(),
+    categoryId: z.uuid('Category ID must be a valid UUID').optional(),
+    subCategoryId: z.uuid('Sub-category ID must be a valid UUID').optional(),
+    salesAgentId: z.uuid('Sales agent ID must be a valid UUID').optional(),
     festiveSeason: z.string().min(1).optional(),
     referralSource: z.string().min(1).optional(),
-    advertAgency: z.string().min(1).optional(),
     notes: z.string().optional(),
   })
   .strict();

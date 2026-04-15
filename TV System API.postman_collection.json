@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "b47f411e-9760-4892-bd55-bf062b3b43b8",
+    "_postman_id": "08f04ef9-c4df-4937-b6b2-9b70e3b32219",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-b47f411e-9760-4892-bd55-bf062b3b43b8?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-08f04ef9-c4df-4937-b6b2-9b70e3b32219?source=collection_link"
   },
   "item": [
     {
@@ -3185,14 +3185,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/users/5143d118-7606-4568-abf4-c65d8aa67713",
+              "raw": "{{baseUrl}}/api/users/06338ad4-e725-4952-a60e-fda19741d50c",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "users",
-                "5143d118-7606-4568-abf4-c65d8aa67713"
+                "06338ad4-e725-4952-a60e-fda19741d50c"
               ]
             }
           },
@@ -3697,7 +3697,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"salesCommissionType\": \"Percentage\",\n    \"salesCommissionAmount\": 10\n}",
+              "raw": "{\n    \"salesCommissionType\": \"Percentage\",\n    \"salesCommissionAmount\": 13\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3705,14 +3705,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/users/be8c950e-06a7-4f00-8b29-34e1bb1925cd",
+              "raw": "{{baseUrl}}/api/users/06338ad4-e725-4952-a60e-fda19741d50c",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "users",
-                "be8c950e-06a7-4f00-8b29-34e1bb1925cd"
+                "06338ad4-e725-4952-a60e-fda19741d50c"
               ]
             },
             "description": "Set user active/inactive status. Requires MANAGE_USERS permission."
@@ -9950,7 +9950,7 @@
                   "variable": [
                     {
                       "key": "categoryId",
-                      "value": "ba5396e3-6f95-4945-8f85-296cc1c81905"
+                      "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
                     }
                   ]
                 },
@@ -10465,7 +10465,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10755,7 +10755,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -10929,7 +10929,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11073,7 +11073,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -23211,7 +23211,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n  \"status\": \"Pending\",\n  \"advertType\": \"Paid\",\n  \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n  \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n  \"adLengthSeconds\": 30,\n  \"numOfSlots\": 10,\n  \"discountPercentage\": 5,\n  \"campaignName\": \"Q2 Product Launch\",\n  \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n  \"industry\": \"Technology\",\n  \"festiveSeason\": \"New Year\",\n  \"referralSource\": \"Direct\",\n  \"advertAgency\": \"Advert Agency Name\",\n  \"notes\": \"High-priority client\"\n}",
+              "raw": "{\n  \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n  \"status\": \"Pending\",\n  \"advertType\": \"Paid\",\n  \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n  \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n  \"adLengthSeconds\": 30,\n  \"numOfSlots\": 10,\n  \"discountPercentage\": 5,\n  \"installmentCount\": 3,\n  \"campaignName\": \"Q2 Product Launch\",\n  \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"festiveSeason\": \"New Year\",\n  \"referralSource\": \"Direct\",\n  \"notes\": \"High-priority client\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -23249,7 +23249,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n  \"status\": \"Pending\",\n  \"advertType\": \"Paid\",\n  \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n  \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n  \"adLengthSeconds\": 30,\n  \"numOfSlots\": 10,\n  \"discountPercentage\": 5,\n  \"campaignName\": \"Q2 Product Launch\",\n  \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n  \"industry\": \"Technology\",\n  \"festiveSeason\": \"New Year\",\n  \"referralSource\": \"Direct\",\n  \"advertAgency\": \"Advert Agency Name\",\n  \"notes\": \"High-priority client\"\n}",
+                  "raw": "{\n  \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n  \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n  \"status\": \"Pending\",\n  \"advertType\": \"Paid\",\n  \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n  \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n  \"adLengthSeconds\": 30,\n  \"numOfSlots\": 10,\n  \"discountPercentage\": 5,\n  \"installmentCount\": 3,\n  \"campaignName\": \"Q2 Product Launch\",\n  \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"festiveSeason\": \"New Year\",\n  \"referralSource\": \"Direct\",\n  \"notes\": \"High-priority client\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -23269,7 +23269,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -23329,15 +23329,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "2273"
+                  "value": "3892"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"8e1-q3NOAyIyFtRxw9Jpn+RUJmJ77/8\""
+                  "value": "W/\"f34-3Y9yIh5y/TQJYmVBftPT1aWxdpQ\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 11 Apr 2026 09:06:26 GMT"
+                  "value": "Wed, 15 Apr 2026 21:34:55 GMT"
                 },
                 {
                   "key": "Connection",
@@ -23349,7 +23349,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert sales created successfully\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"Pending\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 10,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 5,\n            \"finalPrice\": 111.15,\n            \"campaignName\": \"Q2 Product Launch\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesAgentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"agentCommissionPercentage\": 10,\n            \"industry\": \"Technology\",\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"advertAgency\": \"Advert Agency Name\",\n            \"notes\": \"High-priority client\",\n            \"createdAt\": \"2026-04-11T09:06:26.559Z\",\n            \"updatedAt\": \"2026-04-11T09:06:26.559Z\",\n            \"id\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            }\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert sales created successfully\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"HSPNMMH2LT\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"Pending\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 10,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 5,\n            \"finalPrice\": 111.15,\n            \"installmentCount\": 3,\n            \"campaignName\": \"Q2 Product Launch\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesRepId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"salesRepCommissionPercentage\": 10,\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"salesAgentCommissionPercentage\": 13,\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"notes\": \"High-priority client\",\n            \"createdAt\": \"2026-04-15T21:34:55.456Z\",\n            \"updatedAt\": \"2026-04-15T21:34:55.456Z\",\n            \"id\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Ashu Trading\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Ashu\",\n                        \"email\": \"ashu@mmn.com\",\n                        \"phone\": \"\",\n                        \"position\": \"asdfsaddf\",\n                        \"mobile\": \"01122334455\",\n                        \"officeTel\": \"0112233445\"\n                    },\n                    {\n                        \"name\": \"tesfa\",\n                        \"email\": \"tesfa@jan.com\",\n                        \"phone\": \"\",\n                        \"position\": \"janitor\",\n                        \"mobile\": \"0900000000\",\n                        \"officeTel\": \"\"\n                    }\n                ],\n                \"industry\": \"asdfasd\",\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"location\": \"fasdfasddf\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"\",\n                \"sourceFromMediaMonitoring\": true,\n                \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            },\n            \"salesRep\": {\n                \"fullName\": \"Girum Yilma\",\n                \"email\": \"ceo@abbaytvs.com\",\n                \"passwordHash\": \"$2b$10$2Em/p.yyGX71Y91nYKx38.HKJ4dwq27JZW1JvKftjsi2Oj.S8vQui\",\n                \"phoneNumber\": \"0900000001\",\n                \"sex\": \"Male\",\n                \"roles\": [\n                    \"CEO\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": true,\n                \"refModel\": \"Internal\",\n                \"telegramUsername\": \"@GirumYilma\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 10,\n                \"createdAt\": \"2026-03-10T11:53:28.412Z\",\n                \"updatedAt\": \"2026-04-11T09:01:42.949Z\",\n                \"id\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\"\n            },\n            \"salesAgent\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 13,\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            },\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            \"subCategory\": {\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"name\": \"Poultry\",\n                \"nameSlug\": \"poultry\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-04-15T21:28:20.637Z\",\n                \"updatedAt\": \"2026-04-15T21:28:20.637Z\",\n                \"id\": \"89606b55-578a-4eb9-a618-81d68906c7af\"\n            }\n        }\n    }\n}"
             }
           ]
         },
@@ -23415,9 +23415,33 @@
                   "disabled": true
                 },
                 {
+                  "key": "salesRepId",
+                  "value": "",
+                  "description": "Filter by sales rep UUID (closer)",
+                  "disabled": true
+                },
+                {
                   "key": "salesAgentId",
                   "value": "",
-                  "description": "Filter by sales agent UUID",
+                  "description": "Filter by external sales agent user UUID",
+                  "disabled": true
+                },
+                {
+                  "key": "categoryId",
+                  "value": "",
+                  "description": "Filter by category UUID",
+                  "disabled": true
+                },
+                {
+                  "key": "subCategoryId",
+                  "value": "",
+                  "description": "Filter by sub-category UUID",
+                  "disabled": true
+                },
+                {
+                  "key": "installmentCount",
+                  "value": "",
+                  "description": "Filter by number of payment installments",
                   "disabled": true
                 }
               ]
@@ -23487,9 +23511,33 @@
                       "disabled": true
                     },
                     {
+                      "key": "salesRepId",
+                      "value": "",
+                      "description": "Filter by sales rep UUID (closer)",
+                      "disabled": true
+                    },
+                    {
                       "key": "salesAgentId",
                       "value": "",
-                      "description": "Filter by sales agent UUID",
+                      "description": "Filter by external sales agent user UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "",
+                      "description": "Filter by category UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "subCategoryId",
+                      "value": "",
+                      "description": "Filter by sub-category UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "installmentCount",
+                      "value": "",
+                      "description": "Filter by number of payment installments",
                       "disabled": true
                     }
                   ]
@@ -23497,7 +23545,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -23557,15 +23605,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "2289"
+                  "value": "6631"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"8f1-RvY8jsfCUMe70henrpV9PalKuT0\""
+                  "value": "W/\"19e7-eDWcZuJEafg4k6hhyh3kqmlkTrg\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 11 Apr 2026 09:06:47 GMT"
+                  "value": "Wed, 15 Apr 2026 21:35:26 GMT"
                 },
                 {
                   "key": "Connection",
@@ -23577,7 +23625,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"advertSales\": [\n            {\n                \"referenceNumber\": \"5M4CCXSX2H\",\n                \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"status\": \"Pending\",\n                \"advertType\": \"Paid\",\n                \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n                \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n                \"adLengthSeconds\": 30,\n                \"numOfSlots\": 10,\n                \"adPackagePrice\": 117,\n                \"discountPercentage\": 5,\n                \"finalPrice\": 111.15,\n                \"campaignName\": \"Q2 Product Launch\",\n                \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n                \"salesAgentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"agentCommissionPercentage\": 10,\n                \"industry\": \"Technology\",\n                \"festiveSeason\": \"New Year\",\n                \"referralSource\": \"Direct\",\n                \"advertAgency\": \"Advert Agency Name\",\n                \"notes\": \"High-priority client\",\n                \"createdAt\": \"2026-04-11T09:06:26.559Z\",\n                \"updatedAt\": \"2026-04-11T09:06:26.559Z\",\n                \"id\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"adPackage\": {\n                    \"name\": \"Agelgil\",\n                    \"nameSlug\": \"agelgil\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                    \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                    \"shows\": []\n                },\n                \"customer\": {\n                    \"businessRef\": \"CR0003\",\n                    \"name\": \"Example Company PLC\",\n                    \"contacts\": [\n                        {\n                            \"name\": \"Contact Name\",\n                            \"email\": \"contact@example.com\",\n                            \"phone\": \"011-000-0000\",\n                            \"position\": \"Manager\",\n                            \"mobile\": \"0911000000\",\n                            \"officeTel\": \"011-000-0001\"\n                        }\n                    ],\n                    \"industry\": \"Finance\",\n                    \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                    \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                    \"location\": \"Addis Ababa\",\n                    \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                    \"status\": \"Cold Progress\",\n                    \"holidayStatus\": \"Interested\",\n                    \"studioVisit\": \"Not Visited Studio\",\n                    \"otherMediaCampaign\": \"EBS May 2024\",\n                    \"sourceFromMediaMonitoring\": false,\n                    \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                    \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                    \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                    \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n                }\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"advertSales\": [\n            {\n                \"referenceNumber\": \"HSPNMMH2LT\",\n                \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"status\": \"Pending\",\n                \"advertType\": \"Paid\",\n                \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n                \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n                \"adLengthSeconds\": 30,\n                \"numOfSlots\": 10,\n                \"adPackagePrice\": 117,\n                \"discountPercentage\": 5,\n                \"finalPrice\": 111.15,\n                \"installmentCount\": 3,\n                \"campaignName\": \"Q2 Product Launch\",\n                \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n                \"salesRepId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"salesRepCommissionPercentage\": 10,\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"salesAgentCommissionPercentage\": 13,\n                \"festiveSeason\": \"New Year\",\n                \"referralSource\": \"Direct\",\n                \"notes\": \"High-priority client\",\n                \"createdAt\": \"2026-04-15T21:34:55.456Z\",\n                \"updatedAt\": \"2026-04-15T21:34:55.456Z\",\n                \"id\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n                \"adPackage\": {\n                    \"name\": \"Agelgil\",\n                    \"nameSlug\": \"agelgil\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                    \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                    \"shows\": []\n                },\n                \"customer\": {\n                    \"businessRef\": \"CR0003\",\n                    \"name\": \"Ashu Trading\",\n                    \"contacts\": [\n                        {\n                            \"name\": \"Ashu\",\n                            \"email\": \"ashu@mmn.com\",\n                            \"phone\": \"\",\n                            \"position\": \"asdfsaddf\",\n                            \"mobile\": \"01122334455\",\n                            \"officeTel\": \"0112233445\"\n                        },\n                        {\n                            \"name\": \"tesfa\",\n                            \"email\": \"tesfa@jan.com\",\n                            \"phone\": \"\",\n                            \"position\": \"janitor\",\n                            \"mobile\": \"0900000000\",\n                            \"officeTel\": \"\"\n                        }\n                    ],\n                    \"industry\": \"asdfasd\",\n                    \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                    \"location\": \"fasdfasddf\",\n                    \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                    \"status\": \"ColdProgress\",\n                    \"holidayStatus\": \"Interested\",\n                    \"studioVisit\": \"NotVisited\",\n                    \"otherMediaCampaign\": \"\",\n                    \"sourceFromMediaMonitoring\": true,\n                    \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                    \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                    \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                    \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n                },\n                \"salesRep\": {\n                    \"fullName\": \"Girum Yilma\",\n                    \"email\": \"ceo@abbaytvs.com\",\n                    \"passwordHash\": \"$2b$10$2Em/p.yyGX71Y91nYKx38.HKJ4dwq27JZW1JvKftjsi2Oj.S8vQui\",\n                    \"phoneNumber\": \"0900000001\",\n                    \"sex\": \"Male\",\n                    \"roles\": [\n                        \"CEO\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": true,\n                    \"refModel\": \"Internal\",\n                    \"telegramUsername\": \"@GirumYilma\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 10,\n                    \"createdAt\": \"2026-03-10T11:53:28.412Z\",\n                    \"updatedAt\": \"2026-04-11T09:01:42.949Z\",\n                    \"id\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\"\n                },\n                \"salesAgent\": {\n                    \"fullName\": \"Negasi Kiflom\",\n                    \"email\": \"nega@abbaytv.com\",\n                    \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                    \"phoneNumber\": \"0900000004\",\n                    \"sex\": \"Female\",\n                    \"roles\": [\n                        \"Host\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": false,\n                    \"refModel\": \"Employee\",\n                    \"telegramUsername\": \"@negasik\",\n                    \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 13,\n                    \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                    \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n                },\n                \"category\": {\n                    \"name\": \"Agriculture\",\n                    \"nameSlug\": \"agriculture\",\n                    \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                    \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                    \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                    \"subCategories\": []\n                },\n                \"subCategory\": {\n                    \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                    \"name\": \"Poultry\",\n                    \"nameSlug\": \"poultry\",\n                    \"isCustom\": true,\n                    \"createdAt\": \"2026-04-15T21:28:20.637Z\",\n                    \"updatedAt\": \"2026-04-15T21:28:20.637Z\",\n                    \"id\": \"89606b55-578a-4eb9-a618-81d68906c7af\"\n                }\n            },\n            {\n                \"referenceNumber\": \"5M4CCXSX2H\",\n                \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"status\": \"OnAir\",\n                \"advertType\": \"Paid\",\n                \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n                \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n                \"adLengthSeconds\": 30,\n                \"numOfSlots\": 12,\n                \"adPackagePrice\": 117,\n                \"discountPercentage\": 10,\n                \"finalPrice\": 105.3,\n                \"installmentCount\": 1,\n                \"campaignName\": \"Q2 Product Launch (updated)\",\n                \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n                \"salesRepId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"salesRepCommissionPercentage\": 10,\n                \"categoryId\": null,\n                \"subCategoryId\": null,\n                \"salesAgentId\": null,\n                \"salesAgentCommissionPercentage\": 0,\n                \"festiveSeason\": \"New Year\",\n                \"referralSource\": \"Direct\",\n                \"notes\": \"Updated priority\",\n                \"createdAt\": \"2026-04-11T09:06:26.559Z\",\n                \"updatedAt\": \"2026-04-11T09:08:51.173Z\",\n                \"id\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"adPackage\": {\n                    \"name\": \"Agelgil\",\n                    \"nameSlug\": \"agelgil\",\n                    \"showIds\": [\n                        \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                    ],\n                    \"advertisementsCount\": 1,\n                    \"announcementsCount\": 1,\n                    \"popUpsCount\": 1,\n                    \"bonusesCount\": 0,\n                    \"priceBeforeVAT\": 100,\n                    \"otherTaxes\": 2,\n                    \"finalPrice\": 117,\n                    \"isActive\": true,\n                    \"advertisementsRerunCount\": 0,\n                    \"announcementsRerunCount\": 0,\n                    \"popUpsRerunCount\": 0,\n                    \"bonusesRerunCount\": 0,\n                    \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                    \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                    \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                    \"shows\": []\n                },\n                \"customer\": {\n                    \"businessRef\": \"CR0003\",\n                    \"name\": \"Ashu Trading\",\n                    \"contacts\": [\n                        {\n                            \"name\": \"Ashu\",\n                            \"email\": \"ashu@mmn.com\",\n                            \"phone\": \"\",\n                            \"position\": \"asdfsaddf\",\n                            \"mobile\": \"01122334455\",\n                            \"officeTel\": \"0112233445\"\n                        },\n                        {\n                            \"name\": \"tesfa\",\n                            \"email\": \"tesfa@jan.com\",\n                            \"phone\": \"\",\n                            \"position\": \"janitor\",\n                            \"mobile\": \"0900000000\",\n                            \"officeTel\": \"\"\n                        }\n                    ],\n                    \"industry\": \"asdfasd\",\n                    \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                    \"location\": \"fasdfasddf\",\n                    \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                    \"status\": \"ColdProgress\",\n                    \"holidayStatus\": \"Interested\",\n                    \"studioVisit\": \"NotVisited\",\n                    \"otherMediaCampaign\": \"\",\n                    \"sourceFromMediaMonitoring\": true,\n                    \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                    \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                    \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                    \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n                },\n                \"salesRep\": {\n                    \"fullName\": \"Girum Yilma\",\n                    \"email\": \"ceo@abbaytvs.com\",\n                    \"passwordHash\": \"$2b$10$2Em/p.yyGX71Y91nYKx38.HKJ4dwq27JZW1JvKftjsi2Oj.S8vQui\",\n                    \"phoneNumber\": \"0900000001\",\n                    \"sex\": \"Male\",\n                    \"roles\": [\n                        \"CEO\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": true,\n                    \"refModel\": \"Internal\",\n                    \"telegramUsername\": \"@GirumYilma\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 10,\n                    \"createdAt\": \"2026-03-10T11:53:28.412Z\",\n                    \"updatedAt\": \"2026-04-11T09:01:42.949Z\",\n                    \"id\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\"\n                }\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -23605,126 +23653,13 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                 }
               ]
             },
             "description": "Get one record with nested `adPackage` and `customer` when available. Requires VIEW_SALES."
           },
           "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "advert-sales",
-                    ":advertSalesId"
-                  ],
-                  "variable": [
-                    {
-                      "key": "advertSalesId",
-                      "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "2227"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"8b3-HqsW2vibjPMdlaR2lXvX9fRiWjw\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sat, 11 Apr 2026 09:07:08 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"Pending\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 10,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 5,\n            \"finalPrice\": 111.15,\n            \"campaignName\": \"Q2 Product Launch\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesAgentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"agentCommissionPercentage\": 10,\n            \"industry\": \"Technology\",\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"advertAgency\": \"Advert Agency Name\",\n            \"notes\": \"High-priority client\",\n            \"createdAt\": \"2026-04-11T09:06:26.559Z\",\n            \"updatedAt\": \"2026-04-11T09:06:26.559Z\",\n            \"id\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            }\n        }\n    }\n}"
-            },
             {
               "name": "Error - Not Found",
               "originalRequest": {
@@ -23837,79 +23772,18 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Advert sales not found\",\n    \"errorStack\": \"EntityNotFoundError: Advert sales not found\\n    at GetAdvertSalesByIdUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/advert-sales/get-advert-sales-by-id.use-case.ts:11:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async getById (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/advert-sales.controller.ts:146:27)\"\n}"
-            }
-          ]
-        },
-        {
-          "name": "Update Advert Sales",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"industry\": \"Technology\",\n  \"notes\": \"Updated priority\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "advert-sales",
-                ":advertSalesId"
-              ],
-              "variable": [
-                {
-                  "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
-                }
-              ]
-            },
-            "description": "Partial update. All body fields are optional (strict JSON). Changing `adPackageId` or `customerId` validates FKs. Requires MANAGE_SALES."
-          },
-          "response": [
             {
               "name": "Success",
               "originalRequest": {
-                "method": "PATCH",
+                "method": "GET",
                 "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
-                  },
                   {
                     "key": "Authorization",
                     "value": "Bearer {{accessToken}}",
                     "type": "text"
                   }
                 ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"industry\": \"Technology\",\n  \"notes\": \"Updated priority\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId",
                   "host": [
@@ -23923,14 +23797,14 @@
                   "variable": [
                     {
                       "key": "advertSalesId",
-                      "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                      "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                     }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -23990,15 +23864,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "2277"
+                  "value": "3846"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"8e5-eUiDnSAglVEOHG1ERltPOxQIMXE\""
+                  "value": "W/\"f06-ZgbnKjC7MKC5Hrq9E3ZLZP2LOK4\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 11 Apr 2026 09:07:48 GMT"
+                  "value": "Wed, 15 Apr 2026 21:37:50 GMT"
                 },
                 {
                   "key": "Connection",
@@ -24010,8 +23884,55 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert sales updated successfully\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"OnAir\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 12,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 10,\n            \"finalPrice\": 105.3,\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesAgentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"agentCommissionPercentage\": 10,\n            \"industry\": \"Technology\",\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"advertAgency\": \"Advert Agency Name\",\n            \"notes\": \"Updated priority\",\n            \"createdAt\": \"2026-04-11T09:06:26.559Z\",\n            \"updatedAt\": \"2026-04-11T09:07:48.920Z\",\n            \"id\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            }\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"HSPNMMH2LT\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"Pending\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 10,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 5,\n            \"finalPrice\": 111.15,\n            \"installmentCount\": 3,\n            \"campaignName\": \"Q2 Product Launch\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesRepId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"salesRepCommissionPercentage\": 10,\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"salesAgentCommissionPercentage\": 13,\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"notes\": \"High-priority client\",\n            \"createdAt\": \"2026-04-15T21:34:55.456Z\",\n            \"updatedAt\": \"2026-04-15T21:34:55.456Z\",\n            \"id\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Ashu Trading\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Ashu\",\n                        \"email\": \"ashu@mmn.com\",\n                        \"phone\": \"\",\n                        \"position\": \"asdfsaddf\",\n                        \"mobile\": \"01122334455\",\n                        \"officeTel\": \"0112233445\"\n                    },\n                    {\n                        \"name\": \"tesfa\",\n                        \"email\": \"tesfa@jan.com\",\n                        \"phone\": \"\",\n                        \"position\": \"janitor\",\n                        \"mobile\": \"0900000000\",\n                        \"officeTel\": \"\"\n                    }\n                ],\n                \"industry\": \"asdfasd\",\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"location\": \"fasdfasddf\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"\",\n                \"sourceFromMediaMonitoring\": true,\n                \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            },\n            \"salesRep\": {\n                \"fullName\": \"Girum Yilma\",\n                \"email\": \"ceo@abbaytvs.com\",\n                \"passwordHash\": \"$2b$10$2Em/p.yyGX71Y91nYKx38.HKJ4dwq27JZW1JvKftjsi2Oj.S8vQui\",\n                \"phoneNumber\": \"0900000001\",\n                \"sex\": \"Male\",\n                \"roles\": [\n                    \"CEO\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": true,\n                \"refModel\": \"Internal\",\n                \"telegramUsername\": \"@GirumYilma\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 10,\n                \"createdAt\": \"2026-03-10T11:53:28.412Z\",\n                \"updatedAt\": \"2026-04-11T09:01:42.949Z\",\n                \"id\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\"\n            },\n            \"salesAgent\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 13,\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            },\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            \"subCategory\": {\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"name\": \"Poultry\",\n                \"nameSlug\": \"poultry\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-04-15T21:28:20.637Z\",\n                \"updatedAt\": \"2026-04-15T21:28:20.637Z\",\n                \"id\": \"89606b55-578a-4eb9-a618-81d68906c7af\"\n            }\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Advert Sales",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"installmentCount\": 6,\n//   \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n//   \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"notes\": \"Updated priority\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
+            "url": {
+              "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "advert-sales",
+                ":advertSalesId"
+              ],
+              "variable": [
+                {
+                  "key": "advertSalesId",
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
+                }
+              ]
+            },
+            "description": "Partial update. All body fields are optional (strict JSON). Changing `adPackageId` or `customerId` validates FKs. Requires MANAGE_SALES."
+          },
+          "response": [
             {
               "name": "Error - Not Found",
               "originalRequest": {
@@ -24030,7 +23951,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"industry\": \"Technology\",\n  \"notes\": \"Updated priority\"\n}",
+                  "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"installmentCount\": 6,\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"notes\": \"Updated priority\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -24138,6 +24059,133 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Advert sales not found\",\n    \"errorStack\": \"EntityNotFoundError: Advert sales not found\\n    at UpdateAdvertSalesUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/advert-sales/update-advert-sales.use-case.ts:42:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async update (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/advert-sales.controller.ts:182:27)\"\n}"
+            },
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"installmentCount\": 6,\n//   \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n//   \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"notes\": \"Updated priority\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-sales",
+                    ":advertSalesId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "advertSalesId",
+                      "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3896"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f38-tpIRpuOMthpa3yJtdHbb1wTOm7Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 15 Apr 2026 21:44:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert sales updated successfully\",\n    \"data\": {\n        \"advertSales\": {\n            \"referenceNumber\": \"HSPNMMH2LT\",\n            \"adPackageId\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n            \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"status\": \"OnAir\",\n            \"advertType\": \"Paid\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"numOfSlots\": 12,\n            \"adPackagePrice\": 117,\n            \"discountPercentage\": 10,\n            \"finalPrice\": 105.3,\n            \"installmentCount\": 6,\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"contractSignDate\": \"2026-04-10T00:00:00.000Z\",\n            \"salesRepId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"salesRepCommissionPercentage\": 10,\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"salesAgentCommissionPercentage\": 13,\n            \"festiveSeason\": \"New Year\",\n            \"referralSource\": \"Direct\",\n            \"notes\": \"Updated priority\",\n            \"createdAt\": \"2026-04-15T21:34:55.456Z\",\n            \"updatedAt\": \"2026-04-15T21:44:10.945Z\",\n            \"id\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"adPackage\": {\n                \"name\": \"Agelgil\",\n                \"nameSlug\": \"agelgil\",\n                \"showIds\": [\n                    \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\"\n                ],\n                \"advertisementsCount\": 1,\n                \"announcementsCount\": 1,\n                \"popUpsCount\": 1,\n                \"bonusesCount\": 0,\n                \"priceBeforeVAT\": 100,\n                \"otherTaxes\": 2,\n                \"finalPrice\": 117,\n                \"isActive\": true,\n                \"advertisementsRerunCount\": 0,\n                \"announcementsRerunCount\": 0,\n                \"popUpsRerunCount\": 0,\n                \"bonusesRerunCount\": 0,\n                \"imageUrl\": \"http://localhost:3000/uploads/advert-packages/09c381d2-6230-44f7-8114-d76c7f660075_upwork.jpeg\",\n                \"createdAt\": \"2026-03-24T10:28:08.405Z\",\n                \"updatedAt\": \"2026-03-24T10:28:08.405Z\",\n                \"id\": \"8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5\",\n                \"shows\": []\n            },\n            \"customer\": {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Ashu Trading\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Ashu\",\n                        \"email\": \"ashu@mmn.com\",\n                        \"phone\": \"\",\n                        \"position\": \"asdfsaddf\",\n                        \"mobile\": \"01122334455\",\n                        \"officeTel\": \"0112233445\"\n                    },\n                    {\n                        \"name\": \"tesfa\",\n                        \"email\": \"tesfa@jan.com\",\n                        \"phone\": \"\",\n                        \"position\": \"janitor\",\n                        \"mobile\": \"0900000000\",\n                        \"officeTel\": \"\"\n                    }\n                ],\n                \"industry\": \"asdfasd\",\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"location\": \"fasdfasddf\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"\",\n                \"sourceFromMediaMonitoring\": true,\n                \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\"\n            },\n            \"salesRep\": {\n                \"fullName\": \"Girum Yilma\",\n                \"email\": \"ceo@abbaytvs.com\",\n                \"passwordHash\": \"$2b$10$2Em/p.yyGX71Y91nYKx38.HKJ4dwq27JZW1JvKftjsi2Oj.S8vQui\",\n                \"phoneNumber\": \"0900000001\",\n                \"sex\": \"Male\",\n                \"roles\": [\n                    \"CEO\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": true,\n                \"refModel\": \"Internal\",\n                \"telegramUsername\": \"@GirumYilma\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 10,\n                \"createdAt\": \"2026-03-10T11:53:28.412Z\",\n                \"updatedAt\": \"2026-04-11T09:01:42.949Z\",\n                \"id\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\"\n            },\n            \"salesAgent\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 13,\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            },\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            \"subCategory\": {\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"name\": \"Poultry\",\n                \"nameSlug\": \"poultry\",\n                \"isCustom\": true,\n                \"createdAt\": \"2026-04-15T21:28:20.637Z\",\n                \"updatedAt\": \"2026-04-15T21:28:20.637Z\",\n                \"id\": \"89606b55-578a-4eb9-a618-81d68906c7af\"\n            }\n        }\n    }\n}"
             }
           ]
         },
@@ -24165,7 +24213,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "1f8f9406-3df9-43b7-b586-8b5d850fa8e1"
+                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
                 }
               ]
             },
@@ -24425,7 +24473,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                 }
               ]
             },

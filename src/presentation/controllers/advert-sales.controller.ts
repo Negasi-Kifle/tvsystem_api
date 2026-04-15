@@ -24,6 +24,8 @@ export function createAdvertSalesHandlers(
     | 'customerRepository'
     | 'generateBusinessRefService'
     | 'userRepository'
+    | 'categoryRepository'
+    | 'subCategoryRepository'
     | 'emailService'
   >,
 ) {
@@ -33,6 +35,8 @@ export function createAdvertSalesHandlers(
     customerRepository,
     generateBusinessRefService,
     userRepository,
+    categoryRepository,
+    subCategoryRepository,
   } = deps;
 
   const createAdvertSalesUseCase = new CreateAdvertSalesUseCase(
@@ -41,6 +45,8 @@ export function createAdvertSalesHandlers(
     customerRepository,
     generateBusinessRefService,
     userRepository,
+    categoryRepository,
+    subCategoryRepository,
   );
 
   const fetchAllAdvertSalesUseCase = new FetchAllAdvertSalesUseCase(advertSalesRepository);
@@ -50,6 +56,9 @@ export function createAdvertSalesHandlers(
     advertSalesRepository,
     advertPackageRepository,
     customerRepository,
+    userRepository,
+    categoryRepository,
+    subCategoryRepository,
   );
   const deleteAdvertSalesUseCase = new DeleteAdvertSalesUseCase(advertSalesRepository);
 
@@ -81,8 +90,7 @@ export function createAdvertSalesHandlers(
   async function create(req: Request, res: Response, next: NextFunction) {
     try {
       const payload = req.body as CreateAdvertSalesDto;
-      // Pass the logged in user's id for the "salesAgentId" field
-      const salesAgentId = req.user!.id!;
+      const salesRepId = req.user!.id!;
 
       const advertSales = await createAdvertSalesUseCase.execute({
         adPackageId: payload.adPackageId,
@@ -94,13 +102,15 @@ export function createAdvertSalesHandlers(
         adLengthSeconds: payload.adLengthSeconds,
         numOfSlots: payload.numOfSlots,
         discountPercentage: payload.discountPercentage ?? 0,
+        installmentCount: payload.installmentCount,
         campaignName: payload.campaignName,
         contractSignDate: payload.contractSignDate,
-        salesAgentId: salesAgentId,
-        industry: payload.industry,
+        salesRepId,
+        categoryId: payload.categoryId,
+        subCategoryId: payload.subCategoryId,
+        salesAgentId: payload.salesAgentId,
         festiveSeason: payload.festiveSeason,
         referralSource: payload.referralSource,
-        advertAgency: payload.advertAgency,
         notes: payload.notes,
       });
       res.status(201).json({
@@ -169,14 +179,21 @@ export function createAdvertSalesHandlers(
       if (payload.adPackagePrice !== undefined) patch.adPackagePrice = payload.adPackagePrice;
       if (payload.discountPercentage !== undefined) patch.discountPercentage = payload.discountPercentage;
       if (payload.finalPrice !== undefined) patch.finalPrice = payload.finalPrice;
+      if (payload.installmentCount !== undefined) patch.installmentCount = payload.installmentCount;
       if (payload.campaignName !== undefined) patch.campaignName = payload.campaignName;
       if (payload.contractSignDate !== undefined) patch.contractSignDate = payload.contractSignDate;
+      if (payload.salesRepId !== undefined) patch.salesRepId = payload.salesRepId;
+      if (payload.salesRepCommissionPercentage !== undefined) {
+        patch.salesRepCommissionPercentage = payload.salesRepCommissionPercentage;
+      }
+      if (payload.categoryId !== undefined) patch.categoryId = payload.categoryId;
+      if (payload.subCategoryId !== undefined) patch.subCategoryId = payload.subCategoryId;
       if (payload.salesAgentId !== undefined) patch.salesAgentId = payload.salesAgentId;
-      if (payload.agentCommissionPercentage !== undefined) patch.agentCommissionPercentage = payload.agentCommissionPercentage;
-      if (payload.industry !== undefined) patch.industry = payload.industry;
+      if (payload.salesAgentCommissionPercentage !== undefined) {
+        patch.salesAgentCommissionPercentage = payload.salesAgentCommissionPercentage;
+      }
       if (payload.festiveSeason !== undefined) patch.festiveSeason = payload.festiveSeason;
       if (payload.referralSource !== undefined) patch.referralSource = payload.referralSource;
-      if (payload.advertAgency !== undefined) patch.advertAgency = payload.advertAgency;
       if (payload.notes !== undefined) patch.notes = payload.notes;
 
       const advertSales = await updateAdvertSalesUseCase.execute(id, patch);

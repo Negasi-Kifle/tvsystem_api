@@ -19,7 +19,11 @@ export function mapFetchAllAdvertSalesDtoToQueryOptions(
       ...(dto.status != null && { status: dto.status as AdvertSalesStatus }),
       ...(dto.advertType != null && { advertType: dto.advertType as AdvertType }),
       ...(dto.referenceNumber != null && { referenceNumber: dto.referenceNumber }),
+      ...(dto.salesRepId != null && { salesRepId: dto.salesRepId }),
       ...(dto.salesAgentId != null && { salesAgentId: dto.salesAgentId }),
+      ...(dto.categoryId != null && { categoryId: dto.categoryId }),
+      ...(dto.subCategoryId != null && { subCategoryId: dto.subCategoryId }),
+      ...(dto.installmentCount != null && { installmentCount: dto.installmentCount }),
     },
   };
 }

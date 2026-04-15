@@ -13,7 +13,12 @@ export function buildWhereClauseForAdvertSales(
     ...(filters.status && { status: filters.status }),
     ...(filters.advertType && { advertType: filters.advertType }),
     ...(filters.referenceNumber && { referenceNumber: filters.referenceNumber }),
+    ...(filters.salesRepId && { salesRepId: filters.salesRepId }),
     ...(filters.salesAgentId && { salesAgentId: filters.salesAgentId }),
-    ...(filters.industry && { industry: { contains: filters.industry, mode: 'insensitive' as const } }),
+    ...(filters.categoryId && { categoryId: filters.categoryId }),
+    ...(filters.subCategoryId && { subCategoryId: filters.subCategoryId }),
+    ...(filters.installmentCount !== undefined && {
+      installmentCount: filters.installmentCount,
+    }),
   };
 }

@@ -61,6 +61,10 @@
 
 ### 04/15/2026
 
+- ✅ AdvertSales `installmentCount` (payment rounds): column `installment_count` NOT NULL DEFAULT 1, entity validation, create/update DTOs, list filter `installmentCount`, migration `20260415140000_advert_sales_installment_count`, Postman examples
+
+- ✅ AdvertSales field refactor: Prisma `sales_rep_id` / `sales_rep_commission_percentage`, optional `sales_agent_id` / `sales_agent_commission_percentage`, `category_id` / `sub_category_id`; domain entity, mappers (includes `salesRep`, `salesAgent`, `category`, `subCategory`), `computeStoredAgentCommissionPercentage` in `sales-commission-storage.ts`, create/update use cases with category validation, list filters and DTOs, `CalculateAgentCommissionUseCase` uses rep fields, Postman Advert Sales folder, migration `20260415120000_advert_sales_sales_rep_categories`
+
 - ✅ Customer `mediaMonitoringSourceId` birth link: Prisma relations `CustomerBirthSource` vs `CustomerLinkedMonitoringRecords`, `@unique` + FK migration `20260415120000_customer_media_monitoring_birth_fk_unique`, mapper uses `mediaMonitoringSourceId`, transactional `createWithBirthMonitoringLink`, update validation + P2002 mapping, optional `customerId` on create media monitoring record; unit tests for create/update media monitoring flows
 
 ### 04/14/2026

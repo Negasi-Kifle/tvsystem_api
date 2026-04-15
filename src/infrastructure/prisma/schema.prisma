@@ -52,7 +52,8 @@ model User {
   showHosts                ShowHost[]
   communicationLogs        CommunicationLog[] @relation("CommunicationLogSalesAgent")
   customersAsSalesAgent     Customer[]         @relation("CustomerSalesAgent")
-  advertSalesAsAgent        AdvertSales[]      @relation("AdvertSalesSalesAgent")
+  advertSalesAsSalesRep     AdvertSales[]      @relation("AdvertSalesSalesRep")
+  advertSalesAsSalesAgent   AdvertSales[]      @relation("AdvertSalesSalesAgent")
   compensationsProposed     Compensation[]     @relation("CompensationProposedBy")
   satelliteLogUploads       SatelliteLogUpload[] @relation("SatelliteLogUploader")
   agentCommissions          AgentCommission[]    @relation("AgentCommissions")
@@ -131,6 +132,7 @@ model Category {
   // Relations
   subCategories SubCategory[]
   customers     Customer[]
+  advertSales   AdvertSales[]
 
   @@map("categories")
 }
@@ -148,8 +150,9 @@ model SubCategory {
   updatedAt  DateTime @updatedAt @map("updated_at")
 
   // Relations
-  category  Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  customers Customer[]
+  category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  customers   Customer[]
+  advertSales AdvertSales[]
 
   @@unique([categoryId, nameSlug])
   @@index([categoryId])
@@ -577,34 +580,40 @@ model AdvertPackage {
 // ADVERT SALES - Sold advert package contracts (sales follow-up)
 // ============================================
 model AdvertSales {
-  id                      String   @id @default(uuid())
-  referenceNumber         String   @unique @map("reference_number")
-  advertPackageId         String   @map("advert_package_id")
-  customerId              String   @map("customer_id")
-  status                  String   // AdvertSalesStatus
-  advertType              String   @default("Paid") @map("advert_type") // Paid, Barter, FreeInKind, Production
-  adStartDate             DateTime @map("ad_start_date")
-  adEndDate               DateTime @map("ad_end_date")
-  adLengthSeconds         Int      @map("ad_length_seconds")
-  numOfSlots              Int      @map("num_of_slots")
-  adPackagePrice          Float    @map("ad_package_price")
-  discountPercentage      Float    @default(0) @map("discount_percentage")
-  finalPrice              Float    @map("final_price")
-  campaignName            String   @map("campaign_name")
-  contractSignDate        DateTime @map("contract_sign_date")
-  salesAgentId            String?  @map("sales_agent_id")
-  agentCommissionPercentage Float  @default(0) @map("agent_commission_percentage")
-  industry                String?
-  festiveSeason           String?  @map("festive_season")
-  referralSource          String?  @map("referral_source")
-  advertAgency            String?  @map("advert_agency")
-  notes                   String?
-  createdAt               DateTime @default(now()) @map("created_at")
-  updatedAt               DateTime @updatedAt @map("updated_at")
+  id                            String   @id @default(uuid())
+  referenceNumber               String   @unique @map("reference_number")
+  advertPackageId               String   @map("advert_package_id")
+  customerId                    String   @map("customer_id")
+  status                        String   // AdvertSalesStatus
+  advertType                    String   @default("Paid") @map("advert_type") // Paid, Barter, FreeInKind, Production
+  adStartDate                   DateTime @map("ad_start_date")
+  adEndDate                     DateTime @map("ad_end_date")
+  adLengthSeconds               Int      @map("ad_length_seconds")
+  numOfSlots                    Int      @map("num_of_slots")
+  adPackagePrice                Float    @map("ad_package_price")
+  discountPercentage            Float    @default(0) @map("discount_percentage")
+  finalPrice                    Float    @map("final_price")
+  installmentCount              Int      @default(1) @map("installment_count")
+  campaignName                  String   @map("campaign_name")
+  contractSignDate              DateTime @map("contract_sign_date")
+  salesRepId                    String?  @map("sales_rep_id")
+  salesRepCommissionPercentage  Float    @default(0) @map("sales_rep_commission_percentage")
+  categoryId                    String?  @map("category_id")
+  subCategoryId                 String?  @map("sub_category_id")
+  salesAgentId                  String?  @map("sales_agent_id")
+  salesAgentCommissionPercentage Float   @default(0) @map("sales_agent_commission_percentage")
+  festiveSeason                 String?  @map("festive_season")
+  referralSource                String?  @map("referral_source")
+  notes                         String?
+  createdAt                     DateTime @default(now()) @map("created_at")
+  updatedAt                     DateTime @updatedAt @map("updated_at")
 
   advertPackage  AdvertPackage    @relation(fields: [advertPackageId], references: [id], onDelete: Restrict)
   customer       Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  salesRep       User?            @relation("AdvertSalesSalesRep", fields: [salesRepId], references: [id], onDelete: SetNull)
   salesAgent     User?            @relation("AdvertSalesSalesAgent", fields: [salesAgentId], references: [id], onDelete: SetNull)
+  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  subCategory    SubCategory?     @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   placements       AdvertPlacement[]
   payments         Payment[]
   compensations    Compensation[]
@@ -613,7 +622,10 @@ model AdvertSales {
 
   @@index([advertPackageId])
   @@index([customerId])
+  @@index([salesRepId])
   @@index([salesAgentId])
+  @@index([categoryId])
+  @@index([subCategoryId])
   @@index([status])
   @@map("advert_sales")
 }

@@ -21,7 +21,11 @@ export const fetchAllAdvertSalesDto = z
       )
       .optional(),
     referenceNumber: z.string().min(1).optional(),
+    salesRepId: z.uuid().optional(),
     salesAgentId: z.uuid().optional(),
+    categoryId: z.uuid().optional(),
+    subCategoryId: z.uuid().optional(),
+    installmentCount: z.coerce.number().int().min(1).optional(),
   })
   .strict();
 

@@ -11,13 +11,16 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
     const entity = data as AdvertSalesEntity;
     const row = entityToModel(entity);
     const { id: _omit, ...createData } = row;
+
     const saved = await this.prisma.advertSales.create({
       data: createData as Prisma.AdvertSalesUncheckedCreateInput,
     });
+
     const full = await this.prisma.advertSales.findUnique({
       where: { id: saved.id },
       include: advertSalesReadInclude,
     });
+    
     return full ? modelToEntity(full) : modelToEntity(saved);
   }
 
@@ -65,14 +68,17 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
         adPackagePrice: row.adPackagePrice,
         discountPercentage: row.discountPercentage,
         finalPrice: row.finalPrice,
+        installmentCount: row.installmentCount,
         campaignName: row.campaignName,
         contractSignDate: row.contractSignDate,
+        salesRepId: row.salesRepId,
+        salesRepCommissionPercentage: row.salesRepCommissionPercentage,
+        categoryId: row.categoryId,
+        subCategoryId: row.subCategoryId,
         salesAgentId: row.salesAgentId,
-        agentCommissionPercentage: row.agentCommissionPercentage,
-        industry: row.industry,
+        salesAgentCommissionPercentage: row.salesAgentCommissionPercentage,
         festiveSeason: row.festiveSeason,
         referralSource: row.referralSource,
-        advertAgency: row.advertAgency,
         notes: row.notes,
       },
     });

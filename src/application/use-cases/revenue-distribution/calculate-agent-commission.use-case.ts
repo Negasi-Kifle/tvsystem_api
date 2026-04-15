@@ -17,20 +17,20 @@ export class CalculateAgentCommissionUseCase {
       throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', advertSalesId);
     }
 
-    if (!sale.salesAgentId || sale.agentCommissionPercentage <= 0) {
+    if (!sale.salesRepId || sale.salesRepCommissionPercentage <= 0) {
       return null;
     }
 
     const commissionAmount = Math.round(
-      sale.finalPrice * (sale.agentCommissionPercentage / 100) * 100,
+      sale.finalPrice * (sale.salesRepCommissionPercentage / 100) * 100,
     ) / 100;
     const taxAmount = Math.round(commissionAmount * COMMISSION_TAX_RATE * 100) / 100;
     const netAmount = Math.round((commissionAmount - taxAmount) * 100) / 100;
 
     const entity = new AgentCommissionEntity(
       advertSalesId,
-      sale.salesAgentId,
-      sale.agentCommissionPercentage,
+      sale.salesRepId,
+      sale.salesRepCommissionPercentage,
       commissionAmount,
       taxAmount,
       netAmount,
