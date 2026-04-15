@@ -53,7 +53,7 @@ export class CreateSatelliteScheduleUseCase {
       );
     }
 
-    if(active.length > 0) {
+    if(active.length > 0 && payload.status === SatelliteScheduleStatus.Active) {
       throw new ValidationError('There is already an active satellite schedule');
     }
 
