@@ -16,6 +16,8 @@ export class CompensationEntity {
     public proposedById?: string | null,
     public customerResponse?: string | null,
     public respondedAt?: Date | null,
+    public customerResponseTokenHash?: string | null,
+    public customerResponseTokenExpiresAt?: Date | null,
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,

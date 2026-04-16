@@ -68,6 +68,7 @@ export function modelToEntity(model: AdvertSalesLike): AdvertSalesEntity {
     model.festiveSeason,
     model.referralSource,
     model.notes,
+    model.campaignEndAlertSentAt ?? null,
     model.createdAt,
     model.updatedAt,
     model.id,
@@ -109,5 +110,6 @@ export function entityToModel(
     festiveSeason: entity.festiveSeason ?? null,
     referralSource: entity.referralSource ?? null,
     notes: entity.notes ?? null,
+    campaignEndAlertSentAt: entity.campaignEndAlertSentAt ?? null,
   };
 }

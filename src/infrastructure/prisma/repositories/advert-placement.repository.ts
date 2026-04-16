@@ -5,6 +5,7 @@ import { PrismaBaseRepository } from './base.repository';
 import { entityToModel, modelToEntity } from '../model_entity_mappers/advert-placement';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { buildWhereClauseForAdvertPlacement } from '../where_clauses/advert-placement';
+import { AdvertPlacementStatus } from '../../../domain/enums/advert-placement-status.enum';
 
 export class AdvertPlacementRepository extends PrismaBaseRepository implements IAdvertPlacementRepository {
   async create(data: Omit<AdvertPlacementEntity, 'id'>): Promise<AdvertPlacementEntity> {
@@ -57,6 +58,7 @@ export class AdvertPlacementRepository extends PrismaBaseRepository implements I
         actualAirTime: row.actualAirTime,
         durationSeconds: row.durationSeconds,
         status: row.status,
+        airAlertSentAt: row.airAlertSentAt,
       },
     });
     return modelToEntity(updated);
@@ -65,5 +67,17 @@ export class AdvertPlacementRepository extends PrismaBaseRepository implements I
   async deleteById(id: string): Promise<AdvertPlacementEntity | null> {
     const row = await this.prisma.advertPlacement.delete({ where: { id } });
     return row ? modelToEntity(row) : null;
+  }
+
+  async findPlacementsNeedingAirAlert(now: Date, windowEnd: Date): Promise<AdvertPlacementEntity[]> {
+    const rows = await this.prisma.advertPlacement.findMany({
+      where: {
+        airAlertSentAt: null,
+        status: AdvertPlacementStatus.Scheduled,
+        date: { gte: now, lte: windowEnd },
+      },
+      orderBy: { date: 'asc' },
+    });
+    return rows.map(modelToEntity);
   }
 }

@@ -99,6 +99,41 @@ export class UserRepository extends PrismaBaseRepository implements IUserReposit
     return user ? modelToEntity(user) : null;
   }
 
+  async updatePasswordAndClearResetToken(userId: string, passwordHash: string): Promise<UserEntity | null> {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        passwordHash,
+        passwordResetTokenHash: null,
+        passwordResetExpiresAt: null,
+      },
+    });
+    return user ? modelToEntity(user) : null;
+  }
+
+  async findByPasswordResetTokenHash(tokenHash: string): Promise<UserEntity | null> {
+    const user = await this.prisma.user.findFirst({
+      where: { passwordResetTokenHash: tokenHash },
+      include: { employee: true, partner: true },
+    });
+    return user ? modelToEntity(user) : null;
+  }
+
+  async updatePasswordResetToken(
+    userId: string,
+    tokenHash: string | null,
+    expiresAt: Date | null,
+  ): Promise<UserEntity | null> {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        passwordResetTokenHash: tokenHash,
+        passwordResetExpiresAt: expiresAt,
+      },
+    });
+    return user ? modelToEntity(user) : null;
+  }
+
   async updateStatusWithParentSync(userEntity: UserEntity): Promise<UserEntity | null> {
     return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const updatedUser = await tx.user.update({

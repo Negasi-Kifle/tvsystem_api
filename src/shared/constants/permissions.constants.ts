@@ -18,6 +18,7 @@ export const PERMISSIONS = {
   MANAGE_FINANCE: 'manage_finance',
   VIEW_FINANCE: 'view_finance',
   VIEW_ANALYTICS: 'view_analytics',
+  RECEIVE_OPERATIONAL_ALERTS: 'receive_operational_alerts',
   MANAGE_SALES: 'manage_sales',
   VIEW_SALES: 'view_sales',
   MANAGE_TELEGRAM_GROUPS: 'manage_telegram_groups',

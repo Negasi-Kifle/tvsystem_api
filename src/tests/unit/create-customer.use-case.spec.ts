@@ -3,6 +3,8 @@ import { CreateCustomerUseCase } from '../../application/use-cases/customers/cre
 import { CustomerEntity } from '../../domain/entities/customer.entity';
 import type { ICustomerRepository } from '../../domain/repositories/customer.repository.interface';
 import type { IGenerateBusinessRefService } from '../../domain/services/generate-business-ref.service';
+import type { ICategoryRepository } from '../../domain/repositories/category.repository.interface';
+import type { ISubCategoryRepository } from '../../domain/repositories/sub-category.repository.interface';
 
 describe('CreateCustomerUseCase', () => {
   const customerRepo: {
@@ -17,6 +19,9 @@ describe('CreateCustomerUseCase', () => {
 
   const generateBusinessRef: jest.MockedFunction<IGenerateBusinessRefService['generateBusinessRef']> =
     jest.fn();
+
+  const categoryRepo = { findById: jest.fn() };
+  const subCategoryRepo = { findById: jest.fn(), findMany: jest.fn() };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -38,7 +43,6 @@ describe('CreateCustomerUseCase', () => {
       undefined,
       undefined,
       undefined,
-      undefined,
       true,
       birthId,
     );
@@ -49,6 +53,8 @@ describe('CreateCustomerUseCase', () => {
     const uc = new CreateCustomerUseCase(
       customerRepo as unknown as ICustomerRepository,
       { generateBusinessRef } as unknown as IGenerateBusinessRefService,
+      categoryRepo as unknown as ICategoryRepository,
+      subCategoryRepo as unknown as ISubCategoryRepository,
     );
 
     const result = await uc.execute({
@@ -78,6 +84,8 @@ describe('CreateCustomerUseCase', () => {
     const uc = new CreateCustomerUseCase(
       customerRepo as unknown as ICustomerRepository,
       { generateBusinessRef } as unknown as IGenerateBusinessRefService,
+      categoryRepo as unknown as ICategoryRepository,
+      subCategoryRepo as unknown as ISubCategoryRepository,
     );
 
     const result = await uc.execute({ name: 'Solo', sourceFromMediaMonitoring: false });

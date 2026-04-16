@@ -40,10 +40,13 @@ model User {
   employeeId            String?      @unique @map("employee_id")
   salesCommissionType   SalesCommissionType? @map("sales_commission_type")
   salesCommissionAmount Float?       @map("sales_commission_amount")
+  passwordResetTokenHash   String?   @map("password_reset_token_hash")
+  passwordResetExpiresAt   DateTime? @map("password_reset_expires_at")
   createdAt             DateTime     @default(now()) @map("created_at")
   updatedAt             DateTime     @updatedAt @map("updated_at")
 
   // Relations
+  auditLogs             AuditLog[]
   partner               Partner?     @relation(fields: [partnerId], references: [id], onDelete: Cascade)
   employee              Employee?    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
   telegramGroupMemberships TelegramGroupMember[]
@@ -60,6 +63,7 @@ model User {
 
   @@index([email])
   @@index([refModel])
+  @@index([passwordResetTokenHash])
   @@map("users")
 }
 
@@ -287,6 +291,7 @@ model AdvertPlacement {
   actualAirTime      DateTime? @map("actual_air_time")
   durationSeconds    Int       @map("duration_seconds")
   status             String    @default("SCHEDULED") // SCHEDULED, AIRED, MISSED, COMPENSATED, CANCELLED
+  airAlertSentAt     DateTime? @map("air_alert_sent_at")
   createdAt          DateTime  @default(now()) @map("created_at")
   updatedAt          DateTime  @updatedAt @map("updated_at")
 
@@ -384,6 +389,8 @@ model Compensation {
   status              String    // Proposed, Accepted, Rejected
   customerResponse    String?   @map("customer_response")
   respondedAt         DateTime? @map("responded_at")
+  customerResponseTokenHash     String?   @unique @map("customer_response_token_hash")
+  customerResponseTokenExpiresAt DateTime? @map("customer_response_token_expires_at")
   createdAt           DateTime  @default(now()) @map("created_at")
   updatedAt           DateTime  @updatedAt @map("updated_at")
 
@@ -604,6 +611,7 @@ model AdvertSales {
   festiveSeason                 String?  @map("festive_season")
   referralSource                String?  @map("referral_source")
   notes                         String?
+  campaignEndAlertSentAt        DateTime? @map("campaign_end_alert_sent_at")
   createdAt                     DateTime @default(now()) @map("created_at")
   updatedAt                     DateTime @updatedAt @map("updated_at")
 
@@ -788,4 +796,24 @@ model AgentCommission {
   @@index([advertSalesId])
   @@index([agentId])
   @@map("agent_commissions")
+}
+
+// ============================================
+// AUDIT LOG - Security and accountability (NFR)
+// ============================================
+model AuditLog {
+  id           String   @id @default(uuid())
+  userId       String?  @map("user_id")
+  action       String
+  resourceType String   @map("resource_type")
+  resourceId   String?  @map("resource_id")
+  metadata     Json?
+  ipAddress    String?  @map("ip_address")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("audit_logs")
 }

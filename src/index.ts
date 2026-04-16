@@ -7,6 +7,8 @@ import { storageService } from './infrastructure/services/storage/storage.factor
 import { SchedulerService } from './infrastructure/services/scheduler.service';
 import { PermissionSyncService } from './infrastructure/services/permission-sync.service';
 import { AlertService } from './application/services/alert.service';
+import { RecordAuditLogUseCase } from './application/use-cases/audit/record-audit-log.use-case';
+import { createAuditLogMiddleware } from './infrastructure/middlewares/audit-log.middleware';
 import { connectPrisma, disconnectPrisma } from './infrastructure/prisma';
 
 const port = process.env.PORT || 3000;
@@ -24,13 +26,24 @@ async function bootstrap(): Promise<void> {
     console.error('Failed to sync permissions:', error);
   });
 
+  const container = buildAppContainer();
+
+  const alertService = new AlertService(
+    container.advertSalesRepository,
+    container.advertPlacementRepository,
+    container.showRepository,
+    container.userPermissionsRepository,
+    container.emailService,
+  );
   const scheduler = new SchedulerService();
-  const alertService = new AlertService();
   scheduler.scheduleDailySixAm(() => alertService.processOffAirAlerts());
 
-  const container = buildAppContainer();
+  const recordAuditUseCase = new RecordAuditLogUseCase(container.auditLogRepository);
+  const auditMiddleware = createAuditLogMiddleware(recordAuditUseCase);
+
   const app = createApp({
     ...container,
+    auditMiddleware,
     storageService,
     advertPackageImageUpload: createAdvertPackageImageUploadMiddleware(),
     authMiddleware: createAuthMiddleware({

@@ -11,6 +11,8 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { CreateUserPermissionUseCase } from '../../application/use-cases/user-permissions/create.use-case';
 import { FindPermissionsBySlugsUseCase } from '../../application/use-cases/permissions/find-by-slugs';
 import { FindSlugsByUserIdUseCase } from '../../application/use-cases/user-permissions/find-slugs-by-user-id.use-case';
+import { RequestPasswordResetUseCase } from '../../application/use-cases/auth/request-password-reset.use-case';
+import { CompletePasswordResetUseCase } from '../../application/use-cases/auth/complete-password-reset.use-case';
 import type { ApiRouterDeps } from '../api-router-deps';
 
 const authService = new AuthService();
@@ -23,6 +25,8 @@ export function createAuthHandlers(
     | 'employeeRepository'
     | 'userPermissionsRepository'
     | 'permissionRepository'
+    | 'emailService'
+    | 'hashService'
   >,
 ) {
   const {
@@ -31,6 +35,8 @@ export function createAuthHandlers(
     employeeRepository,
     permissionRepository,
     userPermissionsRepository,
+    emailService,
+    hashService,
   } = deps;
 
   const createUserUseCase = new CreateUserUseCase(
@@ -43,6 +49,8 @@ export function createAuthHandlers(
   const createUserPermissionUseCase = new CreateUserPermissionUseCase(userPermissionsRepository);
   const findPermissionsBySlugsUseCase = new FindPermissionsBySlugsUseCase(permissionRepository);
   const findSlugsByUserIdUseCase = new FindSlugsByUserIdUseCase(userPermissionsRepository);
+  const requestPasswordResetUseCase = new RequestPasswordResetUseCase(userRepository, emailService);
+  const completePasswordResetUseCase = new CompletePasswordResetUseCase(userRepository, hashService);
 
   async function login(req: Request, res: Response, next: NextFunction) {
     try {
@@ -140,5 +148,32 @@ export function createAuthHandlers(
     }
   }
 
-  return { login, register, refreshToken };
+  async function forgotPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body as { email: string };
+      await requestPasswordResetUseCase.execute(email);
+      res.status(202).json({
+        status: 'SUCCESS',
+        message: 'If an account exists for this email, you will receive password reset instructions.',
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async function resetPasswordWithToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token, newPassword } = req.body as { token: string; newPassword: string };
+      const user = await completePasswordResetUseCase.execute(token, newPassword);
+      res.status(200).json({
+        status: 'SUCCESS',
+        message: 'Password has been reset. You can sign in with your new password.',
+        data: { userId: user.id },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  return { login, register, refreshToken, forgotPassword, resetPasswordWithToken };
 }

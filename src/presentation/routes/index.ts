@@ -27,6 +27,7 @@ import { createCompensationsRouter } from './compensations.routes';
 import { createPaymentsRouter } from './payments.routes';
 import { createRevenueSharesRouter } from './revenue-shares.routes';
 import { createAgentCommissionsRouter } from './agent-commissions.routes';
+import { createPublicRouter } from './public.routes';
 import type { ApiRouterDeps } from '../api-router-deps';
 
 export type { ApiRouterDeps } from '../api-router-deps';
@@ -64,6 +65,7 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/payments', createPaymentsRouter(deps));
   router.use('/revenue-shares', createRevenueSharesRouter(deps));
   router.use('/agent-commissions', createAgentCommissionsRouter(deps));
+  router.use('/public', createPublicRouter(deps));
 
   return router;
 }

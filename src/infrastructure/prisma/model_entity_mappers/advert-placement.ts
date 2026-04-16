@@ -25,6 +25,7 @@ export function modelToEntity(model: AdvertPlacementModel): AdvertPlacementEntit
     model.broadcastCode,
     model.plannedTimeMinutes,
     model.actualAirTime,
+    model.airAlertSentAt ?? null,
     model.createdAt,
     model.updatedAt,
     model.id,
@@ -48,5 +49,6 @@ export function entityToModel(
     actualAirTime: entity.actualAirTime ?? null,
     durationSeconds: entity.durationSeconds,
     status: entity.status,
+    airAlertSentAt: entity.airAlertSentAt ?? null,
   };
 }

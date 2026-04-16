@@ -1,9 +1,12 @@
 import request from 'supertest';
+import type { RequestHandler } from 'express';
 import { buildAppContainerForTests } from '../../composition/app-container';
 import { createAuthMiddleware } from '../../infrastructure/middlewares/auth.middleware';
 import { createAdvertPackageImageUploadMiddleware } from '../../infrastructure/middlewares/advert-package-upload.middleware';
 import { createApp } from '../../presentation/app';
 import type { IStorageService } from '../../domain/services/storage.service';
+
+const auditMiddlewarePassThrough: RequestHandler = (_req, _res, next) => next();
 
 const testStorageService: IStorageService = {
   async upload() {
@@ -17,6 +20,7 @@ const testStorageService: IStorageService = {
 const container = buildAppContainerForTests();
 const app = createApp({
   ...container,
+  auditMiddleware: auditMiddlewarePassThrough,
   storageService: testStorageService,
   advertPackageImageUpload: createAdvertPackageImageUploadMiddleware(),
   authMiddleware: createAuthMiddleware({

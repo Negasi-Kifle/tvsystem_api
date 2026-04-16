@@ -37,6 +37,7 @@ export class UpdateAdvertPlacementUseCase {
       patch.broadcastCode !== undefined ? patch.broadcastCode : existing.broadcastCode,
       patch.plannedTimeMinutes !== undefined ? patch.plannedTimeMinutes : existing.plannedTimeMinutes,
       patch.actualAirTime !== undefined ? patch.actualAirTime : existing.actualAirTime,
+      existing.airAlertSentAt,
       existing.createdAt,
       existing.updatedAt,
       existing.id,

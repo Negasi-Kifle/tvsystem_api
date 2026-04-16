@@ -4,15 +4,20 @@ import { validateBody } from '../validators/validate-body';
 import { loginDto } from '../dtos/requests/auth/login.dto';
 import { refreshTokenDto } from '../dtos/requests/auth/refresh-token.dto';
 import { registerDto } from '../dtos/requests/user/register.dto';
+import { forgotPasswordDto } from '../dtos/requests/auth/forgot-password.dto';
+import { resetPasswordByTokenDto } from '../dtos/requests/auth/reset-password-by-token.dto';
 import type { ApiRouterDeps } from '../api-router-deps';
 
 export function createAuthRouter(deps: ApiRouterDeps): Router {
   const router = Router();
-  const { login, register, refreshToken } = createAuthHandlers(deps);
+  const { login, register, refreshToken, forgotPassword, resetPasswordWithToken } =
+    createAuthHandlers(deps);
 
   router.post('/register', validateBody(registerDto), register);
   router.post('/login', validateBody(loginDto), login);
   router.post('/refresh', validateBody(refreshTokenDto), refreshToken);
+  router.post('/forgot-password', validateBody(forgotPasswordDto), forgotPassword);
+  router.post('/reset-password', validateBody(resetPasswordByTokenDto), resetPasswordWithToken);
 
   return router;
 }

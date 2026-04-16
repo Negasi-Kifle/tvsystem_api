@@ -31,6 +31,7 @@ import type { ICompensationRepository } from '../domain/repositories/compensatio
 import type { IPaymentRepository } from '../domain/repositories/payment.repository.interface';
 import type { IRevenueShareRepository } from '../domain/repositories/revenue-share.repository.interface';
 import type { IAgentCommissionRepository } from '../domain/repositories/agent-commission.repository.interface';
+import type { IAuditLogRepository } from '../domain/repositories/audit-log.repository.interface';
 import { AdvertPlacementRepository } from '../infrastructure/prisma/repositories/advert-placement.repository';
 import { AdvertSalesRepository } from '../infrastructure/prisma/repositories/advert-sales.repository';
 import { AdvertPackageMediaPackRepository } from '../infrastructure/prisma/repositories/advert-package-media-pack.repository';
@@ -64,6 +65,7 @@ import { CompensationRepository } from '../infrastructure/prisma/repositories/co
 import { PaymentRepository } from '../infrastructure/prisma/repositories/payment.repository';
 import { RevenueShareRepository } from '../infrastructure/prisma/repositories/revenue-share.repository';
 import { AgentCommissionRepository } from '../infrastructure/prisma/repositories/agent-commission.repository';
+import { AuditLogRepository } from '../infrastructure/prisma/repositories/audit-log.repository';
 
 export interface AppContainer {
   userRepository: IUserRepository;
@@ -95,6 +97,7 @@ export interface AppContainer {
   paymentRepository: IPaymentRepository;
   revenueShareRepository: IRevenueShareRepository;
   agentCommissionRepository: IAgentCommissionRepository;
+  auditLogRepository: IAuditLogRepository;
   hashService: IHashService;
   calendarService: ICalendarService;
   generateBusinessRefService: IGenerateBusinessRefService;
@@ -134,6 +137,7 @@ export function buildAppContainer(): AppContainer {
     paymentRepository: new PaymentRepository(),
     revenueShareRepository: new RevenueShareRepository(),
     agentCommissionRepository: new AgentCommissionRepository(),
+    auditLogRepository: new AuditLogRepository(),
     generateBusinessRefService: new GenerateBusinessRefService(),
     emailService: new EmailService(),
   };

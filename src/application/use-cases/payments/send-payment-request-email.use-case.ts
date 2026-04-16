@@ -30,19 +30,26 @@ export class SendPaymentRequestEmailUseCase {
       throw new EntityNotFoundError('Customer email not found', 'Customer', sale.customerId);
     }
 
+    const contactName = customer?.contacts?.[0]?.name ?? customer?.name ?? 'Customer';
+    const periodStart = sale.adStartDate.toISOString().split('T')[0];
+    const periodEnd = sale.adEndDate.toISOString().split('T')[0];
+
     const html = `
-      <h2>Payment Request - ${payment.paymentRequestRef}</h2>
+      <h2>Payment request — ${payment.paymentRequestRef}</h2>
+      <p><strong>Bill to:</strong> ${contactName} (${customer?.name ?? ''})</p>
       <p><strong>Campaign:</strong> ${sale.campaignName}</p>
-      <p><strong>Reference:</strong> ${sale.referenceNumber}</p>
-      <p><strong>${payment.installmentLabel}</strong></p>
-      <table border="1" cellpadding="4" cellspacing="0">
-        <tr><td>Amount Before VAT</td><td>${payment.amountBeforeVat.toFixed(2)} ETB</td></tr>
+      <p><strong>Sale reference:</strong> ${sale.referenceNumber}</p>
+      <p><strong>Campaign period:</strong> ${periodStart} — ${periodEnd}</p>
+      <p><strong>Installment:</strong> ${payment.installmentLabel}</p>
+      <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;">
+        <tr><td>Amount before VAT</td><td>${payment.amountBeforeVat.toFixed(2)} ETB</td></tr>
         <tr><td>VAT (15%)</td><td>${payment.vatAmount.toFixed(2)} ETB</td></tr>
-        <tr><td>Withhold Tax (2%)</td><td>${payment.withholdTax.toFixed(2)} ETB</td></tr>
-        <tr><td>VAT Withhold (7.5%)</td><td>${payment.vatWithhold.toFixed(2)} ETB</td></tr>
-        <tr><td><strong>Total Amount</strong></td><td><strong>${payment.totalAmount.toFixed(2)} ETB</strong></td></tr>
+        <tr><td>Withhold tax (2%)</td><td>${payment.withholdTax.toFixed(2)} ETB</td></tr>
+        <tr><td>VAT withhold (7.5%)</td><td>${payment.vatWithhold.toFixed(2)} ETB</td></tr>
+        <tr><td><strong>Total due</strong></td><td><strong>${payment.totalAmount.toFixed(2)} ETB</strong></td></tr>
       </table>
-      <p><strong>Due Date:</strong> ${payment.dueDate.toISOString().split('T')[0]}</p>
+      <p><strong>Due date:</strong> ${payment.dueDate.toISOString().split('T')[0]}</p>
+      <p>Please use reference <strong>${payment.paymentRequestRef}</strong> when making payment.</p>
     `;
 
     await this.emailService.send(

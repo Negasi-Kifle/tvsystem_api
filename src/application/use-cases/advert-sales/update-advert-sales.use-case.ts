@@ -196,6 +196,7 @@ export class UpdateAdvertSalesUseCase {
       patch.festiveSeason !== undefined ? patch.festiveSeason : existing.festiveSeason,
       patch.referralSource !== undefined ? patch.referralSource : existing.referralSource,
       patch.notes !== undefined ? patch.notes : existing.notes,
+      existing.campaignEndAlertSentAt,
       existing.createdAt,
       existing.updatedAt,
       existing.id,

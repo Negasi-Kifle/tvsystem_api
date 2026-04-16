@@ -5,6 +5,7 @@ import { PrismaBaseRepository } from './base.repository';
 import { advertSalesReadInclude, entityToModel, modelToEntity } from '../model_entity_mappers/advert-sales';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { buildWhereClauseForAdvertSales } from '../where_clauses/advert-sales';
+import { AdvertSalesStatus } from '../../../domain/enums/advert-sales.enum';
 
 export class AdvertSalesRepository extends PrismaBaseRepository implements IAdvertSalesRepository {
   async create(data: Omit<AdvertSalesEntity, 'id'>): Promise<AdvertSalesEntity> {
@@ -80,6 +81,7 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
         festiveSeason: row.festiveSeason,
         referralSource: row.referralSource,
         notes: row.notes,
+        campaignEndAlertSentAt: row.campaignEndAlertSentAt,
       },
     });
     const full = await this.prisma.advertSales.findUnique({
@@ -92,5 +94,19 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
   async deleteById(id: string): Promise<AdvertSalesEntity | null> {
     const row = await this.prisma.advertSales.delete({ where: { id } });
     return row ? modelToEntity(row) : null;
+  }
+
+  async findCampaignsNeedingEndAlert(now: Date, windowEnd: Date): Promise<AdvertSalesEntity[]> {
+    const terminal: AdvertSalesStatus[] = [AdvertSalesStatus.Cancelled, AdvertSalesStatus.Delivered];
+    const rows = await this.prisma.advertSales.findMany({
+      where: {
+        campaignEndAlertSentAt: null,
+        adEndDate: { gte: now, lte: windowEnd },
+        status: { notIn: terminal },
+      },
+      include: advertSalesReadInclude,
+      orderBy: { adEndDate: 'asc' },
+    });
+    return rows.map(modelToEntity);
   }
 }

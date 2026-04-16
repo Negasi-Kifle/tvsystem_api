@@ -62,4 +62,17 @@ export class UserPermissionsRepository extends PrismaBaseRepository implements I
         });
         return userPermissions.map((up: typeof userPermissions[number]) => up.permission.nameSlug);
     }
+
+    async findActiveUserEmailsByPermissionSlug(slug: string): Promise<string[]> {
+        const userPermissions = await this.prisma.userPermission.findMany({
+            where: {
+                permission: { nameSlug: slug },
+                OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
+                user: { isActive: true },
+            },
+            include: { user: true, permission: true },
+        });
+        const emails = userPermissions.map((up) => up.user.email);
+        return [...new Set(emails)];
+    }
 }

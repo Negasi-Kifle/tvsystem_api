@@ -1,4 +1,4 @@
-import express, { type Express } from 'express';
+import express, { type Express, type RequestHandler } from 'express';
 import path from 'node:path';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -8,7 +8,9 @@ import type { ApiRouterDeps } from './api-router-deps';
 import { sendErrorResponse } from '../shared/utils/error-handler';
 import globalErrorHandler from '../shared/utils/global-error-handler';
 
-export type CreateAppDeps = ApiRouterDeps;
+export type CreateAppDeps = ApiRouterDeps & {
+  auditMiddleware: RequestHandler;
+};
 
 export function createApp(deps: CreateAppDeps): Express {
   const app = express();
@@ -22,6 +24,7 @@ export function createApp(deps: CreateAppDeps): Express {
   app.use(helmet());
   app.use(morgan('combined'));
 
+  app.use('/api', deps.auditMiddleware);
   app.use('/api', createApiRouter(deps));
 
   app.use(/.*/, (req, res) => {

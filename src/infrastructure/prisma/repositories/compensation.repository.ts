@@ -18,6 +18,8 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
         status: data.status,
         customerResponse: data.customerResponse ?? null,
         respondedAt: data.respondedAt ?? null,
+        customerResponseTokenHash: data.customerResponseTokenHash ?? null,
+        customerResponseTokenExpiresAt: data.customerResponseTokenExpiresAt ?? null,
       },
     });
     return this.toEntity(saved);
@@ -25,6 +27,13 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
 
   async findById(id: string): Promise<CompensationEntity | null> {
     const row = await this.prisma.compensation.findUnique({ where: { id } });
+    return row ? this.toEntity(row) : null;
+  }
+
+  async findByCustomerResponseTokenHash(tokenHash: string): Promise<CompensationEntity | null> {
+    const row = await this.prisma.compensation.findUnique({
+      where: { customerResponseTokenHash: tokenHash },
+    });
     return row ? this.toEntity(row) : null;
   }
 
@@ -58,6 +67,8 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
         status: entity.status,
         customerResponse: entity.customerResponse,
         respondedAt: entity.respondedAt,
+        customerResponseTokenHash: entity.customerResponseTokenHash ?? null,
+        customerResponseTokenExpiresAt: entity.customerResponseTokenExpiresAt ?? null,
       },
     });
     return this.toEntity(updated);
@@ -80,6 +91,8 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
       row.proposedById,
       row.customerResponse,
       row.respondedAt,
+      row.customerResponseTokenHash,
+      row.customerResponseTokenExpiresAt,
       row.createdAt,
       row.updatedAt,
       row.id,

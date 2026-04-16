@@ -47,6 +47,8 @@ export function modelToEntity(user: UserWithRelations): UserEntity {
         user.employeeId ?? undefined,
         prismaToDomainCommissionType(user.salesCommissionType),
         user.salesCommissionAmount ?? undefined,
+        user.passwordResetTokenHash ?? null,
+        user.passwordResetExpiresAt ?? null,
         user.createdAt,
         user.updatedAt,
         user.id,
@@ -72,6 +74,8 @@ export function entityToModel(user: UserEntity): User {
         employeeId: user.employeeId ?? null,
         salesCommissionType: domainToPrismaCommissionType(user.salesCommissionType ?? null),
         salesCommissionAmount: user.salesCommissionAmount ?? null,
+        passwordResetTokenHash: user.passwordResetTokenHash ?? null,
+        passwordResetExpiresAt: user.passwordResetExpiresAt ?? null,
         createdAt: user.createdAt ?? new Date(),
         updatedAt: user.updatedAt ?? new Date(),
     };

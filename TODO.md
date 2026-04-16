@@ -8,10 +8,17 @@
 
 ### Core Features - Not Yet Implemented
 
-- 🟨 Implement show/ad expiry detection and notification delivery (`application/services/alert.service.ts`)
-- 🟨 Implement password reset token generation and email delivery (`presentation/controllers/user.controller.ts`)
-- 🟨 Send compensation proposal email with actionable link (implement with the future compensation module; advert CRUD lives under `application/use-cases/adverts/`)
-- 🟨 Send formatted payment request email with invoice details (implement with the future advert finance / payment module; there is no `application/use-cases/finance/` tree today)
+- 🟨 Extend operational alerting (additional channels, tuning cadence, dashboards) beyond email alerts in `AlertService`
+- 🟨 Verify satellite log / compensation flows end-to-end vs requirements §4.7 (batch reporting, polish)
+- 🟨 Refine payment request emails further (installment schedules vs contracts, attachments) — base HTML invoice flow exists
+
+### Architecture & documentation
+
+- 🟨 Deprecate or remove duplicate [docs/requirements.mdc](docs/requirements.mdc); canonical spec is [docs/requirements.md](docs/requirements.md)
+- 🟨 Refresh [docs/clean-architecture-violations.md](docs/clean-architecture-violations.md) for current routes (`/api/advert-placements`, `/api/payments`, `/api/compensations`, `/api/satellite-logs`) and `buildAppContainer` wiring
+- 🟨 Decide fate of unwired `AnalyticsService` ([src/application/services/analytics.service.ts](src/application/services/analytics.service.ts)): add secured `/api` analytics (e.g. `VIEW_ANALYTICS`) or delete dead code
+- 🟨 Requirements §3 mentions SMS; stack is email-only — product decision (provider vs defer)
+- 🟨 Expand audit coverage ([docs/requirements.md](docs/requirements.md) §5): domain events, retention, or admin query API on top of `audit_logs` + middleware
 
 ### Email Templates
 
@@ -23,15 +30,16 @@
 - ✅ Customer entity CRUD operations and endpoints (Sales Follow-up)
 - ✅ Partner entity CRUD operations and endpoints (`/api/partners`, `partners.routes.ts`)
 - ✅ MediaPack and AdvertPackage catalog CRUD (`/api/media-packs`, `/api/advert-packages`, `POST .../with-ad-packages`, `/api/advert-package-media-packs`; see `PROJECT_INDEX_AUTO.md`)
-- 🟨 SatelliteLog upload and verification workflow
+- ✅ Satellite log upload, entries, match, and verify API (`/api/satellite-logs`, `/api/satellite-log-entries`; see `PROJECT_INDEX_AUTO.md`)
+- 🟨 Satellite log product completeness (batch reporting, operational polish vs requirements §4.7); customer token response is available at `POST /api/public/compensations/respond`
 - ✅ Sales follow-up / communication logging functionality
-- 🟨 Revenue share calculation and distribution
-- 🟨 Commission calculation for sales reps
+- 🟨 Revenue share calculation and distribution (API and use cases exist — verify business rules, disbursement, and partner reporting vs requirements §4.9 / §4.15)
+- 🟨 Commission calculation for sales reps and agents (API and use cases exist — verify rules vs requirements §4.9)
 - ✅ Ethiopian calendar date conversion service (CalendarService.formatEthiopianDate)
-- 🟨 Audit logging middleware for critical actions
+- ✅ Audit logging: `audit_logs` table, middleware on mutating `/api` routes, `RecordAuditLogUseCase`
 - 🟨 Contract document generation
-- 🟨 Ad delivery verification (schedule vs satellite log comparison)
-- 🟨 Revenue share reports for external partners
+- 🟨 Ad delivery verification gaps (core compare + operational email alerts exist; remaining: integrations, reporting breadth vs requirements §4.5 / §4.7)
+- 🟨 Revenue share reports for external partners (scheduled email weekly/monthly per §4.15)
 - 🟨 Batch email sending for ad schedules and reports
 
 ### Infrastructure
@@ -47,7 +55,7 @@
 
 - 🟨 Add integration tests for auth flow
 - 🟨 Add integration tests for shows CRUD
-- 🟨 Add integration tests for adverts CRUD
+- 🟨 Add integration tests for advert placements / advert sales (replace legacy “adverts” naming)
 - 🟨 Add unit tests for use cases
 - 🟨 Add unit tests for value objects (Percentage, ScheduleSlot, CalendarDate)
 
@@ -58,6 +66,19 @@
 - 🟨 Add environment setup guide
 
 ## ✅ Completed Tasks
+
+### 04/16/2026
+
+- ✅ Operational alerts: `AlertService` (campaign end / air), `RECEIVE_OPERATIONAL_ALERTS`, Prisma flags on advert sales/placement; wired from `src/index.ts`
+- ✅ Self-service password reset: `POST /api/auth/forgot-password`, `POST /api/auth/reset-password` (token + `newPassword`); secure tokens, user columns; configure `PUBLIC_APP_URL` or `FRONTEND_URL` for reset links
+- ✅ Compensation emails: proposal emails include token + SPA link; public `POST /api/public/compensations/respond` (`token`, `accept`, optional `customerResponse`)
+- ✅ Payment request emails: richer HTML body in `SendPaymentRequestEmailUseCase`
+- ✅ Audit trail: `audit_logs` migration, Prisma repo, `auditMiddleware` registered in `app.ts`
+- ✅ Postman: **Public** folder (`/api/public/compensations/respond`); **Auth** requests (`/api/auth/forgot-password`, `/api/auth/reset-password`)
+- ✅ Refreshed [PROJECT_INDEX_AUTO.md](PROJECT_INDEX_AUTO.md): current stack (no Mongoose), `buildAppContainer` / `ApiRouterDeps`, full `/api` module table, Prisma model list, requirements ↔ backend mapping ([docs/requirements.md](docs/requirements.md) canonical), migration and file counts, known gaps (unwired `AnalyticsService`, SMS NFR)
+- ✅ Updated [TODO.md](TODO.md) architecture recommendations and reconciled satellite log / finance / compensation wording with existing routes
+- TODO: Run `npx prisma migrate deploy` (or `migrate dev`) so migration `20260416120000_alerts_password_compensation_audit` is applied
+- TODO: Grant `receive_operational_alerts` to users who should receive operational alert emails
 
 ### 04/15/2026
 
@@ -176,3 +197,4 @@
 - 🟥 High Priority: Known issues that are currently broken and require immediate attention
 - 🟨 Medium Priority: New tasks that need to be addressed
 - ✅ Completed: Tasks that have been finished successfully
+

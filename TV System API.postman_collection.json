@@ -33,6 +33,47 @@
       ]
     },
     {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Respond to compensation (token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<paste-from-email>\",\n  \"accept\": true,\n  \"customerResponse\": \"Optional message\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/public/compensations/respond",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "public",
+                "compensations",
+                "respond"
+              ]
+            },
+            "description": "No authentication. Uses the token from the compensation proposal email. Configure PUBLIC_APP_URL or FRONTEND_URL for links in outbound emails."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Auth",
       "item": [
         {
@@ -595,6 +636,76 @@
               "body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZmRhOTQ5Mi03MjQxLTQxOWYtYjExNC04ZjFlNjU3NDgzNzYiLCJyb2xlcyI6WyJDRU8iXSwicGVybWlzc2lvbnMiOlsibWFuYWdlX3VzZXJzIiwibWFuYWdlX3Nob3dzIiwibWFuYWdlX3NjaGVkdWxlcyIsIm1hbmFnZV9tZWRpYV9wYWNrcyIsIm1hbmFnZV9lbXBsb3llZXMiLCJtYW5hZ2VfcGFydG5lcnMiLCJtYW5hZ2VfYWR2ZXJ0cyIsIm1hbmFnZV9maW5hbmNlIiwidmlld19hbmFseXRpY3MiXSwiaWF0IjoxNzY4NzY3NzE4LCJleHAiOjE3Njg3Njg2MTh9.Q7aSkpi7RJwd_kgUgdiHyOmZ7ie7AijRxt61Hk7mPCk\"\n}"
             }
           ]
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            },
+            "description": "Sends a password reset email when the account exists. Set PUBLIC_APP_URL or FRONTEND_URL so the email contains a correct reset link."
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password (token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<paste-from-email>\",\n  \"newPassword\": \"newSecurePassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            },
+            "description": "Completes password reset using the token from the forgot-password email. No Authorization header."
+          },
+          "response": []
         }
       ]
     },
@@ -9838,7 +9949,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -9898,15 +10009,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "1702"
+                      "value": "715"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"6a6-gBfhJnHnFuwovSRgfKPAF8/SaHI\""
+                      "value": "W/\"2cb-D0+QaGDci77WZ8W4ufMCU/+7Byw\""
                     },
                     {
                       "key": "Date",
-                      "value": "Wed, 15 Apr 2026 18:29:09 GMT"
+                      "value": "Thu, 16 Apr 2026 06:48:06 GMT"
                     },
                     {
                       "key": "Connection",
@@ -9918,7 +10029,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"categories\": [\n            {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            {\n                \"name\": \"Finance\",\n                \"nameSlug\": \"finance\",\n                \"createdAt\": \"2026-03-17T21:47:12.570Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.570Z\",\n                \"id\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                \"subCategories\": [\n                    {\n                        \"categoryId\": \"ba5396e3-6f95-4945-8f85-296cc1c81905\",\n                        \"name\": \"BANK\",\n                        \"nameSlug\": \"bank\",\n                        \"isCustom\": false,\n                        \"createdAt\": \"2026-03-17T21:47:12.627Z\",\n                        \"updatedAt\": \"2026-03-17T21:47:12.627Z\",\n                        \"id\": \"773c7f70-2b33-4093-88d6-02cffcc96978\"\n                    }\n                ]\n            },\n            {\n                \"name\": \"Food\",\n                \"nameSlug\": \"food\",\n                \"createdAt\": \"2026-03-17T21:47:12.638Z\",\n                \"updatedAt\": \"2026-03-17T21:47:12.638Z\",\n                \"id\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategories\": [\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Bank\",\n                        \"nameSlug\": \"bank\",\n                        \"isCustom\": true,\n                        \"createdAt\": \"2026-03-21T08:09:57.194Z\",\n                        \"updatedAt\": \"2026-03-21T08:09:57.194Z\",\n                        \"id\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\"\n                    },\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Department Store\",\n                        \"nameSlug\": \"department-store\",\n                        \"isCustom\": true,\n                        \"createdAt\": \"2026-03-21T08:09:34.326Z\",\n                        \"updatedAt\": \"2026-03-21T08:09:34.326Z\",\n                        \"id\": \"ec8639f2-6436-42fa-bf92-1067a05ca66c\"\n                    },\n                    {\n                        \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                        \"name\": \"Food\",\n                        \"nameSlug\": \"food\",\n                        \"isCustom\": false,\n                        \"createdAt\": \"2026-03-17T21:47:12.640Z\",\n                        \"updatedAt\": \"2026-03-17T21:47:12.640Z\",\n                        \"id\": \"aecdf62f-7242-444b-a52b-3ede4e188bf2\"\n                    }\n                ]\n            },\n            {\n                \"name\": \"Manufacturing\",\n                \"nameSlug\": \"manufacturing\",\n                \"createdAt\": \"2026-04-14T18:56:34.049Z\",\n                \"updatedAt\": \"2026-04-14T18:56:34.049Z\",\n                \"id\": \"7208132a-b851-4323-887a-9ea2a9991b72\",\n                \"subCategories\": []\n            }\n        ]\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"categories\": [\n            {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": [\n                    {\n                        \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                        \"name\": \"Poultry\",\n                        \"nameSlug\": \"poultry\",\n                        \"isCustom\": true,\n                        \"createdAt\": \"2026-04-15T21:28:20.637Z\",\n                        \"updatedAt\": \"2026-04-15T21:28:20.637Z\",\n                        \"id\": \"89606b55-578a-4eb9-a618-81d68906c7af\"\n                    }\n                ]\n            },\n            {\n                \"name\": \"Manufacturing\",\n                \"nameSlug\": \"manufacturing\",\n                \"createdAt\": \"2026-04-14T18:56:34.049Z\",\n                \"updatedAt\": \"2026-04-14T18:56:34.049Z\",\n                \"id\": \"7208132a-b851-4323-887a-9ea2a9991b72\",\n                \"subCategories\": []\n            }\n        ]\n    }\n}"
                 }
               ]
             },
@@ -10578,7 +10689,7 @@
                   "variable": [
                     {
                       "key": "categoryId",
-                      "value": "ab336704-4da0-4f38-8b50-823f001a46f4"
+                      "value": "518ea6f4-075c-431d-99e6-65388411af14"
                     }
                   ]
                 },
@@ -10723,7 +10834,7 @@
                   "variable": [
                     {
                       "key": "subCategoryId",
-                      "value": "10f6eb3b-f21d-4041-b3b0-115b5a43666c"
+                      "value": "89606b55-578a-4eb9-a618-81d68906c7af"
                     }
                   ]
                 },
@@ -11185,7 +11296,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": true,\n  \"mediaMonitoringId\": \"35b9f57b-47e6-461b-a90f-317d31b52bb3\",\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
+                  "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n//   \"mediaMonitoringId\": \"35b9f57b-47e6-461b-a90f-317d31b52bb3\",\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -11218,7 +11329,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"industry\": \"Finance\",\n  \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n  \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
+                      "raw": "{\n  \"name\": \"Example Company PLC\",\n  \"contacts\": [\n    {\n      \"name\": \"Contact Name\",\n      \"email\": \"contact@example.com\",\n      \"phone\": \"011-000-0000\",\n      \"position\": \"Manager\",\n      \"mobile\": \"0911000000\",\n      \"officeTel\": \"011-000-0001\"\n    }\n  ],\n  \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n  \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n  \"location\": \"Addis Ababa\",\n  \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n  \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n  \"status\": \"ColdProgress\",\n  \"holidayStatus\": \"Interested\",\n  \"studioVisit\": \"NotVisited\",\n  \"otherMediaCampaign\": \"EBS May 2024\",\n  \"sourceFromMediaMonitoring\": false,\n//   \"mediaMonitoringId\": \"35b9f57b-47e6-461b-a90f-317d31b52bb3\",\n  \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -11238,7 +11349,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11298,15 +11409,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "867"
+                      "value": "846"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"363-QuHA58d45IYHpo4TDKmUoDPGlrM\""
+                      "value": "W/\"34e-lcNmPYXQoDmePcqHw6WVq62OwlY\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 23:22:56 GMT"
+                      "value": "Thu, 16 Apr 2026 06:19:07 GMT"
                     },
                     {
                       "key": "Connection",
@@ -11318,7 +11429,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"BNO7C0TQJG\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T23:22:56.706Z\",\n            \"updatedAt\": \"2026-03-21T23:22:56.706Z\",\n            \"id\": \"b9e92a86-c1ef-403e-9c5e-ee819bed954a\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"5PEYQS6FJ1\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"subCategoryId\": \"89606b55-578a-4eb9-a618-81d68906c7af\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-04-16T06:19:07.361Z\",\n            \"updatedAt\": \"2026-04-16T06:19:07.361Z\",\n            \"id\": \"a288748b-382b-4331-924b-780735bdd7eb\"\n        }\n    }\n}"
                 }
               ]
             },
@@ -11407,7 +11518,7 @@
                     "method": "GET",
                     "header": [],
                     "url": {
-                      "raw": "{{baseUrl}}/api/customers?page=1&limit=10",
+                      "raw": "{{baseUrl}}/api/customers?page=1&limit=100",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -11422,7 +11533,7 @@
                         },
                         {
                           "key": "limit",
-                          "value": "10"
+                          "value": "100"
                         },
                         {
                           "key": "businessRef",
@@ -11470,7 +11581,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11530,15 +11641,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "1253"
+                      "value": "4692"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"4e5-9pgCIrlOzSYigwhlY3yC2n9je1U\""
+                      "value": "W/\"1254-MjT8RyvtT8bA1pa1V+w+0eHWkQ0\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sun, 22 Mar 2026 00:04:15 GMT"
+                      "value": "Thu, 16 Apr 2026 05:52:37 GMT"
                     },
                     {
                       "key": "Connection",
@@ -11550,7 +11661,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"customers\": [\n            {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"industry\": \"Finance\",\n                \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n                \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"Cold Progress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"Not Visited Studio\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": false,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-03-21T08:33:16.733Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"communicationLogs\": [\n                    {\n                        \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                        \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                        \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"notes\": \"Called customer; will send proposal next week.\",\n                        \"mediaPackId\": \"438f821f-290d-43e0-9a3d-26ed7fc88f5b\",\n                        \"createdAt\": \"2026-03-21T23:41:18.534Z\",\n                        \"id\": \"16d96210-c6f2-47b6-a452-ebf3f99b1c8a\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 100,\n        \"total\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"customers\": [\n            {\n                \"businessRef\": \"6VYEIFP00D\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": true,\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-04-14T21:04:03.515Z\",\n                \"updatedAt\": \"2026-04-14T21:04:03.515Z\",\n                \"id\": \"01459802-5064-4548-9923-876c0ba1420c\",\n                \"communicationLogs\": [],\n                \"salesAgent\": {\n                    \"fullName\": \"Negasi Kiflom\",\n                    \"email\": \"nega@abbaytv.com\",\n                    \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                    \"phoneNumber\": \"0900000004\",\n                    \"sex\": \"Female\",\n                    \"roles\": [\n                        \"Host\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": false,\n                    \"refModel\": \"Employee\",\n                    \"telegramUsername\": \"@negasik\",\n                    \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 13,\n                    \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                    \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n                }\n            },\n            {\n                \"businessRef\": \"30VEHU7O68\",\n                \"name\": \"Example Company PLC\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Contact Name\",\n                        \"email\": \"contact@example.com\",\n                        \"phone\": \"011-000-0000\",\n                        \"position\": \"Manager\",\n                        \"mobile\": \"0911000000\",\n                        \"officeTel\": \"011-000-0001\"\n                    }\n                ],\n                \"location\": \"Addis Ababa\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"EBS May 2024\",\n                \"sourceFromMediaMonitoring\": true,\n                \"mediaMonitoringId\": \"fa23639b-d6ef-43be-a890-f6a033e79c8f\",\n                \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n                \"createdAt\": \"2026-04-15T09:08:52.652Z\",\n                \"updatedAt\": \"2026-04-15T09:08:52.652Z\",\n                \"id\": \"9008a16e-52a0-4a9a-ae71-ec76605bfde1\",\n                \"communicationLogs\": [],\n                \"salesAgent\": {\n                    \"fullName\": \"Negasi Kiflom\",\n                    \"email\": \"nega@abbaytv.com\",\n                    \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                    \"phoneNumber\": \"0900000004\",\n                    \"sex\": \"Female\",\n                    \"roles\": [\n                        \"Host\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": false,\n                    \"refModel\": \"Employee\",\n                    \"telegramUsername\": \"@negasik\",\n                    \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 13,\n                    \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                    \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n                }\n            },\n            {\n                \"businessRef\": \"CR0003\",\n                \"name\": \"Ashu Trading\",\n                \"contacts\": [\n                    {\n                        \"name\": \"Ashu\",\n                        \"email\": \"ashu@mmn.com\",\n                        \"phone\": \"\",\n                        \"position\": \"asdfsaddf\",\n                        \"mobile\": \"01122334455\",\n                        \"officeTel\": \"0112233445\"\n                    },\n                    {\n                        \"name\": \"tesfa\",\n                        \"email\": \"tesfa@jan.com\",\n                        \"phone\": \"\",\n                        \"position\": \"janitor\",\n                        \"mobile\": \"0900000000\",\n                        \"officeTel\": \"\"\n                    }\n                ],\n                \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"location\": \"fasdfasddf\",\n                \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n                \"status\": \"ColdProgress\",\n                \"holidayStatus\": \"Interested\",\n                \"studioVisit\": \"NotVisited\",\n                \"otherMediaCampaign\": \"\",\n                \"sourceFromMediaMonitoring\": true,\n                \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n                \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n                \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n                \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                \"communicationLogs\": [\n                    {\n                        \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                        \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                        \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"notes\": \"Called customer; will send proposal next week.\",\n                        \"createdAt\": \"2026-03-21T23:41:18.534Z\",\n                        \"id\": \"16d96210-c6f2-47b6-a452-ebf3f99b1c8a\"\n                    },\n                    {\n                        \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                        \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                        \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                        \"notes\": \"Called customer; will send proposal next week.\",\n                        \"createdAt\": \"2026-03-22T19:30:27.844Z\",\n                        \"id\": \"0e5926c5-f843-41fb-835d-aeec6316f102\"\n                    }\n                ],\n                \"category\": {\n                    \"name\": \"Agriculture\",\n                    \"nameSlug\": \"agriculture\",\n                    \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                    \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                    \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                    \"subCategories\": []\n                },\n                \"salesAgent\": {\n                    \"fullName\": \"Negasi Kiflom\",\n                    \"email\": \"nega@abbaytv.com\",\n                    \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                    \"phoneNumber\": \"0900000004\",\n                    \"sex\": \"Female\",\n                    \"roles\": [\n                        \"Host\"\n                    ],\n                    \"isActive\": true,\n                    \"isFirstTimeAccount\": false,\n                    \"refModel\": \"Employee\",\n                    \"telegramUsername\": \"@negasik\",\n                    \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                    \"salesCommissionType\": \"Percentage\",\n                    \"salesCommissionAmount\": 13,\n                    \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                    \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                    \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n                }\n            }\n        ]\n    }\n}"
                 }
               ]
             },
@@ -11714,14 +11825,14 @@
                       "variable": [
                         {
                           "key": "id",
-                          "value": "b9e92a86-c1ef-403e-9c5e-ee819bed954a"
+                          "value": "fff64bb4-8c1e-4c87-84a7-d0701f1d3a67"
                         }
                       ]
                     }
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": "Text",
+                  "_postman_previewlanguage": null,
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11781,15 +11892,15 @@
                     },
                     {
                       "key": "Content-Length",
-                      "value": "825"
+                      "value": "2158"
                     },
                     {
                       "key": "ETag",
-                      "value": "W/\"339-tSOxbjW10eJw09CPx1Mceqgjbx8\""
+                      "value": "W/\"86e-/SiZ1t1Hc9Iu4SsxDiSygq0tOSY\""
                     },
                     {
                       "key": "Date",
-                      "value": "Sat, 21 Mar 2026 23:24:53 GMT"
+                      "value": "Thu, 16 Apr 2026 05:36:39 GMT"
                     },
                     {
                       "key": "Connection",
@@ -11801,7 +11912,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"BNO7C0TQJG\",\n            \"name\": \"Example Company PLC\",\n            \"contacts\": [\n                {\n                    \"name\": \"Contact Name\",\n                    \"email\": \"contact@example.com\",\n                    \"phone\": \"011-000-0000\",\n                    \"position\": \"Manager\",\n                    \"mobile\": \"0911000000\",\n                    \"officeTel\": \"011-000-0001\"\n                }\n            ],\n            \"industry\": \"Finance\",\n            \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n            \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n            \"location\": \"Addis Ababa\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-04-01T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"EBS May 2024\",\n            \"sourceFromMediaMonitoring\": false,\n            \"inPersonUpdate\": \"2026-03-01T00:00:00.000Z\",\n            \"createdAt\": \"2026-03-21T23:22:56.706Z\",\n            \"updatedAt\": \"2026-03-21T23:22:56.706Z\",\n            \"id\": \"b9e92a86-c1ef-403e-9c5e-ee819bed954a\"\n        }\n    }\n}"
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"customer\": {\n            \"businessRef\": \"CR0003\",\n            \"name\": \"Ashu Trading\",\n            \"contacts\": [\n                {\n                    \"name\": \"Ashu\",\n                    \"email\": \"ashu@mmn.com\",\n                    \"phone\": \"\",\n                    \"position\": \"asdfsaddf\",\n                    \"mobile\": \"01122334455\",\n                    \"officeTel\": \"0112233445\"\n                },\n                {\n                    \"name\": \"tesfa\",\n                    \"email\": \"tesfa@jan.com\",\n                    \"phone\": \"\",\n                    \"position\": \"janitor\",\n                    \"mobile\": \"0900000000\",\n                    \"officeTel\": \"\"\n                }\n            ],\n            \"industry\": \"asdfasd\",\n            \"categoryId\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n            \"location\": \"fasdfasddf\",\n            \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n            \"nextReviewDate\": \"2026-03-23T00:00:00.000Z\",\n            \"status\": \"ColdProgress\",\n            \"holidayStatus\": \"Interested\",\n            \"studioVisit\": \"NotVisited\",\n            \"otherMediaCampaign\": \"\",\n            \"sourceFromMediaMonitoring\": true,\n            \"inPersonUpdate\": \"2026-03-22T19:23:47.990Z\",\n            \"createdAt\": \"2026-03-21T08:33:16.733Z\",\n            \"updatedAt\": \"2026-04-14T19:12:23.602Z\",\n            \"id\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n            \"communicationLogs\": [\n                {\n                    \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                    \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                    \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"notes\": \"Called customer; will send proposal next week.\",\n                    \"createdAt\": \"2026-03-21T23:41:18.534Z\",\n                    \"id\": \"16d96210-c6f2-47b6-a452-ebf3f99b1c8a\"\n                },\n                {\n                    \"customerId\": \"fff64bb4-8c1e-4c87-84a7-d0701f1d3a67\",\n                    \"logDate\": \"2026-03-21T12:00:00.000Z\",\n                    \"salesAgentId\": \"06338ad4-e725-4952-a60e-fda19741d50c\",\n                    \"notes\": \"Called customer; will send proposal next week.\",\n                    \"createdAt\": \"2026-03-22T19:30:27.844Z\",\n                    \"id\": \"0e5926c5-f843-41fb-835d-aeec6316f102\"\n                }\n            ],\n            \"category\": {\n                \"name\": \"Agriculture\",\n                \"nameSlug\": \"agriculture\",\n                \"createdAt\": \"2026-03-21T08:26:49.767Z\",\n                \"updatedAt\": \"2026-03-21T08:26:49.767Z\",\n                \"id\": \"518ea6f4-075c-431d-99e6-65388411af14\",\n                \"subCategories\": []\n            },\n            \"salesAgent\": {\n                \"fullName\": \"Negasi Kiflom\",\n                \"email\": \"nega@abbaytv.com\",\n                \"passwordHash\": \"$2b$10$swQRyQ.UbfK/o0HsnHneaO4346kfuJUpzaOSJD/OlvMwu0MP/1rTS\",\n                \"phoneNumber\": \"0900000004\",\n                \"sex\": \"Female\",\n                \"roles\": [\n                    \"Host\"\n                ],\n                \"isActive\": true,\n                \"isFirstTimeAccount\": false,\n                \"refModel\": \"Employee\",\n                \"telegramUsername\": \"@negasik\",\n                \"employeeId\": \"61b1ab24-c4cf-4c99-8dc7-7f3b072271d7\",\n                \"salesCommissionType\": \"Percentage\",\n                \"salesCommissionAmount\": 13,\n                \"createdAt\": \"2026-03-10T11:55:14.557Z\",\n                \"updatedAt\": \"2026-04-15T21:30:31.837Z\",\n                \"id\": \"06338ad4-e725-4952-a60e-fda19741d50c\"\n            }\n        }\n    }\n}"
                 }
               ]
             },
@@ -24451,6 +24562,16 @@
         {
           "name": "Get Advert Schedule",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -24505,14 +24626,14 @@
                   "variable": [
                     {
                       "key": "advertSalesId",
-                      "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                      "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                     }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -24572,15 +24693,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "306"
+                  "value": "520"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"132-DlL65sRGUdOzfPCPIxSJg6jQnjQ\""
+                  "value": "W/\"208-WfV2qKJ+uZNcwgWJYfROGuhPE6w\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sat, 11 Apr 2026 09:09:45 GMT"
+                  "value": "Thu, 16 Apr 2026 05:16:07 GMT"
                 },
                 {
                   "key": "Connection",
@@ -24592,7 +24713,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"schedule\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"customerName\": \"Example Company PLC\",\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"totalSlots\": 12,\n            \"packageName\": \"Agelgil\",\n            \"rows\": []\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"schedule\": {\n            \"referenceNumber\": \"HSPNMMH2LT\",\n            \"customerName\": \"Ashu Trading\",\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"totalSlots\": 12,\n            \"packageName\": \"Agelgil\",\n            \"rows\": [\n                {\n                    \"date\": \"2026-05-10\",\n                    \"dateEth\": \"2018-09-02\",\n                    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                    \"position\": \"Beginning\",\n                    \"spotIndex\": 1,\n                    \"plannedTimeMinutes\": 15,\n                    \"durationSeconds\": 30,\n                    \"broadcastCode\": \"AAD-574\",\n                    \"status\": \"SCHEDULED\"\n                }\n            ]\n        }\n    }\n}"
             }
           ]
         },
@@ -25067,7 +25188,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n  \"date\": \"2026-05-10T00:00:00.000Z\",\n  \"dateEth\": \"2018-09-02\",\n  \"position\": \"Beginning\",\n  \"durationSeconds\": 30,\n  \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n  \"spotIndex\": 1,\n  \"broadcastCode\": \"AAD-574\",\n  \"plannedTimeMinutes\": 15\n}",
+              "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"broadcastCode\": \"AAD-574\",\n    \"plannedTimeMinutes\": 15\n}",
               "options": {
                 "raw": {
                   "language": "json"
