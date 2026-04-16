@@ -11,8 +11,20 @@ const VAT_WITHHOLD_RATE = 0.075;
 
 export type GeneratePaymentRequestsInput = {
   advertSalesId: string;
-  installmentCount: number;
 };
+
+/**
+ * Pre-VAT amount for installment `i` (0-based) of `n`, splitting `finalPrice` evenly in cents.
+ * The last installment absorbs any remainder so the sum matches `finalPrice`.
+ */
+function amountBeforeVatForInstallment(finalPrice: number, n: number, i: number): number {
+  const totalCents = Math.round(finalPrice * 100);
+  const base = Math.floor(totalCents / n);
+  if (i === n - 1) {
+    return (totalCents - base * (n - 1)) / 100;
+  }
+  return base / 100;
+}
 
 export class GeneratePaymentRequestsUseCase {
   constructor(
@@ -22,26 +34,31 @@ export class GeneratePaymentRequestsUseCase {
   ) {}
 
   async execute(input: GeneratePaymentRequestsInput): Promise<PaymentEntity[]> {
-    if (input.installmentCount < 1) {
-      throw new ValidationError('Installment count must be at least 1');
-    }
-
     const sale = await this.advertSalesRepo.findById(input.advertSalesId);
     if (!sale) {
       throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', input.advertSalesId);
     }
 
-    const installmentBaseAmount = sale.finalPrice / input.installmentCount;
+    const installmentCount = sale.installmentCount;
+    if (!Number.isInteger(installmentCount) || installmentCount < 1) {
+      throw new ValidationError('Advert sale has an invalid installment count');
+    }
+
+    const existingCount = await this.paymentRepo.count({ advertSalesId: input.advertSalesId });
+    if (existingCount > 0) {
+      throw new ValidationError('Payment requests already exist for this advert sale');
+    }
+
     const totalDays = Math.max(
       1,
       Math.ceil((sale.adEndDate.getTime() - sale.adStartDate.getTime()) / (1000 * 60 * 60 * 24)),
     );
-    const daysBetweenInstallments = Math.floor(totalDays / input.installmentCount);
+    const daysBetweenInstallments = Math.floor(totalDays / installmentCount);
 
     const payments: PaymentEntity[] = [];
 
-    for (let i = 0; i < input.installmentCount; i++) {
-      const amountBeforeVat = Math.round(installmentBaseAmount * 100) / 100;
+    for (let i = 0; i < installmentCount; i++) {
+      const amountBeforeVat = amountBeforeVatForInstallment(sale.finalPrice, installmentCount, i);
       const vatAmount = Math.round(amountBeforeVat * VAT_RATE * 100) / 100;
       const withholdTax = Math.round(amountBeforeVat * WITHHOLD_TAX_RATE * 100) / 100;
       const vatWithhold = Math.round(vatAmount * VAT_WITHHOLD_RATE * 100) / 100;
@@ -53,13 +70,13 @@ export class GeneratePaymentRequestsUseCase {
 
       const ref = await this.generateBusinessRefService.generateBusinessRef();
 
-      const payment = new PaymentEntity(
+      const payment = PaymentEntity.createInstance(
         input.advertSalesId,
         dueDate,
         PaymentStatus.Pending,
         `PAY-${ref}`,
         i + 1,
-        `Installment ${i + 1} of ${input.installmentCount}`,
+        `Installment ${i + 1} of ${installmentCount}`,
         amountBeforeVat,
         vatAmount,
         withholdTax,

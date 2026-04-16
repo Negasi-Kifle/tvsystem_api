@@ -18,7 +18,7 @@ export class CheckOverduePaymentsUseCase {
         (payment.status === PaymentStatus.Pending || payment.status === PaymentStatus.Sent) &&
         payment.dueDate < now
       ) {
-        payment.status = PaymentStatus.Overdue;
+        payment.markOverdue();
         await this.paymentRepo.update(payment);
         overdueCount++;
       }

@@ -3,7 +3,6 @@ import { IPaymentRepository } from '../../../domain/repositories/payment.reposit
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
 import { IEmailService } from '../../../domain/services/email.service';
-import { PaymentStatus } from '../../../domain/enums/payment-status.enum';
 
 export class SendPaymentRequestEmailUseCase {
   constructor(
@@ -58,8 +57,7 @@ export class SendPaymentRequestEmailUseCase {
       html,
     );
 
-    payment.requestSentDate = new Date();
-    payment.status = PaymentStatus.Sent;
+    payment.markPaymentRequestSent();
     await this.paymentRepo.update(payment);
   }
 }

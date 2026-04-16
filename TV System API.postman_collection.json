@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "08f04ef9-c4df-4937-b6b2-9b70e3b32219",
+    "_postman_id": "bcaf51f1-a51c-4a14-b661-4111af59f7a9",
     "name": "TV System API",
     "description": "Abbay TV sales automation backend API endpoints",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "20674433",
-    "_collection_link": "https://go.postman.co/collection/20674433-08f04ef9-c4df-4937-b6b2-9b70e3b32219?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/20674433-bcaf51f1-a51c-4a14-b661-4111af59f7a9?source=collection_link"
   },
   "item": [
     {
@@ -650,7 +650,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"user@example.com\"\n}",
+              "raw": "{\n  \"email\": \"negasikiflom0@gmail.com\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -670,7 +670,124 @@
             },
             "description": "Sends a password reset email when the account exists. Set PUBLIC_APP_URL or FRONTEND_URL so the email contains a correct reset link."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"negasikiflom0@gmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/forgot-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "forgot-password"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "115"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"73-QtFr2gIzm09OKrY7De+vBkTjnGA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 11:14:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"If an account exists for this email, you will receive password reset instructions.\"\n}"
+            }
+          ]
         },
         {
           "name": "Reset Password (token)",
@@ -9379,14 +9496,14 @@
               }
             },
             "url": {
-              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b9",
+              "raw": "{{baseURL}}/api/shows/bd011097-e79f-4eb5-9671-c21cd245c9b0",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "bd011097-e79f-4eb5-9671-c21cd245c9b9"
+                "bd011097-e79f-4eb5-9671-c21cd245c9b0"
               ]
             }
           },
@@ -9949,7 +10066,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11349,7 +11466,7 @@
                   },
                   "status": "Created",
                   "code": 201,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11581,7 +11698,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -11832,7 +11949,7 @@
                   },
                   "status": "OK",
                   "code": 200,
-                  "_postman_previewlanguage": null,
+                  "_postman_previewlanguage": "Text",
                   "header": [
                     {
                       "key": "Access-Control-Allow-Origin",
@@ -23380,7 +23497,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -23656,7 +23773,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -23915,7 +24032,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -24216,7 +24333,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -24633,7 +24750,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -26577,7 +26694,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"installmentCount\": 3\n}",
+              "raw": "{\n  \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -26595,7 +26712,7 @@
                 "generate"
               ]
             },
-            "description": "Auto-generate payment installment requests for an advert sale. Calculates VAT (15%), Withhold Tax (2%), and VAT Withhold (7.5%). Requires MANAGE_SALES."
+            "description": "Creates all payment rows for one advert sale in a single call. Body: `{ \"advertSalesId\" }` only. Installment count and even split of `finalPrice` come from the advert sale (`installmentCount`). Returns 400 if any payment already exists for this sale. Per row: VAT 15%, withhold tax 2%, VAT withhold 7.5% of VAT. Requires MANAGE_SALES."
           },
           "response": [
             {
@@ -26616,7 +26733,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"installmentCount\": 3\n}",
+                  "raw": "{\n  \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -26637,7 +26754,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -26697,15 +26814,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1849"
+                  "value": "1858"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"739-JV5MbM7rlGymWCkeujAAvUB5Ne8\""
+                  "value": "W/\"742-U4CTQWzX0aNN48OtDe+N8xXKaAM\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 15:53:50 GMT"
+                  "value": "Thu, 16 Apr 2026 12:01:05 GMT"
                 },
                 {
                   "key": "Connection",
@@ -26717,7 +26834,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"3 payment request(s) generated\",\n    \"data\": {\n        \"payments\": [\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-05-01T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-FHJ7DOD2GF\",\n                \"installmentNumber\": 1,\n                \"installmentLabel\": \"Installment 1 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.262Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.262Z\",\n                \"id\": \"b73e555e-6111-4364-b251-6c4b8f0e1d04\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-05-21T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-Z8KTODMSD8\",\n                \"installmentNumber\": 2,\n                \"installmentLabel\": \"Installment 2 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.272Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.272Z\",\n                \"id\": \"96351ffc-b145-4a21-adff-bcc2e08ac008\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-06-10T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-PSCA5DXULZ\",\n                \"installmentNumber\": 3,\n                \"installmentLabel\": \"Installment 3 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.274Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.274Z\",\n                \"id\": \"6af69e3e-a675-4459-bc6f-b6973721393b\"\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"3 payment request(s) generated\",\n    \"data\": {\n        \"payments\": [\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-05-01T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-KT5VEPIEDQ\",\n                \"installmentNumber\": 1,\n                \"installmentLabel\": \"Installment 1 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.188Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.188Z\",\n                \"id\": \"926a994e-3cd6-43de-96f0-ce35bf801399\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-05-21T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-9QP1FYK9E8\",\n                \"installmentNumber\": 2,\n                \"installmentLabel\": \"Installment 2 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.191Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.191Z\",\n                \"id\": \"d266cc7d-59ef-444d-9560-24b4739d6f23\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-06-10T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-LVI7SZTTIR\",\n                \"installmentNumber\": 3,\n                \"installmentLabel\": \"Installment 3 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.193Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.193Z\",\n                \"id\": \"312d7409-a6df-43a7-a7b6-a35bd7a349a6\"\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -26759,12 +26876,12 @@
                 {
                   "key": "status",
                   "value": "Pending",
-                  "description": "Pending | Sent | PartiallyPaid | Paid | Overdue | Cancelled",
+                  "description": "Pending | Sent | Overdue | Paid | Failed",
                   "disabled": true
                 }
               ]
             },
-            "description": "Paginated list of payment records with optional filters. Requires VIEW_SALES."
+            "description": "Paginated list. Query is validated (strict): only `page`, `limit`, `advertSalesId`, and `status` are allowed—extra keys return 400. Defaults: page=1, limit=10. Requires VIEW_SALES."
           },
           "response": [
             {
@@ -26805,7 +26922,7 @@
                     {
                       "key": "status",
                       "value": "Pending",
-                      "description": "Pending | Sent | PartiallyPaid | Paid | Overdue | Cancelled",
+                      "description": "Pending | Sent | Overdue | Paid | Failed",
                       "disabled": true
                     }
                   ]
@@ -26813,7 +26930,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -26873,15 +26990,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "1866"
+                  "value": "1875"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"74a-BwVl+9D1d7qzy4QnAKuja2lMSig\""
+                  "value": "W/\"753-TCppxIAjbRU3gj2E5ZfwsZt9VFw\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 15:54:02 GMT"
+                  "value": "Thu, 16 Apr 2026 12:02:54 GMT"
                 },
                 {
                   "key": "Connection",
@@ -26893,7 +27010,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"payments\": [\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-05-01T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-FHJ7DOD2GF\",\n                \"installmentNumber\": 1,\n                \"installmentLabel\": \"Installment 1 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.262Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.262Z\",\n                \"id\": \"b73e555e-6111-4364-b251-6c4b8f0e1d04\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-05-21T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-Z8KTODMSD8\",\n                \"installmentNumber\": 2,\n                \"installmentLabel\": \"Installment 2 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.272Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.272Z\",\n                \"id\": \"96351ffc-b145-4a21-adff-bcc2e08ac008\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"dueDate\": \"2026-06-10T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-PSCA5DXULZ\",\n                \"installmentNumber\": 3,\n                \"installmentLabel\": \"Installment 3 of 3\",\n                \"amountBeforeVat\": 35.1,\n                \"vatAmount\": 5.27,\n                \"withholdTax\": 0.7,\n                \"vatWithhold\": 0.4,\n                \"totalAmount\": 40.37,\n                \"bankDeposit\": 0,\n                \"balance\": 40.37,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-12T15:53:50.274Z\",\n                \"updatedAt\": \"2026-04-12T15:53:50.274Z\",\n                \"id\": \"6af69e3e-a675-4459-bc6f-b6973721393b\"\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"payments\": [\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-05-01T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-KT5VEPIEDQ\",\n                \"installmentNumber\": 1,\n                \"installmentLabel\": \"Installment 1 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.188Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.188Z\",\n                \"id\": \"926a994e-3cd6-43de-96f0-ce35bf801399\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-05-21T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-9QP1FYK9E8\",\n                \"installmentNumber\": 2,\n                \"installmentLabel\": \"Installment 2 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.191Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.191Z\",\n                \"id\": \"d266cc7d-59ef-444d-9560-24b4739d6f23\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"dueDate\": \"2026-06-10T00:00:00.000Z\",\n                \"status\": \"Pending\",\n                \"paymentRequestRef\": \"PAY-LVI7SZTTIR\",\n                \"installmentNumber\": 3,\n                \"installmentLabel\": \"Installment 3 of 3\",\n                \"amountBeforeVat\": 37.05,\n                \"vatAmount\": 5.56,\n                \"withholdTax\": 0.74,\n                \"vatWithhold\": 0.42,\n                \"totalAmount\": 42.61,\n                \"bankDeposit\": 0,\n                \"balance\": 42.61,\n                \"paymentDate\": null,\n                \"paymentMethod\": null,\n                \"bankDepositDate\": null,\n                \"bankConfirmation\": null,\n                \"fsNumber\": null,\n                \"requestSentDate\": null,\n                \"createdAt\": \"2026-04-16T12:01:05.193Z\",\n                \"updatedAt\": \"2026-04-16T12:01:05.193Z\",\n                \"id\": \"312d7409-a6df-43a7-a7b6-a35bd7a349a6\"\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -26921,11 +27038,11 @@
               "variable": [
                 {
                   "key": "paymentId",
-                  "value": "b73e555e-6111-4364-b251-6c4b8f0e1d04"
+                  "value": "926a994e-3cd6-43de-96f0-ce35bf801399"
                 }
               ]
             },
-            "description": "Get a single payment record. Requires VIEW_SALES."
+            "description": "Get one payment by id. 404 if not found. Requires VIEW_SALES."
           },
           "response": [
             {
@@ -27068,11 +27185,11 @@
               "variable": [
                 {
                   "key": "paymentId",
-                  "value": "b73e555e-6111-4364-b251-6c4b8f0e1d04"
+                  "value": "926a994e-3cd6-43de-96f0-ce35bf801399"
                 }
               ]
             },
-            "description": "Send the payment request email to the customer. Requires MANAGE_SALES."
+            "description": "Sends the HTML payment request email to the customer, then sets `status` to Sent and `requestSentDate`. Requires MANAGE_SALES."
           },
           "response": [
             {
@@ -27234,7 +27351,7 @@
                 }
               ]
             },
-            "description": "Record a received payment. Updates balance and status automatically. Requires MANAGE_SALES."
+            "description": "Records bank receipt. Body (strict JSON): required `bankDeposit`, `paymentDate` (ISO date/datetime); optional `paymentMethod`, `bankDepositDate`, `bankConfirmation`, `fsNumber`. Balance and status (Paid when balance <= 0) are derived on the server. Requires MANAGE_SALES."
           },
           "response": [
             {
@@ -27395,7 +27512,7 @@
                 }
               ]
             },
-            "description": "Delete a payment record. Requires MANAGE_SALES."
+            "description": "Deletes a payment by id. 404 if not found. Requires MANAGE_SALES."
           },
           "response": [
             {
