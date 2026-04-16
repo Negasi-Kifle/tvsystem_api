@@ -7,6 +7,9 @@ import { DeleteCategoryUseCase } from '../../application/use-cases/categories/de
 import { CreateCategoryDto } from '../dtos/requests/category/create-category.dto';
 import type { UpdateCategoryDto } from '../dtos/requests/category/update-category.dto';
 import type { ApiRouterDeps } from '../api-router-deps';
+import { FetchAllCategoriesDto } from '../dtos/requests/category/fetch-all-categories.dto';
+import { mapFetchAllCategoriesDtoToQueryOptions } from '../mappers/category-to-query-options.mapper';
+import { CountCategoriesUseCase } from '../../application/use-cases/categories/count-categories.use-case';
 
 export function createCategoryHandlers(deps: Pick<ApiRouterDeps, 'categoryRepository'>) {
   const { categoryRepository } = deps;
@@ -15,13 +18,29 @@ export function createCategoryHandlers(deps: Pick<ApiRouterDeps, 'categoryReposi
   const getCategoryByIdUseCase = new GetCategoryByIdUseCase(categoryRepository);
   const updateCategoryUseCase = new UpdateCategoryUseCase(categoryRepository);
   const deleteCategoryUseCase = new DeleteCategoryUseCase(categoryRepository);
+  const countCategoriesUseCase = new CountCategoriesUseCase(categoryRepository);
 
   async function fetchAllCategories(_req: Request, res: Response, next: NextFunction) {
     try {
-      const categories = await fetchAllCategoriesUseCase.execute();
+      const dto = res.locals.query as FetchAllCategoriesDto;
+      const queryOptions = mapFetchAllCategoriesDtoToQueryOptions(dto);
+
+      const page = dto.page ?? 1;
+      const limit = dto.limit ?? 10;
+
+      const [categories, total] = await Promise.all([
+        fetchAllCategoriesUseCase.execute(queryOptions),
+        countCategoriesUseCase.execute(queryOptions.filters),
+      ]);
 
       res.status(200).json({
         status: 'SUCCESS',
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
         data: { categories },
       });
     } catch (error) {

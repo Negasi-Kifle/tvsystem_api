@@ -1,6 +1,9 @@
 import { ValidationError } from '../errors/validation.error';
 import {CustomerStatusWithUs, CustomerHolidayStatus, CustomerStudioVisit} from '../enums/customer-status.enum';
 import { CommunicationLogEntity } from './communication-log.entity';
+import { CategoryEntity } from './category.entity';
+import { SubCategoryEntity } from './sub-category.entity';
+import { UserEntity } from './user.entity';
 
 export type CustomerContact = {
   name?: string;
@@ -16,7 +19,6 @@ export class CustomerEntity {
     public businessRef: string,
     public name: string,
     public contacts: CustomerContact[] = [],
-    public industry?: string,
     public categoryId?: string,
     public subCategoryId?: string,
     public location?: string,
@@ -32,14 +34,16 @@ export class CustomerEntity {
     public createdAt?: Date,
     public updatedAt?: Date,
     public id?: string,
-    public communicationLogs?: CommunicationLogEntity[]
+    public communicationLogs?: CommunicationLogEntity[],
+    public category?: CategoryEntity | null,
+    public subCategory?: SubCategoryEntity | null,
+    public salesAgent?: UserEntity | null,
   ) {}
 
   public static createInstance(
     businessRef: string,
     name: string,
     contacts: CustomerContact[] = [],
-    industry?: string,
     categoryId?: string,
     subCategoryId?: string,
     location?: string,
@@ -55,7 +59,10 @@ export class CustomerEntity {
     createdAt?: Date,
     updatedAt?: Date,
     id?: string,
-    communicationLogs?: CommunicationLogEntity[]
+    communicationLogs?: CommunicationLogEntity[],
+    category?: CategoryEntity | null,
+    subCategory?: SubCategoryEntity | null,
+    salesAgent?: UserEntity | null,
   ): CustomerEntity {
     if (!businessRef?.trim()) {
       throw new ValidationError('Business reference is required');
@@ -67,7 +74,6 @@ export class CustomerEntity {
       businessRef.trim(),
       name.trim(),
       Array.isArray(contacts) ? contacts : [],
-      industry,
       categoryId,
       subCategoryId,
       location,
@@ -84,12 +90,14 @@ export class CustomerEntity {
       updatedAt,
       id,
       communicationLogs,
+      category,
+      subCategory,
+      salesAgent,
     );
   }
 
   public updateInstance(
     name?: string,
-    industry?: string,
     categoryId?: string,
     subCategoryId?: string,
     location?: string,
@@ -105,7 +113,6 @@ export class CustomerEntity {
     mediaMonitoringId?: string | null
   ): CustomerEntity {
     if (name !== undefined) this.name = name;
-    if (industry !== undefined) this.industry = industry;
     if (categoryId !== undefined) this.categoryId = categoryId;
     if (subCategoryId !== undefined) this.subCategoryId = subCategoryId;
     if (location !== undefined) this.location = location;

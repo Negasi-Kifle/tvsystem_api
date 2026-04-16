@@ -166,7 +166,6 @@ model Customer {
   id                        String    @id @default(uuid())
   businessRef               String    @unique @map("business_ref")
   name                      String
-  industry                  String?
   contacts                  Json      @default("[]") // Array of { name, email?, phone?, position?, mobile?, officeTel? }
   categoryId                String?   @map("category_id")
   subCategoryId             String?   @map("sub_category_id")

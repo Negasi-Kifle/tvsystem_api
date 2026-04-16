@@ -14,7 +14,6 @@ export const createCustomerDto = z
   .object({
     name: z.string().min(1, 'Customer name is required'),
     contacts: z.array(contactSchema).optional().default([]),
-    industry: z.string().optional(),
     categoryId: z.uuid("Category ID must be a valid UUID.").optional(),
     subCategoryId: z.uuid("Subcategory ID must be a valid UUID.").optional(),
     location: z.string().optional(),

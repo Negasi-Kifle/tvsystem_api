@@ -13,7 +13,6 @@ const contactSchema = z.object({
 export const updateCustomerDto = z
   .object({
     name: z.string().min(1).optional(),
-    industry: z.string().optional(),
     categoryId: z.uuid("Category ID must be a valid UUID.").optional(),
     subCategoryId: z.uuid("Subcategory ID must be a valid UUID.").optional(),
     location: z.string().optional(),

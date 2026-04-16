@@ -1,7 +1,10 @@
-import { CommunicationLog, Customer } from '../generated/client';
+import { Category, CommunicationLog, Customer, SubCategory, User } from '../generated/client';
 import { CustomerEntity, CustomerContact } from '../../../domain/entities/customer.entity.js';
 import { CustomerHolidayStatus, CustomerStatusWithUs, CustomerStudioVisit } from '../../../domain/enums/customer-status.enum.js';
 import { modelToEntity as mapCommunicationLogToEntity } from './communication-log';
+import { modelToEntity as mapCategoryToEntity } from './category';
+import { modelToEntity as mapSubCategoryToEntity } from './sub-category';
+import { modelToEntity as mapUserToEntity } from './user';
 
 function parseContacts(contacts: unknown): CustomerContact[] {
   if (!contacts || !Array.isArray(contacts)) return [];
@@ -20,6 +23,9 @@ function parseContacts(contacts: unknown): CustomerContact[] {
 
 export type CustomerWithRelations = Customer & {
   communicationLogs?: CommunicationLog[] | null;
+  category?: Category | null;
+  subCategory?: SubCategory | null;
+  salesAgent?: User | null;
 };
 
 export function modelToEntity(model: CustomerWithRelations): CustomerEntity {
@@ -27,7 +33,6 @@ export function modelToEntity(model: CustomerWithRelations): CustomerEntity {
     model.businessRef,
     model.name,
     parseContacts(model.contacts),
-    model.industry ?? undefined,
     model.categoryId ?? undefined,
     model.subCategoryId ?? undefined,
     model.location ?? undefined,
@@ -44,6 +49,9 @@ export function modelToEntity(model: CustomerWithRelations): CustomerEntity {
     model.updatedAt,
     model.id,
     model.communicationLogs ? model.communicationLogs.map(mapCommunicationLogToEntity) : undefined,
+    model.category ? mapCategoryToEntity(model.category) : undefined,
+    model.subCategory ? mapSubCategoryToEntity(model.subCategory) : undefined,
+    model.salesAgent ? mapUserToEntity(model.salesAgent) : undefined,
   );
 }
 
@@ -52,7 +60,6 @@ export function entityToModel(entity: CustomerEntity) {
     id: entity.id ?? '',
     businessRef: entity.businessRef,
     name: entity.name,
-    industry: entity.industry ?? null,
     contacts: entity.contacts as object,
     categoryId: entity.categoryId ?? null,
     subCategoryId: entity.subCategoryId ?? null,

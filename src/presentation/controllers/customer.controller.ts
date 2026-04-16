@@ -14,16 +14,22 @@ import type { ApiRouterDeps } from '../api-router-deps';
 export function createCustomerHandlers(
   deps: Pick<
     ApiRouterDeps,
-    'customerRepository' | 'mediaMonitoringRecordRepository' | 'generateBusinessRefService'
+    'customerRepository' |
+    'mediaMonitoringRecordRepository' |
+    'generateBusinessRefService' |
+    'categoryRepository' |
+    'subCategoryRepository'
   >,
 ) {
   const {
     customerRepository: customerRepo,
     mediaMonitoringRecordRepository: mediaMonitoringRepo,
-    generateBusinessRefService
+    generateBusinessRefService,
+    categoryRepository,
+    subCategoryRepository,
   } = deps;
 
-  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService);
+  const createCustomerUseCase = new CreateCustomerUseCase(customerRepo, generateBusinessRefService, categoryRepository, subCategoryRepository);
   const updateCustomerUseCase = new UpdateCustomerUseCase(customerRepo, mediaMonitoringRepo);
   const getCustomerByIdUseCase = new GetCustomerByIdUseCase(customerRepo);
   const fetchAllCustomersUseCase = new FetchAllCustomersUseCase(customerRepo);

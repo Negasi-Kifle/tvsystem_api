@@ -7,7 +7,6 @@ import { ValidationError } from '../../../domain/errors/validation.error';
 
 export type UpdateCustomerInput = Partial<{
   name: string;
-  industry: string;
   categoryId: string;
   subCategoryId: string;
   location: string;
@@ -81,7 +80,6 @@ export class UpdateCustomerUseCase {
 
     existing.updateInstance(
       payload.name,
-      payload.industry,
       payload.categoryId,
       payload.subCategoryId,
       payload.location,

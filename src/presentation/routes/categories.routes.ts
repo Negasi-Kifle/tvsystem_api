@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { validateBody } from '../validators/validate-body';
+import { validateQuery } from '../validators/validate-query';
 import { requirePermission } from '../../composition/http-middlewares';
 import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import { createCategoryDto } from '../dtos/requests/category/create-category.dto';
 import { updateCategoryDto } from '../dtos/requests/category/update-category.dto';
+import { fetchAllCategoriesDto } from '../dtos/requests/category/fetch-all-categories.dto';
 import { createCategoryHandlers } from '../controllers/category.controller';
 import type { ApiRouterDeps } from '../api-router-deps';
 
@@ -15,7 +17,12 @@ export function createCategoriesRouter(deps: ApiRouterDeps): Router {
 
   router
     .route('/')
-    .get(authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), fetchAllCategories)
+    .get(
+      authMiddleware,
+      requirePermission(PERMISSIONS.VIEW_SALES),
+      validateQuery(fetchAllCategoriesDto),
+      fetchAllCategories,
+    )
     .post(
       authMiddleware,
       requirePermission(PERMISSIONS.MANAGE_SALES),
