@@ -40,8 +40,18 @@ export class SendCompensationEmailUseCase {
     const tokenHash = sha256Hex(plainToken);
     const expiresAt = new Date(Date.now() + RESPONSE_TOKEN_TTL_MS);
 
-    compensation.customerResponseTokenHash = tokenHash;
-    compensation.customerResponseTokenExpiresAt = expiresAt;
+    compensation.updateInstance(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      tokenHash,
+      expiresAt,
+    );
     await this.compensationRepo.update(compensation);
 
     const base = getPublicAppUrlOrThrow();

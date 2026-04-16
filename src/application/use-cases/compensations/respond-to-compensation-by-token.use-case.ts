@@ -30,11 +30,18 @@ export class RespondToCompensationByTokenUseCase {
       throw new ValidationError('Compensation has already been responded to');
     }
 
-    existing.status = input.accept ? CompensationStatus.Accepted : CompensationStatus.Rejected;
-    existing.customerResponse = input.customerResponse ?? null;
-    existing.respondedAt = new Date();
-    existing.customerResponseTokenHash = null;
-    existing.customerResponseTokenExpiresAt = null;
+    existing.updateInstance(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      input.accept ? CompensationStatus.Accepted : CompensationStatus.Rejected,
+      input.customerResponse ?? null,
+      new Date(),
+      null,
+      null,
+    );
 
     return this.compensationRepo.update(existing);
   }

@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { ProposeCompensationUseCase } from '../../application/use-cases/compensations/propose-compensation.use-case';
+import { UpdateCompensationUseCase } from '../../application/use-cases/compensations/update-compensation.use-case';
 import { RespondToCompensationUseCase } from '../../application/use-cases/compensations/respond-to-compensation.use-case';
 import { SendCompensationEmailUseCase } from '../../application/use-cases/compensations/send-compensation-email.use-case';
+import { UpdateCompensationDto } from '../dtos/requests/compensation/update-compensation.dto';
 import type { ApiRouterDeps } from '../api-router-deps';
 
 export function createCompensationHandlers(
@@ -11,12 +13,15 @@ export function createCompensationHandlers(
     | 'advertSalesRepository'
     | 'customerRepository'
     | 'emailService'
+    | 'advertPlacementRepository'
   >,
 ) {
   const proposeUseCase = new ProposeCompensationUseCase(
     deps.compensationRepository,
     deps.advertSalesRepository,
+    deps.advertPlacementRepository
   );
+  const updateUseCase = new UpdateCompensationUseCase(deps.compensationRepository);
   const respondUseCase = new RespondToCompensationUseCase(deps.compensationRepository);
   const sendEmailUseCase = new SendCompensationEmailUseCase(
     deps.compensationRepository,
@@ -29,10 +34,12 @@ export function createCompensationHandlers(
     try {
       const payload = req.body;
       const userId = (req as any).user?.id;
+      
       const compensation = await proposeUseCase.execute({
         ...payload,
         proposedById: userId,
       });
+
       res.status(201).json({
         status: 'SUCCESS',
         message: 'Compensation proposed successfully',
@@ -67,6 +74,21 @@ export function createCompensationHandlers(
     }
   }
 
+  async function update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const payload = req.body as UpdateCompensationDto;
+      const compensation = await updateUseCase.execute(String(id), payload);
+      res.status(200).json({
+        status: 'SUCCESS',
+        message: 'Compensation updated successfully',
+        data: { compensation },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async function getById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
@@ -84,6 +106,7 @@ export function createCompensationHandlers(
     try {
       const { id } = req.params;
       await sendEmailUseCase.execute(String(id));
+
       res.status(200).json({ status: 'SUCCESS', message: 'Compensation email sent' });
     } catch (error) {
       next(error);
@@ -115,5 +138,5 @@ export function createCompensationHandlers(
     }
   }
 
-  return { create, list, getById, sendEmail, respond, remove };
+  return { create, list, update, getById, sendEmail, respond, remove };
 }

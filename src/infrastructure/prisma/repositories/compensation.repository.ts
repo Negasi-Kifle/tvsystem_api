@@ -64,6 +64,11 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
     const updated = await this.prisma.compensation.update({
       where: { id: entity.id },
       data: {
+        proposal: entity.proposal,
+        advertPlacementId: entity.advertPlacementId ?? null,
+        missedDate: entity.missedDate ?? null,
+        compensationType: entity.compensationType ?? null,
+        compensationDetails: (entity.compensationDetails as Prisma.InputJsonValue) ?? undefined,
         status: entity.status,
         customerResponse: entity.customerResponse,
         respondedAt: entity.respondedAt,
@@ -80,7 +85,7 @@ export class CompensationRepository extends PrismaBaseRepository implements ICom
   }
 
   private toEntity(row: any): CompensationEntity {
-    return new CompensationEntity(
+    return CompensationEntity.createInstance(
       row.advertSalesId,
       row.proposal,
       row.status as CompensationStatus,

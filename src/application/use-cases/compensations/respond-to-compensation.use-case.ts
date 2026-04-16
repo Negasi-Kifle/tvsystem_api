@@ -19,9 +19,16 @@ export class RespondToCompensationUseCase {
       throw new ValidationError('Compensation has already been responded to');
     }
 
-    existing.status = input.accept ? CompensationStatus.Accepted : CompensationStatus.Rejected;
-    existing.customerResponse = input.customerResponse ?? null;
-    existing.respondedAt = new Date();
+    existing.updateInstance(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      input.accept ? CompensationStatus.Accepted : CompensationStatus.Rejected,
+      input.customerResponse ?? null,
+      new Date(),
+    );
 
     return this.compensationRepo.update(existing);
   }

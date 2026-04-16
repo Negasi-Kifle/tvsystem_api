@@ -25305,7 +25305,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"broadcastCode\": \"AAD-574\",\n    \"plannedTimeMinutes\": 15\n}",
+              "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"broadcastCode\": \"AAD-574\",\n    \"plannedTimeMinutes\": 15\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -25640,7 +25640,7 @@
                 },
                 {
                   "key": "advertSalesId",
-                  "value": "",
+                  "value": "8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5",
                   "description": "Filter by advert sales UUID",
                   "disabled": true
                 },
@@ -26670,6 +26670,975 @@
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"total\": 5,\n        \"byStatus\": {\n            \"AIRED\": 1,\n            \"SCHEDULED\": 4\n        }\n    }\n}"
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "Satellite Logs",
+      "item": [
+        {
+          "name": "Upload Satellite Log",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Tab-delimited satellite log file (.txt or .tsv)",
+                  "src": "/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/docs/Satellite Log/Satellite Log Sample.md"
+                },
+                {
+                  "key": "logDate",
+                  "value": "2026-05-10",
+                  "type": "text",
+                  "description": "The broadcast date this log covers"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs/upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs",
+                "upload"
+              ]
+            },
+            "description": "Upload and parse a satellite log file. The file is parsed into individual log entries. Requires MANAGE_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "description": "Tab-delimited satellite log file (.txt or .tsv)",
+                      "src": [
+                        "/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/docs/Satellite Log/Satellite Log Sample.md"
+                      ]
+                    },
+                    {
+                      "key": "logDate",
+                      "value": "2026-05-10",
+                      "type": "text",
+                      "description": "The broadcast date this log covers"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs/upload",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs",
+                    "upload"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "357"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"165-aEnHw44ocQHgqHq1AcpQ4cqVkTk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:13:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite log uploaded and parsed\",\n    \"data\": {\n        \"upload\": {\n            \"logDate\": \"2026-05-10T00:00:00.000Z\",\n            \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"fileName\": \"Satellite Log Sample.md\",\n            \"status\": \"PROCESSED\",\n            \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n            \"updatedAt\": \"2026-04-12T16:13:08.325Z\",\n            \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Satellite Log Uploads",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Paginated list of satellite log uploads. Requires VIEW_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "374"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"176-h3tID+4Pc4X2v1gkXe8yT3QwqZk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:13:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"uploads\": [\n            {\n                \"logDate\": \"2026-05-10T00:00:00.000Z\",\n                \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"fileName\": \"Satellite Log Sample.md\",\n                \"status\": \"PROCESSED\",\n                \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n                \"updatedAt\": \"2026-04-12T16:13:08.363Z\",\n                \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Satellite Log Upload by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs",
+                ":uploadId"
+              ],
+              "variable": [
+                {
+                  "key": "uploadId",
+                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                }
+              ]
+            },
+            "description": "Get a single satellite log upload record. Requires VIEW_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs",
+                    ":uploadId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "uploadId",
+                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "311"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"137-wd0cBuzLdQ5vnSoYZlGCGUSpekU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:15:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"upload\": {\n            \"logDate\": \"2026-05-10T00:00:00.000Z\",\n            \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"fileName\": \"Satellite Log Sample.md\",\n            \"status\": \"PROCESSED\",\n            \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n            \"updatedAt\": \"2026-04-12T16:13:08.363Z\",\n            \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Log Entries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/entries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs",
+                ":uploadId",
+                "entries"
+              ],
+              "variable": [
+                {
+                  "key": "uploadId",
+                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                }
+              ]
+            },
+            "description": "Get all parsed entries for a satellite log upload. Requires VIEW_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/entries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs",
+                    ":uploadId",
+                    "entries"
+                  ],
+                  "variable": [
+                    {
+                      "key": "uploadId",
+                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "24795"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"60db-rYWnYXE7om+Q0WmzcJYbeL3m8d4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:15:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"entries\": [\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"65bb4371-dfe1-4bc0-9bdc-d57732547585\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"eb672722-329e-41be-a8d0-569bfbde74d6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 007 QQ Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 43,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7c1f9948-a297-4f4e-b6c7-f5106e5a992c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d21b0588-8037-4e3f-8ee7-962f2db4c338\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 009 7 Oil Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 33,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7d579f8f-6d19-45e6-8bdc-81456a9e3bad\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-410 Ethiopian Next Top Model\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"b00a9cd4-cfa2-4e06-a287-83b9032e2924\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8c478ff6-dde7-4af3-9301-1004a35a246d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4cb34542-d8dc-4e47-a917-6175dc82a0f5\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 010 HE Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 36,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"e31d7d43-5b71-4385-999b-752ca1df5477\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"fa3a5edc-4333-4767-8d31-0e62f1d8985a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 008 Family Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2cc50a3a-e3dd-41db-929a-10fd3ace2d89\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"db5d2dea-77aa-4e22-b08d-4aeb436e9a36\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 005 Akufada Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"3e8ce7fe-ab0f-451f-a397-c488e178a66e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2236c634-3022-4ac7-8df3-a6ed9cebb9f1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"93dbe43d-f6f0-4960-b201-0f48a172f21d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-253 Abbay Agelgel New\",\n                \"description\": \"\",\n                \"durationSeconds\": 70,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"78101c77-65e8-4a69-a7cd-32b4bf2df97f\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"EAD-051 Star Wide Award\",\n                \"description\": \"\",\n                \"durationSeconds\": 66,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a1ac4703-526e-466e-95a3-554126b2b30b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0417-1-AD2 Abol Etsehiwot Barter\",\n                \"description\": \"\",\n                \"durationSeconds\": 30,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"6caaf199-d2a4-4298-9615-499252f70ff1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-016 Abbay ;8\\ufffd\",\n                \"description\": \"\",\n                \"durationSeconds\": 55,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7f818ef3-1579-44dc-8a79-9be47715db6f\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1d4a0caf-2b12-407b-88f5-0e120ca73b3d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Trailer\",\n                \"description\": \"\",\n                \"durationSeconds\": 129,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8c1988bd-bbc4-4f74-adf2-f53a02023a6c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"cddae646-534d-4f0a-b12b-ef54bad1d5c9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"6d35389b-6ba1-4b3d-9d51-fef72e2491f6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d9fb1d8f-529f-4ddb-a6bf-0fa91e71c18a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"73f03480-1e99-4c57-8d70-1fcb42dd86b0\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c9cfdbc2-6e27-4eec-9a45-1bb98396ad9b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 3\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"172cf677-0b7f-46ca-b573-372f13f64c95\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"5e0397ed-23ab-4af7-a98a-fbb86d79e9e1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 4\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"fb0c9838-8d2e-49e5-ad72-0a8ced37a6e9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"285a44d3-db0a-403a-aea5-fff831316796\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 5\",\n                \"description\": \"\",\n                \"durationSeconds\": 851,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8995f107-947e-4b9f-b2a8-056df7416b24\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4a938b2e-2c21-449f-bc48-661c20c87bad\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"656cebb3-fc8a-4190-b67a-9189957c5f92\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0449-1-AD1 DSTV FIFA\",\n                \"description\": \"\",\n                \"durationSeconds\": 45,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"0d876463-b7b4-43b9-917e-9a951dbe3d32\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"PAD-565 Afri Herbal\",\n                \"description\": \"\",\n                \"durationSeconds\": 60,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c1718ccc-49cb-4007-80be-76889345c8b9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0317-1-AD4 Eve Diaper\",\n                \"description\": \"\",\n                \"durationSeconds\": 62,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"241588e1-a17c-4f3b-b809-e71528bda838\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0435-1-AD3 Ovid Gulele site\",\n                \"description\": \"\",\n                \"durationSeconds\": 58,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8a588a56-1111-44aa-b126-c3c81e35718c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"EAD-051 Star Wide Award.mp4 update new\",\n                \"description\": \"\",\n                \"durationSeconds\": 82,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a9058b02-8ef9-4fdf-af95-57918a375fdd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"96970dfd-0ac2-4db3-8e42-b01a9cdab37d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7ab471dc-098a-40ec-bfec-d91d6b026a7e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7d9d2c55-c00c-4dbb-bca6-f95f12bef3bb\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"83b72100-8d55-4864-bf20-280eb9831fb8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d1cf2f24-684a-449e-8450-ac28b5e6c491\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-253 Abbay Agelgel New\",\n                \"description\": \"\",\n                \"durationSeconds\": 70,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4dfcb740-e8dc-4d48-a4ff-963e2e0915d2\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a8d428e8-aaa1-4b3c-a17d-08d9cd2e986e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-410 Ethiopian Next Top Model\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4f6fa158-792d-4e22-b9e4-a9a1aa832370\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8d7cd966-c093-4ed6-8086-5d729860e609\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 005 Akufada Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"010cb0db-e59f-4504-a15f-d2b1d6807079\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-017 Abbay Jemo &4 Kilo\",\n                \"description\": \"\",\n                \"durationSeconds\": 86,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"ae6dafab-054a-4005-9e4b-890570451879\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"f160fa6d-c83b-4197-b3d9-8253e7041e33\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Amanuel Yemane & Yapi Mapi \\\\- Gud Gerkni \\\\\\\\\\ufffd\",\n                \"description\": \"\\ufffd-\\ufffd\\ufffd \\\\- Ethiopian Tigrigna Music 2018 (Offici\",\n                \"durationSeconds\": 281,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4210e983-3571-4196-96c8-9669a5fb258b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1de693d0-75d6-4c11-8ba8-ff53da6f1e9c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"9eda80e5-b007-43c9-ab37-b6288a1aa085\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd\\ufffd\\ufffd= \\ufffd\\ufffd- Emwedshi GonderNuradiss SeidBamlak GetnetTewodros SamuelEyerus MeleseNew Music\\\\_720pHF\",\n                \"description\": \"\",\n                \"durationSeconds\": 445,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c3d3d531-70ec-4647-8c01-962d4437e0fd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"bd263894-5978-4ed7-9893-33cc9383c0da\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"y2mate.com \\\\- Andualem Gosa Maarree New Oromo Music 2025\\\\_720pHFR\",\n                \"description\": \"\",\n                \"durationSeconds\": 255,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"94a0f488-b66d-469e-9570-339fec75c347\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"00e02ed2-88d8-4ff2-9828-3451189b31f8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Bisrat Surafel & Millen Hailu {che che\\\\\\\\\\ufffd||} \\\\- New Ethiopian & Eritrean Music 2025 \\\\[Official Video\",\n                \"description\": \"\",\n                \"durationSeconds\": 208,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"0d6ff83d-2aa4-4ad8-98be-3f5bc4d2f144\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"cc8a9047-5df6-496a-bc64-9d3a5ccdef88\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7194ceba-2eef-4cb4-b650-dbe26fecf1bd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"lion abbay flag\",\n                \"description\": \"\",\n                \"durationSeconds\": 20,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"9b15cb45-6c07-4b47-91a3-bc6b2ccc524e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"771002d9-6502-4904-828a-dfc848caaa68\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"90df67c9-859e-4dca-9087-c79e4ffda1f9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0468-1-AD2 DSTV Kids Barter\",\n                \"description\": \"\",\n                \"durationSeconds\": 23,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c3e63397-ac50-4f58-ac79-86e771729d01\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Kifu Aleka S01E13 \\ufffdB\\ufffd\\ufffd p1\",\n                \"description\": \"\",\n                \"durationSeconds\": 722,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8cdeb1d1-7ab9-44d1-8a23-6909407002f8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"22f6f797-1e47-42f5-88a4-185e37493dcb\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 003 Chuchu Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 37,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7fa7084d-e9ec-4e30-b5ca-aaa1368043bc\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"ec9e6a88-d92e-4abd-89ad-416398d1891e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c7fd60a8-2dd7-44df-9ee8-2071caa696c8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2c30c040-b946-4f20-a5d9-1f2531a7b657\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-008 Abbay \\ufffd4.mp4 NEW\",\n                \"description\": \"\",\n                \"durationSeconds\": 60,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"aba17108-b279-414d-89e4-4ea1e4283c36\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Kifu Aleka S01E13 \\ufffdB\\ufffd\\ufffd p2\",\n                \"description\": \"\",\n                \"durationSeconds\": 850,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1dda6d95-010a-4d00-abb9-5a8cd707484a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"26ff87a9-11de-47f6-8bfb-ee9f1949bad6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"bdabdad6-9b44-40d1-bd4b-d5102a1407bd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 008 Family Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d177a6ce-380e-4a97-9a27-b3df9debc2ec\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-350 Abbay Jobs\",\n                \"description\": \"\",\n                \"durationSeconds\": 84,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"53f1ce50-89fa-4558-b653-b88e8b81896a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a4d98b18-c088-4d73-9f48-e9da8ff8191d\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Match Log Entries to Placements",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/match",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs",
+                ":uploadId",
+                "match"
+              ],
+              "variable": [
+                {
+                  "key": "uploadId",
+                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                }
+              ]
+            },
+            "description": "Attempt to automatically match log entries to advert placements using broadcast codes. Requires MANAGE_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/match",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs",
+                    ":uploadId",
+                    "match"
+                  ],
+                  "variable": [
+                    {
+                      "key": "uploadId",
+                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-OkKLme8HCuF6CNX8aVjnrplIGqo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:15:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"matched\": 0,\n        \"unmatched\": 77\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Verify Advert Delivery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/verify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-logs",
+                ":uploadId",
+                "verify"
+              ],
+              "variable": [
+                {
+                  "key": "uploadId",
+                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                }
+              ]
+            },
+            "description": "Compare matched log entries against scheduled placements to mark them as AIRED or MISSED. Requires MANAGE_ADVERTS."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/verify",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-logs",
+                    ":uploadId",
+                    "verify"
+                  ],
+                  "variable": [
+                    {
+                      "key": "uploadId",
+                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "60"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c-GW93e8UsulRA2bDYF+OPCwkyHf0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:16:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"aired\": 0,\n        \"missed\": 1,\n        \"total\": 1\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Satellite Log Entries",
+      "item": [
+        {
+          "name": "Manual Match Entry to Placement",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"placementId\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/satellite-log-entries/:entryId/match",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "satellite-log-entries",
+                ":entryId",
+                "match"
+              ],
+              "variable": [
+                {
+                  "key": "entryId",
+                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                }
+              ]
+            },
+            "description": "Manually match a satellite log entry to an advert placement. Use when auto-matching fails. Requires MANAGE_ADVERTS."
+          },
+          "response": []
         }
       ]
     },
@@ -28312,7 +29281,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"a2d9b952-ad3e-4169-93d8-048d51785f58\",\n  \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"show-uuid-here\"\n  }\n}",
+              "raw": "{\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -28350,7 +29319,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"a2d9b952-ad3e-4169-93d8-048d51785f58\",\n  \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"show-uuid-here\"\n  }\n}",
+                  "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n  \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -28370,7 +29339,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -28430,15 +29399,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "686"
+                  "value": "779"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2ae-rwSUjmeOeEIDizqojr5PQXrM2Y4\""
+                  "value": "W/\"30b-oUivv6j420wyQyW+XcFz9Cvs+8w\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:09:06 GMT"
+                  "value": "Thu, 16 Apr 2026 17:41:41 GMT"
                 },
                 {
                   "key": "Connection",
@@ -28450,7 +29419,247 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Compensation proposed successfully\",\n    \"data\": {\n        \"compensation\": {\n            \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n            \"status\": \"Proposed\",\n            \"advertPlacementId\": \"a2d9b952-ad3e-4169-93d8-048d51785f58\",\n            \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n            \"compensationType\": \"ExtraSlots\",\n            \"compensationDetails\": {\n                \"showId\": \"show-uuid-here\",\n                \"extraSlots\": 2\n            },\n            \"proposedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"customerResponse\": null,\n            \"respondedAt\": null,\n            \"createdAt\": \"2026-04-12T16:09:06.014Z\",\n            \"updatedAt\": \"2026-04-12T16:09:06.014Z\",\n            \"id\": \"ff33f87c-7ce2-4860-8761-0d560505c29c\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Compensation proposed successfully\",\n    \"data\": {\n        \"compensation\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n            \"status\": \"Proposed\",\n            \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n            \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n            \"compensationType\": \"ExtraSlots\",\n            \"compensationDetails\": {\n                \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\",\n                \"extraSlots\": 2\n            },\n            \"proposedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"customerResponse\": null,\n            \"respondedAt\": null,\n            \"customerResponseTokenHash\": null,\n            \"customerResponseTokenExpiresAt\": null,\n            \"createdAt\": \"2026-04-16T17:41:41.088Z\",\n            \"updatedAt\": \"2026-04-16T17:41:41.088Z\",\n            \"id\": \"76700959-a2c3-4abe-bdf9-9a230d79ddc9\"\n        }\n    }\n}"
+            },
+            {
+              "name": "Error - Ineligible Ad Placement",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n  \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/compensations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "compensations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "581"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"245-RHaOoFh6wDrkOywtmkgSmZYWHxk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 17:47:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Advert placement is not not eligible for compensation.\",\n    \"errorStack\": \"ValidationError: Advert placement is not not eligible for compensation.\\n    at ProposeCompensationUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/compensations/propose-compensation.use-case.ts:38:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async create (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/compensation.controller.ts:37:28)\"\n}"
+            },
+            {
+              "name": "Error - Already Proposed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n  \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n  \"compensationType\": \"ExtraSlots\",\n  \"compensationDetails\": {\n    \"extraSlots\": 2,\n    \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/compensations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "compensations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "585"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"249-Uhf3zhDbPzOwmuig4PtrDx5d5f4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 18:38:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Compensation already proposed for this advert placement.\",\n    \"errorStack\": \"ValidationError: Compensation already proposed for this advert placement.\\n    at ProposeCompensationUseCase.execute (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/application/use-cases/compensations/propose-compensation.use-case.ts:39:13)\\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\\n    at async create (/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/src/presentation/controllers/compensation.controller.ts:38:28)\"\n}"
             }
           ]
         },
@@ -28466,7 +29675,7 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/compensations?page=1&limit=10",
+              "raw": "{{baseUrl}}/api/compensations?page=1&limit=10&advertSalesId=4c55bbad-6710-45dd-994a-3b79c190f9b1",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -28485,9 +29694,8 @@
                 },
                 {
                   "key": "advertSalesId",
-                  "value": "",
-                  "description": "Filter by advert sales UUID",
-                  "disabled": true
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1",
+                  "description": "Filter by advert sales UUID"
                 },
                 {
                   "key": "status",
@@ -28654,7 +29862,7 @@
               "variable": [
                 {
                   "key": "compensationId",
-                  "value": "ff33f87c-7ce2-4860-8761-0d560505c29c"
+                  "value": "76700959-a2c3-4abe-bdf9-9a230d79ddc9"
                 }
               ]
             },
@@ -28685,14 +29893,14 @@
                   "variable": [
                     {
                       "key": "compensationId",
-                      "value": "ff33f87c-7ce2-4860-8761-0d560505c29c"
+                      "value": "76700959-a2c3-4abe-bdf9-9a230d79ddc9"
                     }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -28752,15 +29960,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "639"
+                  "value": "732"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"27f-IPnPi3lUCFHXK4Rg2KQh/dICuDs\""
+                  "value": "W/\"2dc-1qeoB2j/t++7Bnyjjm9eGDqSVnU\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:10:07 GMT"
+                  "value": "Thu, 16 Apr 2026 17:42:29 GMT"
                 },
                 {
                   "key": "Connection",
@@ -28772,7 +29980,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"compensation\": {\n            \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n            \"status\": \"Proposed\",\n            \"advertPlacementId\": \"a2d9b952-ad3e-4169-93d8-048d51785f58\",\n            \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n            \"compensationType\": \"ExtraSlots\",\n            \"compensationDetails\": {\n                \"showId\": \"show-uuid-here\",\n                \"extraSlots\": 2\n            },\n            \"proposedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"customerResponse\": null,\n            \"respondedAt\": null,\n            \"createdAt\": \"2026-04-12T16:09:06.014Z\",\n            \"updatedAt\": \"2026-04-12T16:09:06.014Z\",\n            \"id\": \"ff33f87c-7ce2-4860-8761-0d560505c29c\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"compensation\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"proposal\": \"We propose 2 additional free ad slots to compensate for the missed broadcast on May 10th.\",\n            \"status\": \"Proposed\",\n            \"advertPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n            \"missedDate\": \"2026-05-10T00:00:00.000Z\",\n            \"compensationType\": \"ExtraSlots\",\n            \"compensationDetails\": {\n                \"showId\": \"1f0b7a97-3725-47f1-bb7f-616297947a38\",\n                \"extraSlots\": 2\n            },\n            \"proposedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"customerResponse\": null,\n            \"respondedAt\": null,\n            \"customerResponseTokenHash\": null,\n            \"customerResponseTokenExpiresAt\": null,\n            \"createdAt\": \"2026-04-16T17:41:41.088Z\",\n            \"updatedAt\": \"2026-04-16T17:41:41.088Z\",\n            \"id\": \"76700959-a2c3-4abe-bdf9-9a230d79ddc9\"\n        }\n    }\n}"
             }
           ]
         },
@@ -28801,7 +30009,7 @@
               "variable": [
                 {
                   "key": "compensationId",
-                  "value": "ff33f87c-7ce2-4860-8761-0d560505c29c"
+                  "value": "76700959-a2c3-4abe-bdf9-9a230d79ddc9"
                 }
               ]
             },
@@ -29249,1006 +30457,6 @@
       ]
     },
     {
-      "name": "Analytics",
-      "item": [
-        {
-          "name": "Get Analytics Summary",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/analytics/summary",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "analytics",
-                "summary"
-              ]
-            },
-            "description": "Get analytics summary including sales by show. Requires VIEW_ANALYTICS permission."
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Satellite Logs",
-      "item": [
-        {
-          "name": "Upload Satellite Log",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "description": "Tab-delimited satellite log file (.txt or .tsv)",
-                  "src": "/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/docs/Satellite Log/Satellite Log Sample.md"
-                },
-                {
-                  "key": "logDate",
-                  "value": "2026-05-10",
-                  "type": "text",
-                  "description": "The broadcast date this log covers"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs/upload",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs",
-                "upload"
-              ]
-            },
-            "description": "Upload and parse a satellite log file. The file is parsed into individual log entries. Requires MANAGE_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "file",
-                      "type": "file",
-                      "description": "Tab-delimited satellite log file (.txt or .tsv)",
-                      "src": [
-                        "/Users/negasikiflom/Documents/Code/AT/system/tvsystem_api/docs/Satellite Log/Satellite Log Sample.md"
-                      ]
-                    },
-                    {
-                      "key": "logDate",
-                      "value": "2026-05-10",
-                      "type": "text",
-                      "description": "The broadcast date this log covers"
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs/upload",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs",
-                    "upload"
-                  ]
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "357"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"165-aEnHw44ocQHgqHq1AcpQ4cqVkTk\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:13:08 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Satellite log uploaded and parsed\",\n    \"data\": {\n        \"upload\": {\n            \"logDate\": \"2026-05-10T00:00:00.000Z\",\n            \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"fileName\": \"Satellite Log Sample.md\",\n            \"status\": \"PROCESSED\",\n            \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n            \"updatedAt\": \"2026-04-12T16:13:08.325Z\",\n            \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n        }\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "List Satellite Log Uploads",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs?page=1&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs"
-              ],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "limit",
-                  "value": "10"
-                }
-              ]
-            },
-            "description": "Paginated list of satellite log uploads. Requires VIEW_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs?page=1&limit=10",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "10"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "374"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"176-h3tID+4Pc4X2v1gkXe8yT3QwqZk\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:13:38 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"uploads\": [\n            {\n                \"logDate\": \"2026-05-10T00:00:00.000Z\",\n                \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"fileName\": \"Satellite Log Sample.md\",\n                \"status\": \"PROCESSED\",\n                \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n                \"updatedAt\": \"2026-04-12T16:13:08.363Z\",\n                \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n            }\n        ]\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Get Satellite Log Upload by ID",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs",
-                ":uploadId"
-              ],
-              "variable": [
-                {
-                  "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                }
-              ]
-            },
-            "description": "Get a single satellite log upload record. Requires VIEW_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs",
-                    ":uploadId"
-                  ],
-                  "variable": [
-                    {
-                      "key": "uploadId",
-                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "311"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"137-wd0cBuzLdQ5vnSoYZlGCGUSpekU\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:15:09 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"upload\": {\n            \"logDate\": \"2026-05-10T00:00:00.000Z\",\n            \"uploadedById\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"fileName\": \"Satellite Log Sample.md\",\n            \"status\": \"PROCESSED\",\n            \"createdAt\": \"2026-04-12T16:13:08.325Z\",\n            \"updatedAt\": \"2026-04-12T16:13:08.363Z\",\n            \"id\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n        }\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Get Log Entries",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/entries",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs",
-                ":uploadId",
-                "entries"
-              ],
-              "variable": [
-                {
-                  "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                }
-              ]
-            },
-            "description": "Get all parsed entries for a satellite log upload. Requires VIEW_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/entries",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs",
-                    ":uploadId",
-                    "entries"
-                  ],
-                  "variable": [
-                    {
-                      "key": "uploadId",
-                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "24795"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"60db-rYWnYXE7om+Q0WmzcJYbeL3m8d4\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:15:26 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"entries\": [\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"65bb4371-dfe1-4bc0-9bdc-d57732547585\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"eb672722-329e-41be-a8d0-569bfbde74d6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 007 QQ Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 43,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7c1f9948-a297-4f4e-b6c7-f5106e5a992c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d21b0588-8037-4e3f-8ee7-962f2db4c338\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 009 7 Oil Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 33,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7d579f8f-6d19-45e6-8bdc-81456a9e3bad\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-410 Ethiopian Next Top Model\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"b00a9cd4-cfa2-4e06-a287-83b9032e2924\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8c478ff6-dde7-4af3-9301-1004a35a246d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4cb34542-d8dc-4e47-a917-6175dc82a0f5\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 010 HE Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 36,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"e31d7d43-5b71-4385-999b-752ca1df5477\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"fa3a5edc-4333-4767-8d31-0e62f1d8985a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 008 Family Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2cc50a3a-e3dd-41db-929a-10fd3ace2d89\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"db5d2dea-77aa-4e22-b08d-4aeb436e9a36\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 005 Akufada Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"3e8ce7fe-ab0f-451f-a397-c488e178a66e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2236c634-3022-4ac7-8df3-a6ed9cebb9f1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"93dbe43d-f6f0-4960-b201-0f48a172f21d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-253 Abbay Agelgel New\",\n                \"description\": \"\",\n                \"durationSeconds\": 70,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"78101c77-65e8-4a69-a7cd-32b4bf2df97f\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"EAD-051 Star Wide Award\",\n                \"description\": \"\",\n                \"durationSeconds\": 66,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a1ac4703-526e-466e-95a3-554126b2b30b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0417-1-AD2 Abol Etsehiwot Barter\",\n                \"description\": \"\",\n                \"durationSeconds\": 30,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"6caaf199-d2a4-4298-9615-499252f70ff1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-016 Abbay ;8\\ufffd\",\n                \"description\": \"\",\n                \"durationSeconds\": 55,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7f818ef3-1579-44dc-8a79-9be47715db6f\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1d4a0caf-2b12-407b-88f5-0e120ca73b3d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Trailer\",\n                \"description\": \"\",\n                \"durationSeconds\": 129,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8c1988bd-bbc4-4f74-adf2-f53a02023a6c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"cddae646-534d-4f0a-b12b-ef54bad1d5c9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"6d35389b-6ba1-4b3d-9d51-fef72e2491f6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d9fb1d8f-529f-4ddb-a6bf-0fa91e71c18a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"73f03480-1e99-4c57-8d70-1fcb42dd86b0\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c9cfdbc2-6e27-4eec-9a45-1bb98396ad9b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 3\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"172cf677-0b7f-46ca-b573-372f13f64c95\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"5e0397ed-23ab-4af7-a98a-fbb86d79e9e1\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 4\",\n                \"description\": \"\",\n                \"durationSeconds\": 1013,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"fb0c9838-8d2e-49e5-ad72-0a8ced37a6e9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"285a44d3-db0a-403a-aea5-fff831316796\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Elevation\\\\_2024 Part 5\",\n                \"description\": \"\",\n                \"durationSeconds\": 851,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8995f107-947e-4b9f-b2a8-056df7416b24\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ABBAY FILM TRANSTION \\\\#1\",\n                \"description\": \"\",\n                \"durationSeconds\": 11,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4a938b2e-2c21-449f-bc48-661c20c87bad\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"656cebb3-fc8a-4190-b67a-9189957c5f92\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0449-1-AD1 DSTV FIFA\",\n                \"description\": \"\",\n                \"durationSeconds\": 45,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"0d876463-b7b4-43b9-917e-9a951dbe3d32\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"PAD-565 Afri Herbal\",\n                \"description\": \"\",\n                \"durationSeconds\": 60,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c1718ccc-49cb-4007-80be-76889345c8b9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0317-1-AD4 Eve Diaper\",\n                \"description\": \"\",\n                \"durationSeconds\": 62,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"241588e1-a17c-4f3b-b809-e71528bda838\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0435-1-AD3 Ovid Gulele site\",\n                \"description\": \"\",\n                \"durationSeconds\": 58,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8a588a56-1111-44aa-b126-c3c81e35718c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"EAD-051 Star Wide Award.mp4 update new\",\n                \"description\": \"\",\n                \"durationSeconds\": 82,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a9058b02-8ef9-4fdf-af95-57918a375fdd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"96970dfd-0ac2-4db3-8e42-b01a9cdab37d\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7ab471dc-098a-40ec-bfec-d91d6b026a7e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7d9d2c55-c00c-4dbb-bca6-f95f12bef3bb\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"83b72100-8d55-4864-bf20-280eb9831fb8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-219 \\ufffdc\\ufffd 5+ alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d1cf2f24-684a-449e-8450-ac28b5e6c491\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-253 Abbay Agelgel New\",\n                \"description\": \"\",\n                \"durationSeconds\": 70,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4dfcb740-e8dc-4d48-a4ff-963e2e0915d2\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a8d428e8-aaa1-4b3c-a17d-08d9cd2e986e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-410 Ethiopian Next Top Model\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4f6fa158-792d-4e22-b9e4-a9a1aa832370\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8d7cd966-c093-4ed6-8086-5d729860e609\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 005 Akufada Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 51,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"010cb0db-e59f-4504-a15f-d2b1d6807079\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-017 Abbay Jemo &4 Kilo\",\n                \"description\": \"\",\n                \"durationSeconds\": 86,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"ae6dafab-054a-4005-9e4b-890570451879\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"f160fa6d-c83b-4197-b3d9-8253e7041e33\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Amanuel Yemane & Yapi Mapi \\\\- Gud Gerkni \\\\\\\\\\ufffd\",\n                \"description\": \"\\ufffd-\\ufffd\\ufffd \\\\- Ethiopian Tigrigna Music 2018 (Offici\",\n                \"durationSeconds\": 281,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"4210e983-3571-4196-96c8-9669a5fb258b\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1de693d0-75d6-4c11-8ba8-ff53da6f1e9c\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"9eda80e5-b007-43c9-ab37-b6288a1aa085\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd\\ufffd\\ufffd= \\ufffd\\ufffd- Emwedshi GonderNuradiss SeidBamlak GetnetTewodros SamuelEyerus MeleseNew Music\\\\_720pHF\",\n                \"description\": \"\",\n                \"durationSeconds\": 445,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c3d3d531-70ec-4647-8c01-962d4437e0fd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"bd263894-5978-4ed7-9893-33cc9383c0da\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"y2mate.com \\\\- Andualem Gosa Maarree New Oromo Music 2025\\\\_720pHFR\",\n                \"description\": \"\",\n                \"durationSeconds\": 255,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"94a0f488-b66d-469e-9570-339fec75c347\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"00e02ed2-88d8-4ff2-9828-3451189b31f8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Bisrat Surafel & Millen Hailu {che che\\\\\\\\\\ufffd||} \\\\- New Ethiopian & Eritrean Music 2025 \\\\[Official Video\",\n                \"description\": \"\",\n                \"durationSeconds\": 208,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"0d6ff83d-2aa4-4ad8-98be-3f5bc4d2f144\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"cc8a9047-5df6-496a-bc64-9d3a5ccdef88\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"abbay music new\",\n                \"description\": \"\",\n                \"durationSeconds\": 24,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7194ceba-2eef-4cb4-b650-dbe26fecf1bd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"lion abbay flag\",\n                \"description\": \"\",\n                \"durationSeconds\": 20,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"9b15cb45-6c07-4b47-91a3-bc6b2ccc524e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"771002d9-6502-4904-828a-dfc848caaa68\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 004 Exododus Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"90df67c9-859e-4dca-9087-c79e4ffda1f9\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AT-0468-1-AD2 DSTV Kids Barter\",\n                \"description\": \"\",\n                \"durationSeconds\": 23,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c3e63397-ac50-4f58-ac79-86e771729d01\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Kifu Aleka S01E13 \\ufffdB\\ufffd\\ufffd p1\",\n                \"description\": \"\",\n                \"durationSeconds\": 722,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"8cdeb1d1-7ab9-44d1-8a23-6909407002f8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"22f6f797-1e47-42f5-88a4-185e37493dcb\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 003 Chuchu Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 37,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"7fa7084d-e9ec-4e30-b5ca-aaa1368043bc\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-579 Dagna Yitay June 17\",\n                \"description\": \"\",\n                \"durationSeconds\": 67,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"ec9e6a88-d92e-4abd-89ad-416398d1891e\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"c7fd60a8-2dd7-44df-9ee8-2071caa696c8\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 006 Eve Diaper Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 57,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"2c30c040-b946-4f20-a5d9-1f2531a7b657\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"ADV-008 Abbay \\ufffd4.mp4 NEW\",\n                \"description\": \"\",\n                \"durationSeconds\": 60,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"aba17108-b279-414d-89e4-4ea1e4283c36\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"Kifu Aleka S01E13 \\ufffdB\\ufffd\\ufffd p2\",\n                \"description\": \"\",\n                \"durationSeconds\": 850,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"1dda6d95-010a-4d00-abb9-5a8cd707484a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"\\ufffd 5s\\ufffdB\\ufffd 0\\ufffdu LION \\\\# 1\",\n                \"description\": \"\",\n                \"durationSeconds\": 8,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"26ff87a9-11de-47f6-8bfb-ee9f1949bad6\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-282 Social Media Fake Alert\",\n                \"description\": \"\",\n                \"durationSeconds\": 46,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"bdabdad6-9b44-40d1-bd4b-d5102a1407bd\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"TAD 008 Family Testimony\",\n                \"description\": \"\",\n                \"durationSeconds\": 42,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"d177a6ce-380e-4a97-9a27-b3df9debc2ec\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-350 Abbay Jobs\",\n                \"description\": \"\",\n                \"durationSeconds\": 84,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"53f1ce50-89fa-4558-b653-b88e8b81896a\"\n            },\n            {\n                \"satelliteLogUploadId\": \"733327f5-7075-4808-9fb0-07ece6b33721\",\n                \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n                \"hexId\": \"AAD-574 Seleme Season 2\",\n                \"description\": \"\",\n                \"durationSeconds\": 65,\n                \"matchedPlacementId\": null,\n                \"matchType\": \"UNMATCHED\",\n                \"createdAt\": \"2026-04-12T16:13:08.350Z\",\n                \"id\": \"a4d98b18-c088-4d73-9f48-e9da8ff8191d\"\n            }\n        ]\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Match Log Entries to Placements",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/match",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs",
-                ":uploadId",
-                "match"
-              ],
-              "variable": [
-                {
-                  "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                }
-              ]
-            },
-            "description": "Attempt to automatically match log entries to advert placements using broadcast codes. Requires MANAGE_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/match",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs",
-                    ":uploadId",
-                    "match"
-                  ],
-                  "variable": [
-                    {
-                      "key": "uploadId",
-                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "56"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"38-OkKLme8HCuF6CNX8aVjnrplIGqo\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:15:58 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"matched\": 0,\n        \"unmatched\": 77\n    }\n}"
-            }
-          ]
-        },
-        {
-          "name": "Verify Advert Delivery",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/verify",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-logs",
-                ":uploadId",
-                "verify"
-              ],
-              "variable": [
-                {
-                  "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                }
-              ]
-            },
-            "description": "Compare matched log entries against scheduled placements to mark them as AIRED or MISSED. Requires MANAGE_ADVERTS."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/satellite-logs/:uploadId/verify",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "satellite-logs",
-                    ":uploadId",
-                    "verify"
-                  ],
-                  "variable": [
-                    {
-                      "key": "uploadId",
-                      "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "60"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"3c-GW93e8UsulRA2bDYF+OPCwkyHf0\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sun, 12 Apr 2026 16:16:14 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"aired\": 0,\n        \"missed\": 1,\n        \"total\": 1\n    }\n}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Satellite Log Entries",
-      "item": [
-        {
-          "name": "Manual Match Entry to Placement",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"placementId\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/api/satellite-log-entries/:entryId/match",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "satellite-log-entries",
-                ":entryId",
-                "match"
-              ],
-              "variable": [
-                {
-                  "key": "entryId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
-                }
-              ]
-            },
-            "description": "Manually match a satellite log entry to an advert placement. Use when auto-matching fails. Requires MANAGE_ADVERTS."
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Revenue Shares",
       "item": [
         {
@@ -30569,6 +30777,37 @@
               ]
             },
             "description": "Mark an agent commission as disbursed. Sets disbursedDate to now. Requires MANAGE_SALES."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Get Analytics Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/analytics/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "summary"
+              ]
+            },
+            "description": "Get analytics summary including sales by show. Requires VIEW_ANALYTICS permission."
           },
           "response": []
         }
