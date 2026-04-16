@@ -5,6 +5,7 @@ import { PERMISSIONS } from '../../shared/constants/permissions.constants';
 import type { ApiRouterDeps } from '../api-router-deps';
 import { validateBody } from '../validators/validate-body';
 import { validateQuery } from '../validators/validate-query';
+import { createPaymentRequestDto } from '../dtos/requests/payment/create-payment-request.dto';
 import { generatePaymentRequestDto } from '../dtos/requests/payment/generate-payment-req.dto';
 import { fetchAllPaymentsDto } from '../dtos/requests/payment/fetch-all-payments.dto';
 import { recordPaymentDto } from '../dtos/requests/payment/record-payment.dto';
@@ -12,10 +13,17 @@ import { recordPaymentDto } from '../dtos/requests/payment/record-payment.dto';
 export function createPaymentsRouter(deps: ApiRouterDeps): Router {
   const router = Router();
   const { authMiddleware } = deps;
-  const { generate, list, getById, sendPaymentRequest, recordPayment, remove } =
+  const { generate, createPaymentRequest, list, getById, sendPaymentRequest, recordPayment, remove } =
     createPaymentHandlers(deps);
 
   router.post('/generate', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), validateBody(generatePaymentRequestDto), generate);
+  router.post(
+    '/create-request',
+    authMiddleware,
+    requirePermission(PERMISSIONS.MANAGE_SALES),
+    validateBody(createPaymentRequestDto),
+    createPaymentRequest,
+  );
   router.get('/', authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), validateQuery(fetchAllPaymentsDto), list);
 
   router.post('/:id/send', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), sendPaymentRequest);

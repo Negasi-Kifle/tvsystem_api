@@ -29,6 +29,7 @@ export class SendPaymentRequestEmailUseCase {
       throw new EntityNotFoundError('Customer email not found', 'Customer', sale.customerId);
     }
 
+    // TODO: Send payment request to all emails of the customer
     const contactName = customer?.contacts?.[0]?.name ?? customer?.name ?? 'Customer';
     const periodStart = sale.adStartDate.toISOString().split('T')[0];
     const periodEnd = sale.adEndDate.toISOString().split('T')[0];

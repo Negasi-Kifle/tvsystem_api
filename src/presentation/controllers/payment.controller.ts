@@ -2,11 +2,13 @@ import { NextFunction, Request, Response } from 'express';
 import { CountPaymentsUseCase } from '../../application/use-cases/payments/count-payments.use-case';
 import { DeletePaymentUseCase } from '../../application/use-cases/payments/delete-payment.use-case';
 import { FetchAllPaymentsUseCase } from '../../application/use-cases/payments/fetch-all-payments.use-case';
+import { CreatePaymentRequestUseCase } from '../../application/use-cases/payments/create-payment-request.use-case';
 import { GeneratePaymentRequestsUseCase } from '../../application/use-cases/payments/generate-payment-requests.use-case';
 import { GetPaymentByIdUseCase } from '../../application/use-cases/payments/get-payment-by-id.use-case';
 import { RecordPaymentReceivedUseCase } from '../../application/use-cases/payments/record-payment-received.use-case';
 import { SendPaymentRequestEmailUseCase } from '../../application/use-cases/payments/send-payment-request-email.use-case';
 import type { ApiRouterDeps } from '../api-router-deps';
+import type { CreatePaymentRequestDto } from '../dtos/requests/payment/create-payment-request.dto';
 import { GeneratePaymentRequestDto } from '../dtos/requests/payment/generate-payment-req.dto';
 import type { FetchAllPaymentsDto } from '../dtos/requests/payment/fetch-all-payments.dto';
 import { RecordPaymentDto } from '../dtos/requests/payment/record-payment.dto';
@@ -31,6 +33,11 @@ export function createPaymentHandlers(
     deps.advertSalesRepository,
     deps.generateBusinessRefService,
   );
+  const createPaymentRequestUseCase = new CreatePaymentRequestUseCase(
+    deps.paymentRepository,
+    deps.advertSalesRepository,
+    deps.generateBusinessRefService,
+  );
   const recordUseCase = new RecordPaymentReceivedUseCase(deps.paymentRepository);
   const sendEmailUseCase = new SendPaymentRequestEmailUseCase(
     deps.paymentRepository,
@@ -48,6 +55,23 @@ export function createPaymentHandlers(
         status: 'SUCCESS',
         message: `${payments.length} payment request(s) generated`,
         data: { payments },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async function createPaymentRequest(req: Request, res: Response, next: NextFunction) {
+    try {
+      const dto = req.body as CreatePaymentRequestDto;
+      const payment = await createPaymentRequestUseCase.execute({
+        advertSalesId: dto.advertSalesId,
+        installmentNumber: dto.installmentNumber,
+      });
+      res.status(201).json({
+        status: 'SUCCESS',
+        message: 'Payment request created',
+        data: { payment },
       });
     } catch (error) {
       next(error);
@@ -129,5 +153,5 @@ export function createPaymentHandlers(
     }
   }
 
-  return { generate, list, getById, sendPaymentRequest, recordPayment, remove };
+  return { generate, createPaymentRequest, list, getById, sendPaymentRequest, recordPayment, remove };
 }

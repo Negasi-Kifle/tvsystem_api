@@ -124,13 +124,9 @@ export class PaymentEntity {
       }
     }
 
-    
     const totalRounded = Math.round(this.totalAmount * 100) / 100;
     const balanceRounded = Math.round((totalRounded - deposit) * 100) / 100;
-    
-    if (balanceRounded !== 0)
-      throw new ValidationError(`Deposit cannot be greater or less than the total amount of the installment (${totalRounded})`);
-    
+
     this.bankDeposit = deposit;
     this.balance = balanceRounded;
     this.paymentDate = input.paymentDate;

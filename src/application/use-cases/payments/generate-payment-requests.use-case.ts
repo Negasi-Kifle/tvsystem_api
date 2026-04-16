@@ -4,34 +4,16 @@ import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IPaymentRepository } from '../../../domain/repositories/payment.repository.interface';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
+import { computeDueDateForInstallment, computePaymentAmountsForInstallment } from '../../../domain/services/payment-installment-schedule.service';
 
-const VAT_RATE = 0.15;
-const WITHHOLD_TAX_RATE = 0.02;
-const VAT_WITHHOLD_RATE = 0.075;
-
-export type GeneratePaymentRequestsInput = {
-  advertSalesId: string;
-};
-
-/**
- * Pre-VAT amount for installment `i` (0-based) of `n`, splitting `finalPrice` evenly in cents.
- * The last installment absorbs any remainder so the sum matches `finalPrice`.
- */
-function amountBeforeVatForInstallment(finalPrice: number, n: number, i: number): number {
-  const totalCents = Math.round(finalPrice * 100);
-  const base = Math.floor(totalCents / n);
-  if (i === n - 1) {
-    return (totalCents - base * (n - 1)) / 100;
-  }
-  return base / 100;
-}
+export type GeneratePaymentRequestsInput = { advertSalesId: string };
 
 export class GeneratePaymentRequestsUseCase {
   constructor(
     private readonly paymentRepo: IPaymentRepository,
     private readonly advertSalesRepo: IAdvertSalesRepository,
     private readonly generateBusinessRefService: IGenerateBusinessRefService,
-  ) {}
+  ) { }
 
   async execute(input: GeneratePaymentRequestsInput): Promise<PaymentEntity[]> {
     const sale = await this.advertSalesRepo.findById(input.advertSalesId);
@@ -44,29 +26,35 @@ export class GeneratePaymentRequestsUseCase {
       throw new ValidationError('Advert sale has an invalid installment count');
     }
 
-    const existingCount = await this.paymentRepo.count({ advertSalesId: input.advertSalesId });
-    if (existingCount > 0) {
-      throw new ValidationError('Payment requests already exist for this advert sale');
+    const existingPaymentRequests = await this.paymentRepo.findMany({ filters: { advertSalesId: input.advertSalesId } });
+    if (existingPaymentRequests.length === sale.installmentCount) {
+      throw new ValidationError('All installment payments already exist for this advert sale');
     }
 
-    const totalDays = Math.max(
-      1,
-      Math.ceil((sale.adEndDate.getTime() - sale.adStartDate.getTime()) / (1000 * 60 * 60 * 24)),
-    );
-    const daysBetweenInstallments = Math.floor(totalDays / installmentCount);
-
+    
     const payments: PaymentEntity[] = [];
 
     for (let i = 0; i < installmentCount; i++) {
-      const amountBeforeVat = amountBeforeVatForInstallment(sale.finalPrice, installmentCount, i);
-      const vatAmount = Math.round(amountBeforeVat * VAT_RATE * 100) / 100;
-      const withholdTax = Math.round(amountBeforeVat * WITHHOLD_TAX_RATE * 100) / 100;
-      const vatWithhold = Math.round(vatAmount * VAT_WITHHOLD_RATE * 100) / 100;
-      const totalAmount = Math.round((amountBeforeVat + vatAmount) * 100) / 100;
-      const balance = totalAmount;
 
-      const dueDate = new Date(sale.adStartDate);
-      dueDate.setDate(dueDate.getDate() + daysBetweenInstallments * i);
+      // If index + 1 is equal to one of the existing requests, skip it
+      if (existingPaymentRequests.some(request => request.installmentNumber === i + 1)) {
+        continue;
+      }
+
+      const {
+        amountBeforeVat,
+        vatAmount,
+        withholdTax,
+        vatWithhold,
+        totalAmount
+      } = computePaymentAmountsForInstallment(sale.finalPrice, installmentCount, i);
+      const balance = totalAmount;
+      const dueDate = computeDueDateForInstallment(
+        sale.adStartDate,
+        sale.adEndDate,
+        installmentCount,
+        i,
+      );
 
       const ref = await this.generateBusinessRefService.generateBusinessRef();
 

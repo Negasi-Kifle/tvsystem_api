@@ -69,6 +69,7 @@
 
 ### 04/16/2026
 
+- ✅ `POST /api/payments/create-request`: `CreatePaymentRequestUseCase` (`advertSalesId`, `installmentNumber`); installment bounds + duplicate check; `payment-installment-schedule.service`; Postman
 - ✅ `PaymentEntity.recordPaymentReceived`: validates deposit, dates, and total; blocks re-recording when already `Paid`; unit tests in `payment.entity.record-payment.spec.ts`
 - ✅ Payment generation: `POST /api/payments/generate` uses `advertSalesId` only; `installmentCount` and even `finalPrice` split from advert sale; rejects if payments already exist; `record-payment.dto` + validation on `PATCH .../record-payment`; unit tests; Postman generate body updated
 - ✅ Operational alerts: `AlertService` (campaign end / air), `RECEIVE_OPERATIONAL_ALERTS`, Prisma flags on advert sales/placement; wired from `src/index.ts`

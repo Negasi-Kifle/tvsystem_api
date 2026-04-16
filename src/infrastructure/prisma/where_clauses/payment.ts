@@ -7,5 +7,9 @@ export function buildWhereClauseForPayment(filters: Partial<PaymentEntity>): Pri
   return {
     ...(filters.advertSalesId && { advertSalesId: filters.advertSalesId }),
     ...(filters.status && { status: filters.status }),
+    ...(filters.installmentNumber !== undefined &&
+      filters.installmentNumber !== null && {
+        installmentNumber: filters.installmentNumber,
+      }),
   };
 }
