@@ -6,6 +6,7 @@ export class FetchAllUsersUseCase {
     constructor(private readonly userRepo: IUserRepository) { }
 
     async execute(query: QueryOptions<UserEntity, Partial<UserEntity>>): Promise<UserEntity[]> {
+        console.log("query", query.filters?.roles);
         return await this.userRepo.findMany(query);
     }
 }

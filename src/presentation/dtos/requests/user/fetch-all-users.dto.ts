@@ -6,6 +6,27 @@ import { SalesCommissionType } from "../../../../domain/enums/sales-commission-t
 // Transform string "true"/"false" to boolean
 const stringToBoolean = z.string().transform((val) => val === "true").optional();
 
+/**
+ * Express sets `roles` to a string for one value and to string[] for repeated keys.
+ * Also accept comma-separated values in a single param: `roles=Host,Partner`.
+ */
+function normalizeRolesQuery(value: unknown): unknown {
+  if (value === undefined || value === "") return undefined;
+  const segments: string[] = [];
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      if (typeof item === "string") {
+        segments.push(
+          ...item.split(",").map((s) => s.trim()).filter(Boolean),
+        );
+      }
+    }
+  } else if (typeof value === "string") {
+    segments.push(...value.split(",").map((s) => s.trim()).filter(Boolean));
+  }
+  return segments.length > 0 ? segments : undefined;
+}
+
 export const fetchAllUsersDto = z.object({
   // Pagination
   page: z.coerce.number().int().positive().optional().default(1),
@@ -14,7 +35,10 @@ export const fetchAllUsersDto = z.object({
   // Filters
   email: z.string().optional(),
   phoneNumber: z.string().optional(),
-  roles: z.nativeEnum(UserRole).optional(),
+  roles: z.preprocess(
+    normalizeRolesQuery,
+    z.array(z.enum(UserRole)).optional(),
+  ),
   isActive: stringToBoolean,
   sex: z.enum(SexTypes).optional(),
   isFirstTimeAccount: stringToBoolean,

@@ -67,6 +67,10 @@
 
 ## ✅ Completed Tasks
 
+### 04/17/2026
+
+- ✅ `GET /api/users` query `roles`: accept single value, repeated keys, and comma-separated list (`fetch-all-users.dto.ts` preprocess)
+
 ### 04/16/2026
 
 - ✅ Compensation: `PATCH /api/compensations/:id` with `UpdateCompensationUseCase`, `CompensationEntity.createInstance` / `updateInstance`, validation on propose/update DTOs; Postman **Update Compensation**

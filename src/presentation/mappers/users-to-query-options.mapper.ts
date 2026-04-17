@@ -16,7 +16,7 @@ export function mapFetchAllUsersDtoToQueryOptions(dto: FetchAllUsersDto): QueryO
     filters: {
       ...(dto.email != null && { email: dto.email }),
       ...(dto.phoneNumber != null && { phoneNumber: dto.phoneNumber }),
-      ...(dto.roles != null && { roles: [dto.roles] }),
+      ...(dto.roles != null && { roles: dto.roles }),
       ...(dto.isActive != null && { isActive: dto.isActive }),
       ...(dto.sex != null && { sex: dto.sex }),
       ...(dto.isFirstTimeAccount != null && { isFirstTimeAccount: dto.isFirstTimeAccount }),
