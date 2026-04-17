@@ -9,7 +9,11 @@ import { modelToEntity as categoryModelToEntity } from './category';
 import { modelToEntity as subCategoryModelToEntity } from './sub-category';
 
 export const advertSalesReadInclude = {
-  advertPackage: true,
+  advertPackage: {
+    include: {
+      showLinks: { include: { show: true } },
+    },
+  },
   customer: true,
   salesRep: true,
   salesAgent: true,

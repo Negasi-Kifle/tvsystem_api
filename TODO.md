@@ -69,6 +69,7 @@
 
 ### 04/17/2026
 
+- ✅ Prisma `advertSalesReadInclude`: nested `advertPackage` uses `include: { showLinks: … }` so `AdvertSalesGetPayload` matches `AdvertPackageDefaultArgs` (`advert-sales.ts`)
 - ✅ `GET /api/users` query `roles`: accept single value, repeated keys, and comma-separated list (`fetch-all-users.dto.ts` preprocess)
 
 ### 04/16/2026
