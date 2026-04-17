@@ -23,6 +23,7 @@ export const fetchAllAdvertPlacementsDto = z
       .optional(),
     dateFrom: z.coerce.date().optional(),
     dateTo: z.coerce.date().optional(),
+    broadcastCode: z.string().optional()
   })
   .strict();
 

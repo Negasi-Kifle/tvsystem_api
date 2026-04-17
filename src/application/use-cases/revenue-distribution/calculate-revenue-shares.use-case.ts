@@ -47,12 +47,11 @@ export class CalculateRevenueSharesUseCase {
           shareAmount = host.revenueShareValue;
         }
 
-        // TODO: look up the partner associated with this user via user.partnerId
-        const partnerId = host.userId;
+        const userId = host.userId;
 
         const entity = new RevenueShareEntity(
           advertSalesId,
-          partnerId,
+          userId,
           host.revenueShareValue,
           shareAmount,
           RevenueShareStatus.Pending,

@@ -21,6 +21,7 @@ export function mapFetchAllAdvertPlacementsDtoToQueryOptions(
       ...(dto.position != null && { position: dto.position as AdvertPosition }),
       ...(dto.dateFrom != null && { dateFrom: dto.dateFrom }),
       ...(dto.dateTo != null && { dateTo: dto.dateTo }),
+      ...(dto.broadcastCode != null && { broadcastCode: dto.broadcastCode }),
     },
   };
 }

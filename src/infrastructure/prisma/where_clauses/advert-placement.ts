@@ -16,7 +16,7 @@ export function buildWhereClauseForAdvertPlacement(
   if (filters.broadcastSlotId) where.broadcastSlotId = filters.broadcastSlotId;
   if (filters.status) where.status = filters.status;
   if (filters.position) where.position = filters.position;
-
+  if (filters.broadcastCode) where.broadcastCode = filters.broadcastCode;
   if (filters.dateFrom || filters.dateTo) {
     where.date = {};
     if (filters.dateFrom) (where.date as Record<string, Date>).gte = filters.dateFrom;

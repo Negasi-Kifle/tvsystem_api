@@ -9356,14 +9356,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/shows/01459802-5064-4548-9923-876c0ba1420c",
+              "raw": "{{baseURL}}/api/shows/9c3c588c-4815-4983-be16-e3fb7727de8e",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "shows",
-                "01459802-5064-4548-9923-876c0ba1420c"
+                "9c3c588c-4815-4983-be16-e3fb7727de8e"
               ]
             }
           },
@@ -19546,7 +19546,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots?page=2&limit=200&groupBy=showId",
+                  "raw": "{{baseUrl}}/api/satellite-schedules/:scheduleId/broadcast-slots?page=2&limit=200&dateFrom=2026-01-01&groupBy=showId",
                   "host": [
                     "{{baseUrl}}"
                   ],
@@ -19582,12 +19582,11 @@
                     },
                     {
                       "key": "dateFrom",
-                      "value": "2026-01-01",
-                      "disabled": true
+                      "value": "2026-01-01"
                     },
                     {
                       "key": "dateTo",
-                      "value": "2026-03-31",
+                      "value": "2026-06-31",
                       "disabled": true
                     },
                     {
@@ -21036,14 +21035,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseURL}}/api/advert-packages/0241fe14-e982-436c-97ab-3472dc18a3fa",
+              "raw": "{{baseURL}}/api/advert-packages/8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "advert-packages",
-                "0241fe14-e982-436c-97ab-3472dc18a3fa"
+                "8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5"
               ]
             }
           },
@@ -21268,23 +21267,25 @@
             "method": "PATCH",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\n     \"showIds\": [\n                \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"8db59405-20a6-4c1e-b890-658828309ea8\"\n            ],\n    \"priceBeforeVAT\": 3000,\n    \"otherTaxes\": 4\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "payload",
+                  "value": "{             \"showIds\": [\n                \"9c3c588c-4815-4983-be16-e3fb7727de8e\"\n            ]}",
+                  "type": "text",
+                  "uuid": "8ef61b18-34d0-44d6-9219-aa5204f550b8"
                 }
-              }
+              ]
             },
             "url": {
-              "raw": "{{baseURL}}/api/advert-packages/927a1d30-da61-4637-9896-b98a09c28219",
+              "raw": "{{baseURL}}/api/advert-packages/8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "api",
                 "advert-packages",
-                "927a1d30-da61-4637-9896-b98a09c28219"
+                "8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5"
               ]
             }
           },
@@ -23881,7 +23882,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
+                  "value": "a8277747-5b18-4ded-bdb3-6965e9b5a54b"
                 }
               ]
             },
@@ -24134,7 +24135,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"status\": \"OnAir\",\n  \"advertType\": \"Paid\",\n  \"campaignName\": \"Q2 Product Launch (updated)\",\n  \"numOfSlots\": 12,\n  \"discountPercentage\": 10,\n  \"installmentCount\": 6,\n//   \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n//   \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n  \"notes\": \"Updated priority\"\n}",
+              "raw": "{\n//   \"status\": \"OnAir\",\n//   \"advertType\": \"Paid\",\n//   \"campaignName\": \"Q2 Product Launch (updated)\",\n//   \"numOfSlots\": 12,\n//   \"discountPercentage\": 10,\n//   \"installmentCount\": 6,\n//   \"categoryId\": \"ab336704-4da0-4f38-8b50-823f001a46f4\",\n//   \"subCategoryId\": \"bf0f2e5c-9ca3-4927-ad9c-1bdaed80c89c\",\n//   \"notes\": \"Updated priority\"\n            \"adStartDate\": \"2026-01-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-12-30T23:59:59.000Z\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -24154,7 +24155,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
+                  "value": "a8277747-5b18-4ded-bdb3-6965e9b5a54b"
                 }
               ]
             },
@@ -24860,7 +24861,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                 }
               ]
             },
@@ -25009,7 +25010,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                 }
               ]
             },
@@ -25158,7 +25159,7 @@
               "variable": [
                 {
                   "key": "advertSalesId",
-                  "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
                 }
               ]
             },
@@ -25305,7 +25306,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"broadcastCode\": \"AAD-574\",\n    \"plannedTimeMinutes\": 15\n}",
+              "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"plannedTimeMinutes\": 15\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -25343,7 +25344,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n  \"date\": \"2026-05-10T00:00:00.000Z\",\n  \"dateEth\": \"2018-09-02\",\n  \"position\": \"Beginning\",\n  \"durationSeconds\": 30,\n  \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n  \"spotIndex\": 1,\n  \"broadcastCode\": \"AAD-574\",\n  \"plannedTimeMinutes\": 15\n}",
+                  "raw": "{\n    \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n    \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n    \"date\": \"2026-05-10T00:00:00.000Z\",\n    \"dateEth\": \"2018-09-02\",\n    \"position\": \"Beginning\",\n    \"durationSeconds\": 30,\n    \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n    \"spotIndex\": 1,\n    \"plannedTimeMinutes\": 15\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -25363,7 +25364,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -25423,15 +25424,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "582"
+                  "value": "607"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"246-+70hhkuOPWlz7MEtogMG3dz5dDs\""
+                  "value": "W/\"25f-Hs+lDUwiG0Qwmc1A0NMcd+erlZA\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 15:48:10 GMT"
+                  "value": "Fri, 17 Apr 2026 08:06:54 GMT"
                 },
                 {
                   "key": "Connection",
@@ -25443,7 +25444,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert placement created successfully\",\n    \"data\": {\n        \"placement\": {\n            \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n            \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n            \"date\": \"2026-05-10T00:00:00.000Z\",\n            \"dateEth\": \"2018-09-02\",\n            \"position\": \"Beginning\",\n            \"durationSeconds\": 30,\n            \"status\": \"SCHEDULED\",\n            \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n            \"spotIndex\": 1,\n            \"broadcastCode\": \"AAD-574\",\n            \"plannedTimeMinutes\": 15,\n            \"actualAirTime\": null,\n            \"createdAt\": \"2026-04-12T15:48:10.848Z\",\n            \"updatedAt\": \"2026-04-12T15:48:10.848Z\",\n            \"id\": \"a2d9b952-ad3e-4169-93d8-048d51785f58\"\n        }\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Advert placement created successfully\",\n    \"data\": {\n        \"placement\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n            \"date\": \"2026-05-10T00:00:00.000Z\",\n            \"dateEth\": \"2018-09-02\",\n            \"position\": \"Beginning\",\n            \"durationSeconds\": 30,\n            \"status\": \"SCHEDULED\",\n            \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n            \"spotIndex\": 1,\n            \"broadcastCode\": \"OJC6YPHWYQ\",\n            \"plannedTimeMinutes\": 15,\n            \"actualAirTime\": null,\n            \"airAlertSentAt\": null,\n            \"createdAt\": \"2026-04-17T08:06:54.875Z\",\n            \"updatedAt\": \"2026-04-17T08:06:54.875Z\",\n            \"id\": \"0f667e1b-fe38-48f4-a215-a180f55d2389\"\n        }\n    }\n}"
             }
           ]
         },
@@ -25465,7 +25466,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"position\": \"Beginning\",\n  \"dateFrom\": \"2026-05-01\",\n  \"dateTo\": \"2026-05-31\"\n}",
+              "raw": "{\n  \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n  \"position\": \"Middle\",\n  \"dateFrom\": \"2026-01-01\",\n  \"dateTo\": \"2026-12-30\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -25504,7 +25505,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n  \"position\": \"Beginning\",\n  \"dateFrom\": \"2026-05-01\",\n  \"dateTo\": \"2026-05-31\"\n}",
+                  "raw": "{\n  \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n  \"position\": \"Middle\",\n  \"dateFrom\": \"2026-01-01\",\n  \"dateTo\": \"2026-12-30\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -25525,7 +25526,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "Access-Control-Allow-Origin",
@@ -25585,15 +25586,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "2054"
+                  "value": "54070"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"806-t7gM/sEjYCOq872OnGOd0ryaKvU\""
+                  "value": "W/\"d336-PHpzBlNSFpOfS8Zr5hbmzpEq5sw\""
                 },
                 {
                   "key": "Date",
-                  "value": "Sun, 12 Apr 2026 15:48:54 GMT"
+                  "value": "Fri, 17 Apr 2026 08:22:44 GMT"
                 },
                 {
                   "key": "Connection",
@@ -25605,7 +25606,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"4 advert placement(s) created\",\n    \"data\": {\n        \"placements\": [\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"date\": \"2026-05-04T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 26, 2018\",\n                \"position\": \"Beginning\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"658058c5-071e-44e1-b1f4-85dee6439ecb\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": null,\n                \"plannedTimeMinutes\": 660,\n                \"actualAirTime\": null,\n                \"createdAt\": \"2026-04-12T15:48:54.742Z\",\n                \"updatedAt\": \"2026-04-12T15:48:54.742Z\",\n                \"id\": \"914f2cbd-a7ed-4422-8767-04c9f3606c86\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"date\": \"2026-05-11T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 3, 2018\",\n                \"position\": \"Beginning\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"762daa5d-eef2-43ea-a08f-be1465610992\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": null,\n                \"plannedTimeMinutes\": 660,\n                \"actualAirTime\": null,\n                \"createdAt\": \"2026-04-12T15:48:54.748Z\",\n                \"updatedAt\": \"2026-04-12T15:48:54.748Z\",\n                \"id\": \"f77ed9d1-355b-45a6-88bb-d885c64a846e\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"date\": \"2026-05-18T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 10, 2018\",\n                \"position\": \"Beginning\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"0580c2ec-674e-4b33-83a6-76f8a0ac0e38\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": null,\n                \"plannedTimeMinutes\": 660,\n                \"actualAirTime\": null,\n                \"createdAt\": \"2026-04-12T15:48:54.750Z\",\n                \"updatedAt\": \"2026-04-12T15:48:54.750Z\",\n                \"id\": \"6afee7f0-b9f5-4dc2-af62-4cd56ab7c74c\"\n            },\n            {\n                \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\",\n                \"showId\": \"8560e532-1e78-4bc3-bad4-3cd4ff1eaf33\",\n                \"date\": \"2026-05-25T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 17, 2018\",\n                \"position\": \"Beginning\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b56425ec-6c9f-4afe-a093-c2c0448f13c5\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": null,\n                \"plannedTimeMinutes\": 660,\n                \"actualAirTime\": null,\n                \"createdAt\": \"2026-04-12T15:48:54.751Z\",\n                \"updatedAt\": \"2026-04-12T15:48:54.751Z\",\n                \"id\": \"10e0798d-27a1-4f29-a514-0a1738485519\"\n            }\n        ]\n    }\n}"
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"104 advert placement(s) created\",\n    \"data\": {\n        \"placements\": [\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-04T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 26, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"67abda2d-44e3-4e7f-9991-175523f437cb\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"1S2B4A4AMS\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.303Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.303Z\",\n                \"id\": \"0798131e-7f71-47a2-ae54-743c987a1fd3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-04T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 26, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"806879a3-567f-4f4f-ace2-d27f291525a2\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"4S7QUPZHJ5\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.308Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.308Z\",\n                \"id\": \"d16d98f6-c122-4d3c-8769-ce481a1e33b3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-11T21:00:00.000Z\",\n                \"dateEth\": \"Tir 3, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"5ecb9922-0c7a-4b2f-b0ff-11dad7ac6051\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"J7BWRMZI2Y\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.310Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.310Z\",\n                \"id\": \"9347a726-f492-4d3b-86de-0e1de8a4f2b3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-11T21:00:00.000Z\",\n                \"dateEth\": \"Tir 3, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"bc3970c4-b735-4196-9978-da462ea8c264\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"SFXNOSE1YF\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.311Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.311Z\",\n                \"id\": \"58c575cc-d4bb-4a7f-85da-777a45c548d7\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-18T21:00:00.000Z\",\n                \"dateEth\": \"Tir 10, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"7d662140-35e8-48d2-98d7-3bece0b3e34e\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"V1QUGR8W90\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.313Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.313Z\",\n                \"id\": \"b7658652-8fb1-4ca4-bf4e-cc7232c4045f\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-18T21:00:00.000Z\",\n                \"dateEth\": \"Tir 10, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b9d89200-ce87-4649-b1fb-592be91a1769\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"WBVALQKVCR\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.314Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.314Z\",\n                \"id\": \"15531b9a-07f1-405d-b8bd-7982bfec015e\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-25T21:00:00.000Z\",\n                \"dateEth\": \"Tir 17, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"a651efad-007c-405e-af74-42802b2e036f\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"H699R05OIE\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.316Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.316Z\",\n                \"id\": \"75d91c47-eabe-48b4-81fc-e9b75ccf1139\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-01-25T21:00:00.000Z\",\n                \"dateEth\": \"Tir 17, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"3da02c46-04f5-4d5d-b4ba-632156a59964\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"H4GHMK5RD3\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.317Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.317Z\",\n                \"id\": \"da929538-e7ae-4a95-bd90-db69795549f8\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-01T21:00:00.000Z\",\n                \"dateEth\": \"Tir 24, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"10e283a8-85c5-4977-b94f-c5b413aae670\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"O7A1V8Y3D5\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.318Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.318Z\",\n                \"id\": \"7122f246-68d7-49e7-9270-5b3920693e7e\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-01T21:00:00.000Z\",\n                \"dateEth\": \"Tir 24, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"94fa5dc5-dc42-4dea-9c18-245c445d7c60\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"6FSYRA07YW\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.319Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.319Z\",\n                \"id\": \"04ab78f5-b46e-43ca-874f-78f99af5fc72\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-08T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 1, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"71a8383e-7c07-4632-918e-7fbfc75b03eb\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"AD3KXZE86I\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.320Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.320Z\",\n                \"id\": \"041624d6-f3e0-4db3-9e58-39078e8d2c29\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-08T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 1, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"269b16ca-1895-4f47-95ba-4b68ce27917d\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"YB7806VNI9\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.321Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.321Z\",\n                \"id\": \"041fe010-7846-4e1c-b64a-e18bf9f104b3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-15T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 8, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"adcc0cfa-5536-4c55-ab8e-b37b8f446a6d\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"XPABLG2OAK\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.322Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.322Z\",\n                \"id\": \"5401e717-6f74-4824-b1e5-9d9b14711af1\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-15T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 8, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c0154f9e-802e-415d-8ed0-ee5d6fbbb5bb\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"DHM77NMFXL\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.323Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.323Z\",\n                \"id\": \"433e0995-f4b5-418e-8688-eb0bfd250f8c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-22T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 15, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"79836da4-9416-437c-8b46-c1137d8be66b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"WQIWWQ14FG\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.324Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.324Z\",\n                \"id\": \"1bbc2ab4-181c-4cc2-a1c4-e9ac49602d6d\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-02-22T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 15, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"d6e9ef40-a601-46f2-b972-4b68bbf36f8b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"LWQ6CZAPNA\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.328Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.328Z\",\n                \"id\": \"37b16d08-8223-4d04-9055-2ab39890a9ce\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-01T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 22, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"a192942b-03d7-4f6a-9854-69bc3ba246e7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"168MUZU6FK\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.329Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.329Z\",\n                \"id\": \"96fdd906-4f32-4965-bebd-ba838a622013\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-01T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 22, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"7f6a6ecb-6b6f-410e-a73c-795477e204b2\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3UQGDO6E2A\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.330Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.330Z\",\n                \"id\": \"bdb502c4-7bce-4715-ae77-aa0f57625680\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-08T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 29, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"70ee37f1-1c9a-443f-9e93-a73bf609f1da\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"94VUOWE5HC\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.331Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.331Z\",\n                \"id\": \"53d9b493-a357-42e8-a6f7-3a361402aa26\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-08T21:00:00.000Z\",\n                \"dateEth\": \"Yekatit 29, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"48949d40-d97c-4140-ae26-41691ccbeefd\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"1GTVJIRXFV\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.332Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.332Z\",\n                \"id\": \"7ffb3f6c-a9cc-4ebd-843f-4aeb53da5da4\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-15T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 6, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"024b9457-4b89-4c54-a33c-709fd12e2667\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"MSSLWBDIY6\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.334Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.334Z\",\n                \"id\": \"56c2ed28-3fa0-49d5-a525-a6aea4c1f218\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-15T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 6, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"bbb983ba-4aa1-4f59-b5e2-106f15b0f502\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"MNJPMM8OAW\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.334Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.334Z\",\n                \"id\": \"b509464d-de44-4f2c-aad6-5b557bd20ea0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-22T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 13, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"208c940f-5204-4cca-b97a-dacdcff9819f\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"QFXTEEIE3K\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.335Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.335Z\",\n                \"id\": \"219bba54-cdd5-4560-8ddd-568ee2c569ba\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-22T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 13, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"cbc904c3-7562-419f-8763-0c5b9effde04\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"ZB1729A4T9\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.336Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.336Z\",\n                \"id\": \"8ba9df75-dd2a-43bc-a22c-2487997666ef\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-29T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 20, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"81cb2b29-5cc1-4f3d-b27d-f75ae11e3ca7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"PQUWRTN03M\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.337Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.337Z\",\n                \"id\": \"b91b70ba-661b-4bfb-aa3a-b4c5fe74b3b1\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-03-29T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 20, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"8f50618d-d5d6-41fb-863c-8996c305ad17\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"S1375CSIZA\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.338Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.338Z\",\n                \"id\": \"e5d4e792-5cbf-4079-9d10-6d7e9484f4c5\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-05T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 27, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"81aa0557-3a59-4b12-a90a-32fe063317d7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"OR5UTZ4JVX\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.339Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.339Z\",\n                \"id\": \"1cfbfdf5-73f3-42c5-b3f1-1f87127a84a0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-05T21:00:00.000Z\",\n                \"dateEth\": \"Megabit 27, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"04385f6a-145f-4524-8047-ff6eea133d49\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"TBCFLAII08\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.340Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.340Z\",\n                \"id\": \"8e4021ef-5fd2-4910-b706-76483e69e1a6\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-12T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 4, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b3804d3f-ef8b-4c21-a6f6-fc6b5d57d3e2\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"G57367WH9M\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.341Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.341Z\",\n                \"id\": \"b7d3c9d7-7696-4c3b-b5e7-b581b53c7fa0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-12T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 4, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"1c4a8bbe-0a91-4735-a3bf-4575cad9d9f4\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"8DVXC55CN6\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.342Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.342Z\",\n                \"id\": \"62a9e2da-c928-4f2d-9d76-f6400f147339\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-19T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 11, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c6be5275-b372-4702-a969-4fa56c956be1\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"0JELXAY6LH\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.344Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.344Z\",\n                \"id\": \"452f1a35-4f24-4dd8-a439-bfe942eb629a\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-19T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 11, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c3a95ad3-feef-43a4-bf7e-c5a3073d1c85\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"E8YDA0S6UI\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.345Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.345Z\",\n                \"id\": \"605ace21-e391-402f-a324-f772664062bc\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-26T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 18, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"21c46c0a-3862-46ce-892a-27ed30590f2c\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"ORAM6RNYFU\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.346Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.346Z\",\n                \"id\": \"9532c00d-565f-4b88-80d2-b0248a780ddc\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-04-26T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 18, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"06de9b73-8cd6-48c1-858b-8aa6cc2999d6\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"1TI540IZAH\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.347Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.347Z\",\n                \"id\": \"a3c60bfa-1dba-4a4c-b8fd-54e7aab5c392\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-03T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 25, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"929d19f9-3c06-4b2c-b25e-d16f608a4956\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"5FC383GA99\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.348Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.348Z\",\n                \"id\": \"d6161e28-82d4-474a-8277-779e63d260a0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-03T21:00:00.000Z\",\n                \"dateEth\": \"Meyazya 25, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c0c1c8f2-7dc7-47e1-82c2-b5cf7d496990\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"CV5K6HO2DZ\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.349Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.349Z\",\n                \"id\": \"5839a705-20f4-444a-ad49-d22998d5002a\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-10T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 2, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"f1b77f5f-3ba3-41d6-8843-2d1e666e9491\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"V8GJPOQ96F\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.350Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.350Z\",\n                \"id\": \"cb4e1d5a-dce7-4751-be97-abc4b16267c8\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-10T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 2, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"2981ffef-9716-4be0-8d33-fcf75abef1f4\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"BKPGR3XW2A\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.352Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.352Z\",\n                \"id\": \"10eda2b4-709e-4630-b52a-5878c4bff8d4\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-17T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 9, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"ce773b07-d150-4800-8ff4-7e369b2c8c22\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"XVD8N3LTN1\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.352Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.352Z\",\n                \"id\": \"3fdee59c-5da3-4edc-9216-1aad20746d22\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-17T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 9, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"ed5accc5-0b77-4fef-b5b2-8bd3c3b7fafa\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"95BAVL1P0Y\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.353Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.353Z\",\n                \"id\": \"a425bba7-8605-4cc9-b188-262f0a47e71b\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-24T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 16, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"58ca228f-7421-4434-8635-d95cf1ab293e\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"XYG0LIPKPZ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.354Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.354Z\",\n                \"id\": \"63623dfb-0a4d-48c1-89a0-078e46e69083\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-24T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 16, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"31a9efeb-6eb8-47f0-90ce-27be0a76ef32\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"TMFQMJLRLX\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.354Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.354Z\",\n                \"id\": \"c58a49e5-4086-4ccd-abba-ce55e8b3832c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-31T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 23, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"04f79369-54ca-4ebf-a276-e09b17313849\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"5KIB0ODXUX\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.355Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.355Z\",\n                \"id\": \"51798aa6-ace0-4359-a556-250ff6fcd223\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-05-31T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 23, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"76e80380-a102-46b7-82fb-8d3f7b5843ea\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"4RCTURMPCR\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.356Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.356Z\",\n                \"id\": \"a3af17e3-a66d-4b08-b50a-63b4d2aefc84\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-07T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 30, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"6bd4d51a-75e0-43e6-8a68-a0febc897da9\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"8C205G0PA2\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.357Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.357Z\",\n                \"id\": \"ee7eed2b-69e6-4b15-b875-a1912d386adc\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-07T21:00:00.000Z\",\n                \"dateEth\": \"Ginbot 30, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"1f949b7a-d91a-4665-afcd-3a7381e6bdd4\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"NX3R5H4A34\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.359Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.359Z\",\n                \"id\": \"5496e6d3-608c-49f8-a2ab-ff50f9d8cbe9\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-14T21:00:00.000Z\",\n                \"dateEth\": \"Sene 7, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"f5aeb2c9-8540-4bd9-a4aa-2f05e7abacf7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"A7A5C80819\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.360Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.360Z\",\n                \"id\": \"696acf25-8041-4f64-b9b7-4bb9952e3596\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-14T21:00:00.000Z\",\n                \"dateEth\": \"Sene 7, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"454a2a47-5a08-483c-a2a5-6d821e6c7e66\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"9IRJ4DU0A4\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.361Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.361Z\",\n                \"id\": \"8e9798a0-df82-4157-be3f-f4b84d46baca\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-21T21:00:00.000Z\",\n                \"dateEth\": \"Sene 14, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"26daf501-1d07-4b8a-b7fd-0b613371fd29\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"DP2AZKI04U\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.362Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.362Z\",\n                \"id\": \"fe10000a-2fcb-4644-98bf-ae9d1fc8a738\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-21T21:00:00.000Z\",\n                \"dateEth\": \"Sene 14, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"05699294-2e03-483f-94d4-d2d244f382e9\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"BGV75MD0B7\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.363Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.363Z\",\n                \"id\": \"86159988-99fb-4bcf-96cd-5384faab9ee8\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-28T21:00:00.000Z\",\n                \"dateEth\": \"Sene 21, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"51b07d6b-6d54-4819-888c-de54529263d6\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"AARZJX39IQ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.364Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.364Z\",\n                \"id\": \"86202c5c-7a03-4d76-9c03-03ab1cc7e3de\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-06-28T21:00:00.000Z\",\n                \"dateEth\": \"Sene 21, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b3c3ffb5-d724-44ef-b792-6904c58a44f9\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3PMYR31FRR\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.365Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.365Z\",\n                \"id\": \"3c3546a7-c94e-466a-8088-214bf381937a\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-05T21:00:00.000Z\",\n                \"dateEth\": \"Sene 28, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"8c95537b-754a-443a-bb8c-215c86178d28\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3HCNW5Y70A\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.366Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.366Z\",\n                \"id\": \"77fde6f0-1ce3-468e-9887-bcea635bc969\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-05T21:00:00.000Z\",\n                \"dateEth\": \"Sene 28, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"03b7dfff-d530-4fdd-a996-8c78c6b4c28c\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"OCQESKFV4N\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.367Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.367Z\",\n                \"id\": \"f971fa26-72c1-43dd-ba2a-5bf822f6054c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-12T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 5, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"6131ae51-8eab-4a9b-b197-4d9255b32268\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"FSUUR4BQ1V\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.368Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.368Z\",\n                \"id\": \"551f2b2d-6ef7-4a7b-a004-9d4c930c7639\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-12T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 5, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"286c539f-e8ee-4533-b8dc-a300a29b8e74\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"1BWAT3AWNH\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.369Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.369Z\",\n                \"id\": \"9db6856f-baff-498b-b99b-b2b57b37d50a\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-19T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 12, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"8a0d4363-b1e6-44d9-a16e-71d327147a65\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"NUUDN9TDSA\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.370Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.370Z\",\n                \"id\": \"aa05910d-2a0b-4c77-8405-c8df5c825a04\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-19T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 12, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"28acbe9c-b21c-41b0-ac27-d5203d2f7a30\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"7H5GZNZL0S\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.370Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.370Z\",\n                \"id\": \"d0e617dc-751c-401e-9abd-370ba7e876a0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-26T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 19, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c1cbd941-a1c8-4ad6-9e6c-931c9588990a\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"DA5II6COBF\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.371Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.371Z\",\n                \"id\": \"8509f20b-8cd5-40f8-9a0a-3eaec7d7b2be\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-07-26T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 19, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"58739845-e753-46fb-935b-7d26948bfdc1\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"K6QJOLZ4V3\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.372Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.372Z\",\n                \"id\": \"c3f8d22e-7b15-4bf7-a3e1-74db877a5aad\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-02T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 26, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"5342e87b-8fa9-430a-ac77-8136ad0f3aaf\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"UM3WMJOWCQ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.373Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.373Z\",\n                \"id\": \"ecbae9be-ec13-449c-9cee-c5ae5b528297\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-02T21:00:00.000Z\",\n                \"dateEth\": \"Hamle 26, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"f40b8751-cab3-4697-b264-7d99522d4eda\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"7CILLN93M5\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.374Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.374Z\",\n                \"id\": \"07195dd8-297f-45ef-bdb8-3e2e83e2d3fc\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-09T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 3, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"ff0a31c1-edba-4bd7-b999-1c150a944511\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"OCGINX7XZJ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.375Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.375Z\",\n                \"id\": \"05fb5d1a-3cb3-43ac-bb8f-1998ecf6ab73\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-09T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 3, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"e1658011-27cd-4d1e-9baf-0326d4736c5d\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"E7E6BSC7F9\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.376Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.376Z\",\n                \"id\": \"347f0534-4ccf-41f9-b5f4-3eebb04f8b2b\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-16T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 10, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"76359e90-2f85-43b6-89e5-6b5688e48dcf\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3WK3MVTRIJ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.377Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.377Z\",\n                \"id\": \"ea16d9c3-e2e6-4108-859d-00a760ac01bc\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-16T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 10, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"2f2e96c8-787c-4e4c-aca3-8cb664c973a7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"PQIQAIQQ5L\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.379Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.379Z\",\n                \"id\": \"ed0f12a4-b02b-464d-aae8-7f6769b95d3c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-23T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 17, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"da496d3c-e16a-45e0-a60c-ffbe91b02ed3\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"NZCNFUEXYC\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.380Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.380Z\",\n                \"id\": \"20e0ebf1-315d-4634-90d9-cc9420122db8\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-23T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 17, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"aa08949f-9011-47ab-94c7-f593a728ff3a\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"P4PRZQPYR9\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.381Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.381Z\",\n                \"id\": \"45bb7dcd-9dd5-44df-b5a2-2870324f6f51\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-30T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 24, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"55570ae9-b134-49c2-b99c-f54f4aa31aa0\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"YQTR33Y7NM\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.382Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.382Z\",\n                \"id\": \"c07204dc-4f20-493e-8d41-545c45605148\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-08-30T21:00:00.000Z\",\n                \"dateEth\": \"Nehase 24, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"d192901b-b997-41f6-a7e9-b5d2599f812c\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"QO648S95HQ\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.383Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.383Z\",\n                \"id\": \"b3ffc4f5-8ba3-40c0-8c28-449956caeb95\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-06T21:00:00.000Z\",\n                \"dateEth\": \"Pagume 1, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b96bba79-34f7-4deb-8ace-39a1697e5b84\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"QHD2DWWJUR\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.384Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.384Z\",\n                \"id\": \"028b1ebe-9a08-4b96-bf98-aef521444ff6\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-06T21:00:00.000Z\",\n                \"dateEth\": \"Pagume 1, 2018\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"0bb98db7-796f-4a50-b615-47045bba670b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"CO7RY97VJA\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.385Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.385Z\",\n                \"id\": \"af16887c-d25a-432c-ac27-fb47ca92f425\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-13T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 3, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"ace9dc0a-ae9f-4b9a-b281-67f121f5ef09\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"NHG78I5LUG\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.385Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.385Z\",\n                \"id\": \"d2584a08-6e54-4d40-8bc4-a96cf1710452\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-13T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 3, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"662b301e-439a-48b3-a5e0-11f922fe7e89\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"FIH9KWAXVD\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.386Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.386Z\",\n                \"id\": \"bf87c8c9-f481-425d-a404-44dfde0fb806\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-20T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 10, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"912a28e3-ffa9-481f-b154-e62326b7ff8b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"MDEZUWSL7E\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.387Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.387Z\",\n                \"id\": \"3d58d653-7630-4d48-88ba-7fabbe085899\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-20T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 10, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"3405785c-fdc3-473a-9872-27f995ec059e\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"SFMYGWN101\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.388Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.388Z\",\n                \"id\": \"6957b2f0-79d6-47af-8be4-b5969ca955e3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-27T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 17, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"4bcd4738-97b7-4a43-b4fa-919a5238a376\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"49DR60LQ8O\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.389Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.389Z\",\n                \"id\": \"ec8ec73c-c96a-44da-a229-03189ac444e9\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-09-27T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 17, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"f0f4860c-f716-45df-9475-4b57161bae7b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3FL517G3YW\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.390Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.390Z\",\n                \"id\": \"cbd065cb-ed6f-4fd4-a664-bceaff99e486\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-04T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 24, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"3214b233-7c45-4961-a917-9810cbf60162\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"0IH9ZCKQWZ\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.391Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.391Z\",\n                \"id\": \"edc912b8-4089-430f-a079-c6af5aecba87\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-04T21:00:00.000Z\",\n                \"dateEth\": \"Meskerem 24, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"f3b09249-715f-4d5d-984a-01ef9c71bd2d\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"6N0JGK7UIW\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.392Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.392Z\",\n                \"id\": \"884bc21a-1fd9-40d7-9024-f37ca1019865\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-11T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 1, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"394e860d-d566-4bab-b62b-7f044cb8391b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"R443H1ILVS\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.393Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.393Z\",\n                \"id\": \"a7536890-adfe-485e-839c-143b31ea6c29\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-11T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 1, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"09fb5a0a-db38-4494-b28d-20ccd9f75886\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"I6PLSAC4HE\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.394Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.394Z\",\n                \"id\": \"5fe4f609-73dc-4521-80a1-1ba9d67d4700\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-18T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 8, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"db0038cd-9cd0-4aed-baaf-58ef66dae513\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"T7Z39L788C\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.395Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.395Z\",\n                \"id\": \"2e0eef04-65d7-42fb-8c03-51130d481255\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-18T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 8, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"66c2b799-18d8-4d3d-bca3-1b132826bd2b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"HYYA22W8AU\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.396Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.396Z\",\n                \"id\": \"9415a5b7-f2b1-45c5-a130-3c973e2759de\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-25T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 15, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"85ee003a-8305-43cc-8cb9-9e976129a8b0\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"PKBMZL0KXD\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.397Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.397Z\",\n                \"id\": \"9029c4de-d313-4c6e-979c-c1fbb6b7be93\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-10-25T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 15, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"d977fccb-a94e-4b78-a7e3-b04c5e32f878\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"8YTGBB51SG\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.398Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.398Z\",\n                \"id\": \"fda39a56-1a14-451e-9f7b-0b8d3f4af8e0\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-01T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 22, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"e1106584-71b3-4cc6-973d-efa5a8af380d\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"TVFDG3XLBH\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.400Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.400Z\",\n                \"id\": \"e78a21dd-0eca-4571-8b99-1e36901da087\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-01T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 22, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"678ff860-4ef1-4db6-a4e7-43bdbb60392f\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"M7MEBEQ281\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.400Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.400Z\",\n                \"id\": \"99da03be-9840-4887-8f1b-957e77755d97\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-08T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 29, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"be8aa7f3-59c0-47a2-b115-1889937f7326\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"B3D2HK8CXG\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.401Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.401Z\",\n                \"id\": \"8424c597-e0e4-43fe-8220-4fa76c2cb9c7\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-08T21:00:00.000Z\",\n                \"dateEth\": \"Tikimt 29, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b1fe95d8-1fed-4a5c-99cf-5bea615abd9e\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"J8D0A4EQKX\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.402Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.402Z\",\n                \"id\": \"fb7c2d9c-321b-4230-817a-0dc28a5f669c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-15T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 6, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"d58ba00d-1553-4ddf-b5a5-ba9343ee7950\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"6PKAVHF3DI\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.403Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.403Z\",\n                \"id\": \"903b2859-7882-45f8-9a9b-0cd8aad9146c\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-15T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 6, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"c0393242-5b52-47c4-bb94-6d60507f75a6\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"5IJQ9566DK\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.404Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.404Z\",\n                \"id\": \"dce1747c-d2d4-459f-83b3-6978d81a4e54\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-22T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 13, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"e23aed86-bf2f-4704-a05f-74d0298fb867\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"CZZK3L8ADO\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.405Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.405Z\",\n                \"id\": \"5a3b37ff-fa63-4f90-ab6d-a55a68272c7d\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-22T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 13, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"7bdb2218-7e8e-4aa7-963d-11db96865f8b\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"7OCZ2UVOLH\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.406Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.406Z\",\n                \"id\": \"482800c7-c708-4b10-90b7-694e4e04a0f1\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-29T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 20, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"86890ff0-e956-48ef-942c-7df1dde576a7\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"8YU6RUCBXH\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.407Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.407Z\",\n                \"id\": \"e8cc769e-6032-40ed-bd11-b1193e85d8b9\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-11-29T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 20, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"5bd1439b-2539-4df4-b7ce-574eb36c7a8a\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"3LZQ3BVC3K\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.408Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.408Z\",\n                \"id\": \"885acb1a-993f-4fce-8b1d-e7bf4bdc4421\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-06T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 27, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"72dc8dad-878c-49e2-92b4-c1d41b757194\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"ZAAM9MTRQ3\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.410Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.410Z\",\n                \"id\": \"ed55256c-9c8a-4f31-9fd4-3641a8aad4b3\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-06T21:00:00.000Z\",\n                \"dateEth\": \"Hidar 27, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"2f2cd730-814c-4024-bc12-bd0a192f0c40\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"ULFH9JVANI\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.411Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.411Z\",\n                \"id\": \"f69c4496-ef9c-4763-b329-8b1da6c36694\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-13T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 4, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"03156dc5-e495-4ac9-b1d4-249f5f6639d4\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"ILMUQBAI85\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.412Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.412Z\",\n                \"id\": \"e9b85759-b05f-413d-8785-3cadfca35638\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-13T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 4, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"5007d913-8240-49c6-bc64-c94124fd0929\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"0HT4SY6RQ2\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.413Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.413Z\",\n                \"id\": \"10baaf8d-52bd-4c46-8e8e-6341ef82c516\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-20T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 11, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"15d72f73-6411-4b07-a4ae-2b4aaa8048f8\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"99IH27E8NW\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.414Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.414Z\",\n                \"id\": \"3e811484-121a-45f6-8cc4-45ed6f75e983\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-20T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 11, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"bc5280b8-b302-47de-b8c4-083a0c75d6a9\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"CHJRTEQ9D2\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.416Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.416Z\",\n                \"id\": \"70bae942-e556-4e61-b98c-d83cf53b1466\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-27T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 18, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"5f26c5b6-58e8-4c5f-911d-c175f47f07bd\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"H21VUZTZCD\",\n                \"plannedTimeMinutes\": 510,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.417Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.417Z\",\n                \"id\": \"cb5e6abf-faf2-4223-9902-6fdbfaa3c7da\"\n            },\n            {\n                \"advertSalesId\": \"a8277747-5b18-4ded-bdb3-6965e9b5a54b\",\n                \"showId\": \"9c3c588c-4815-4983-be16-e3fb7727de8e\",\n                \"date\": \"2026-12-27T21:00:00.000Z\",\n                \"dateEth\": \"Tahsas 18, 2019\",\n                \"position\": \"Middle\",\n                \"durationSeconds\": 30,\n                \"status\": \"SCHEDULED\",\n                \"broadcastSlotId\": \"b27aaab4-588f-403a-a8fb-204cf6cde401\",\n                \"spotIndex\": 1,\n                \"broadcastCode\": \"AE6UMDTJ3H\",\n                \"plannedTimeMinutes\": 1170,\n                \"actualAirTime\": null,\n                \"airAlertSentAt\": null,\n                \"createdAt\": \"2026-04-17T08:22:44.418Z\",\n                \"updatedAt\": \"2026-04-17T08:22:44.418Z\",\n                \"id\": \"28fcf92e-55b2-4608-9c40-7d58f7eb9c8e\"\n            }\n        ]\n    }\n}"
             }
           ]
         },
@@ -25621,7 +25622,7 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/advert-placements?page=1&limit=10",
+              "raw": "{{baseUrl}}/api/advert-placements?page=1&limit=10&broadcastCode=1S2B4A4AMS",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -25640,7 +25641,7 @@
                 },
                 {
                   "key": "advertSalesId",
-                  "value": "8092a8ec-f098-47e3-9b6c-3acb9b2e0fb5",
+                  "value": "76700959-a2c3-4abe-bdf9-9a230d79ddc9",
                   "description": "Filter by advert sales UUID",
                   "disabled": true
                 },
@@ -25679,6 +25680,10 @@
                   "value": "2026-05-31",
                   "description": "Filter placements up to this date",
                   "disabled": true
+                },
+                {
+                  "key": "broadcastCode",
+                  "value": "1S2B4A4AMS"
                 }
               ]
             },
@@ -27022,7 +27027,7 @@
               "variable": [
                 {
                   "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                  "value": "3bdbc993-70a1-449f-b752-4d523f688640"
                 }
               ]
             },
@@ -27169,7 +27174,7 @@
               "variable": [
                 {
                   "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                  "value": "3bdbc993-70a1-449f-b752-4d523f688640"
                 }
               ]
             },
@@ -27317,7 +27322,7 @@
               "variable": [
                 {
                   "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                  "value": "3bdbc993-70a1-449f-b752-4d523f688640"
                 }
               ]
             },
@@ -27465,7 +27470,7 @@
               "variable": [
                 {
                   "key": "uploadId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                  "value": "3bdbc993-70a1-449f-b752-4d523f688640"
                 }
               ]
             },
@@ -27611,7 +27616,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"placementId\": \"733327f5-7075-4808-9fb0-07ece6b33721\"\n}",
+              "raw": "{\n  \"placementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -27632,13 +27637,142 @@
               "variable": [
                 {
                   "key": "entryId",
-                  "value": "733327f5-7075-4808-9fb0-07ece6b33721"
+                  "value": "a8c6ffed-c541-4e6a-a456-f165431c90a8"
                 }
               ]
             },
             "description": "Manually match a satellite log entry to an advert placement. Use when auto-matching fails. Requires MANAGE_ADVERTS."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"placementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/satellite-log-entries/:entryId/match",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "satellite-log-entries",
+                    ":entryId",
+                    "match"
+                  ],
+                  "variable": [
+                    {
+                      "key": "entryId",
+                      "value": "a8c6ffed-c541-4e6a-a456-f165431c90a8"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "381"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"17d-waneFQCweITnpBS8JA6GjglrbTk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 07:55:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"entry\": {\n            \"satelliteLogUploadId\": \"3bdbc993-70a1-449f-b752-4d523f688640\",\n            \"broadcastDateTime\": \"2026-05-10T00:00:00.000Z\",\n            \"hexId\": \"ABBAY FILM TRANSTION\",\n            \"description\": \"\",\n            \"durationSeconds\": 11,\n            \"matchedPlacementId\": \"de43f1f9-b6fa-49d4-bca2-9f239419fa3b\",\n            \"matchType\": \"MANUAL\",\n            \"createdAt\": \"2026-04-16T19:43:54.339Z\",\n            \"id\": \"a8c6ffed-c541-4e6a-a456-f165431c90a8\"\n        }\n    }\n}"
+            }
+          ]
         }
       ]
     },
@@ -30477,7 +30611,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"00d7ef22-0b35-4d32-9226-d34eb6226dac\"\n}",
+              "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -30497,7 +30631,129 @@
             },
             "description": "Calculate revenue shares for partners based on the advert sale's ad package and associated show hosts. Requires MANAGE_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/revenue-shares/calculate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "revenue-shares",
+                    "calculate"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "442"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ba-dEc36uwS2E+XSw1ssA/a/AAUR4Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 08:45:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"1 revenue share(s) calculated\",\n    \"data\": {\n        \"shares\": [\n            {\n                \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n                \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"sharePercentage\": 50,\n                \"shareAmount\": 52.65,\n                \"status\": \"PENDING\",\n                \"showHostId\": \"62598843-4147-45e5-a228-0ad82c484a72\",\n                \"disbursedDate\": null,\n                \"createdAt\": \"2026-04-17T08:45:51.507Z\",\n                \"updatedAt\": \"2026-04-17T08:45:51.507Z\",\n                \"id\": \"31a9e060-d4ac-4dc6-a69f-0f10c2684a86\"\n            }\n        ]\n    }\n}"
+            }
+          ]
         },
         {
           "name": "List Revenue Shares",
@@ -30550,7 +30806,142 @@
             },
             "description": "Paginated list of revenue share records. Requires VIEW_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/revenue-shares?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "revenue-shares"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "advertSalesId",
+                      "value": "",
+                      "description": "Filter by advert sales UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "partnerId",
+                      "value": "",
+                      "description": "Filter by partner UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending",
+                      "description": "Pending | Disbursed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "820"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"334-qKrg+oFjM93YGYDXhAoqY3JOMAw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 08:49:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"shares\": [\n            {\n                \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n                \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"sharePercentage\": 50,\n                \"shareAmount\": 52.65,\n                \"status\": \"PENDING\",\n                \"showHostId\": \"62598843-4147-45e5-a228-0ad82c484a72\",\n                \"disbursedDate\": null,\n                \"createdAt\": \"2026-04-17T08:46:25.070Z\",\n                \"updatedAt\": \"2026-04-17T08:46:25.070Z\",\n                \"id\": \"d86cc6ac-8907-4713-a365-b4cf93be9231\"\n            },\n            {\n                \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n                \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"sharePercentage\": 50,\n                \"shareAmount\": 52.65,\n                \"status\": \"PENDING\",\n                \"showHostId\": \"62598843-4147-45e5-a228-0ad82c484a72\",\n                \"disbursedDate\": null,\n                \"createdAt\": \"2026-04-17T08:45:51.507Z\",\n                \"updatedAt\": \"2026-04-17T08:45:51.507Z\",\n                \"id\": \"31a9e060-d4ac-4dc6-a69f-0f10c2684a86\"\n            }\n        ]\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get Revenue Share by ID",
@@ -30576,13 +30967,127 @@
               "variable": [
                 {
                   "key": "shareId",
-                  "value": "share-uuid-here"
+                  "value": "d86cc6ac-8907-4713-a365-b4cf93be9231"
                 }
               ]
             },
             "description": "Get a single revenue share record. Requires VIEW_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Sucess",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/revenue-shares/:shareId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "revenue-shares",
+                    ":shareId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "shareId",
+                      "value": "d86cc6ac-8907-4713-a365-b4cf93be9231"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "397"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18d-4mpgJMkGfVdUITTL3YF8ZcIXAHg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 08:50:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"share\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"sharePercentage\": 50,\n            \"shareAmount\": 52.65,\n            \"status\": \"PENDING\",\n            \"showHostId\": \"62598843-4147-45e5-a228-0ad82c484a72\",\n            \"disbursedDate\": null,\n            \"createdAt\": \"2026-04-17T08:46:25.070Z\",\n            \"updatedAt\": \"2026-04-17T08:46:25.070Z\",\n            \"id\": \"d86cc6ac-8907-4713-a365-b4cf93be9231\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Disburse Revenue Share",
@@ -30609,13 +31114,128 @@
               "variable": [
                 {
                   "key": "shareId",
-                  "value": "share-uuid-here"
+                  "value": "d86cc6ac-8907-4713-a365-b4cf93be9231"
                 }
               ]
             },
             "description": "Mark a revenue share as disbursed. Sets disbursedDate to now. Requires MANAGE_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/revenue-shares/:shareId/disburse",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "revenue-shares",
+                    ":shareId",
+                    "disburse"
+                  ],
+                  "variable": [
+                    {
+                      "key": "shareId",
+                      "value": "d86cc6ac-8907-4713-a365-b4cf93be9231"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "457"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c9-uFBngKhgwvbdhhcm3C8vbwGob8M\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 08:51:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Revenue share disbursed\",\n    \"data\": {\n        \"share\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"userId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"sharePercentage\": 50,\n            \"shareAmount\": 52.65,\n            \"status\": \"DISBURSED\",\n            \"showHostId\": \"62598843-4147-45e5-a228-0ad82c484a72\",\n            \"disbursedDate\": \"2026-04-17T08:51:17.132Z\",\n            \"createdAt\": \"2026-04-17T08:46:25.070Z\",\n            \"updatedAt\": \"2026-04-17T08:51:17.142Z\",\n            \"id\": \"d86cc6ac-8907-4713-a365-b4cf93be9231\"\n        }\n    }\n}"
+            }
+          ]
         }
       ]
     },
@@ -30640,7 +31260,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"advertSalesId\": \"advert-sales-uuid-here\"\n}",
+              "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -30660,7 +31280,129 @@
             },
             "description": "Calculate the agent commission for an advert sale based on the sales agent and commission percentage. Returns null if no agent or 0% commission. Requires MANAGE_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/agent-commissions/calculate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "agent-commissions",
+                    "calculate"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "435"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b3-KrO3Y2WsyMXya0M62gubf/Es8DI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 09:01:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Agent commission calculated\",\n    \"data\": {\n        \"commission\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"agentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"commissionPercentage\": 10,\n            \"commissionAmount\": 10.53,\n            \"taxAmount\": 1.58,\n            \"netAmount\": 8.95,\n            \"status\": \"PENDING\",\n            \"disbursedDate\": null,\n            \"createdAt\": \"2026-04-17T09:01:41.074Z\",\n            \"updatedAt\": \"2026-04-17T09:01:41.074Z\",\n            \"id\": \"518db82f-a1ed-4f1a-b781-03a40dd4f730\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "List Agent Commissions",
@@ -30713,7 +31455,142 @@
             },
             "description": "Paginated list of agent commission records. Requires VIEW_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/agent-commissions?page=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "agent-commissions"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "advertSalesId",
+                      "value": "",
+                      "description": "Filter by advert sales UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "agentId",
+                      "value": "",
+                      "description": "Filter by agent (user) UUID",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending",
+                      "description": "Pending | Disbursed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ca-TDmOBbJCxnwQBzqlSpMr9Im8Q+w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 09:02:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"pagination\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 1,\n        \"totalPages\": 1\n    },\n    \"data\": {\n        \"commissions\": [\n            {\n                \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n                \"agentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n                \"commissionPercentage\": 10,\n                \"commissionAmount\": 10.53,\n                \"taxAmount\": 1.58,\n                \"netAmount\": 8.95,\n                \"status\": \"PENDING\",\n                \"disbursedDate\": null,\n                \"createdAt\": \"2026-04-17T09:01:41.074Z\",\n                \"updatedAt\": \"2026-04-17T09:01:41.074Z\",\n                \"id\": \"518db82f-a1ed-4f1a-b781-03a40dd4f730\"\n            }\n        ]\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Get Agent Commission by ID",
@@ -30739,13 +31616,127 @@
               "variable": [
                 {
                   "key": "commissionId",
-                  "value": "commission-uuid-here"
+                  "value": "518db82f-a1ed-4f1a-b781-03a40dd4f730"
                 }
               ]
             },
             "description": "Get a single agent commission record. Requires VIEW_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/agent-commissions/:commissionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "agent-commissions",
+                    ":commissionId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "commissionId",
+                      "value": "518db82f-a1ed-4f1a-b781-03a40dd4f730"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "395"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18b-yKQQovj11ehNqkjHXfbe10W85NI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 09:02:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"commission\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"agentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"commissionPercentage\": 10,\n            \"commissionAmount\": 10.53,\n            \"taxAmount\": 1.58,\n            \"netAmount\": 8.95,\n            \"status\": \"PENDING\",\n            \"disbursedDate\": null,\n            \"createdAt\": \"2026-04-17T09:01:41.074Z\",\n            \"updatedAt\": \"2026-04-17T09:01:41.074Z\",\n            \"id\": \"518db82f-a1ed-4f1a-b781-03a40dd4f730\"\n        }\n    }\n}"
+            }
+          ]
         },
         {
           "name": "Disburse Agent Commission",
@@ -30772,13 +31763,128 @@
               "variable": [
                 {
                   "key": "commissionId",
-                  "value": "commission-uuid-here"
+                  "value": "518db82f-a1ed-4f1a-b781-03a40dd4f730"
                 }
               ]
             },
             "description": "Mark an agent commission as disbursed. Sets disbursedDate to now. Requires MANAGE_SALES."
           },
-          "response": []
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/agent-commissions/:commissionId/disburse",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "agent-commissions",
+                    ":commissionId",
+                    "disburse"
+                  ],
+                  "variable": [
+                    {
+                      "key": "commissionId",
+                      "value": "518db82f-a1ed-4f1a-b781-03a40dd4f730"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ca-WatxT8Joj3uvQlCsQ+JOZcvA+jQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 09:02:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Agent commission disbursed\",\n    \"data\": {\n        \"commission\": {\n            \"advertSalesId\": \"4c55bbad-6710-45dd-994a-3b79c190f9b1\",\n            \"agentId\": \"be8c950e-06a7-4f00-8b29-34e1bb1925cd\",\n            \"commissionPercentage\": 10,\n            \"commissionAmount\": 10.53,\n            \"taxAmount\": 1.58,\n            \"netAmount\": 8.95,\n            \"status\": \"DISBURSED\",\n            \"disbursedDate\": \"2026-04-17T09:02:54.625Z\",\n            \"createdAt\": \"2026-04-17T09:01:41.074Z\",\n            \"updatedAt\": \"2026-04-17T09:02:54.627Z\",\n            \"id\": \"518db82f-a1ed-4f1a-b781-03a40dd4f730\"\n        }\n    }\n}"
+            }
+          ]
         }
       ]
     },

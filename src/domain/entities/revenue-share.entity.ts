@@ -6,7 +6,7 @@ export enum RevenueShareStatus {
 export class RevenueShareEntity {
   constructor(
     public advertSalesId: string,
-    public partnerId: string,
+    public userId: string,
     public sharePercentage: number,
     public shareAmount: number,
     public status: RevenueShareStatus = RevenueShareStatus.Pending,

@@ -60,6 +60,7 @@ model User {
   compensationsProposed     Compensation[]     @relation("CompensationProposedBy")
   satelliteLogUploads       SatelliteLogUpload[] @relation("SatelliteLogUploader")
   agentCommissions          AgentCommission[]    @relation("AgentCommissions")
+  revenueShares RevenueShare[]
 
   @@index([email])
   @@index([refModel])
@@ -320,7 +321,6 @@ model Partner {
   updatedAt    DateTime @updatedAt @map("updated_at")
 
   user          User?
-  revenueShares RevenueShare[]
   @@map("partners")
 }
 
@@ -757,7 +757,7 @@ model UserPermission {
 model RevenueShare {
   id               String    @id @default(uuid())
   advertSalesId    String    @map("advert_sales_id")
-  partnerId        String    @map("partner_id")
+  userId        String    @map("user_id")
   showHostId       String?   @map("show_host_id")
   sharePercentage  Float     @map("share_percentage")
   shareAmount      Float     @map("share_amount")
@@ -767,10 +767,10 @@ model RevenueShare {
   updatedAt        DateTime  @updatedAt @map("updated_at")
 
   advertSales AdvertSales @relation(fields: [advertSalesId], references: [id], onDelete: Cascade)
-  partner     Partner     @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([advertSalesId])
-  @@index([partnerId])
+  @@index([userId])
   @@map("revenue_shares")
 }
 

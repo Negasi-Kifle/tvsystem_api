@@ -9,7 +9,7 @@ export class RevenueShareRepository extends PrismaBaseRepository implements IRev
     const saved = await this.prisma.revenueShare.create({
       data: {
         advertSalesId: data.advertSalesId,
-        partnerId: data.partnerId,
+        userId: data.userId,
         showHostId: data.showHostId ?? null,
         sharePercentage: data.sharePercentage,
         shareAmount: data.shareAmount,
@@ -29,7 +29,7 @@ export class RevenueShareRepository extends PrismaBaseRepository implements IRev
     const where: Prisma.RevenueShareWhereInput = {};
     const filters = query.filters as Partial<RevenueShareEntity> | undefined;
     if (filters?.advertSalesId) where.advertSalesId = filters.advertSalesId;
-    if (filters?.partnerId) where.partnerId = filters.partnerId;
+    if (filters?.userId) where.userId = filters.userId;
     if (filters?.status) where.status = filters.status;
 
     const rows = await this.prisma.revenueShare.findMany({
@@ -68,7 +68,7 @@ export class RevenueShareRepository extends PrismaBaseRepository implements IRev
   private toEntity(row: any): RevenueShareEntity {
     return new RevenueShareEntity(
       row.advertSalesId,
-      row.partnerId,
+      row.userId,
       row.sharePercentage,
       row.shareAmount,
       row.status as RevenueShareStatus,
