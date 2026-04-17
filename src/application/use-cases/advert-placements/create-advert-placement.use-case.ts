@@ -7,6 +7,7 @@ import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
 import { IBroadcastSlotRepository } from '../../../domain/repositories/broadcast-slot.repository.interface';
 import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
+import { IAdvertPackageRepository } from '../../../domain/repositories/advert-package.repository.interface';
 
 export type CreateAdvertPlacementInput = {
   advertSalesId: string;
@@ -28,12 +29,23 @@ export class CreateAdvertPlacementUseCase {
     private readonly showRepo: IShowRepository,
     private readonly broadcastSlotRepo: IBroadcastSlotRepository,
     private readonly generateBusinessRefService: IGenerateBusinessRefService,
+    private readonly advertPackageRepo: IAdvertPackageRepository,
   ) {}
 
   async execute(input: CreateAdvertPlacementInput): Promise<AdvertPlacementEntity> {
     const sale = await this.advertSalesRepo.findById(input.advertSalesId);
     if (!sale) {
       throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', input.advertSalesId);
+    }
+
+    // Check show id exists in the advert package
+    const adPackage = await this.advertPackageRepo.findById(sale.adPackageId);
+    if (!adPackage) {
+      throw new EntityNotFoundError('Advert package not found', 'AdvertPackage', sale.adPackageId);
+    }
+   
+    if (!adPackage.showIds.includes(input.showId)) {
+      throw new ValidationError('Show is not part of the advert package.');
     }
 
     const show = await this.showRepo.findById(input.showId);

@@ -22,6 +22,7 @@ export function createAdvertPlacementHandlers(
     | 'broadcastSlotRepository'
     | 'calendarService'
     | 'generateBusinessRefService'
+    | 'advertPackageRepository'
   >,
 ) {
   const createPlacementUseCase = new CreateAdvertPlacementUseCase(
@@ -30,6 +31,7 @@ export function createAdvertPlacementHandlers(
     deps.showRepository,
     deps.broadcastSlotRepository,
     deps.generateBusinessRefService,
+    deps.advertPackageRepository,
   );
   const batchCreateUseCase = new BatchCreateAdvertPlacementsUseCase(
     deps.advertPlacementRepository,
