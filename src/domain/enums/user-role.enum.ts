@@ -7,5 +7,5 @@ export enum UserRole {
   FinanceManager = 'FinanceManager',
   Partner = 'Partner',
   Host = 'Host',
-  AdvertAgency = 'AdvertAgency',
+  SalesAgent = 'SalesAgent',
 }
