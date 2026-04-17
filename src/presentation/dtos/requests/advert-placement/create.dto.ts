@@ -7,7 +7,7 @@ export const createAdvertPlacementDto = z
     advertSalesId: z.uuid('Advert sales ID must be a valid UUID'),
     showId: z.uuid('Show ID must be a valid UUID'),
     date: z.coerce.date(),
-    dateEth: z.string().min(1),
+    dateEth: z.string("Ethiopian date is required"),
     position: z.enum(
       AdvertPosition,
       `Position must be one of: ${Object.values(AdvertPosition).join(', ')}`,
