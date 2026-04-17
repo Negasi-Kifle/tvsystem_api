@@ -12,7 +12,10 @@ export function buildWhereClauseForAdvertPackage(
     ...(f.isActive !== undefined && { isActive: f.isActive }),
     ...(f.name !== undefined && { name: { contains: f.name, mode: 'insensitive' as Prisma.QueryMode } }),
     ...(f.nameSlug !== undefined && { nameSlug: f.nameSlug }),
-    ...(f.showIds !== undefined && (Array.isArray(f.showIds) ? { showIds: { hasSome: f.showIds } } : { showIds: f.showIds })),
+    ...(f.showIds !== undefined &&
+      (Array.isArray(f.showIds)
+        ? { showLinks: { some: { showId: { in: f.showIds } } } }
+        : { showLinks: { some: { showId: f.showIds } } })),
     ...(f.advertisementsCount !== undefined && { advertisementsCount: f.advertisementsCount }),
     ...(f.announcementsCount !== undefined && { announcementsCount: f.announcementsCount }),
     ...(f.popUpsCount !== undefined && { popUpsCount: f.popUpsCount }),

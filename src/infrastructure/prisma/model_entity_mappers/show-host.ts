@@ -1,7 +1,7 @@
 import { ShowHost } from '../generated/client';
 import { ShowHostEntity } from '../../../domain/entities/show-host.entity';
 import { RevenueShareType } from '../../../domain/enums';
-import { modelToEntity as mapShowToEntity } from './show';
+import { showModelToSummary } from './show';
 import { modelToEntity as mapUserToEntity } from './user';
 import { Prisma } from '../generated/client';
 
@@ -22,7 +22,7 @@ export function modelToEntity(showHost: ShowHostLike): ShowHostEntity {
     showHost.updatedAt,
     showHost.id,
     'show' in showHost && showHost.show
-      ? mapShowToEntity(showHost.show)
+      ? showModelToSummary(showHost.show)
       : undefined,
     'user' in showHost && showHost.user
       ? mapUserToEntity(showHost.user)

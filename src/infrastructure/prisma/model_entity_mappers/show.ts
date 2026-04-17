@@ -1,12 +1,29 @@
 import { Show, ShowHost } from '../generated/client';
 import { ShowEntity } from "../../../domain/entities/show.entity";
 import { ShowType } from "../../../domain/enums/show-type.enum";
+import { ShowSummary } from "../../../domain/interfaces/show-summary.interface";
 import { Status } from "../../../domain/enums/status";
 import { modelToEntity as mapShowHostToEntity } from "./show-host";
 
 export type ShowWithRelations = Show & {
     showHosts?: ShowHost[] | null;
 };
+
+/** Map Prisma Show row to API/domain summary (e.g. nested on BroadcastSlot, ShowHost). */
+export function showModelToSummary(show: Show): ShowSummary {
+    return {
+        id: show.id,
+        title: show.title,
+        titleSlug: show.titleSlug,
+        type: show.type as ShowType,
+        durationMinutes: show.durationMinutes,
+        maxAdLengthMinutes: show.maxAdLengthMinutes,
+        totalDurationMinutes: show.totalDurationMinutes,
+        partsCount: show.partsCount,
+        rerunsCount: show.rerunsCount,
+        bonusCount: show.bonusCount,
+    };
+}
 
 export function modelToEntity(show: ShowWithRelations): ShowEntity {
     return ShowEntity.createInstance(

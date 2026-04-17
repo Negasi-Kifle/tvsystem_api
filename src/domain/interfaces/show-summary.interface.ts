@@ -2,6 +2,7 @@ import { ShowType } from "../enums/show-type.enum";
 
 
 export interface ShowSummary {
+    id: string;
     title: string;
     titleSlug: string;
     type: ShowType;

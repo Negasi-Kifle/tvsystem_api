@@ -31,6 +31,7 @@ function mediaPackToSummary(
 
 function showToSummary(show: AdvertPackageWithRelations['showLinks'][number]['show']): ShowSummary {
   return {
+    id: show.id,
     title: show.title,
     titleSlug: show.titleSlug,
     type: show.type as ShowType,
@@ -50,10 +51,12 @@ export function modelToEntity(model: AdvertPackageLike): AdvertPackageEntity {
       .filter((mp): mp is NonNullable<typeof mp> => mp != null)
       .map(mediaPackToSummary) ?? [];
 
+  const showIds = model.showLinks?.map((link) => link.showId) ?? [];
+
   return AdvertPackageEntity.createInstance(
     model.name,
     model.nameSlug,
-    model.showIds,
+    showIds,
     model.advertisementsCount,
     model.announcementsCount,
     model.popUpsCount,
@@ -81,7 +84,6 @@ export function entityToModel(entity: AdvertPackageEntity): Omit<AdvertPackage, 
     id: entity.id ?? '',
     name: entity.name,
     nameSlug: entity.nameSlug,
-    showIds: entity.showIds,
     advertisementsCount: entity.advertisementsCount,
     announcementsCount: entity.announcementsCount,
     popUpsCount: entity.popUpsCount,

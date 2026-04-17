@@ -6,7 +6,7 @@ import { DayOfWeek } from '../../../domain/enums/day-of-week.enum';
 import { Prisma } from '../generated/client';
 import { modelToEntity as mapScheduleBlockToEntity } from './schedule-block';
 import { modelToEntity as mapSatelliteScheduleToEntity } from './satellite-schedule';
-import { modelToEntity as mapShowToEntity } from './show';
+import { showModelToSummary } from './show';
 import { modelToEntity as mapAdvertPlacementToEntity } from './advert-placement';
 
 type BroadcastSlotWithRelations = Prisma.BroadcastSlotGetPayload<{
@@ -34,7 +34,7 @@ export function modelToEntity(slot: BroadcastSlotLike): BroadcastSlotEntity {
     slot.updatedAt,
     'scheduleBlock' in slot && slot.scheduleBlock ? mapScheduleBlockToEntity(slot.scheduleBlock) : undefined,
     'schedule' in slot && slot.schedule ? mapSatelliteScheduleToEntity(slot.schedule) : undefined,
-    'show' in slot && slot.show ? mapShowToEntity(slot.show) : undefined,
+    'show' in slot && slot.show ? showModelToSummary(slot.show) : undefined,
     'advertPlacements' in slot && slot.advertPlacements ? slot.advertPlacements.map(mapAdvertPlacementToEntity) : undefined,
   );
 }

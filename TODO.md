@@ -69,6 +69,7 @@
 
 ### 04/17/2026
 
+- ✅ `AdvertPackage`: removed duplicate `show_ids` column; `advert_package_shows` is source of truth; mapper derives `showIds` from `showLinks`; filters use `showLinks`; `ShowSummary.id`; `showModelToSummary`; Postman **Advert Packages** folder description; migration `20260417130000_drop_advert_package_show_ids_column`
 - ✅ Prisma `advertSalesReadInclude`: nested `advertPackage` uses `include: { showLinks: … }` so `AdvertSalesGetPayload` matches `AdvertPackageDefaultArgs` (`advert-sales.ts`)
 - ✅ `GET /api/users` query `roles`: accept single value, repeated keys, and comma-separated list (`fetch-all-users.dto.ts` preprocess)
 

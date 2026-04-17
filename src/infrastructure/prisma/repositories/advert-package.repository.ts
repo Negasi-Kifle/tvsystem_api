@@ -70,7 +70,6 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
       data: {
         name: model.name,
         nameSlug: model.nameSlug,
-        showIds: model.showIds,
         advertisementsCount: model.advertisementsCount,
         announcementsCount: model.announcementsCount,
         popUpsCount: model.popUpsCount,
@@ -173,6 +172,16 @@ export class AdvertPackageRepository extends PrismaBaseRepository implements IAd
 
     const rowIds = await this.prisma.$transaction(async (tx) => {
       const rows = await tx.advertPackage.createManyAndReturn({ data });
+      const linkRows = rows.flatMap((row, index) => {
+        const showIds = entities[index]?.showIds ?? [];
+        return showIds.map((showId) => ({
+          advertPackageId: row.id,
+          showId,
+        }));
+      });
+      if (linkRows.length > 0) {
+        await tx.advertPackageShow.createMany({ data: linkRows });
+      }
       if (linkAllToMediaPackId) {
         await tx.advertPackageMediaPack.createMany({
           data: rows.map((r) => ({
