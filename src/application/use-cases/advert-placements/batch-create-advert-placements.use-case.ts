@@ -7,6 +7,7 @@ import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales
 import { IAdvertPackageRepository } from '../../../domain/repositories/advert-package.repository.interface';
 import { IBroadcastSlotRepository } from '../../../domain/repositories/broadcast-slot.repository.interface';
 import { ICalendarService } from '../../../domain/services/calendar.service';
+import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
 
 export type BatchCreateAdvertPlacementsInput = {
   advertSalesId: string;
@@ -22,6 +23,7 @@ export class BatchCreateAdvertPlacementsUseCase {
     private readonly advertPackageRepo: IAdvertPackageRepository,
     private readonly broadcastSlotRepo: IBroadcastSlotRepository,
     private readonly calendarService: ICalendarService,
+    private readonly generateBusinessRefService: IGenerateBusinessRefService,
   ) {}
 
   async execute(input: BatchCreateAdvertPlacementsInput): Promise<AdvertPlacementEntity[]> {
@@ -61,6 +63,9 @@ export class BatchCreateAdvertPlacementsUseCase {
 
         const dateEth = this.calendarService.formatEthiopianDate(slot.date);
 
+        // Generate broadcast code
+        const broadcastCode = await this.generateBusinessRefService.generateBusinessRef();
+
         const entity = AdvertPlacementEntity.createInstance(
           input.advertSalesId,
           showId,
@@ -71,7 +76,7 @@ export class BatchCreateAdvertPlacementsUseCase {
           AdvertPlacementStatus.Scheduled,
           slot.id,
           1,
-          undefined,
+          broadcastCode,
           slot.startTimeMinutes,
         );
 

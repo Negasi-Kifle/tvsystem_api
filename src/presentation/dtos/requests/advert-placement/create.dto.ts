@@ -21,7 +21,6 @@ export const createAdvertPlacementDto = z
       .optional(),
     broadcastSlotId: z.uuid('Broadcast slot ID must be a valid UUID').optional(),
     spotIndex: z.coerce.number().int().positive().optional().default(1),
-    broadcastCode: z.string().min(1).optional(),
     plannedTimeMinutes: z.coerce.number().int().nonnegative().optional(),
   })
   .strict();

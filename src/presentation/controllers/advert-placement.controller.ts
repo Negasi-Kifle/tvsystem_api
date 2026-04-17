@@ -21,6 +21,7 @@ export function createAdvertPlacementHandlers(
     | 'showRepository'
     | 'broadcastSlotRepository'
     | 'calendarService'
+    | 'generateBusinessRefService'
   >,
 ) {
   const createPlacementUseCase = new CreateAdvertPlacementUseCase(
@@ -28,6 +29,7 @@ export function createAdvertPlacementHandlers(
     deps.advertSalesRepository,
     deps.showRepository,
     deps.broadcastSlotRepository,
+    deps.generateBusinessRefService,
   );
   const batchCreateUseCase = new BatchCreateAdvertPlacementsUseCase(
     deps.advertPlacementRepository,
@@ -35,6 +37,7 @@ export function createAdvertPlacementHandlers(
     deps.advertPackageRepository,
     deps.broadcastSlotRepository,
     deps.calendarService,
+    deps.generateBusinessRefService,
   );
   const fetchAllUseCase = new FetchAllAdvertPlacementsUseCase(deps.advertPlacementRepository);
   const countUseCase = new CountAdvertPlacementsUseCase(deps.advertPlacementRepository);
@@ -55,7 +58,6 @@ export function createAdvertPlacementHandlers(
         status: payload.status,
         broadcastSlotId: payload.broadcastSlotId,
         spotIndex: payload.spotIndex,
-        broadcastCode: payload.broadcastCode,
         plannedTimeMinutes: payload.plannedTimeMinutes,
       });
       res.status(201).json({
@@ -154,12 +156,14 @@ export function createAdvertPlacementHandlers(
         dateFrom?: string;
         dateTo?: string;
       };
+
       const placements = await batchCreateUseCase.execute({
         advertSalesId,
         position: position as any,
         dateFrom: dateFrom ? new Date(dateFrom) : undefined,
         dateTo: dateTo ? new Date(dateTo) : undefined,
       });
+      
       res.status(201).json({
         status: 'SUCCESS',
         message: `${placements.length} advert placement(s) created`,

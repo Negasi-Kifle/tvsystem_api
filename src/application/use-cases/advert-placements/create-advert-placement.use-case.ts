@@ -6,6 +6,7 @@ import { IAdvertPlacementRepository } from '../../../domain/repositories/advert-
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
 import { IBroadcastSlotRepository } from '../../../domain/repositories/broadcast-slot.repository.interface';
+import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
 
 export type CreateAdvertPlacementInput = {
   advertSalesId: string;
@@ -17,7 +18,6 @@ export type CreateAdvertPlacementInput = {
   status?: AdvertPlacementStatus;
   broadcastSlotId?: string;
   spotIndex?: number;
-  broadcastCode?: string;
   plannedTimeMinutes?: number;
 };
 
@@ -27,6 +27,7 @@ export class CreateAdvertPlacementUseCase {
     private readonly advertSalesRepo: IAdvertSalesRepository,
     private readonly showRepo: IShowRepository,
     private readonly broadcastSlotRepo: IBroadcastSlotRepository,
+    private readonly generateBusinessRefService: IGenerateBusinessRefService,
   ) {}
 
   async execute(input: CreateAdvertPlacementInput): Promise<AdvertPlacementEntity> {
@@ -52,6 +53,9 @@ export class CreateAdvertPlacementUseCase {
       throw new ValidationError('Placement date must be within the advert sale date range');
     }
 
+    // Generate broadcast code
+    const broadcastCode = await this.generateBusinessRefService.generateBusinessRef();
+
     const entity = AdvertPlacementEntity.createInstance(
       input.advertSalesId,
       input.showId,
@@ -62,7 +66,7 @@ export class CreateAdvertPlacementUseCase {
       input.status ?? AdvertPlacementStatus.Scheduled,
       input.broadcastSlotId,
       input.spotIndex ?? 1,
-      input.broadcastCode,
+      broadcastCode,
       input.plannedTimeMinutes,
     );
 
