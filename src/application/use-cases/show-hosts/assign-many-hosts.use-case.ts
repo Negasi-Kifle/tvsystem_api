@@ -52,15 +52,23 @@ export class AssignManyHostsToShowUseCase {
     }
 
     const existingHosts = await this.showHostRepo.findByShow(input.showId);
+    const existingByUserId = new Map(
+      existingHosts.map((host) => [host.userId, host]),
+    );
 
-    const existingUserIds = new Set(existingHosts.map((host) => host.userId));
-    const duplicateUserId = userIds.find((id) => existingUserIds.has(id));
-    if (duplicateUserId) {
-      throw new EntityAlreadyExistsError(
-        "Some hosts already assigned to this show. Please remove them",
-        "ShowHost",
-        `${input.showId}:${duplicateUserId}`,
-      );
+    const hostsToCreate: AssignManyHostsToShowInput["hosts"] = [];
+    const hostsToUpdate: {
+      payload: AssignManyHostsToShowInput["hosts"][number];
+      existing: ShowHostEntity;
+    }[] = [];
+
+    for (const host of input.hosts) {
+      const existing = existingByUserId.get(host.userId);
+      if (existing) {
+        hostsToUpdate.push({ payload: host, existing });
+      } else {
+        hostsToCreate.push(host);
+      }
     }
 
     const existingPrimaryCount = existingHosts.filter((host) => host.isPrimary)
@@ -68,8 +76,11 @@ export class AssignManyHostsToShowUseCase {
     const requestedPrimaryCount = input.hosts.filter(
       (host) => host.isPrimary === true,
     ).length;
+    const newHostsRequestingPrimary = hostsToCreate.filter(
+      (host) => host.isPrimary === true,
+    ).length;
 
-    if (existingPrimaryCount > 0 && requestedPrimaryCount > 0) {
+    if (existingPrimaryCount > 0 && newHostsRequestingPrimary > 0) {
       throw new EntityAlreadyExistsError(
         "Only one primary host per show is allowed",
         "ShowHost",
@@ -81,16 +92,71 @@ export class AssignManyHostsToShowUseCase {
       throw new ValidationError("There must be only one primary host");
     }
 
-    const entities = input.hosts.map((host) =>
-      ShowHostEntity.createInstance(
-        host.userId,
-        input.showId,
-        host.revenueShareType,
-        host.revenueShareValue,
-        host.isPrimary ?? false,
-      )
+    for (const { payload, existing } of hostsToUpdate) {
+      const willBePrimary =
+        payload.isPrimary !== undefined
+          ? payload.isPrimary
+          : existing.isPrimary;
+      if (willBePrimary) {
+        const otherPrimary = existingHosts.find(
+          (h) => h.isPrimary && h.id !== existing.id,
+        );
+        if (otherPrimary) {
+          throw new EntityAlreadyExistsError(
+            "Only one primary host per show is allowed",
+            "ShowHost",
+            `${input.showId}:${payload.userId}`,
+          );
+        }
+      }
+    }
+
+    const updated = await Promise.all(
+      hostsToUpdate.map(async ({ payload, existing }) => {
+        const entity = ShowHostEntity.createInstance(
+          existing.userId,
+          existing.showId,
+          payload.revenueShareType ?? existing.revenueShareType,
+          payload.revenueShareValue ?? existing.revenueShareValue,
+          payload.isPrimary ?? existing.isPrimary,
+          existing.createdAt,
+          new Date(),
+          existing.id,
+        );
+        const saved = await this.showHostRepo.update(entity);
+        if (!saved) {
+          throw new EntityNotFoundError(
+            "Show host assignment not found",
+            "ShowHost",
+            existing.id ?? payload.userId,
+          );
+        }
+        return saved;
+      }),
     );
-      
-    return this.showHostRepo.createMany(entities);
+
+    const created =
+      hostsToCreate.length > 0
+        ? await this.showHostRepo.createMany(
+            hostsToCreate.map((host) =>
+              ShowHostEntity.createInstance(
+                host.userId,
+                input.showId,
+                host.revenueShareType,
+                host.revenueShareValue,
+                host.isPrimary ?? false,
+              ),
+            ),
+          )
+        : [];
+
+    const resultByUserId = new Map<string, ShowHostEntity>(
+      updated.map((row) => [row.userId, row]),
+    );
+    for (const row of created) {
+      resultByUserId.set(row.userId, row);
+    }
+
+    return input.hosts.map((host) => resultByUserId.get(host.userId)!);
   }
 }
