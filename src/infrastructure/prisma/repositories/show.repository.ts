@@ -1,4 +1,3 @@
-
 import { IShowRepository } from '../../../domain/repositories/show.repository.interface';
 import { ShowEntity } from '../../../domain/entities/show.entity';
 import { PrismaBaseRepository } from './base.repository';
@@ -7,8 +6,9 @@ import { entityToModel, modelToEntity } from '../model_entity_mappers/show';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { buildWhereClauseForShow } from '../where_clauses/show';
 import { ShowHostEntity } from '../../../domain/entities/show-host.entity';
-import {entityToModel as entityToModelShowHost} from '../model_entity_mappers/show-host';
+import { entityToModel as entityToModelShowHost } from '../model_entity_mappers/show-host';
 import { Prisma } from '../generated/client';
+import { Status } from '../../../domain/enums/status';
 
 export class ShowRepository extends PrismaBaseRepository implements IShowRepository {
 
@@ -64,19 +64,26 @@ export class ShowRepository extends PrismaBaseRepository implements IShowReposit
     return this.prisma.show.count({ where: buildWhereClauseForShow(filters ?? {}) });
   }
 
-async createWithHosts(show: ShowEntity, hosts: ShowHostEntity[]): Promise<ShowEntity> {
-  return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-    const savedShow = await tx.show.create({ data: entityToModel(show) });
-    
-    await tx.showHost.createMany({
-      data: hosts.map(host => ({
-        ...entityToModelShowHost(host),
-        showId: savedShow.id,
-      }))
-    });
-    
-    return modelToEntity(savedShow);
-  });
-}
+  async createWithHosts(show: ShowEntity, hosts: ShowHostEntity[]): Promise<ShowEntity> {
+    return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      const savedShow = await tx.show.create({ data: entityToModel(show) });
 
+      await tx.showHost.createMany({
+        data: hosts.map((host) => ({
+          ...entityToModelShowHost(host),
+          showId: savedShow.id,
+        })),
+      });
+
+      return modelToEntity(savedShow);
+    });
+  }
+
+  async countActive(): Promise<number> {
+    return this.prisma.show.count({ where: { status: Status.Active } });
+  }
+
+  async countCreatedInRange(from: Date, to: Date): Promise<number> {
+    return this.prisma.show.count({ where: { createdAt: { gte: from, lte: to } } });
+  }
 }

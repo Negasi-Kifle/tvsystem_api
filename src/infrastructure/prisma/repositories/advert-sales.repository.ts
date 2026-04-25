@@ -6,6 +6,7 @@ import { advertSalesReadInclude, entityToModel, modelToEntity } from '../model_e
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
 import { buildWhereClauseForAdvertSales } from '../where_clauses/advert-sales';
 import { AdvertSalesStatus } from '../../../domain/enums/advert-sales.enum';
+import type { TopShowEntry } from '../../../domain/interfaces/analytics.interface';
 
 export class AdvertSalesRepository extends PrismaBaseRepository implements IAdvertSalesRepository {
   async create(data: Omit<AdvertSalesEntity, 'id'>): Promise<AdvertSalesEntity> {
@@ -108,5 +109,44 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
       orderBy: { adEndDate: 'asc' },
     });
     return rows.map(modelToEntity);
+  }
+
+  async getTopShowsByRevenue(limit: number): Promise<TopShowEntry[]> {
+    type RawRow = {
+      showId: string;
+      title: string;
+      type: string;
+      revenue: number;
+      target: number;
+      activeAdsCount: number;
+    };
+
+    const rows = await this.prisma.$queryRaw<RawRow[]>(
+      Prisma.sql`
+        SELECT
+          ap.show_id                                                                          AS "showId",
+          s.title,
+          s.type,
+          COALESCE(SUM(CASE WHEN p.status = 'Paid' THEN p.bank_deposit ELSE 0 END), 0)::float AS revenue,
+          COALESCE(SUM(DISTINCT ads.final_price), 0)::float                                   AS target,
+          COUNT(DISTINCT CASE WHEN ap.status = 'SCHEDULED' THEN ap.id END)::int               AS "activeAdsCount"
+        FROM advert_placements ap
+        JOIN advert_sales ads ON ads.id = ap.advert_sales_id
+        JOIN shows s ON s.id = ap.show_id
+        LEFT JOIN payments p ON p.advert_sales_id = ads.id
+        GROUP BY ap.show_id, s.title, s.type
+        ORDER BY revenue DESC
+        LIMIT ${limit}
+      `,
+    );
+
+    return rows.map((r) => ({
+      showId: r.showId,
+      title: r.title,
+      type: r.type,
+      revenue: Number(r.revenue),
+      target: Number(r.target),
+      activeAdsCount: Number(r.activeAdsCount),
+    }));
   }
 }

@@ -80,4 +80,12 @@ export class AdvertPlacementRepository extends PrismaBaseRepository implements I
     });
     return rows.map(modelToEntity);
   }
+
+  async countScheduledNow(): Promise<number> {
+    return this.prisma.advertPlacement.count({ where: { status: AdvertPlacementStatus.Scheduled } });
+  }
+
+  async countCreatedInRange(from: Date, to: Date): Promise<number> {
+    return this.prisma.advertPlacement.count({ where: { createdAt: { gte: from, lte: to } } });
+  }
 }

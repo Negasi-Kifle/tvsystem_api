@@ -6,6 +6,7 @@ import { QueryOptions } from '../../../domain/interfaces/query-options.interface
 import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { modelToEntity, entityToModel } from '../model_entity_mappers/customer';
 import { buildWhereClauseForCustomer } from '../where_clauses/customer';
+import { CustomerStatusWithUs } from '../../../domain/enums/customer-status.enum';
 
 export class CustomerRepository extends PrismaBaseRepository implements ICustomerRepository {
   private throwIfUniqueBirthSourceViolation(e: unknown): never {
@@ -123,5 +124,19 @@ export class CustomerRepository extends PrismaBaseRepository implements ICustome
     } catch {
       return null;
     }
+  }
+
+  async countByStatuses(statuses: CustomerStatusWithUs[]): Promise<number> {
+    return this.prisma.customer.count({ where: { status: { in: statuses } } });
+  }
+
+  async countByStatusesCreatedInRange(
+    statuses: CustomerStatusWithUs[],
+    from: Date,
+    to: Date,
+  ): Promise<number> {
+    return this.prisma.customer.count({
+      where: { status: { in: statuses }, createdAt: { gte: from, lte: to } },
+    });
   }
 }

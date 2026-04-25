@@ -66,6 +66,7 @@ import { PaymentRepository } from '../infrastructure/prisma/repositories/payment
 import { RevenueShareRepository } from '../infrastructure/prisma/repositories/revenue-share.repository';
 import { AgentCommissionRepository } from '../infrastructure/prisma/repositories/agent-commission.repository';
 import { AuditLogRepository } from '../infrastructure/prisma/repositories/audit-log.repository';
+import { AnalyticsService } from '../application/services/analytics.service';
 
 export interface AppContainer {
   userRepository: IUserRepository;
@@ -102,6 +103,7 @@ export interface AppContainer {
   calendarService: ICalendarService;
   generateBusinessRefService: IGenerateBusinessRefService;
   emailService: IEmailService;
+  analyticsService: AnalyticsService;
 }
 
 export function buildAppContainer(): AppContainer {
@@ -140,6 +142,13 @@ export function buildAppContainer(): AppContainer {
     auditLogRepository: new AuditLogRepository(),
     generateBusinessRefService: new GenerateBusinessRefService(),
     emailService: new EmailService(),
+    analyticsService: new AnalyticsService(
+      new PaymentRepository(),
+      new ShowRepository(),
+      new AdvertPlacementRepository(),
+      new AdvertSalesRepository(),
+      new CustomerRepository(),
+    ),
   };
 }
 

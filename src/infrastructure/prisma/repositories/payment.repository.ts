@@ -4,6 +4,8 @@ import { PaymentEntity } from '../../../domain/entities/payment.entity';
 import { entityToModel, modelToEntity } from '../model_entity_mappers/payment';
 import { buildWhereClauseForPayment } from '../where_clauses/payment';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
+import type { MonthlyRevenueItem } from '../../../domain/interfaces/analytics.interface';
+import { Prisma } from '../generated/client';
 
 export class PaymentRepository extends PrismaBaseRepository implements IPaymentRepository {
   async create(payload: Omit<PaymentEntity, 'id'>): Promise<PaymentEntity> {
@@ -48,5 +50,56 @@ export class PaymentRepository extends PrismaBaseRepository implements IPaymentR
 
     const row = await this.prisma.payment.delete({ where: { id } });
     return modelToEntity(row);
+  }
+
+  async sumPaidRevenue(from: Date, to: Date): Promise<number> {
+    const result = await this.prisma.payment.aggregate({
+      _sum: { bankDeposit: true },
+      where: {
+        status: 'Paid',
+        paymentDate: { gte: from, lte: to },
+      },
+    });
+    return result._sum.bankDeposit ?? 0;
+  }
+
+  async getMonthlyRevenueSummary(year: number): Promise<MonthlyRevenueItem[]> {
+    type RevenueRow = { month: number; revenue: number };
+    type TargetRow = { month: number; target: number };
+
+    const revenueRows = await this.prisma.$queryRaw<RevenueRow[]>(
+      Prisma.sql`
+        SELECT
+          EXTRACT(MONTH FROM payment_date)::int AS month,
+          COALESCE(SUM(bank_deposit), 0)::float AS revenue
+        FROM payments
+        WHERE status = 'Paid'
+          AND EXTRACT(YEAR FROM payment_date) = ${year}
+        GROUP BY EXTRACT(MONTH FROM payment_date)
+      `,
+    );
+
+    const targetRows = await this.prisma.$queryRaw<TargetRow[]>(
+      Prisma.sql`
+        SELECT
+          EXTRACT(MONTH FROM contract_sign_date)::int AS month,
+          COALESCE(SUM(final_price), 0)::float       AS target
+        FROM advert_sales
+        WHERE EXTRACT(YEAR FROM contract_sign_date) = ${year}
+        GROUP BY EXTRACT(MONTH FROM contract_sign_date)
+      `,
+    );
+
+    const revenueMap = new Map(revenueRows.map((r) => [r.month, r.revenue]));
+    const targetMap = new Map(targetRows.map((r) => [r.month, r.target]));
+
+    return Array.from({ length: 12 }, (_, i) => {
+      const month = i + 1;
+      return {
+        month,
+        revenue: revenueMap.get(month) ?? 0,
+        target: targetMap.get(month) ?? 0,
+      };
+    });
   }
 }

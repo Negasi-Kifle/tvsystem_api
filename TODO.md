@@ -14,9 +14,10 @@
 
 ### Architecture & documentation
 
+- ✅ `AnalyticsService` CA violation fixed: now uses constructor-injected repository interfaces; 3 analytics endpoints added (`GET /api/analytics/kpis`, `/monthly-revenue`, `/top-shows`)
 - 🟨 Deprecate or remove duplicate [docs/requirements.mdc](docs/requirements.mdc); canonical spec is [docs/requirements.md](docs/requirements.md)
 - 🟨 Refresh [docs/clean-architecture-violations.md](docs/clean-architecture-violations.md) for current routes (`/api/advert-placements`, `/api/payments`, `/api/compensations`, `/api/satellite-logs`) and `buildAppContainer` wiring
-- 🟨 Decide fate of unwired `AnalyticsService` ([src/application/services/analytics.service.ts](src/application/services/analytics.service.ts)): add secured `/api` analytics (e.g. `VIEW_ANALYTICS`) or delete dead code
+- ✅ `AnalyticsService` wired to HTTP: `GET /api/analytics/kpis`, `GET /api/analytics/monthly-revenue?year=`, `GET /api/analytics/top-shows?limit=` — all guarded by `VIEW_ANALYTICS` permission
 - 🟨 Requirements §3 mentions SMS; stack is email-only — product decision (provider vs defer)
 - 🟨 Expand audit coverage ([docs/requirements.md](docs/requirements.md) §5): domain events, retention, or admin query API on top of `audit_logs` + middleware
 
@@ -66,6 +67,12 @@
 - 🟨 Add environment setup guide
 
 ## ✅ Completed Tasks
+
+### 04/22/2026
+
+- ✅ Analytics: fixed CA violation in `AnalyticsService` (removed direct `prisma` import, replaced with constructor-injected interfaces); added analytics query methods to 5 repository interfaces (`IPaymentRepository`, `IShowRepository`, `IAdvertPlacementRepository`, `ICustomerRepository`, `IAdvertSalesRepository`); implemented in 5 Prisma repos; exposed `GET /api/analytics/kpis`, `GET /api/analytics/monthly-revenue?year=`, `GET /api/analytics/top-shows?limit=`; all guarded by `view_analytics` permission
+- ✅ Full project analysis: audited all 672 source files, 31 entities, 31 repository interfaces, 180 use cases against requirements and clean architecture rules
+- ✅ Updated [PROJECT_INDEX_AUTO.md](PROJECT_INDEX_AUTO.md): corrected entity/repo/use-case counts (30→31, 30→31, 170→180), corrected AlertService from "stub/TODO" to "fully implemented", updated Known Gaps (removed AlertService stub gap, added AnalyticsService CA violation), updated Last Updated date
 
 ### 04/17/2026
 

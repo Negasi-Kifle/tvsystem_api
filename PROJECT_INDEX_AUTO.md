@@ -23,8 +23,8 @@ It follows a layered architecture inspired by Clean Architecture and DDD, with a
 - **Permissions:** DB-backed; [`PermissionSyncService`](src/infrastructure/services/permission-sync.service.ts) syncs from [`PERMISSIONS`](src/shared/constants/permissions.constants.ts) at startup (fire-and-forget).
 - **Implemented HTTP areas:** Auth, users, employees, partners, permissions, user-permissions, shows, show-hosts, satellite schedules (blocks + broadcast slots), telegram groups/members, sales follow-up (customers, communication logs, media monitoring, categories, sub-categories, show segment slots), media packs, advert packages (catalog + multipart image upload), advert-package ↔ media-pack junction, **advert placements** (campaign slots tied to shows / broadcast slots), **advert sales** (deals, installments, sales rep/agent/category fields), **satellite log uploads and entries** (upload, match, verify), **compensations**, **payments**, **revenue shares**, **agent commissions**; email flows for schedules, reports, payment requests, compensation where wired.
 - **Campaign model:** Prisma `AdvertPlacement` (not a separate legacy `/api/adverts` router). The old “Advert” concept was repurposed to placement-oriented modeling (see migrations under `repurpose_advert_to_placement`).
-- **Alerts:** [`SchedulerService`](src/infrastructure/services/scheduler.service.ts) runs daily at **06:00** (`0 6 * * *`) → [`AlertService.processOffAirAlerts()`](src/application/services/alert.service.ts) — **body still TODO** (no off-air/expiry notifications yet).
-- **Analytics:** [`AnalyticsService`](src/application/services/analytics.service.ts) aggregates Prisma data but is **not imported** by routes or bootstrap — **no HTTP API** for CEO analytics (requirement §4.14 gap at API layer).
+- **Alerts:** [`SchedulerService`](src/infrastructure/services/scheduler.service.ts) runs daily at **06:00** (`0 6 * * *`) → [`AlertService.processOffAirAlerts()`](src/application/services/alert.service.ts) — **fully implemented**: queries recipients by `RECEIVE_OPERATIONAL_ALERTS` permission, finds campaigns/placements ending within 24 h, sends branded HTML email to all recipients, then stamps `campaignEndAlertSentAt` / `airAlertSentAt`.
+- **Analytics:** [`AnalyticsService`](src/application/services/analytics.service.ts) uses constructor-injected repository interfaces (CA violation fixed). Exposed via `GET /api/analytics/kpis`, `GET /api/analytics/monthly-revenue?year=`, `GET /api/analytics/top-shows?limit=` — all protected by `view_analytics` permission.
 
 
 ## Tech Stack
@@ -77,8 +77,8 @@ tvsystem_api/
 
 ### 1) Domain Layer (`src/domain`)
 
-- **Entities (`30` files):** user, employee, partner, permission, user-permissions, show, show-host, satellite-schedule, satellite-schedule-block, broadcast-slot, customer, communication-log, category, sub-category, media-monitoring-record, show-segment-slot, media-pack, advert-package, advert-package-media-pack, advert-placement, advert-sales, payment, compensation, revenue-share, agent-commission, satellite-schedule-related (`satellite-log`, `satellite-log-entry`, `satellite-log-upload`), telegram groups/members.
-- **Repository contracts (`30` files under `domain/repositories/`):** includes `*.repository.interface.ts`, `*.repo.ts`, `base.repository.interface.ts`, etc. (Note: filename typo `adver-sales.repository.interface.ts`.)
+- **Entities (`31` files):** user, employee, partner, permission, user-permissions, show, show-host, satellite-schedule, satellite-schedule-block, broadcast-slot, customer, communication-log, category, sub-category, media-monitoring-record, show-segment-slot, media-pack, advert-package, advert-package-media-pack, advert-placement, advert-sales, payment, compensation, revenue-share, agent-commission, audit-log, satellite-log, satellite-log-entry, satellite-log-upload, telegram-group, telegram-group-member.
+- **Repository contracts (`31` files under `domain/repositories/`):** includes `*.repository.interface.ts`, `*.repo.ts`, `base.repository.interface.ts`, etc. (Note: 7 files use `.repo.ts` instead of `.repository.interface.ts`; filename typo `adver-sales.repository.interface.ts`.)
 - **Filter/summary interfaces:** `domain/interfaces/`.
 - **Domain services** (`domain/services/`): hash, calendar, email, storage port, schedule handlers, business-ref, compensation/sales-commission helpers (~10 TS files).
 - **Value objects (`5`):** money, percentage, schedule-slot, calendar-date, Ethiopian time.
@@ -89,9 +89,9 @@ tvsystem_api/
 
 - **Services (`3`):**
   - `AuthService` — access/refresh tokens.
-  - `AnalyticsService` — Prisma aggregations (**unwired** from HTTP).
-  - `AlertService` — cron entry point (**TODO:** implement detection/notification).
-- **Use cases (`170` TS files):** grouped by feature folders including users, partners, permissions, shows, show-hosts, satellite schedules/blocks/broadcast-slots, telegram, customers, communication-logs, media-monitoring, categories, sub-categories, show-segment-slots, media-pack, advert-package, advert-package-media-pack, **advert-placements**, **advert-sales**, **satellite-log**, **compensations**, **payments**, **revenue-distribution**, **advert-schedule** (emails/reports), etc.
+  - `AnalyticsService` — KPI summary, monthly revenue, top shows by revenue. Constructor-injected; exposed via `/api/analytics`.
+  - `AlertService` — cron entry point, **fully implemented**: 24 h campaign-end and placement air alerts via email.
+- **Use cases (`180` TS files):** grouped by feature folders including users, partners, permissions, shows, show-hosts, satellite schedules/blocks/broadcast-slots, telegram, customers, communication-logs, media-monitoring, categories, sub-categories, show-segment-slots, media-pack, advert-package, advert-package-media-pack, **advert-placements**, **advert-sales**, **satellite-log**, **compensations**, **payments**, **revenue-distribution**, **advert-schedule** (emails/reports), etc.
 
 ### 3) Infrastructure Layer (`src/infrastructure`)
 
@@ -115,6 +115,183 @@ Approx. **`135`** TypeScript files, notably:
 ### 5) Shared Layer (`src/shared`)
 
 - Permissions constants (`PERMISSIONS`), error helpers, HTTP error mapping.
+
+
+## Dependency Graphs
+
+### 1. Layer Dependency
+
+Arrow direction represents "depends on" (A → B means A depends on B). Dashed lines show utility usage that does not cross Clean Architecture layer boundaries.
+
+```mermaid
+flowchart TB
+    subgraph compSg ["Composition (src/composition)"]
+        compNode["AppContainer — wires all layers at startup"]
+    end
+
+    subgraph presSg ["Presentation (src/presentation)"]
+        presNode["Controllers · Routes · DTOs · Mappers"]
+    end
+
+    subgraph appSg ["Application (src/application)"]
+        appNode["Use Cases (180) · AuthService · AlertService"]
+    end
+
+    subgraph domSg ["Domain (src/domain) — zero outbound dependencies"]
+        domNode["Entities · Repository Interfaces · Domain Services · Value Objects · Enums"]
+    end
+
+    subgraph infraSg ["Infrastructure (src/infrastructure)"]
+        infraNode["Prisma Repositories · Email · Storage · Hash · Calendar · Middlewares"]
+    end
+
+    subgraph sharedSg ["Shared (src/shared)"]
+        sharedNode["Permission constants · Error helpers · HTTP codes"]
+    end
+
+    presSg -->|"calls use cases"| appSg
+    appSg -->|"depends on interfaces"| domSg
+    infraSg -->|"implements interfaces"| domSg
+    compSg -->|"builds and injects"| infraSg
+    compSg -->|"builds and injects"| presSg
+    presSg -.->|"uses"| sharedSg
+    appSg -.->|"uses"| sharedSg
+    infraSg -.->|"uses"| sharedSg
+```
+
+
+### 2. Inter-Module Dependency
+
+Shows which feature modules depend on which other feature modules, derived from use-case constructor injections and Prisma relational constraints. An arrow A → B means "A depends on B".
+
+```mermaid
+flowchart TD
+    subgraph adminHR ["Admin and HR"]
+        Users["Users / Auth"]
+        Employees["Employees"]
+        Partners["Partners"]
+        Permissions["Permissions"]
+        UserPerms["User Permissions"]
+        TelegramGrps["Telegram Groups and Members"]
+    end
+
+    subgraph catalogSg ["Content Catalog"]
+        Shows["Shows"]
+        ShowHosts["Show Hosts"]
+        MediaPacks["Media Packs"]
+        AdvertPackages["Advert Packages"]
+        AdvertPkgMp["Advert Package - Media Pack"]
+    end
+
+    subgraph crmSg ["Sales and CRM"]
+        Customers["Customers"]
+        CommLogs["Communication Logs"]
+        MediaMonitoring["Media Monitoring"]
+        ShowSegSlots["Show Segment Slots"]
+        Categories["Categories"]
+        SubCategories["Sub-Categories"]
+    end
+
+    subgraph schedulingSg ["Scheduling"]
+        SatSchedules["Satellite Schedules"]
+        ScheduleBlocks["Schedule Blocks"]
+        BroadcastSlots["Broadcast Slots"]
+    end
+
+    subgraph advertOpsSg ["Advert Operations"]
+        AdvertSales["Advert Sales"]
+        AdvertPlacements["Advert Placements"]
+        SatelliteLogs["Satellite Logs"]
+        Compensations["Compensations"]
+        AdSchedule["Ad Schedule and Report Emails"]
+    end
+
+    subgraph financeSg ["Finance and Revenue"]
+        Payments["Payments"]
+        RevenueShares["Revenue Shares"]
+        AgentCommissions["Agent Commissions"]
+    end
+
+    Employees --> Users
+    Partners --> Users
+    UserPerms --> Users
+    UserPerms --> Permissions
+    TelegramGrps --> Users
+
+    ShowHosts --> Shows
+    ShowHosts --> Users
+    AdvertPackages --> Shows
+    AdvertPackages --> MediaPacks
+    AdvertPkgMp --> AdvertPackages
+    AdvertPkgMp --> MediaPacks
+
+    CommLogs --> Customers
+    MediaMonitoring --> Customers
+    ShowSegSlots --> Shows
+    ShowSegSlots --> Customers
+    SubCategories --> Categories
+
+    ScheduleBlocks --> SatSchedules
+    BroadcastSlots --> SatSchedules
+    BroadcastSlots --> ScheduleBlocks
+    BroadcastSlots --> Shows
+
+    AdvertSales --> Customers
+    AdvertSales --> AdvertPackages
+    AdvertSales --> Users
+    AdvertSales --> Categories
+    AdvertSales --> SubCategories
+    AdvertPlacements --> AdvertSales
+    AdvertPlacements --> Shows
+    AdvertPlacements --> BroadcastSlots
+    SatelliteLogs --> AdvertPlacements
+    Compensations --> AdvertPlacements
+    AdSchedule --> AdvertSales
+    AdSchedule --> AdvertPlacements
+
+    Payments --> AdvertSales
+    RevenueShares --> AdvertSales
+    RevenueShares --> ShowHosts
+    AgentCommissions --> AdvertSales
+    AgentCommissions --> Users
+```
+
+
+### 3. External Integration
+
+Shows how the API communicates with external systems at runtime.
+
+```mermaid
+flowchart LR
+    subgraph apiSg ["Abbay TV API"]
+        coreApp["Core Application"]
+        alertSvc["AlertService (daily cron)"]
+        emailUseCases["Email Use Cases"]
+        fileUpload["File Upload (multer)"]
+    end
+
+    db[("PostgreSQL via Prisma")]
+    smtp["SMTP Server (Nodemailer)"]
+    cronTimer["node-cron"]
+    localDisk["Local Disk /uploads"]
+    s3Stub["AWS S3 (CDN stub)"]
+
+    subgraph recipientsSg ["Email Recipients"]
+        customer["Customer / Advertiser"]
+        extPartner["External Partner"]
+        internalStaff["Internal Staff (CEO, Sales, Finance)"]
+    end
+
+    coreApp <-->|"all model CRUD"| db
+    cronTimer -->|"daily at 06:00"| alertSvc
+    alertSvc -->|"off-air alerts"| smtp
+    emailUseCases -->|"invoices, schedules, reports, resets"| smtp
+    fileUpload -->|"STORAGE_TYPE=local"| localDisk
+    fileUpload -->|"STORAGE_TYPE=s3"| s3Stub
+    smtp --> customer
+    smtp --> extPartner
+    smtp --> internalStaff
+```
 
 
 ## Composition (`src/composition`)
@@ -223,6 +400,7 @@ All routes are mounted under **`/api`** via [`createApiRouter`](src/presentation
 | Show segment slots | `/show-segment-slots` | `show-segment-slots.routes.ts` | `show-segment-slot.controller.ts` | Show + customer per row |
 | Telegram groups | `/telegram-groups` | `telegram-groups.routes.ts` | `telegram-group.controller.ts` | |
 | Telegram group members | `/telegram-group-members` | `telegram-group-member.routes.ts` | `telegram-group-member.controller.ts` | |
+| Analytics | `/analytics` | `analytics.routes.ts` | `analytics.controller.ts` | `VIEW_ANALYTICS`; KPIs, monthly revenue, top shows |
 
 
 ## Data Model Index (Prisma)
@@ -281,7 +459,7 @@ Prisma CLI config: [`prisma.config.ts`](prisma.config.ts)
 
 ## Background Jobs and Async Processes
 
-- Daily cron (`0 6 * * *`) → `AlertService.processOffAirAlerts()` (**unimplemented body**).
+- Daily cron (`0 6 * * *`) → `AlertService.processOffAirAlerts()` — fully implemented: 24 h campaign-end and placement air alerts emailed to users with `RECEIVE_OPERATIONAL_ALERTS` permission.
 - Permission sync: fire-and-forget on bootstrap.
 
 
@@ -343,12 +521,8 @@ Scripts ([package.json](package.json)):
 
 
 ## Known Gaps and Technical Debt
-
-- Unwired **`AnalyticsService`** — requirement §4.14 not exposed via REST.
-- **`AlertService`** stub — no 24h off-air / expiry alerts (§4.5, runtime diagram).
 - **SMS** integration (requirements context §3) **not** in dependencies; email only.
-- **Audit logging** NFR (§5) not implemented as a dedicated cross-cutting concern.
-- **[docs/clean-architecture-violations.md](docs/clean-architecture-violations.md)** is out of date (e.g. references legacy `/api/adverts` and pre-dates current payment/compensation/satellite-log modules) — refresh recommended.
+- **[docs/clean-architecture-violations.md](docs/clean-architecture-violations.md)** is out of date (references legacy `/api/adverts`, removed Mongo config, and pre-dates current payment/compensation/satellite-log modules) — refresh recommended.
 - **Duplicate requirements file:** [`docs/requirements.mdc`](docs/requirements.mdc) — consolidate or deprecate in favor of [`docs/requirements.md`](docs/requirements.md).
 - **`docs/technical_specifications.mdc`** may still reference older shapes; align with Prisma + single-tenant reality when edited.
 - Layering: controllers may still instantiate repositories directly alongside `AppContainer`; see clean-architecture doc.
@@ -358,13 +532,13 @@ Scripts ([package.json](package.json)):
 
 | Area | Count (approx., Apr 2026) |
 |------|---------------------------|
-| TypeScript files under `src/` | 619 |
-| Domain entities | 30 |
-| Domain repository contract files | 30 |
+| TypeScript files under `src/` | ~672 |
+| Domain entities | 31 |
+| Domain repository contract files | 31 |
 | Domain enum files | 20 |
 | Domain value-objects | 5 |
 | Application services | 3 |
-| Application use-cases | 170 |
+| Application use-cases | 180 |
 | Infrastructure TS files | 135 |
 | Presentation route TS files | 30 |
 | Presentation controllers | 31 |
@@ -384,4 +558,4 @@ Scripts ([package.json](package.json)):
 - Tasks: [TODO.md](TODO.md)
 
 
-*Last Updated: April 16, 2026*
+*Last Updated: April 22, 2026 — AnalyticsService CA fix + /api/analytics endpoints*

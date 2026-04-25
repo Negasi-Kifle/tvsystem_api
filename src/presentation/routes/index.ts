@@ -30,6 +30,7 @@ import { createAgentCommissionsRouter } from './agent-commissions.routes';
 import { createPublicRouter } from './public.routes';
 import type { ApiRouterDeps } from '../api-router-deps';
 import { createBroadcastSlotRoutes } from './broadcast-slots.routes';
+import { createAnalyticsRouter } from './analytics.routes';
 
 export type { ApiRouterDeps } from '../api-router-deps';
 export type { AdvertPackageHandlerDeps } from '../controllers/advert-package.controller';
@@ -68,6 +69,7 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/agent-commissions', createAgentCommissionsRouter(deps));
   router.use('/public', createPublicRouter(deps));
   router.use('/broadcast-slots', createBroadcastSlotRoutes(deps));
+  router.use('/analytics', createAnalyticsRouter(deps));
 
   return router;
 }
