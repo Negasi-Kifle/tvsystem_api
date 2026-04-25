@@ -4,7 +4,7 @@ import { PaymentEntity } from '../../../domain/entities/payment.entity';
 import { entityToModel, modelToEntity } from '../model_entity_mappers/payment';
 import { buildWhereClauseForPayment } from '../where_clauses/payment';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
-import type { MonthlyRevenueItem } from '../../../domain/interfaces/analytics.interface';
+import type { MonthlyRevenueItem, WeeklyRevenueSummary } from '../../../domain/interfaces/analytics.interface';
 import { Prisma } from '../generated/client';
 
 export class PaymentRepository extends PrismaBaseRepository implements IPaymentRepository {
@@ -101,5 +101,39 @@ export class PaymentRepository extends PrismaBaseRepository implements IPaymentR
         target: targetMap.get(month) ?? 0,
       };
     });
+  }
+
+  async getWeeklyRevenueSummary(): Promise<WeeklyRevenueSummary> {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // 0=Sun,1=Mon,...,6=Sat
+    const daysFromMonday = (dayOfWeek + 6) % 7; // Mon=0, Sun=6
+
+    const currentWeekStart = new Date(now);
+    currentWeekStart.setDate(now.getDate() - daysFromMonday);
+    currentWeekStart.setHours(0, 0, 0, 0);
+
+    const currentWeekEnd = new Date(currentWeekStart);
+    currentWeekEnd.setDate(currentWeekStart.getDate() + 6);
+    currentWeekEnd.setHours(23, 59, 59, 999);
+
+    const previousWeekStart = new Date(currentWeekStart);
+    previousWeekStart.setDate(currentWeekStart.getDate() - 7);
+
+    const previousWeekEnd = new Date(currentWeekEnd);
+    previousWeekEnd.setDate(currentWeekEnd.getDate() - 7);
+
+    const [currentWeek, previousWeek] = await Promise.all([
+      this.sumPaidRevenue(currentWeekStart, currentWeekEnd),
+      this.sumPaidRevenue(previousWeekStart, previousWeekEnd),
+    ]);
+
+    const changePercent =
+      previousWeek === 0
+        ? currentWeek === 0
+          ? 0
+          : 100
+        : Math.round(((currentWeek - previousWeek) / previousWeek) * 1000) / 10;
+
+    return { currentWeek, previousWeek, changePercent };
   }
 }

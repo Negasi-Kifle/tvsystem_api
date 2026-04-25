@@ -26,3 +26,9 @@ export type TopShowEntry = {
   target: number;
   activeAdsCount: number;
 };
+
+export type WeeklyRevenueSummary = {
+  currentWeek: number;
+  previousWeek: number;
+  changePercent: number;
+};

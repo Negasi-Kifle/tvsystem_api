@@ -23,4 +23,6 @@ export interface IEmployeeRepository extends IBaseRepository<EmployeeEntity> {
 
     findManyWithoutUser(query: QueryOptions<EmployeeEntity>): Promise<EmployeeEntity[]>;
     countWithoutUser(filters?: Partial<EmployeeEntity>): Promise<number>;
+    /** Count of employees where isActive = true. */
+    countActive(): Promise<number>;
 }

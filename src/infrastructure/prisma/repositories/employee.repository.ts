@@ -122,6 +122,10 @@ export class EmployeeRepository extends PrismaBaseRepository implements IEmploye
     });
   }
 
+  async countActive(): Promise<number> {
+    return this.prisma.employee.count({ where: { isActive: true } });
+  }
+
   async updateEmployeeAndUserStatus(employee: EmployeeEntity, user: UserEntity): Promise<{ employee: EmployeeEntity, user: UserEntity }> {
     return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const updatedEmployee = await tx.employee.update({ where: { id: employee.id }, data: entityToModel(employee) });

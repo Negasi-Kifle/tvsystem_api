@@ -68,6 +68,10 @@
 
 ## ✅ Completed Tasks
 
+### 04/25/2026
+
+- ✅ AI Insights API: added `POST /api/insights/query` streaming endpoint; `InsightService` uses Vercel AI SDK `streamText` with 6 tool-call tools (`getKpiSummary`, `getMonthlyRevenue`, `getTopShowsByRevenue`, `getAdsEndingSoon`, `getWeeklyRevenueSummary`, `getActiveEmployeesCount`); `createOpenAIModel()` provider confined to infrastructure layer; `pipeTextStreamToResponse` streams plain-text SSE to client; guarded by `view_analytics` permission; added `WeeklyRevenueSummary` type + `getWeeklyRevenueSummary()` to `IPaymentRepository` + `countActive()` to `IEmployeeRepository` with Prisma implementations; Postman **Insights (AI)** folder added
+
 ### 04/22/2026
 
 - ✅ Analytics: fixed CA violation in `AnalyticsService` (removed direct `prisma` import, replaced with constructor-injected interfaces); added analytics query methods to 5 repository interfaces (`IPaymentRepository`, `IShowRepository`, `IAdvertPlacementRepository`, `ICustomerRepository`, `IAdvertSalesRepository`); implemented in 5 Prisma repos; exposed `GET /api/analytics/kpis`, `GET /api/analytics/monthly-revenue?year=`, `GET /api/analytics/top-shows?limit=`; all guarded by `view_analytics` permission

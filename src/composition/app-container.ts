@@ -67,6 +67,8 @@ import { RevenueShareRepository } from '../infrastructure/prisma/repositories/re
 import { AgentCommissionRepository } from '../infrastructure/prisma/repositories/agent-commission.repository';
 import { AuditLogRepository } from '../infrastructure/prisma/repositories/audit-log.repository';
 import { AnalyticsService } from '../application/services/analytics.service';
+import { InsightService } from '../application/services/insight.service';
+import { createOpenAIModel } from '../infrastructure/ai/openai-model.provider';
 
 export interface AppContainer {
   userRepository: IUserRepository;
@@ -104,6 +106,7 @@ export interface AppContainer {
   generateBusinessRefService: IGenerateBusinessRefService;
   emailService: IEmailService;
   analyticsService: AnalyticsService;
+  insightService: InsightService;
 }
 
 export function buildAppContainer(): AppContainer {
@@ -148,6 +151,19 @@ export function buildAppContainer(): AppContainer {
       new AdvertPlacementRepository(),
       new AdvertSalesRepository(),
       new CustomerRepository(),
+    ),
+    insightService: new InsightService(
+      createOpenAIModel(),
+      new AnalyticsService(
+        new PaymentRepository(),
+        new ShowRepository(),
+        new AdvertPlacementRepository(),
+        new AdvertSalesRepository(),
+        new CustomerRepository(),
+      ),
+      new AdvertPlacementRepository(),
+      new PaymentRepository(),
+      new EmployeeRepository(),
     ),
   };
 }
