@@ -1,6 +1,10 @@
 import request from 'supertest';
 import type { RequestHandler } from 'express';
 import { buildAppContainerForTests } from '../../composition/app-container';
+
+if (!process.env.OPENAI_API_KEY) {
+  process.env.OPENAI_API_KEY = 'test-dummy-openai-key';
+}
 import { createAuthMiddleware } from '../../infrastructure/middlewares/auth.middleware';
 import { createAdvertPackageImageUploadMiddleware } from '../../infrastructure/middlewares/advert-package-upload.middleware';
 import { createApp } from '../../presentation/app';

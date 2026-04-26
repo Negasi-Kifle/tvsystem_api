@@ -68,6 +68,10 @@
 
 ## ✅ Completed Tasks
 
+### 04/26/2026
+
+- ✅ **AI prospect discovery (stateless):** `src/ai-search/` module — `POST /api/ai-search` returns JSON `Prospect[]` (Zod `ProspectListSchema`); Vercel AI SDK `generateText` + `webSearch` tool (Tavily or SerpAPI via `SEARCH_PROVIDER`) then `generateObject` extraction + dedupe/rank; `createOpenAIModelForSearch()` (`AI_SEARCH_MODEL` optional); guarded by `VIEW_SALES`; unit tests in `ai-search.prospect.utils.spec.ts`. **//TODO (you):** set `TAVILY_API_KEY` and/or `SERPAPI_API_KEY` and `SEARCH_PROVIDER` in the deployment environment; optionally tune `AI_SEARCH_TIMEOUT_MS` (default 120s).
+
 ### 04/25/2026
 
 - ✅ AI Insights API: added `POST /api/insights/query` streaming endpoint; `InsightService` uses Vercel AI SDK `streamText` with 6 tool-call tools (`getKpiSummary`, `getMonthlyRevenue`, `getTopShowsByRevenue`, `getAdsEndingSoon`, `getWeeklyRevenueSummary`, `getActiveEmployeesCount`); `createOpenAIModel()` provider confined to infrastructure layer; `pipeTextStreamToResponse` streams plain-text SSE to client; guarded by `view_analytics` permission; added `WeeklyRevenueSummary` type + `getWeeklyRevenueSummary()` to `IPaymentRepository` + `countActive()` to `IEmployeeRepository` with Prisma implementations; Postman **Insights (AI)** folder added

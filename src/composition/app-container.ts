@@ -68,7 +68,8 @@ import { AgentCommissionRepository } from '../infrastructure/prisma/repositories
 import { AuditLogRepository } from '../infrastructure/prisma/repositories/audit-log.repository';
 import { AnalyticsService } from '../application/services/analytics.service';
 import { InsightService } from '../application/services/insight.service';
-import { createOpenAIModel } from '../infrastructure/ai/openai-model.provider';
+import { AiSearchService } from '../ai-search/aiSearch.service';
+import { createOpenAIModel, createOpenAIModelForSearch } from '../infrastructure/ai/openai-model.provider';
 
 export interface AppContainer {
   userRepository: IUserRepository;
@@ -107,6 +108,7 @@ export interface AppContainer {
   emailService: IEmailService;
   analyticsService: AnalyticsService;
   insightService: InsightService;
+  aiSearchService: AiSearchService;
 }
 
 export function buildAppContainer(): AppContainer {
@@ -165,6 +167,7 @@ export function buildAppContainer(): AppContainer {
       new PaymentRepository(),
       new EmployeeRepository(),
     ),
+    aiSearchService: new AiSearchService(createOpenAIModelForSearch()),
   };
 }
 

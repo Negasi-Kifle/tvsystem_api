@@ -32580,50 +32580,14 @@
       ]
     },
     {
-      "name": "Insights (AI)",
+      "name": "AI",
       "item": [
         {
-          "name": "Query Insight",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"question\": \"How many satellite log entries do we have?\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/api/insights/query",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "insights",
-                "query"
-              ]
-            },
-            "description": "Accepts a natural language question from an admin and streams a business intelligence answer. The response is a plain-text chunked stream (Content-Type: text/plain). The LLM automatically calls the appropriate data tools before generating a response.\n\nSample questions:\n- How much is our revenue this month?\n- Why did our sales drop this week?\n- How many ads will be off-air today or tomorrow?\n- How many active employees do we have?\n- Which shows are generating the most revenue?\n\nRequires `view_analytics` permission."
-          },
-          "response": [
+          "name": "Insight",
+          "item": [
             {
-              "name": "Success",
-              "originalRequest": {
+              "name": "Query Insight",
+              "request": {
                 "method": "POST",
                 "header": [
                   {
@@ -32656,87 +32620,282 @@
                     "insights",
                     "query"
                   ]
+                },
+                "description": "Accepts a natural language question from an admin and streams a business intelligence answer. The response is a plain-text chunked stream (Content-Type: text/plain). The LLM automatically calls the appropriate data tools before generating a response.\n\nSample questions:\n- How much is our revenue this month?\n- Why did our sales drop this week?\n- How many ads will be off-air today or tomorrow?\n- How many active employees do we have?\n- Which shows are generating the most revenue?\n\nRequires `view_analytics` permission."
+              },
+              "response": [
+                {
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"question\": \"How many satellite log entries do we have?\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/insights/query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "insights",
+                        "query"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "content-type",
+                      "value": "text/plain; charset=utf-8"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sat, 25 Apr 2026 20:46:46 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    },
+                    {
+                      "key": "Transfer-Encoding",
+                      "value": "chunked"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "I currently do not have access to data regarding satellite log entries. You may want to check your internal systems or databases for that information."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Search",
+          "item": [
+            {
+              "name": "Search Prospects",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"hotels in addis ababa\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/ai-search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ai-search"
+                  ]
                 }
               },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": null,
-              "header": [
+              "response": [
                 {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "content-type",
-                  "value": "text/plain; charset=utf-8"
-                },
-                {
-                  "key": "Date",
-                  "value": "Sat, 25 Apr 2026 20:46:46 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                },
-                {
-                  "key": "Transfer-Encoding",
-                  "value": "chunked"
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"hotels in addis ababa\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ai-search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ai-search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": [
+                    {
+                      "key": "Access-Control-Allow-Origin",
+                      "value": "*"
+                    },
+                    {
+                      "key": "Content-Security-Policy",
+                      "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                    },
+                    {
+                      "key": "Cross-Origin-Opener-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Cross-Origin-Resource-Policy",
+                      "value": "same-origin"
+                    },
+                    {
+                      "key": "Origin-Agent-Cluster",
+                      "value": "?1"
+                    },
+                    {
+                      "key": "Referrer-Policy",
+                      "value": "no-referrer"
+                    },
+                    {
+                      "key": "Strict-Transport-Security",
+                      "value": "max-age=31536000; includeSubDomains"
+                    },
+                    {
+                      "key": "X-Content-Type-Options",
+                      "value": "nosniff"
+                    },
+                    {
+                      "key": "X-DNS-Prefetch-Control",
+                      "value": "off"
+                    },
+                    {
+                      "key": "X-Download-Options",
+                      "value": "noopen"
+                    },
+                    {
+                      "key": "X-Frame-Options",
+                      "value": "SAMEORIGIN"
+                    },
+                    {
+                      "key": "X-Permitted-Cross-Domain-Policies",
+                      "value": "none"
+                    },
+                    {
+                      "key": "X-XSS-Protection",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8"
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "5516"
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"158c-qoNWCNdgUuONq6P9lJkl8JXtKCI\""
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 26 Apr 2026 00:09:53 GMT"
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive"
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Prospects fetched successfully\",\n    \"data\": {\n        \"prospects\": [\n            {\n                \"name\": \"Sheraton Addis, a Luxury Collection Hotel\",\n                \"website\": \"https://www.marriott.com/en-us/hotels/addlc-sheraton-addis-a-luxury-collection-hotel-addis-ababa/overview/\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.marriott.com/en-us/hotels/addlc-sheraton-addis-a-luxury-collection-hotel-addis-ababa/overview/\",\n                \"confidenceScore\": 0.98,\n                \"reason\": \"Sheraton Addis is a luxury hotel in the city, known for its high-end services and facilities, making it an attractive option for advertising.\"\n            },\n            {\n                \"name\": \"Ethiopian Skylight Hotel\",\n                \"website\": \"https://www.ethiopianskylighthotel.com/\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hotels.com/de1772412/hotels-addis-ababa-ethiopia/\",\n                \"confidenceScore\": 0.93,\n                \"reason\": \"The Ethiopian Skylight Hotel is a well-known hotel in Addis Ababa, offering modern accommodations and amenities, making it a prime candidate for advertising.\"\n            },\n            {\n                \"name\": \"Hyatt Regency Addis Ababa\",\n                \"website\": \"https://www.hyatt.com/en-US/hotel/ethiopia/hyatt-regency-addis-ababa/addra\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hotels.com/de1772412/hotels-addis-ababa-ethiopia/\",\n                \"confidenceScore\": 0.93,\n                \"reason\": \"Hyatt Regency is a prominent hotel in Addis Ababa, catering to both business and leisure travelers, which aligns well with advertising opportunities.\"\n            },\n            {\n                \"name\": \"Hilton Addis Ababa\",\n                \"website\": \"https://www.hilton.com/en/hotels/addhitw-hilton-addis-ababa/\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hilton.com/en/hotels/addhitw-hilton-addis-ababa/\",\n                \"confidenceScore\": 0.93,\n                \"reason\": \"Hilton Addis Ababa is a major hotel brand in the city, known for its luxury offerings, making it a prime target for advertising.\"\n            },\n            {\n                \"name\": \"Radisson Blu Hotel Addis Ababa\",\n                \"website\": \"https://www.radissonhotels.com/en-us/hotels/radisson-blu-addis-ababa\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.radissonhotels.com/en-us/hotels/radisson-blu-addis-ababa\",\n                \"confidenceScore\": 0.88,\n                \"reason\": \"Radisson Blu is a high-profile hotel in Addis Ababa, catering to international travelers, which aligns well with advertising opportunities.\"\n            },\n            {\n                \"name\": \"Ramada Addis\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hotels.com/de1772412/hotels-addis-ababa-ethiopia/\",\n                \"confidenceScore\": 0.85,\n                \"reason\": \"Ramada Addis is listed among the top hotels in the city, providing a range of services that could benefit from advertising.\"\n            },\n            {\n                \"name\": \"Capital Hotel & Spa\",\n                \"website\": \"http://www.capitalhotelandspa.com/\",\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.un.org/development/desa/dspd/wp-content/uploads/sites/22/2018/05/List-of-Hotels-2017-Updated_March-2018.pdf\",\n                \"confidenceScore\": 0.8,\n                \"reason\": \"Capital Hotel & Spa is a well-established hotel in Addis Ababa, known for its spa services and hospitality, making it a suitable candidate for advertising.\"\n            },\n            {\n                \"name\": \"Best Western Plus Pearl Addis\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.booking.com/city/et/addis-ababa.html\",\n                \"confidenceScore\": 0.75,\n                \"reason\": \"Best Western Plus Pearl Addis is recognized for its quality accommodations, which could be enhanced through advertising.\"\n            },\n            {\n                \"name\": \"Golden Tulip Addis Ababa\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hotels.com/de1772412/hotels-addis-ababa-ethiopia/\",\n                \"confidenceScore\": 0.7,\n                \"reason\": \"Golden Tulip is recognized as a reputable hotel in Addis Ababa, providing a range of services that could benefit from advertising.\"\n            },\n            {\n                \"name\": \"Crescent International Hotel\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.booking.com/city/et/addis-ababa.html\",\n                \"confidenceScore\": 0.65,\n                \"reason\": \"Crescent International Hotel is mentioned among the hotels in Addis Ababa, making it a potential candidate for advertising.\"\n            },\n            {\n                \"name\": \"Vamos Addis Hotel\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.hotels.com/de1772412/hotels-addis-ababa-ethiopia/\",\n                \"confidenceScore\": 0.6,\n                \"reason\": \"Vamos Addis Hotel is listed as a hotel option in Addis Ababa, indicating potential for advertising.\"\n            },\n            {\n                \"name\": \"Point Central Hotel\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.booking.com/city/et/addis-ababa.html\",\n                \"confidenceScore\": 0.6,\n                \"reason\": \"Point Central Hotel is included in the list of hotels in Addis Ababa, suggesting it could be a viable option for advertising.\"\n            },\n            {\n                \"name\": \"Hotel Lobelia\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.booking.com/city/et/addis-ababa.html\",\n                \"confidenceScore\": 0.55,\n                \"reason\": \"Hotel Lobelia is mentioned among the hotels in Addis Ababa, indicating it may benefit from advertising.\"\n            },\n            {\n                \"name\": \"Sun View Hotel\",\n                \"website\": null,\n                \"industry\": \"Hospitality\",\n                \"location\": \"Addis Ababa, Ethiopia\",\n                \"contacts\": [],\n                \"source\": \"https://www.booking.com/city/et/addis-ababa.html\",\n                \"confidenceScore\": 0.5,\n                \"reason\": \"Sun View Hotel is listed as an option in Addis Ababa, suggesting potential for advertising.\"\n            }\n        ]\n    }\n}"
                 }
-              ],
-              "cookie": [],
-              "body": "I currently do not have access to data regarding satellite log entries. You may want to check your internal systems or databases for that information."
+              ]
             }
           ]
         }

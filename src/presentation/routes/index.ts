@@ -32,6 +32,7 @@ import type { ApiRouterDeps } from '../api-router-deps';
 import { createBroadcastSlotRoutes } from './broadcast-slots.routes';
 import { createAnalyticsRouter } from './analytics.routes';
 import { createInsightRouter } from './insight.routes';
+import { createAiSearchRouter } from '../../ai-search/aiSearch.routes';
 
 export type { ApiRouterDeps } from '../api-router-deps';
 export type { AdvertPackageHandlerDeps } from '../controllers/advert-package.controller';
@@ -72,6 +73,7 @@ export function createApiRouter(deps: ApiRouterDeps): Router {
   router.use('/broadcast-slots', createBroadcastSlotRoutes(deps));
   router.use('/analytics', createAnalyticsRouter(deps));
   router.use('/insights', createInsightRouter(deps));
+  router.use('/ai-search', createAiSearchRouter(deps));
 
   return router;
 }
