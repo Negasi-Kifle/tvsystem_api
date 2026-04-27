@@ -68,13 +68,17 @@
 
 ## ✅ Completed Tasks
 
+### 04/27/2026
+
+- ✅ **AI Insight — chart-ready tool + UI message stream:** `POST /api/insights/query` now uses `pipeUIMessageStreamToResponse` + `consumeStream` (Vercel AI UI protocol: `text/event-stream`, `x-vercel-ai-ui-message-stream: v1`); `getRevenueByAdvertPackageChart` tool returns `AdvertPackageRevenueChartPayload` (ETB points for bar/pie/line); `sumPaidRevenueByAdvertPackage` on `IPaymentRepository` + `getRevenueByAdvertPackageForMonth` on `AnalyticsService`; domain types in `insight-chart.interface.ts`; unit tests `analytics.service.revenue-by-package.spec.ts`; Postman **AI → Insight** folder updated (second request for chart example). **Frontend:** use `@ai-sdk/react` / UI stream consumer, not plain text.
+
 ### 04/26/2026
 
 - ✅ **AI prospect discovery (stateless):** `src/ai-search/` module — `POST /api/ai-search` returns JSON `Prospect[]` (Zod `ProspectListSchema`); Vercel AI SDK `generateText` + `webSearch` tool (Tavily or SerpAPI via `SEARCH_PROVIDER`) then `generateObject` extraction + dedupe/rank; `createOpenAIModelForSearch()` (`AI_SEARCH_MODEL` optional); guarded by `VIEW_SALES`; unit tests in `ai-search.prospect.utils.spec.ts`. **//TODO (you):** set `TAVILY_API_KEY` and/or `SERPAPI_API_KEY` and `SEARCH_PROVIDER` in the deployment environment; optionally tune `AI_SEARCH_TIMEOUT_MS` (default 120s).
 
 ### 04/25/2026
 
-- ✅ AI Insights API: added `POST /api/insights/query` streaming endpoint; `InsightService` uses Vercel AI SDK `streamText` with 6 tool-call tools (`getKpiSummary`, `getMonthlyRevenue`, `getTopShowsByRevenue`, `getAdsEndingSoon`, `getWeeklyRevenueSummary`, `getActiveEmployeesCount`); `createOpenAIModel()` provider confined to infrastructure layer; `pipeTextStreamToResponse` streams plain-text SSE to client; guarded by `view_analytics` permission; added `WeeklyRevenueSummary` type + `getWeeklyRevenueSummary()` to `IPaymentRepository` + `countActive()` to `IEmployeeRepository` with Prisma implementations; Postman **Insights (AI)** folder added
+- ✅ AI Insights API: added `POST /api/insights/query` (see 04/27/2026 for UI message stream + chart tool); earlier: `streamText` tools, `createOpenAIModel()`; `WeeklyRevenueSummary` + `getWeeklyRevenueSummary()` on `IPaymentRepository`; `countActive()` on `IEmployeeRepository`; Postman **Insights (AI)** folder
 
 ### 04/22/2026
 

@@ -32603,7 +32603,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"question\": \"How many satellite log entries do we have?\"\n}",
+                  "raw": "{\n//   \"question\": \"How many satellite log entries do we have?\"\n  \"question\": \"show me the broadcast slots in a bar graph categorize by their status\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -32642,7 +32642,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"question\": \"How many satellite log entries do we have?\"\n}",
+                      "raw": "{\n//   \"question\": \"How many satellite log entries do we have?\"\n  \"question\": \"show me the broadcast slots in a bar graph categorize by their status\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -32718,20 +32718,28 @@
                       "value": "0"
                     },
                     {
-                      "key": "content-type",
-                      "value": "text/plain; charset=utf-8"
+                      "key": "cache-control",
+                      "value": "no-cache"
                     },
                     {
-                      "key": "Date",
-                      "value": "Sat, 25 Apr 2026 20:46:46 GMT"
-                    },
-                    {
-                      "key": "Connection",
+                      "key": "connection",
                       "value": "keep-alive"
                     },
                     {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
+                      "key": "content-type",
+                      "value": "text/event-stream"
+                    },
+                    {
+                      "key": "x-accel-buffering",
+                      "value": "no"
+                    },
+                    {
+                      "key": "x-vercel-ai-ui-message-stream",
+                      "value": "v1"
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 27 Apr 2026 10:14:10 GMT"
                     },
                     {
                       "key": "Transfer-Encoding",
@@ -32739,7 +32747,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "I currently do not have access to data regarding satellite log entries. You may want to check your internal systems or databases for that information."
+                  "body": "data: {\"type\":\"start\"}\n\ndata: {\"type\":\"start-step\"}\n\ndata: {\"type\":\"text-start\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"providerMetadata\":{\"openai\":{\"itemId\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\"}}}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\"Currently\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\",\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" I\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" don't\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" have\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" access\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" to\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" data\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" regarding\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" broadcast\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" slots\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" categorized\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" by\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" their\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" status\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\".\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" Please\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" let\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" me\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" know\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" if\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" there's\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" anything\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" else\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" you'd\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" like\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" to\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\" explore\"}\n\ndata: {\"type\":\"text-delta\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"delta\":\"!\"}\n\ndata: {\"type\":\"text-end\",\"id\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\",\"providerMetadata\":{\"openai\":{\"itemId\":\"msg_0943c0427e6c75e20069ef36f5a9fc819291085277254ae8b3\"}}}\n\ndata: {\"type\":\"finish-step\"}\n\ndata: {\"type\":\"finish\",\"finishReason\":\"stop\"}\n\ndata: [DONE]\n\n"
                 }
               ]
             }

@@ -32,3 +32,10 @@ export type WeeklyRevenueSummary = {
   previousWeek: number;
   changePercent: number;
 };
+
+/** Paid bank deposit revenue grouped by advert package for a date range (inclusive). */
+export type RevenueByAdvertPackageItem = {
+  advertPackageId: string;
+  packageName: string;
+  revenue: number;
+};

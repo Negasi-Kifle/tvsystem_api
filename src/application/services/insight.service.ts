@@ -2,9 +2,11 @@ import { streamText, tool, stepCountIs } from 'ai';
 import { z } from 'zod';
 import type { LanguageModel } from 'ai';
 import type { AnalyticsService } from './analytics.service.js';
+import { currentYearMonthLocal } from './analytics.service.js';
 import type { IAdvertPlacementRepository } from '../../domain/repositories/advert-placement.repository.interface.js';
 import type { IPaymentRepository } from '../../domain/repositories/payment.repository.interface.js';
 import type { IEmployeeRepository } from '../../domain/repositories/employee.repo.js';
+import type { AdvertPackageRevenueChartPayload } from '../../domain/interfaces/insight-chart.interface.js';
 
 export class InsightService {
   constructor(
@@ -26,13 +28,15 @@ Today's date is ${today}. All monetary values are in ETB (Ethiopian Birr).
 
 Always call the relevant tool(s) to fetch live data before answering.
 Be concise and business-focused. Format numbers clearly (e.g. ETB 142,300).
-If a question requires data not covered by the available tools, say so clearly.`;
+If a question requires data not covered by the available tools, say so clearly.
+
+When the user asks to compare revenue by advert package for a month, or wants a bar chart, pie chart, or line chart of that metric, call getRevenueByAdvertPackageChart with the appropriate chartType (bar, pie, or line) and optional month (YYYY-MM). Omit month for the current calendar month. The tool returns structured series data for the client to render as a chart; summarize the same numbers briefly in your reply.`;
 
     return streamText({
       model: this.model,
       system,
       prompt: question,
-      stopWhen: stepCountIs(5),
+      stopWhen: stepCountIs(8),
       tools: {
         getKpiSummary: tool({
           description:
@@ -107,6 +111,36 @@ If a question requires data not covered by the available tools, say so clearly.`
           execute: async () => {
             const count = await this.employeeRepo.countActive();
             return { activeEmployees: count };
+          },
+        }),
+
+        getRevenueByAdvertPackageChart: tool({
+          description:
+            'Paid revenue (bank deposits) grouped by advert package for a calendar month, structured for charts. Use when the user compares package revenue for a month or asks for a bar/pie/line chart of revenue by package. Values are server-computed; choose chartType to match the user (bar for comparisons, pie for share of total, line is available for consistency).',
+          inputSchema: z.object({
+            chartType: z
+              .enum(['bar', 'pie', 'line'])
+              .describe('Visualization form: bar for comparing packages, pie for proportions, line if the user asks for a line chart.'),
+            month: z
+              .string()
+              .regex(/^\d{4}-\d{2}$/)
+              .optional()
+              .describe('Calendar month YYYY-MM; omit for the current month (server local date).'),
+          }),
+          execute: async (input): Promise<AdvertPackageRevenueChartPayload> => {
+            const ym = input.month ?? currentYearMonthLocal();
+            const rows = await this.analyticsService.getRevenueByAdvertPackageForMonth(input.month);
+            const points = rows.map((r) => ({
+              label: r.packageName,
+              value: r.revenue,
+            }));
+            return {
+              chartType: input.chartType,
+              title: `Paid revenue by advert package (${ym})`,
+              valueUnit: 'ETB',
+              month: ym,
+              points,
+            };
           },
         }),
       },

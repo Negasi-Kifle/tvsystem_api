@@ -4,7 +4,11 @@ import { PaymentEntity } from '../../../domain/entities/payment.entity';
 import { entityToModel, modelToEntity } from '../model_entity_mappers/payment';
 import { buildWhereClauseForPayment } from '../where_clauses/payment';
 import { QueryOptions } from '../../../domain/interfaces/query-options.interface';
-import type { MonthlyRevenueItem, WeeklyRevenueSummary } from '../../../domain/interfaces/analytics.interface';
+import type {
+  MonthlyRevenueItem,
+  RevenueByAdvertPackageItem,
+  WeeklyRevenueSummary,
+} from '../../../domain/interfaces/analytics.interface';
 import { Prisma } from '../generated/client';
 
 export class PaymentRepository extends PrismaBaseRepository implements IPaymentRepository {
@@ -50,6 +54,37 @@ export class PaymentRepository extends PrismaBaseRepository implements IPaymentR
 
     const row = await this.prisma.payment.delete({ where: { id } });
     return modelToEntity(row);
+  }
+
+  async sumPaidRevenueByAdvertPackage(from: Date, to: Date): Promise<RevenueByAdvertPackageItem[]> {
+    type Row = {
+      advertPackageId: string;
+      packageName: string;
+      revenue: number;
+    };
+
+    const rows = await this.prisma.$queryRaw<Row[]>(
+      Prisma.sql`
+        SELECT
+          ap.id::text AS "advertPackageId",
+          ap.name AS "packageName",
+          COALESCE(SUM(p.bank_deposit), 0)::float AS revenue
+        FROM payments p
+        INNER JOIN advert_sales ads ON ads.id = p.advert_sales_id
+        INNER JOIN advert_packages ap ON ap.id = ads.advert_package_id
+        WHERE p.status = 'Paid'
+          AND p.payment_date >= ${from}
+          AND p.payment_date <= ${to}
+        GROUP BY ap.id, ap.name
+        ORDER BY revenue DESC
+      `,
+    );
+
+    return rows.map((r) => ({
+      advertPackageId: r.advertPackageId,
+      packageName: r.packageName,
+      revenue: Math.round(Number(r.revenue) * 100) / 100,
+    }));
   }
 
   async sumPaidRevenue(from: Date, to: Date): Promise<number> {

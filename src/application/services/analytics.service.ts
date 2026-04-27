@@ -6,6 +6,7 @@ import type { ICustomerRepository } from '../../domain/repositories/customer.rep
 import type {
   AnalyticsKpiSummary,
   MonthlyRevenueItem,
+  RevenueByAdvertPackageItem,
   TopShowEntry,
 } from '../../domain/interfaces/analytics.interface.js';
 import { CustomerStatusWithUs } from '../../domain/enums/customer-status.enum.js';
@@ -38,6 +39,27 @@ function previousMonthRange(): { from: Date; to: Date } {
   const from = new Date(now.getFullYear(), now.getMonth() - 1, 1);
   const to = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
   return { from, to };
+}
+
+/** YYYY-MM; inclusive calendar month bounds in the server local timezone. */
+export function dateRangeForYearMonth(ym: string): { from: Date; to: Date } {
+  const m = ym.match(/^(\d{4})-(\d{2})$/);
+  if (!m) {
+    throw new Error(`Invalid month: ${ym} (expected YYYY-MM)`);
+  }
+  const y = Number(m[1]);
+  const month = Number(m[2]);
+  if (month < 1 || month > 12) {
+    throw new Error(`Invalid month: ${ym}`);
+  }
+  const from = new Date(y, month - 1, 1);
+  const to = new Date(y, month, 0, 23, 59, 59, 999);
+  return { from, to };
+}
+
+export function currentYearMonthLocal(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 }
 
 export class AnalyticsService {
@@ -139,5 +161,14 @@ export class AnalyticsService {
 
   async getTopShowsByRevenue(limit: number): Promise<TopShowEntry[]> {
     return this.advertSalesRepo.getTopShowsByRevenue(limit);
+  }
+
+  /**
+   * Paid revenue (bank deposits) by advert package for a calendar month.
+   * `month` is YYYY-MM (server local calendar); omit for the current month.
+   */
+  async getRevenueByAdvertPackageForMonth(month?: string): Promise<RevenueByAdvertPackageItem[]> {
+    const { from, to } = month ? dateRangeForYearMonth(month) : currentMonthRange();
+    return this.paymentRepo.sumPaidRevenueByAdvertPackage(from, to);
   }
 }

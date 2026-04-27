@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import { consumeStream } from 'ai';
 import type { ApiRouterDeps } from '../api-router-deps.js';
 
 export function createInsightHandlers(deps: Pick<ApiRouterDeps, 'insightService'>) {
@@ -8,7 +9,9 @@ export function createInsightHandlers(deps: Pick<ApiRouterDeps, 'insightService'
     try {
       const { question } = req.body as { question: string };
       const result = insightService.query(question);
-      result.pipeTextStreamToResponse(res);
+      result.pipeUIMessageStreamToResponse(res, {
+        consumeSseStream: consumeStream,
+      });
     } catch (error) {
       next(error);
     }
