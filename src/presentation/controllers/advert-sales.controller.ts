@@ -27,6 +27,7 @@ export function createAdvertSalesHandlers(
     | 'categoryRepository'
     | 'subCategoryRepository'
     | 'emailService'
+    | 'advertPlacementRepository'
   >,
 ) {
   const {
@@ -37,6 +38,7 @@ export function createAdvertSalesHandlers(
     userRepository,
     categoryRepository,
     subCategoryRepository,
+    advertPlacementRepository,
   } = deps;
 
   const createAdvertSalesUseCase = new CreateAdvertSalesUseCase(
@@ -79,6 +81,7 @@ export function createAdvertSalesHandlers(
     advertSalesRepository,
     customerRepository,
     deps.emailService,
+    advertPlacementRepository,
   );
   const sendReportEmailUseCase = new SendReportEmailUseCase(
     generateReportUseCase,

@@ -1,8 +1,10 @@
-import { EntityNotFoundError } from '../../../domain/errors';
+import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { IAdvertPlacementRepository } from '../../../domain/repositories/advert-placement.repository.interface';
 import { IAdvertPackageRepository } from '../../../domain/repositories/advert-package.repository.interface';
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
+import { AdvertPlacementEntity } from '../../../domain/entities/advert-placement.entity';
+import { AdvertPlacementStatus } from '../../../domain/enums/advert-placement-status.enum';
 
 export type ReportRow = {
   date: string;
@@ -46,22 +48,32 @@ export class GenerateAdvertReportUseCase {
       throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', advertSalesId);
     }
 
-    const customer = await this.customerRepo.findById(sale.customerId);
-    const adPackage = await this.advertPackageRepo.findById(sale.adPackageId);
+    const [customer, adPackage, adPlacements] = await Promise.all(
+      [
+        this.customerRepo.findById(sale.customerId),
+        this.advertPackageRepo.findById(sale.adPackageId),
+        this.placementRepo.findMany({ filters: { advertSalesId }, take: 10000 })
+      ]
+    );
+    if (!customer) {
+      throw new EntityNotFoundError('Customer not found', 'Customer', sale.customerId);
+    }
+    if (!adPackage) {
+      throw new EntityNotFoundError('Advert package not found', 'AdvertPackage', sale.adPackageId);
+    }
 
-    const placements = await this.placementRepo.findMany({
-      filters: { advertSalesId },
-      take: 10000,
-    });
+    if (adPlacements.length === 0) {
+      throw new ValidationError('No advert placements found for the advert sale');
+    }
 
     let airedCount = 0;
     let missedCount = 0;
     let scheduledCount = 0;
 
-    const rows: ReportRow[] = placements.map((p) => {
-      if (p.status === 'AIRED') airedCount++;
-      else if (p.status === 'MISSED') missedCount++;
-      else if (p.status === 'SCHEDULED') scheduledCount++;
+    const rows: ReportRow[] = adPlacements.map((p: AdvertPlacementEntity) => {
+      if (p.status === AdvertPlacementStatus.Aired) airedCount++;
+      else if (p.status === AdvertPlacementStatus.Missed) missedCount++;
+      else if (p.status === AdvertPlacementStatus.Scheduled) scheduledCount++;
 
       return {
         date: (p.date ?? new Date(0)).toISOString().slice(0, 10),

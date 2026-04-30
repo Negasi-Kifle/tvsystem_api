@@ -1,8 +1,9 @@
-import { EntityNotFoundError } from '../../../domain/errors';
+import { EntityNotFoundError, ValidationError } from '../../../domain/errors';
 import { IAdvertSalesRepository } from '../../../domain/repositories/adver-sales.repository.interface';
 import { ICustomerRepository } from '../../../domain/repositories/customer.repository.interface';
 import { IEmailService } from '../../../domain/services/email.service';
 import { GenerateAdvertScheduleUseCase } from './generate-advert-schedule.use-case';
+import { IAdvertPlacementRepository } from '../../../domain/repositories/advert-placement.repository.interface';
 
 export class SendScheduleEmailUseCase {
   constructor(
@@ -10,6 +11,7 @@ export class SendScheduleEmailUseCase {
     private readonly advertSalesRepo: IAdvertSalesRepository,
     private readonly customerRepo: ICustomerRepository,
     private readonly emailService: IEmailService,
+    private readonly advertPlacementRepo: IAdvertPlacementRepository,
   ) {}
 
   async execute(advertSalesId: string): Promise<void> {
@@ -18,7 +20,20 @@ export class SendScheduleEmailUseCase {
       throw new EntityNotFoundError('Advert sale not found', 'AdvertSales', advertSalesId);
     }
 
-    const customer = await this.customerRepo.findById(sale.customerId);
+    const [customer, adPlacement] = await Promise.all(
+      [
+        this.customerRepo.findById(sale.customerId),
+        this.advertPlacementRepo.findMany({ filters: { advertSalesId } })
+      ]
+    );
+    if (!customer) {
+      throw new EntityNotFoundError('Customer not found', 'Customer', sale.customerId);
+    }
+
+    if (adPlacement.length === 0) {
+      throw new ValidationError('No advert placements found for the advert sale');
+    }
+
     const customerEmail = customer?.contacts?.[0]?.email;
     if (!customerEmail) {
       throw new EntityNotFoundError('Customer email not found', 'Customer', sale.customerId);
