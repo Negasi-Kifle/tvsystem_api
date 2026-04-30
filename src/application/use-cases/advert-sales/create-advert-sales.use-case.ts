@@ -10,6 +10,7 @@ import { ISubCategoryRepository } from '../../../domain/repositories/sub-categor
 import { IGenerateBusinessRefService } from '../../../domain/services/generate-business-ref.service';
 import { computeStoredAgentCommissionPercentage } from '../../../domain/services/sales-commission-storage';
 import { IUserRepository } from '../../../domain/repositories/user.repo';
+import { UserRole } from '../../../domain/enums/user-role.enum';
 
 export type CreateAdvertSalesInput = {
   adPackageId: string;
@@ -69,7 +70,7 @@ export class CreateAdvertSalesUseCase {
       throw new EntityNotFoundError('Sales rep user not found', 'User', input.salesRepId);
     }
 
-    if (salesRep.salesCommissionType === undefined || salesRep.salesCommissionAmount === undefined) {
+    if ((salesRep.salesCommissionType === undefined || salesRep.salesCommissionAmount === undefined) && !salesRep.roles.includes(UserRole.CEO)) {
       throw new ValidationError(
         'Your account has not been assigned a sales commission type and amount. Please contact the administrator.',
       );
