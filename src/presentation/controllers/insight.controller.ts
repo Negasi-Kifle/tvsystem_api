@@ -8,7 +8,9 @@ export function createInsightHandlers(deps: Pick<ApiRouterDeps, 'insightService'
   async function queryInsight(req: Request, res: Response, next: NextFunction) {
     try {
       const { question } = req.body as { question: string };
+
       const result = insightService.query(question);
+      
       result.pipeUIMessageStreamToResponse(res, {
         consumeSseStream: consumeStream,
       });

@@ -32,6 +32,8 @@ import type { IPaymentRepository } from '../domain/repositories/payment.reposito
 import type { IRevenueShareRepository } from '../domain/repositories/revenue-share.repository.interface';
 import type { IAgentCommissionRepository } from '../domain/repositories/agent-commission.repository.interface';
 import type { IAuditLogRepository } from '../domain/repositories/audit-log.repository.interface';
+
+
 import { AdvertPlacementRepository } from '../infrastructure/prisma/repositories/advert-placement.repository';
 import { AdvertSalesRepository } from '../infrastructure/prisma/repositories/advert-sales.repository';
 import { AdvertPackageMediaPackRepository } from '../infrastructure/prisma/repositories/advert-package-media-pack.repository';
@@ -166,6 +168,8 @@ export function buildAppContainer(): AppContainer {
       new AdvertPlacementRepository(),
       new PaymentRepository(),
       new EmployeeRepository(),
+      new CustomerRepository(),
+      new ShowRepository(),
     ),
     aiSearchService: new AiSearchService(createOpenAIModelForSearch()),
   };

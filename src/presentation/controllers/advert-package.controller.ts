@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import type { IStorageService } from '../../domain/services/storage.service';
 import { toStorageUploadFile } from '../mappers/multer-to-storage-upload.mapper';
 import { CreateAdvertPackageUseCase } from '../../application/use-cases/advert-package/create-advert-package.use-case';
 import { GetAdvertPackageByIdUseCase } from '../../application/use-cases/advert-package/get-advert-package-by-id.use-case';
