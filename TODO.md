@@ -70,6 +70,8 @@
 
 ### 06/16/2026
 
+- ✅ **Advert report file email to customer:** `POST /api/advert-sales/:id/report/send/excel` accepts multipart PDF or `.xlsx` (`file`, max 5MB), optional `email` override; emails attachment to customer; `MANAGE_SALES` permission; `SendReportFileEmailUseCase`; unit tests in `send-report-file-email.use-case.spec.ts`.
+- ✅ **Advert schedule file email to customer:** `POST /api/advert-sales/:id/send/excel` accepts multipart PDF or `.xlsx` (`file`, max 5MB), optional `email` override; emails attachment to customer (default `contacts[0].email`); `MANAGE_SALES` permission; `SendScheduleFileEmailUseCase`; unit tests in `send-schedule-file-email.use-case.spec.ts`.
 - ✅ **Advert schedule email to Finance:** `POST /api/advert-sales/:id/email-to-finance` accepts multipart PDF (`file`), validates UUID/sale/PDF, emails Finance via `FINANCE_EMAIL` or `FINANCE_TEAM_EMAIL` with metadata summary + attachment; `MANAGE_SALES` permission; `SendScheduleToFinanceEmailUseCase`; extended `IEmailService` for attachments; unit tests in `send-schedule-to-finance-email.use-case.spec.ts`. **//TODO (you):** set `FINANCE_EMAIL` (or `FINANCE_TEAM_EMAIL`) in deployment env.
 
 ### 05/20/2026

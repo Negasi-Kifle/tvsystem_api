@@ -6,5 +6,6 @@ export type ApiRouterDeps = AppContainer & {
   storageService: IStorageService;
   advertPackageImageUpload: RequestHandler;
   advertSchedulePdfUpload: RequestHandler;
+  advertScheduleFileUpload: RequestHandler;
   authMiddleware: RequestHandler;
 };

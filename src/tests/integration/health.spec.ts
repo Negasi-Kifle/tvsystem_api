@@ -8,6 +8,7 @@ if (!process.env.OPENAI_API_KEY) {
 import { createAuthMiddleware } from '../../infrastructure/middlewares/auth.middleware';
 import { createAdvertPackageImageUploadMiddleware } from '../../infrastructure/middlewares/advert-package-upload.middleware';
 import { createAdvertSchedulePdfUploadMiddleware } from '../../infrastructure/middlewares/advert-schedule-pdf-upload.middleware';
+import { createAdvertScheduleFileUploadMiddleware } from '../../infrastructure/middlewares/advert-schedule-file-upload.middleware';
 import { createApp } from '../../presentation/app';
 import type { IStorageService } from '../../domain/services/storage.service';
 
@@ -29,6 +30,7 @@ const app = createApp({
   storageService: testStorageService,
   advertPackageImageUpload: createAdvertPackageImageUploadMiddleware(),
   advertSchedulePdfUpload: createAdvertSchedulePdfUploadMiddleware(),
+  advertScheduleFileUpload: createAdvertScheduleFileUploadMiddleware(),
   authMiddleware: createAuthMiddleware({
     userRepository: container.userRepository,
     userPermissionsRepository: container.userPermissionsRepository,

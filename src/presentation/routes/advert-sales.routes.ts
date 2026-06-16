@@ -14,9 +14,9 @@ export function createAdvertSalesRouter(deps: ApiRouterDeps): Router {
   const { authMiddleware } = deps;
   const {
     create, list, getById, update, remove,
-    getSchedule, sendSchedule, getReport, sendReport, emailScheduleToFinance,
+    getSchedule, sendSchedule, getReport, sendReport, emailScheduleToFinance, sendScheduleFile, sendReportFile,
   } = createAdvertSalesHandlers(deps);
-  const { advertSchedulePdfUpload } = deps;
+  const { advertSchedulePdfUpload, advertScheduleFileUpload } = deps;
 
   router
     .route('/')
@@ -36,6 +36,13 @@ export function createAdvertSalesRouter(deps: ApiRouterDeps): Router {
   router.get('/:id/schedule', authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getSchedule);
   router.post('/:id/schedule/send', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), sendSchedule);
   router.post(
+    '/:id/schedule/send-excel',
+    authMiddleware,
+    requirePermission(PERMISSIONS.MANAGE_SALES),
+    advertScheduleFileUpload,
+    sendScheduleFile,
+  );
+  router.post(
     '/:id/email-to-finance',
     authMiddleware,
     requirePermission(PERMISSIONS.MANAGE_SALES),
@@ -44,6 +51,13 @@ export function createAdvertSalesRouter(deps: ApiRouterDeps): Router {
   );
   router.get('/:id/report', authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getReport);
   router.post('/:id/report/send', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), sendReport);
+  router.post(
+    '/:id/report/send-excel',
+    authMiddleware,
+    requirePermission(PERMISSIONS.MANAGE_SALES),
+    advertScheduleFileUpload,
+    sendReportFile,
+  );
 
   router
     .route('/:id')

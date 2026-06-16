@@ -25531,6 +25531,154 @@
           ]
         },
         {
+          "name": "Get Advert Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId/report",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "advert-sales",
+                ":advertSalesId",
+                "report"
+              ],
+              "variable": [
+                {
+                  "key": "advertSalesId",
+                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
+                }
+              ]
+            },
+            "description": "Generate the advert report for this sale. Returns rows matching the Company Advert Report CSV format with aired/missed status. Requires VIEW_SALES."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId/report",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-sales",
+                    ":advertSalesId",
+                    "report"
+                  ],
+                  "variable": [
+                    {
+                      "key": "advertSalesId",
+                      "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "354"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"162-qFumHoIYIkzVgvqhUYPVRGoCr+4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 11 Apr 2026 10:04:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"report\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"customerName\": \"Example Company PLC\",\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"totalSlots\": 12,\n            \"airedCount\": 0,\n            \"missedCount\": 0,\n            \"scheduledCount\": 0,\n            \"packageName\": \"Agelgil\",\n            \"rows\": []\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
           "name": "Send Schedule Email",
           "request": {
             "method": "POST",
@@ -25677,154 +25825,6 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule email sent\"\n}"
-            }
-          ]
-        },
-        {
-          "name": "Get Advert Report",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId/report",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "advert-sales",
-                ":advertSalesId",
-                "report"
-              ],
-              "variable": [
-                {
-                  "key": "advertSalesId",
-                  "value": "4c55bbad-6710-45dd-994a-3b79c190f9b1"
-                }
-              ]
-            },
-            "description": "Generate the advert report for this sale. Returns rows matching the Company Advert Report CSV format with aired/missed status. Requires VIEW_SALES."
-          },
-          "response": [
-            {
-              "name": "Success",
-              "originalRequest": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer {{accessToken}}",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{baseUrl}}/api/advert-sales/:advertSalesId/report",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "advert-sales",
-                    ":advertSalesId",
-                    "report"
-                  ],
-                  "variable": [
-                    {
-                      "key": "advertSalesId",
-                      "value": "00d7ef22-0b35-4d32-9226-d34eb6226dac"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "Access-Control-Allow-Origin",
-                  "value": "*"
-                },
-                {
-                  "key": "Content-Security-Policy",
-                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-                },
-                {
-                  "key": "Cross-Origin-Opener-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Cross-Origin-Resource-Policy",
-                  "value": "same-origin"
-                },
-                {
-                  "key": "Origin-Agent-Cluster",
-                  "value": "?1"
-                },
-                {
-                  "key": "Referrer-Policy",
-                  "value": "no-referrer"
-                },
-                {
-                  "key": "Strict-Transport-Security",
-                  "value": "max-age=31536000; includeSubDomains"
-                },
-                {
-                  "key": "X-Content-Type-Options",
-                  "value": "nosniff"
-                },
-                {
-                  "key": "X-DNS-Prefetch-Control",
-                  "value": "off"
-                },
-                {
-                  "key": "X-Download-Options",
-                  "value": "noopen"
-                },
-                {
-                  "key": "X-Frame-Options",
-                  "value": "SAMEORIGIN"
-                },
-                {
-                  "key": "X-Permitted-Cross-Domain-Policies",
-                  "value": "none"
-                },
-                {
-                  "key": "X-XSS-Protection",
-                  "value": "0"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "354"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"162-qFumHoIYIkzVgvqhUYPVRGoCr+4\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Sat, 11 Apr 2026 10:04:06 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": \"SUCCESS\",\n    \"data\": {\n        \"report\": {\n            \"referenceNumber\": \"5M4CCXSX2H\",\n            \"customerName\": \"Example Company PLC\",\n            \"campaignName\": \"Q2 Product Launch (updated)\",\n            \"adStartDate\": \"2026-05-01T00:00:00.000Z\",\n            \"adEndDate\": \"2026-06-30T23:59:59.000Z\",\n            \"adLengthSeconds\": 30,\n            \"totalSlots\": 12,\n            \"airedCount\": 0,\n            \"missedCount\": 0,\n            \"scheduledCount\": 0,\n            \"packageName\": \"Agelgil\",\n            \"rows\": []\n        }\n    }\n}"
             }
           ]
         },
@@ -26162,6 +26162,385 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule email sent to finance\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Send Schedule Excel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "4190def8-da01-45cb-9ef3-f7d851c1c68c",
+                  "src": "/Users/negasikiflom/Documents/Code/Client Projects/Abbay TV/Sales/110 .xlsx"
+                },
+                {
+                  "key": "email",
+                  "value": "ethiospasync@gmail.com",
+                  "type": "text",
+                  "uuid": "0ea39972-ad16-487d-bee5-cc08f8fb54bd"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/advert-sales/:id/schedule/send-excel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "advert-sales",
+                ":id",
+                "schedule",
+                "send-excel"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{accessToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "4190def8-da01-45cb-9ef3-f7d851c1c68c",
+                      "src": "/Users/negasikiflom/Documents/Code/Client Projects/Abbay TV/Sales/110 .xlsx"
+                    },
+                    {
+                      "key": "email",
+                      "value": "ethiospasync@gmail.com",
+                      "type": "text",
+                      "uuid": "0ea39972-ad16-487d-bee5-cc08f8fb54bd"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/advert-sales/:id/schedule/send-excel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-sales",
+                    ":id",
+                    "schedule",
+                    "send-excel"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "57"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"39-VgvfnxQftuAkCHibP08TEr5I3AQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 16 Jun 2026 11:00:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule file email sent\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Send Report Excel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "d1a617ee-9147-4b39-924f-454735045bc9",
+                  "src": "/Users/negasikiflom/Documents/Code/Client Projects/Abbay TV/Sales/Sample 104- Advert Placement.xlsx"
+                },
+                {
+                  "key": "email",
+                  "value": "ethiospasync@gmail.com",
+                  "type": "text",
+                  "uuid": "a933dd1e-b3c3-48c0-838a-675294f74300"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/advert-sales/:id/report/send-excel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "advert-sales",
+                ":id",
+                "report",
+                "send-excel"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "d1a617ee-9147-4b39-924f-454735045bc9",
+                      "src": "/Users/negasikiflom/Documents/Code/Client Projects/Abbay TV/Sales/Sample 104- Advert Placement.xlsx"
+                    },
+                    {
+                      "key": "email",
+                      "value": "ethiospasync@gmail.com",
+                      "type": "text",
+                      "uuid": "a933dd1e-b3c3-48c0-838a-675294f74300"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/advert-sales/:id/report/send-excel",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-sales",
+                    ":id",
+                    "report",
+                    "send-excel"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "55"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"37-gIpsw1bCpXr83XTtBzuP1mmJs1g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 16 Jun 2026 11:02:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Report file email sent\"\n}"
             }
           ]
         }

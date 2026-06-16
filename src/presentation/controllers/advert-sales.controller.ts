@@ -10,6 +10,8 @@ import { GenerateAdvertReportUseCase } from '../../application/use-cases/advert-
 import { SendScheduleEmailUseCase } from '../../application/use-cases/advert-schedule/send-schedule-email.use-case';
 import { SendReportEmailUseCase } from '../../application/use-cases/advert-schedule/send-report-email.use-case';
 import { SendScheduleToFinanceEmailUseCase } from '../../application/use-cases/advert-schedule/send-schedule-to-finance-email.use-case';
+import { SendScheduleFileEmailUseCase } from '../../application/use-cases/advert-schedule/send-schedule-file-email.use-case';
+import { SendReportFileEmailUseCase } from '../../application/use-cases/advert-schedule/send-report-file-email.use-case';
 import { emailConfig } from '../../infrastructure/config/email.config';
 import { mapFetchAllAdvertSalesDtoToQueryOptions } from '../mappers/advert-sales-to-query-options.mapper';
 import type { CreateAdvertSalesDto } from '../dtos/requests/advert-sales/create.dto';
@@ -96,6 +98,16 @@ export function createAdvertSalesHandlers(
     userRepository,
     deps.emailService,
     emailConfig.financeEmail,
+  );
+  const sendScheduleFileEmailUseCase = new SendScheduleFileEmailUseCase(
+    advertSalesRepository,
+    customerRepository,
+    deps.emailService,
+  );
+  const sendReportFileEmailUseCase = new SendReportFileEmailUseCase(
+    advertSalesRepository,
+    customerRepository,
+    deps.emailService,
   );
 
   async function create(req: Request, res: Response, next: NextFunction) {
@@ -293,6 +305,58 @@ export function createAdvertSalesHandlers(
     }
   }
 
+  async function sendScheduleFile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params as { id: string };
+      const file = req.file;
+      const email =
+        typeof req.body.email === 'string' && req.body.email.trim()
+          ? req.body.email.trim()
+          : undefined;
+
+      await sendScheduleFileEmailUseCase.execute({
+        advertSalesId: id,
+        file: {
+          buffer: file!.buffer,
+          originalname: file!.originalname,
+          mimetype: file!.mimetype,
+          size: file!.size,
+        },
+        recipientEmail: email,
+      });
+
+      res.status(200).json({ status: 'SUCCESS', message: 'Schedule file email sent' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async function sendReportFile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params as { id: string };
+      const file = req.file;
+      const email =
+        typeof req.body.email === 'string' && req.body.email.trim()
+          ? req.body.email.trim()
+          : undefined;
+
+      await sendReportFileEmailUseCase.execute({
+        advertSalesId: id,
+        file: {
+          buffer: file!.buffer,
+          originalname: file!.originalname,
+          mimetype: file!.mimetype,
+          size: file!.size,
+        },
+        recipientEmail: email,
+      });
+
+      res.status(200).json({ status: 'SUCCESS', message: 'Report file email sent' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   return {
     create,
     list,
@@ -304,5 +368,7 @@ export function createAdvertSalesHandlers(
     getReport,
     sendReport,
     emailScheduleToFinance,
+    sendScheduleFile,
+    sendReportFile,
   };
 }
