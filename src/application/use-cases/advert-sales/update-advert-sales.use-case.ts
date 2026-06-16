@@ -34,6 +34,7 @@ export type UpdateAdvertSalesInput = {
   festiveSeason?: string | null;
   referralSource?: string | null;
   notes?: string | null;
+  priceInUSD?: number | null;
 };
 
 export class UpdateAdvertSalesUseCase {
@@ -196,6 +197,7 @@ export class UpdateAdvertSalesUseCase {
       patch.festiveSeason !== undefined ? patch.festiveSeason : existing.festiveSeason,
       patch.referralSource !== undefined ? patch.referralSource : existing.referralSource,
       patch.notes !== undefined ? patch.notes : existing.notes,
+      patch.priceInUSD !== undefined ? patch.priceInUSD : existing.priceInUSD,
       existing.campaignEndAlertSentAt,
       existing.createdAt,
       existing.updatedAt,

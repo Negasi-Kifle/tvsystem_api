@@ -31,6 +31,7 @@ export type CreateAdvertSalesInput = {
   festiveSeason?: string;
   referralSource?: string;
   notes?: string;
+  priceInUSD?: number;
   installmentCount?: number;
 };
 
@@ -129,6 +130,7 @@ export class CreateAdvertSalesUseCase {
       input.festiveSeason,
       input.referralSource,
       input.notes,
+      input.priceInUSD,
     );
     return this.advertSalesRepo.create(entity);
   }

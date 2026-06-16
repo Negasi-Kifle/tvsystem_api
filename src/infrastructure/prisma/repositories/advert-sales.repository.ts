@@ -70,6 +70,7 @@ export class AdvertSalesRepository extends PrismaBaseRepository implements IAdve
         adPackagePrice: row.adPackagePrice,
         discountPercentage: row.discountPercentage,
         finalPrice: row.finalPrice,
+        priceInUSD: row.priceInUSD,
         installmentCount: row.installmentCount,
         campaignName: row.campaignName,
         contractSignDate: row.contractSignDate,

@@ -24,6 +24,7 @@ export const createAdvertSalesDto = z
     adLengthSeconds: z.coerce.number().int().nonnegative(),
     numOfSlots: z.coerce.number().int().nonnegative(),
     discountPercentage: z.coerce.number().min(0).max(100).optional().default(0),
+    priceInUSD: z.coerce.number().nonnegative().optional(),
     installmentCount: z.coerce.number().int().min(1).optional().default(1),
     campaignName: z.string().min(1, "Campaign name must have at least 1 character"),
     contractSignDate: z.coerce.date(),

@@ -33,6 +33,7 @@ export class AdvertSalesEntity {
     public festiveSeason?: string | null,
     public referralSource?: string | null,
     public notes?: string | null,
+    public priceInUSD?: number | null,
     public campaignEndAlertSentAt?: Date | null,
     public createdAt?: Date,
     public updatedAt?: Date,
@@ -70,6 +71,7 @@ export class AdvertSalesEntity {
     festiveSeason?: string | null,
     referralSource?: string | null,
     notes?: string | null,
+    priceInUSD?: number | null,
     campaignEndAlertSentAt: Date | null | undefined = undefined,
     createdAt?: Date,
     updatedAt?: Date,
@@ -99,6 +101,9 @@ export class AdvertSalesEntity {
     if (salesAgentCommissionPercentage < 0 || salesAgentCommissionPercentage > 100) {
       throw new ValidationError('Sales agent commission percentage must be between 0 and 100');
     }
+    if (priceInUSD != null && (!Number.isFinite(priceInUSD) || priceInUSD < 0)) {
+      throw new ValidationError('Price in USD must be a non-negative number');
+    }
     return new AdvertSalesEntity(
       referenceNumber,
       adPackageId.trim(),
@@ -124,6 +129,7 @@ export class AdvertSalesEntity {
       festiveSeason,
       referralSource,
       notes,
+      priceInUSD ?? null,
       campaignEndAlertSentAt ?? null,
       createdAt,
       updatedAt,

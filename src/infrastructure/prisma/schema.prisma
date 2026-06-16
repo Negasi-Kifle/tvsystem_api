@@ -598,6 +598,7 @@ model AdvertSales {
   adPackagePrice                Float    @map("ad_package_price")
   discountPercentage            Float    @default(0) @map("discount_percentage")
   finalPrice                    Float    @map("final_price")
+  priceInUSD                    Float?   @map("price_in_usd")
   installmentCount              Int      @default(1) @map("installment_count")
   campaignName                  String   @map("campaign_name")
   contractSignDate              DateTime @map("contract_sign_date")

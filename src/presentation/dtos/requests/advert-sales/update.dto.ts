@@ -25,6 +25,7 @@ export const updateAdvertSalesDto = z
     adPackagePrice: z.coerce.number().nonnegative().optional(),
     discountPercentage: z.coerce.number().min(0).max(100).optional(),
     finalPrice: z.coerce.number().nonnegative().optional(),
+    priceInUSD: z.coerce.number().nonnegative().optional(),
     installmentCount: z.coerce.number().int().min(1).optional(),
     campaignName: z.string().min(1, "Campaign name must have at least 1 character").optional(),
     contractSignDate: z.coerce.date().optional(),

@@ -135,6 +135,7 @@ export function createAdvertSalesHandlers(
         festiveSeason: payload.festiveSeason,
         referralSource: payload.referralSource,
         notes: payload.notes,
+        priceInUSD: payload.priceInUSD,
       });
       res.status(201).json({
         status: 'SUCCESS',
@@ -218,6 +219,7 @@ export function createAdvertSalesHandlers(
       if (payload.festiveSeason !== undefined) patch.festiveSeason = payload.festiveSeason;
       if (payload.referralSource !== undefined) patch.referralSource = payload.referralSource;
       if (payload.notes !== undefined) patch.notes = payload.notes;
+      if (payload.priceInUSD !== undefined) patch.priceInUSD = payload.priceInUSD;
 
       const advertSales = await updateAdvertSalesUseCase.execute(id, patch);
       res.status(200).json({
