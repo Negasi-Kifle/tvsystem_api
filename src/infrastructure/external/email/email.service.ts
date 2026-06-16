@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { IEmailService } from '../../../domain/services/email.service';
+import { EmailAttachment, IEmailService } from '../../../domain/services/email.service';
 import { emailConfig } from '../../config/email.config';
 
 export class EmailService implements IEmailService {
@@ -14,12 +14,17 @@ export class EmailService implements IEmailService {
       : undefined
   });
 
-  async send(to: string, subject: string, body: string): Promise<void> {
+  async send(to: string, subject: string, body: string, attachments?: EmailAttachment[]): Promise<void> {
     await this.transporter.sendMail({
       from: `${emailConfig.name} <${emailConfig.from}>`,
       to,
       subject,
-      html: body
+      html: body,
+      attachments: attachments?.map((attachment) => ({
+        filename: attachment.filename,
+        content: attachment.content,
+        contentType: attachment.contentType,
+      })),
     });
   }
 }

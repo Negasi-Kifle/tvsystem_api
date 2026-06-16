@@ -14,8 +14,9 @@ export function createAdvertSalesRouter(deps: ApiRouterDeps): Router {
   const { authMiddleware } = deps;
   const {
     create, list, getById, update, remove,
-    getSchedule, sendSchedule, getReport, sendReport,
+    getSchedule, sendSchedule, getReport, sendReport, emailScheduleToFinance,
   } = createAdvertSalesHandlers(deps);
+  const { advertSchedulePdfUpload } = deps;
 
   router
     .route('/')
@@ -34,6 +35,13 @@ export function createAdvertSalesRouter(deps: ApiRouterDeps): Router {
 
   router.get('/:id/schedule', authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getSchedule);
   router.post('/:id/schedule/send', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), sendSchedule);
+  router.post(
+    '/:id/email-to-finance',
+    authMiddleware,
+    requirePermission(PERMISSIONS.MANAGE_SALES),
+    advertSchedulePdfUpload,
+    emailScheduleToFinance,
+  );
   router.get('/:id/report', authMiddleware, requirePermission(PERMISSIONS.VIEW_SALES), getReport);
   router.post('/:id/report/send', authMiddleware, requirePermission(PERMISSIONS.MANAGE_SALES), sendReport);
 

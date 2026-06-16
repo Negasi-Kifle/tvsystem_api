@@ -1,6 +1,13 @@
 import { beforeEach, afterEach, describe, expect, it } from '@jest/globals';
 import {
+  DEFAULT_BUSINESS_DIRECTORY_DOMAINS,
+  getBusinessDirectoryDomainsFromEnv,
+  normalizeDirectoryDomain,
+} from '../../ai-search/aiSearch.directories';
+import {
   applyRankingHeuristics,
+  buildSerpApiQueryWithDomains,
+  buildTavilySearchBody,
   deduplicateProspects,
   extractHostname,
   getSearchProviderFromEnv,
@@ -55,6 +62,83 @@ describe('deduplicateProspects', () => {
   });
 });
 
+describe('normalizeDirectoryDomain', () => {
+  it('strips scheme, path, and www', () => {
+    expect(normalizeDirectoryDomain('https://www.businessguide.ezega.com/foo')).toBe(
+      'businessguide.ezega.com',
+    );
+    expect(normalizeDirectoryDomain('businessguide.ezega.com')).toBe('businessguide.ezega.com');
+  });
+
+  it('returns null for empty', () => {
+    expect(normalizeDirectoryDomain('  ')).toBe(null);
+  });
+});
+
+describe('getBusinessDirectoryDomainsFromEnv', () => {
+  const before = { ...process.env };
+
+  beforeEach(() => {
+    process.env = { ...before };
+  });
+
+  afterEach(() => {
+    process.env = before;
+  });
+
+  it('defaults to Ezega when unset', () => {
+    delete process.env.AI_SEARCH_DIRECTORY_DOMAINS;
+    expect(getBusinessDirectoryDomainsFromEnv()).toEqual([...DEFAULT_BUSINESS_DIRECTORY_DOMAINS]);
+  });
+
+  it('parses comma-separated hosts and URLs', () => {
+    process.env.AI_SEARCH_DIRECTORY_DOMAINS =
+      'https://businessguide.ezega.com/, https://www.other.et/path';
+    expect(getBusinessDirectoryDomainsFromEnv()).toEqual([
+      'businessguide.ezega.com',
+      'other.et',
+    ]);
+  });
+
+  it('dedupes entries', () => {
+    process.env.AI_SEARCH_DIRECTORY_DOMAINS =
+      'businessguide.ezega.com,www.businessguide.ezega.com';
+    expect(getBusinessDirectoryDomainsFromEnv()).toEqual(['businessguide.ezega.com']);
+  });
+});
+
+describe('buildSerpApiQueryWithDomains', () => {
+  it('returns query unchanged when no domains', () => {
+    expect(buildSerpApiQueryWithDomains('hotels Addis', [])).toBe('hotels Addis');
+  });
+
+  it('prepends single site: filter', () => {
+    expect(buildSerpApiQueryWithDomains('hotels', ['businessguide.ezega.com'])).toBe(
+      'site:businessguide.ezega.com hotels',
+    );
+  });
+
+  it('prepends OR site: clause for multiple domains', () => {
+    expect(
+      buildSerpApiQueryWithDomains('manufacturing', ['a.com', 'b.et']),
+    ).toBe('(site:a.com OR site:b.et) manufacturing');
+  });
+});
+
+describe('buildTavilySearchBody', () => {
+  it('includes include_domains when provided', () => {
+    const body = JSON.parse(
+      buildTavilySearchBody('query', 'tvly-key', ['businessguide.ezega.com']),
+    ) as { include_domains?: string[] };
+    expect(body.include_domains).toEqual(['businessguide.ezega.com']);
+  });
+
+  it('omits include_domains when empty', () => {
+    const body = JSON.parse(buildTavilySearchBody('query', 'tvly-key')) as Record<string, unknown>;
+    expect(body.include_domains).toBeUndefined();
+  });
+});
+
 describe('applyRankingHeuristics', () => {
   it('boosts https corporate site slightly', () => {
     const p = applyRankingHeuristics({
@@ -68,6 +152,24 @@ describe('applyRankingHeuristics', () => {
       contacts: [],
     });
     expect(p.confidenceScore).toBeGreaterThan(0.5);
+  });
+
+  it('boosts directory source URLs slightly', () => {
+    const hosts = new Set(['businessguide.ezega.com']);
+    const p = applyRankingHeuristics(
+      {
+        name: 'Co',
+        website: null,
+        source: 'https://businessguide.ezega.com/listing/1',
+        reason: 'r',
+        industry: 'i',
+        location: 'l',
+        confidenceScore: 0.5,
+        contacts: [],
+      },
+      hosts,
+    );
+    expect(p.confidenceScore).toBe(0.52);
   });
 });
 

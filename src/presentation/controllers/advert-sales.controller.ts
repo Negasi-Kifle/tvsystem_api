@@ -9,6 +9,8 @@ import { GenerateAdvertScheduleUseCase } from '../../application/use-cases/adver
 import { GenerateAdvertReportUseCase } from '../../application/use-cases/advert-schedule/generate-advert-report.use-case';
 import { SendScheduleEmailUseCase } from '../../application/use-cases/advert-schedule/send-schedule-email.use-case';
 import { SendReportEmailUseCase } from '../../application/use-cases/advert-schedule/send-report-email.use-case';
+import { SendScheduleToFinanceEmailUseCase } from '../../application/use-cases/advert-schedule/send-schedule-to-finance-email.use-case';
+import { emailConfig } from '../../infrastructure/config/email.config';
 import { mapFetchAllAdvertSalesDtoToQueryOptions } from '../mappers/advert-sales-to-query-options.mapper';
 import type { CreateAdvertSalesDto } from '../dtos/requests/advert-sales/create.dto';
 import type { UpdateAdvertSalesDto } from '../dtos/requests/advert-sales/update.dto';
@@ -88,6 +90,12 @@ export function createAdvertSalesHandlers(
     advertSalesRepository,
     customerRepository,
     deps.emailService,
+  );
+  const sendScheduleToFinanceEmailUseCase = new SendScheduleToFinanceEmailUseCase(
+    advertSalesRepository,
+    userRepository,
+    deps.emailService,
+    emailConfig.financeEmail,
   );
 
   async function create(req: Request, res: Response, next: NextFunction) {
@@ -263,6 +271,28 @@ export function createAdvertSalesHandlers(
     }
   }
 
+  async function emailScheduleToFinance(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params as { id: string };
+      const file = req.file;
+
+      await sendScheduleToFinanceEmailUseCase.execute({
+        advertSalesId: id,
+        file: {
+          buffer: file!.buffer,
+          originalname: file!.originalname,
+          mimetype: file!.mimetype,
+          size: file!.size,
+        },
+        sentByUserId: req.user!.id,
+      });
+
+      res.status(200).json({ status: 'SUCCESS', message: 'Schedule email sent to finance' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   return {
     create,
     list,
@@ -273,5 +303,6 @@ export function createAdvertSalesHandlers(
     sendSchedule,
     getReport,
     sendReport,
+    emailScheduleToFinance,
   };
 }

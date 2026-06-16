@@ -3,6 +3,7 @@ import { buildAppContainer } from './composition/app-container';
 import { createApp } from './presentation/app';
 import { createAuthMiddleware } from './infrastructure/middlewares/auth.middleware';
 import { createAdvertPackageImageUploadMiddleware } from './infrastructure/middlewares/advert-package-upload.middleware';
+import { createAdvertSchedulePdfUploadMiddleware } from './infrastructure/middlewares/advert-schedule-pdf-upload.middleware';
 import { storageService } from './infrastructure/services/storage/storage.factory';
 import { SchedulerService } from './infrastructure/services/scheduler.service';
 import { PermissionSyncService } from './infrastructure/services/permission-sync.service';
@@ -46,6 +47,7 @@ async function bootstrap(): Promise<void> {
     auditMiddleware,
     storageService,
     advertPackageImageUpload: createAdvertPackageImageUploadMiddleware(),
+    advertSchedulePdfUpload: createAdvertSchedulePdfUploadMiddleware(),
     authMiddleware: createAuthMiddleware({
       userRepository: container.userRepository,
       userPermissionsRepository: container.userPermissionsRepository,

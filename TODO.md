@@ -68,13 +68,21 @@
 
 ## ✅ Completed Tasks
 
+### 06/16/2026
+
+- ✅ **Advert schedule email to Finance:** `POST /api/advert-sales/:id/email-to-finance` accepts multipart PDF (`file`), validates UUID/sale/PDF, emails Finance via `FINANCE_EMAIL` or `FINANCE_TEAM_EMAIL` with metadata summary + attachment; `MANAGE_SALES` permission; `SendScheduleToFinanceEmailUseCase`; extended `IEmailService` for attachments; unit tests in `send-schedule-to-finance-email.use-case.spec.ts`. **//TODO (you):** set `FINANCE_EMAIL` (or `FINANCE_TEAM_EMAIL`) in deployment env.
+
+### 05/20/2026
+
+- ✅ **AI prospect discovery — business directory search:** Seeded domain-scoped search + `directorySearch` tool (Ezega Business Guide default via `businessguide.ezega.com`); `AI_SEARCH_DIRECTORY_DOMAINS` optional comma list; Tavily `include_domains` / SerpAPI `site:` filters; Phase A prompt + directory source ranking boost; unit tests for directory helpers in `ai-search.prospect.utils.spec.ts`. **//TODO (you):** optional `AI_SEARCH_DIRECTORY_DOMAINS` in deployment env to add more directory hosts.
+
 ### 04/27/2026
 
 - ✅ **AI Insight — chart-ready tool + UI message stream:** `POST /api/insights/query` now uses `pipeUIMessageStreamToResponse` + `consumeStream` (Vercel AI UI protocol: `text/event-stream`, `x-vercel-ai-ui-message-stream: v1`); `getRevenueByAdvertPackageChart` tool returns `AdvertPackageRevenueChartPayload` (ETB points for bar/pie/line); `sumPaidRevenueByAdvertPackage` on `IPaymentRepository` + `getRevenueByAdvertPackageForMonth` on `AnalyticsService`; domain types in `insight-chart.interface.ts`; unit tests `analytics.service.revenue-by-package.spec.ts`; Postman **AI → Insight** folder updated (second request for chart example). **Frontend:** use `@ai-sdk/react` / UI stream consumer, not plain text.
 
 ### 04/26/2026
 
-- ✅ **AI prospect discovery (stateless):** `src/ai-search/` module — `POST /api/ai-search` returns JSON `Prospect[]` (Zod `ProspectListSchema`); Vercel AI SDK `generateText` + `webSearch` tool (Tavily or SerpAPI via `SEARCH_PROVIDER`) then `generateObject` extraction + dedupe/rank; `createOpenAIModelForSearch()` (`AI_SEARCH_MODEL` optional); guarded by `VIEW_SALES`; unit tests in `ai-search.prospect.utils.spec.ts`. **//TODO (you):** set `TAVILY_API_KEY` and/or `SERPAPI_API_KEY` and `SEARCH_PROVIDER` in the deployment environment; optionally tune `AI_SEARCH_TIMEOUT_MS` (default 120s).
+- ✅ **AI prospect discovery (stateless):** `src/ai-search/` module — `POST /api/ai-search` returns JSON `Prospect[]` (Zod `ProspectListSchema`); Vercel AI SDK `generateText` + `webSearch` / `directorySearch` tools (Tavily or SerpAPI via `SEARCH_PROVIDER`) then `generateObject` extraction + dedupe/rank; `createOpenAIModelForSearch()` (`AI_SEARCH_MODEL` optional); guarded by `VIEW_SALES`; unit tests in `ai-search.prospect.utils.spec.ts`. **//TODO (you):** set `TAVILY_API_KEY` and/or `SERPAPI_API_KEY` and `SEARCH_PROVIDER` in the deployment environment; optionally tune `AI_SEARCH_TIMEOUT_MS` (default 120s) and `AI_SEARCH_DIRECTORY_DOMAINS`.
 
 ### 04/25/2026
 

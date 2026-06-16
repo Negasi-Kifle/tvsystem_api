@@ -3,6 +3,7 @@ import { z } from 'zod';
 import type { LanguageModel } from 'ai';
 import { Exception } from '../shared/utils/error-constructor';
 import { Code } from '../shared/utils/http_code';
+import { getBusinessDirectoryDomainsFromEnv } from './aiSearch.directories';
 import {
   getPhaseASystemPrompt,
   getPhaseBRepairSystemPrompt,
@@ -18,10 +19,10 @@ import {
   normalizeLlmToProspect,
 } from './aiSearch.types';
 
-// TODO: In deployment, set SEARCH_PROVIDER, TAVILY_API_KEY and/or SERPAPI_API_KEY; optional: AI_SEARCH_MODEL, AI_SEARCH_TIMEOUT_MS (see also TODO.md).
+// TODO: In deployment, set SEARCH_PROVIDER, TAVILY_API_KEY and/or SERPAPI_API_KEY; optional: AI_SEARCH_MODEL, AI_SEARCH_TIMEOUT_MS, AI_SEARCH_DIRECTORY_DOMAINS (see also TODO.md).
 
 const MAX_PROSPECTS = 15;
-const TOOL_STEPS = 6;
+const TOOL_STEPS = 8;
 
 const BLOG_PATTERNS = /\/(blog|tag|category|author)\b/i;
 
@@ -150,16 +151,62 @@ function clamp01(n: number): number {
   return Math.min(1, Math.max(0, n));
 }
 
-export function applyRankingHeuristics(p: Prospect): Prospect {
+export function applyRankingHeuristics(
+  p: Prospect,
+  directoryHosts: ReadonlySet<string> = new Set(getBusinessDirectoryDomainsFromEnv()),
+): Prospect {
   let score = p.confidenceScore;
   const website = p.website ?? '';
   if (website.startsWith('https://') && !website.includes('facebook.com') && !website.includes('linkedin.com')) {
     score += 0.03;
   }
+  const sourceHost = extractHostname(p.source);
+  if (sourceHost && directoryHosts.has(sourceHost)) {
+    score += 0.02;
+  }
   if (BLOG_PATTERNS.test(p.source)) {
     score -= 0.05;
   }
   return { ...p, confidenceScore: clamp01(score) };
+}
+
+/** Builds SerpAPI `q` with Google site: filters for directory-scoped search. */
+export function buildSerpApiQueryWithDomains(query: string, domains: string[]): string {
+  const q = query.trim();
+  if (domains.length === 0) return q;
+  const siteClause =
+    domains.length === 1
+      ? `site:${domains[0]}`
+      : `(${domains.map((d) => `site:${d}`).join(' OR ')})`;
+  return `${siteClause} ${q}`.trim();
+}
+
+export type TavilySearchBody = {
+  query: string;
+  search_depth: 'basic';
+  max_results: number;
+  include_answer: boolean;
+  api_key: string;
+  include_domains?: string[];
+};
+
+/** Builds Tavily POST JSON body (exported for unit tests). */
+export function buildTavilySearchBody(
+  query: string,
+  apiKey: string,
+  includeDomains?: string[],
+): string {
+  const body: TavilySearchBody = {
+    query,
+    search_depth: 'basic',
+    max_results: 10,
+    include_answer: false,
+    api_key: apiKey,
+  };
+  if (includeDomains && includeDomains.length > 0) {
+    body.include_domains = includeDomains;
+  }
+  return JSON.stringify(body);
 }
 
 /**
@@ -171,19 +218,14 @@ async function searchTavily(
   query: string,
   apiKey: string,
   signal: AbortSignal,
+  includeDomains?: string[],
 ): Promise<SearchResultItem[]> {
   const key = normalizeTavilyApiKey(apiKey);
   if (!key) {
     throw new Error('Tavily: TAVILY_API_KEY is empty or invalid (check for quotes/whitespace in .env).');
   }
 
-  const bodyStr = JSON.stringify({
-    query,
-    search_depth: 'basic' as const,
-    max_results: 10,
-    include_answer: false,
-    api_key: key,
-  });
+  const bodyStr = buildTavilySearchBody(query, key, includeDomains);
 
   const attempts: Array<{
     label: string;
@@ -281,10 +323,11 @@ async function searchSerpApi(
   query: string,
   apiKey: string,
   signal: AbortSignal,
+  includeDomains?: string[],
 ): Promise<SearchResultItem[]> {
   const u = new URL('https://serpapi.com/search.json');
   u.searchParams.set('engine', 'google');
-  u.searchParams.set('q', query);
+  u.searchParams.set('q', buildSerpApiQueryWithDomains(query, includeDomains ?? []));
   u.searchParams.set('api_key', apiKey.trim());
   const res = await fetch(u.toString(), { signal });
   const rawText = await res.text();
@@ -335,15 +378,21 @@ function assertSearchKeys(provider: SearchProviderId): void {
   }
 }
 
+export type RunSearchOptions = {
+  includeDomains?: string[];
+};
+
 async function runSearch(
   provider: SearchProviderId,
   query: string,
   signal: AbortSignal,
+  options: RunSearchOptions = {},
 ): Promise<SearchResultItem[]> {
+  const { includeDomains } = options;
   if (provider === 'tavily') {
-    return searchTavily(query, process.env.TAVILY_API_KEY as string, signal);
+    return searchTavily(query, process.env.TAVILY_API_KEY as string, signal, includeDomains);
   }
-  return searchSerpApi(query, process.env.SERPAPI_API_KEY as string, signal);
+  return searchSerpApi(query, process.env.SERPAPI_API_KEY as string, signal, includeDomains);
 }
 
 function formatSearchBlock(items: SearchResultItem[], query: string): string {
@@ -385,6 +434,8 @@ export class AiSearchService {
     const { signal: runSignal } = buildTimeoutSignal(options.signal);
     const provider = getSearchProviderFromEnv();
     assertSearchKeys(provider);
+    const directoryDomains = getBusinessDirectoryDomainsFromEnv();
+    const directoryHosts = new Set(directoryDomains);
 
     const researchChunks: string[] = [];
     let apiSuccessCount = 0;
@@ -392,30 +443,61 @@ export class AiSearchService {
     let toolCallCount = 0;
     let lastToolSearchError: string | undefined;
 
+    const executeSearchTool = async (
+      label: string,
+      query: string,
+      includeDomains?: string[],
+    ): Promise<string> => {
+      toolCallCount += 1;
+      let items: SearchResultItem[] = [];
+      try {
+        items = await runSearch(provider, query, runSignal, { includeDomains });
+        apiSuccessCount += 1;
+      } catch (e) {
+        apiErrorCount += 1;
+        const message = e instanceof Error ? e.message : String(e);
+        lastToolSearchError = message;
+        researchChunks.push(`${label} "${query}": TOOL_ERROR — ${message}\n`);
+        return JSON.stringify({ error: true, message, query });
+      }
+      const block = formatSearchBlock(items, `${label} ${query}`);
+      researchChunks.push(block);
+      return JSON.stringify({
+        resultCount: items.length,
+        summary: block,
+      });
+    };
+
+    if (directoryDomains.length > 0) {
+      try {
+        const items = await runSearch(provider, userQuery, runSignal, {
+          includeDomains: directoryDomains,
+        });
+        researchChunks.push(formatSearchBlock(items, `[business directories] ${userQuery}`));
+        apiSuccessCount += 1;
+      } catch (e) {
+        apiErrorCount += 1;
+        const message = e instanceof Error ? e.message : String(e);
+        lastToolSearchError = message;
+        researchChunks.push(
+          `[business directories] "${userQuery}": SEED_ERROR — ${message}\n`,
+        );
+      }
+    }
+
     const toolWebSearch = tool({
       description:
-        'Search the public web for companies, news, and directory listings. Use focused queries. Returns top results with title, URL, and snippet.',
+        'Search the public web for companies, news, and official sites. Use focused queries. Returns top results with title, URL, and snippet. For Ethiopian business directories use directorySearch instead.',
       inputSchema: webSearchInputSchema,
-      execute: async (input) => {
-        toolCallCount += 1;
-        let items: SearchResultItem[] = [];
-        try {
-          items = await runSearch(provider, input.query, runSignal);
-          apiSuccessCount += 1;
-        } catch (e) {
-          apiErrorCount += 1;
-          const message = e instanceof Error ? e.message : String(e);
-          lastToolSearchError = message;
-          researchChunks.push(`Query "${input.query}": TOOL_ERROR — ${message}\n`);
-          return JSON.stringify({ error: true, message, query: input.query });
-        }
-        const block = formatSearchBlock(items, input.query);
-        researchChunks.push(block);
-        return JSON.stringify({
-          resultCount: items.length,
-          summary: block,
-        });
-      },
+      execute: async (input) => executeSearchTool('Query', input.query),
+    });
+
+    const toolDirectorySearch = tool({
+      description:
+        'Search curated Ethiopian business directories (e.g. Ezega Business Guide at businessguide.ezega.com). Use industry, city, or company-type keywords from the user request.',
+      inputSchema: webSearchInputSchema,
+      execute: async (input) =>
+        executeSearchTool('[directory tool]', input.query, directoryDomains),
     });
 
     const isAbortLike = (e: unknown): boolean =>
@@ -430,7 +512,7 @@ export class AiSearchService {
         model: this.model,
         system: getPhaseASystemPrompt(),
         prompt: `User prospecting request:\n${userQuery}\n\nSearch the web as needed, then stop.`,
-        tools: { webSearch: toolWebSearch },
+        tools: { webSearch: toolWebSearch, directorySearch: toolDirectorySearch },
         stopWhen: stepCountIs(TOOL_STEPS),
         toolChoice: 'auto',
         abortSignal: runSignal,
@@ -546,7 +628,7 @@ You must output exactly one JSON object, no markdown fences, no commentary: {"pr
     }
     const list = listC;
 
-    const adjusted = list.map(applyRankingHeuristics);
+    const adjusted = list.map((p) => applyRankingHeuristics(p, directoryHosts));
     adjusted.sort((a, b) => b.confidenceScore - a.confidenceScore);
     const deduped = deduplicateProspects(adjusted);
     return deduped.slice(0, MAX_PROSPECTS);

@@ -12,6 +12,10 @@
       "name": "Health",
       "item": [
         {
+          "name": "Aesthetic",
+          "item": []
+        },
+        {
           "name": "Health Check",
           "request": {
             "method": "GET",
@@ -25973,6 +25977,193 @@
               "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Report email sent\"\n}"
             }
           ]
+        },
+        {
+          "name": "Email to Finance",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "e893d9b2-d031-4b5d-8de1-a19fcd4d88f1",
+                  "src": "/Users/negasikiflom/Downloads/Construction ERP (1).pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/advert-sales/:id/email-to-finance?page=1&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "advert-sales",
+                ":id",
+                "email-to-finance"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "e893d9b2-d031-4b5d-8de1-a19fcd4d88f1",
+                      "src": "/Users/negasikiflom/Downloads/Construction ERP (1).pdf"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/advert-sales/:id/email-to-finance?page=1&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "advert-sales",
+                    ":id",
+                    "email-to-finance"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "77385a10-3d4a-4244-8e4c-2199e35eecbc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Security-Policy",
+                  "value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                },
+                {
+                  "key": "Cross-Origin-Opener-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Cross-Origin-Resource-Policy",
+                  "value": "same-origin"
+                },
+                {
+                  "key": "Origin-Agent-Cluster",
+                  "value": "?1"
+                },
+                {
+                  "key": "Referrer-Policy",
+                  "value": "no-referrer"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000; includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-DNS-Prefetch-Control",
+                  "value": "off"
+                },
+                {
+                  "key": "X-Download-Options",
+                  "value": "noopen"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "SAMEORIGIN"
+                },
+                {
+                  "key": "X-Permitted-Cross-Domain-Policies",
+                  "value": "none"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "63"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3f-gnkGlsSiIEUddCgYersfJQ0NS2A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 16 Jun 2026 10:24:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"SUCCESS\",\n    \"message\": \"Schedule email sent to finance\"\n}"
+            }
+          ]
         }
       ]
     },
@@ -32603,7 +32794,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n//   \"question\": \"How many satellite log entries do we have?\"\n  \"question\": \"show me the broadcast slots in a bar graph categorize by their status\"\n}",
+                  "raw": "{\n//   \"question\": \"How many satellite log entries do we have?\"\n//   \"question\": \"show me the broadcast slots in a bar graph categorize by their status\"\n  \"question\": \"Compare paid revenue from each advert package for this month in a bar chart.\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -32774,7 +32965,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"query\": \"hotels in addis ababa\"\n}"
+                  "raw": "{\n  \"query\": \"construction companies in addis ababa\"\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/api/ai-search",

@@ -5,5 +5,6 @@ import type { IStorageService } from '../domain/services/storage.service';
 export type ApiRouterDeps = AppContainer & {
   storageService: IStorageService;
   advertPackageImageUpload: RequestHandler;
+  advertSchedulePdfUpload: RequestHandler;
   authMiddleware: RequestHandler;
 };

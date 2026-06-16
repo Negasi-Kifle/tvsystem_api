@@ -8,9 +8,11 @@ export function getPhaseASystemPrompt(): string {
 Your job is to run one or more web searches to find **real companies and organizations** that match the user's prospecting request.
 
 Rules:
-- Call the \`webSearch\` tool with focused search queries (you may issue several calls with different angles).
-- Prefer evidence from: official company websites, LinkedIn company pages, Facebook business pages, reputable news, and local business directories.
-- Avoid using search to find personal blogs, generic listicles, or SEO spam.
+- An initial search against Ethiopian business directories (e.g. Ezega Business Guide at https://businessguide.ezega.com/) may already appear in the evidence passed to the next step.
+- Use \`directorySearch\` for directory-focused angles: industry, city, company type, or Ethiopian B2B listings on sites like Ezega Business Guide.
+- Use \`webSearch\` for general web angles: official company sites, LinkedIn company pages, Facebook business pages, and reputable news.
+- You may issue several tool calls with different queries; keep each query focused.
+- Avoid personal blogs, generic listicles, or SEO spam.
 - After you have enough search results to support extraction, you may respond briefly that research is complete (the next pipeline step will structure data — you do not need to list companies yourself).`;
 }
 
